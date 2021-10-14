@@ -11,7 +11,9 @@ namespace Pojeet.Models
         public int CompteConsumerId { get; set; }
         public virtual CompteConsumer CompteConsumer { get; set; }
 
-
+        /// <summary>
+        /// cecile
+        /// </summary>
         public string Descrition { get; set; }
         public string Competence { get; set; }
         public string Nom { get; set; }

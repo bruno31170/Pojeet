@@ -11,7 +11,8 @@ namespace Pojeet.Models
         List<CompteConsumer> ObtientTousConsumer();
         int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
             string adresse, string mail, int numeroTelephone, string description, string competence);
-        void ModifierConsumer(int id, string motdepasse, string pseudo);
+        void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+            string adresse, string mail, int numeroTelephone, string description, string competence);
         void SuppressionConsumer(int id);
     }
 }

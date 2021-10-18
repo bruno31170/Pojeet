@@ -1,20 +1,14 @@
 ﻿@model Pojeet.Models.CompteConsumer
 @{
-    Layout = null;
+    Layout = "_Layout";
+    ViewBag.Title = "AjouterConsumer";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>AjouterConsumer</title>
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
+@using (Html.BeginForm())
+{
     <fieldset>
-        <legend>Modifier un Consumer : </legend>
+        <legend>Ajouter un Consumer : </legend>
         @Html.LabelFor(m => Model.Pseudo)
         @Html.TextBoxFor(m => Model.Pseudo)
         @Html.ValidationMessageFor(m => Model.Pseudo)
@@ -49,7 +43,7 @@
         @Html.TextBoxFor(m => Model.Profil.NumeroTelephone)
         @Html.ValidationMessageFor(m => Model.Profil.NumeroTelephone)
 
-        
+
 
         <br />
 
@@ -79,9 +73,4 @@
 
         <input type="submit" value="S'inscrire" />
     </fieldset>
-    }
-
-
-
-</body>
-</html>
+}

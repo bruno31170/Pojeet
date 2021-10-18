@@ -1,0 +1,36 @@
+﻿@model Pojeet.Models.CompteConsumer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ModifierConsumer</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+    <fieldset>
+        <legend>Modifier un Consumer : </legend>
+        @Html.LabelFor(m => Model.Pseudo)
+        @Html.TextBoxFor(m => Model.Pseudo)
+        @Html.ValidationMessageFor(m => Model.Pseudo)
+
+
+        <br />
+        @Html.LabelFor(m => Model.MotDePasse)
+        @Html.TextBoxFor(m => Model.MotDePasse)
+        @Html.ValidationMessageFor(m => Model.MotDePasse)
+
+        <br />
+        <input type="submit" value="S'inscrire" />
+    </fieldset>
+    }
+
+
+
+</body>
+</html>

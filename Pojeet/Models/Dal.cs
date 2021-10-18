@@ -29,9 +29,14 @@ namespace Pojeet.Models
             _context.Dispose();
         }
 
-        public int CreerConsumer(string motdepasse, string pseudo)
+        public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance, 
+            string adresse, string mail, int numeroTelephone, string description, string competence)
         {
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motdepasse, Pseudo = pseudo };
+            Profil profil = new Profil { Nom = nom, Prenom = prenom, DateDeNaissance = dateNaissance, Adresse = adresse, Mail = mail, 
+                NumeroTelephone = numeroTelephone, Description = description, Competence = competence };
+            CompteConsumer consumer = new CompteConsumer { MotDePasse = motdepasse, Pseudo = pseudo, Profil = profil };
+            
+            
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
             return consumer.Id;

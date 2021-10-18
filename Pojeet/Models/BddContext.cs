@@ -12,6 +12,10 @@ namespace Pojeet.Models
         public DbSet<CompteProvider> CompteProvider { get; set; }
         public DbSet<DocumentIdentification> DocumentIdentification { get; set; }
         public DbSet<Profil> Profil { get; set; }
+        public DbSet<Message> Message { get; set; }
+        public DbSet<Messagerie> Messagerie { get; set; }
+        public DbSet<Conversation> Conversation { get; set; }
+        public DbSet<Avis> Avis { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

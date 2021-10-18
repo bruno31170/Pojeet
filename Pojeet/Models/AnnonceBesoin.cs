@@ -3,7 +3,7 @@ namespace Pojeet.Models
 {
     public class AnnonceBesoin
     {
-        public int AnnonceBesoin_Id { set; get; }
+        public int Id { set; get; }
         public String TitreAnnonce { set; get; }
         public String Description { set; get; }
         public DateTime DateParution { set; get; }

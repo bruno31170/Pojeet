@@ -1,8 +1,256 @@
 ﻿@model Pojeet.Models.CompteConsumer
 @{
     Layout = "_Layout";
-    ViewBag.Title = "AjouterConsumer";
+    ViewBag.Title = "Inscription";
 }
+
+<div class="image-container" style="background: url(assets/img/section_inscription.svg) bottom center; background-size: cover">
+    <!--   Big container   -->
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <div class="w-container">
+                    <div class="card wizard-card" data-color="red" id="wizard">
+                        <form action="" method="">
+                            <!--        You can switch " data-color="green" "  with one of the next bright colors: "blue", "azure", "orange", "red"       -->
+
+                            <div class="wizard-header">
+                                <h3 class="wizard-title">Création de votre profil HelpMyCar</h3>
+                            </div>
+                            <div class="wizard-navigation">
+                                <div class="progress-with-circle">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="1"
+                                         aria-valuemin="1" aria-valuemax="4" style="width: 15%;"></div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#location" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-desktop "></i>
+                                            </div>
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#type" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-user"></i>
+                                            </div>
+                                            Vous
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#facilities" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-map"></i>
+                                            </div>
+                                            Adresse
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#description" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-settings"></i>
+                                            </div>
+                                            Profil
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <div class="tab-content d-flex justify-content-center">
+
+                                <div class="tab-pane mt-4" id="location">
+                                    <div class="row justify-content-center">
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Pseudo<small> (requis)</small></label>
+                                                <input name="pseudo" type="text" class="form-control"
+                                                       placeholder="" id="pseudo">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Email <small> (requis)</small></label>
+                                                <input name="email" type="email" class="form-control"
+                                                       placeholder="" id="email">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Mot de passe <small> (requis)</small></label>
+                                                <input name="password" type="password" class="form-control"
+                                                       placeholder="" id="password">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>
+                                                    Confirmation du mot de passe <small>
+                                                        (requis)
+                                                    </small>
+                                                </label>
+                                                <input name="password_confirm" type="password"
+                                                       class="form-control" placeholder="" id="password_confirm">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="type">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Genre<small> (requis)</small></label><br>
+                                                <select name="genre" class="form-control" id="genre">
+                                                    <option value="">
+                                                        --Veuillez selectionner votre genre--
+                                                    </option>
+                                                    <option value="Afghanistan"> Homme </option>
+                                                    <option value="Albania"> Femme </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Prénom<small> (requis)</small></label>
+                                                <input name="firstname" type="text" class="form-control"
+                                                       placeholder="" id="firstname">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Nom<small> (requis)</small></label>
+                                                <input name="lastname" type="text" class="form-control"
+                                                       placeholder="" id="name">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Numéro de téléphone<small> (requis)</small></label>
+                                                <input name="phone" type="text" class="form-control"
+                                                       placeholder="" id="phone">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="facilities">
+
+                                    <div class="row">
+                                        <div class="col-sm-7 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Nom de la rue<small> (requis)</small></label>
+                                                <input type="text" class="form-control" placeholder=""
+                                                       name="street" id="street">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>Numéro de la rue<small> (requis)</small></label>
+                                                <input type="text" class="form-control" placeholder=""
+                                                       name="streetNumb" id="streetNumb">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-5 col-sm-offset-1 ">
+                                            <div class="form-group">
+                                                <label>Ville<small> (requis)</small></label>
+                                                <input type="text" class="form-control" placeholder=""
+                                                       name="city" id="city">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 ">
+                                            <div class="form-group">
+                                                <label>Code Postal<small> (requis)</small></label>
+                                                <input type="text" class="form-control" placeholder=""
+                                                       name="code_postal" id="code_postal">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Pays<small> (requis)</small></label><br>
+                                                <select name="country" class="form-control" name="pays"
+                                                        id="pays">
+                                                    <option value="Afghanistan"> France </option>
+                                                    <option value="Albania"> Belgique </option>
+                                                    <option value="Algeria"> Suisse </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="description">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-sm-offset-1 ">
+                                            <div class="picture-container">
+                                                <div class="picture">
+                                                    <img src="assets/img/default-avatar.jpg" class="picture-src"
+                                                         id="wizardPicturePreview" title="" />
+                                                    <input type="file" id="wizard-picture">
+                                                </div>
+                                                <h6>
+                                                    Choisissez une photo de Profil<small> (optionnel)</small>
+                                                </h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 ">
+                                            <div class="form-group">
+                                                <label>Description du profil<small> (optionnel)</small></label>
+                                                <textarea class="form-control" placeholder=""
+                                                          rows="9"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="inscription-footer w-100 d-flex justify-content-between">
+
+                                <div class="pull-left col-6">
+                                    <input type='button' class='btn btn-previous btn-default btn-wd'
+                                           name='previous' value='Précédent' />
+                                </div>
+
+                                <div class="pull-right col-6 d-flex justify-content-end">
+                                    <input type='button' class='btn btn-next btn-fill btn-danger btn-wd'
+                                           name='next' value='Suivant' />
+                                    <input type='button' class='btn btn-finish btn-fill btn-danger btn-wd'
+                                           name='finish' value='Finish' />
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+
+        </div><!-- end row -->
+    </div> <!--  big container -->
+</div>
+
+
+
+
+
 
 
 @using (Html.BeginForm())

@@ -12,14 +12,17 @@ namespace Pojeet.Models
         public DbSet<CompteProvider> CompteProvider { get; set; }
         public DbSet<DocumentIdentification> DocumentIdentification { get; set; }
         public DbSet<Profil> Profil { get; set; }
+        public DbSet<AnnonceBesoin> AnnonceBesoin { get; set; }
+        public DbSet<AnnonceService> AnnonceService { get; set; }
+        public DbSet<GestionnairePlateforme> GestionnairePlateforme { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
         }
         public void InitializeDb()
         {
-            //this.Database.EnsureDeleted();
+            this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             /*this.CompteConsumer.AddRange(
                 new CompteConsumer

@@ -3,7 +3,7 @@ namespace Pojeet.Models
 {
     public class GestionnairePlateforme
     {
-        public short GestionairePlateforme_Id { get; set; }
+        public short Id { get; set; }
         public String Nom { get; set; }
         public String Prenom { get; set; }
         public String CategorieAnnonce { get; set; } // enumération 

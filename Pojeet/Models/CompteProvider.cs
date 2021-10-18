@@ -14,13 +14,15 @@ namespace Pojeet.Models
         public int DocumentIdentificationId { get; set; }
         public virtual DocumentIdentification DocumentIdentification { get; set; }
 
+        public Etat Etat { get; set; }
 
 
-        public enum Etat
-        {
-            DemandeEnCours,
-            Valide,
-            Refuse
-        }
+
+    }
+    public enum Etat
+    {
+        DemandeEnCours,
+        Valide,
+        Refuse
     }
 }

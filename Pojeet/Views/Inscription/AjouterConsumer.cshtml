@@ -1,0 +1,87 @@
+﻿@model Pojeet.Models.CompteConsumer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AjouterConsumer</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+    <fieldset>
+        <legend>Modifier un Consumer : </legend>
+        @Html.LabelFor(m => Model.Pseudo)
+        @Html.TextBoxFor(m => Model.Pseudo)
+        @Html.ValidationMessageFor(m => Model.Pseudo)
+
+
+        <br />
+        @Html.LabelFor(m => Model.MotDePasse)
+        @Html.TextBoxFor(m => Model.MotDePasse)
+        @Html.ValidationMessageFor(m => Model.MotDePasse)
+
+        <br />
+
+        @Html.LabelFor(m => Model.Profil.Nom)
+        @Html.TextBoxFor(m => Model.Profil.Nom)
+        @Html.ValidationMessageFor(m => Model.Profil.Nom)
+
+        <br />
+
+        @Html.LabelFor(m => Model.Profil.Prenom)
+        @Html.TextBoxFor(m => Model.Profil.Prenom)
+        @Html.ValidationMessageFor(m => Model.Profil.Prenom)
+
+        <br />
+
+        @Html.LabelFor(m => Model.Profil.Mail)
+        @Html.TextBoxFor(m => Model.Profil.Mail)
+        @Html.ValidationMessageFor(m => Model.Profil.Mail)
+
+        <br />
+
+        @Html.LabelFor(m => Model.Profil.NumeroTelephone)
+        @Html.TextBoxFor(m => Model.Profil.NumeroTelephone)
+        @Html.ValidationMessageFor(m => Model.Profil.NumeroTelephone)
+
+        
+
+        <br />
+
+        @Html.LabelFor(m => Model.Profil.Adresse)
+        @Html.TextBoxFor(m => Model.Profil.Adresse)
+        @Html.ValidationMessageFor(m => Model.Profil.Adresse)
+
+        <br />
+
+        @Html.LabelFor(m => Model.Profil.DateDeNaissance)
+        @Html.TextBoxFor(m => Model.Profil.DateDeNaissance)
+        @Html.ValidationMessageFor(m => Model.Profil.DateDeNaissance)
+
+        <br />
+        @Html.LabelFor(m => Model.Profil.Competence)
+        @Html.TextBoxFor(m => Model.Profil.Competence)
+        @Html.ValidationMessageFor(m => Model.Profil.Competence)
+
+        <br />
+        @Html.LabelFor(m => Model.Profil.Description)
+        @Html.TextBoxFor(m => Model.Profil.Description)
+        @Html.ValidationMessageFor(m => Model.Profil.Description)
+
+        <br />
+
+
+
+        <input type="submit" value="S'inscrire" />
+    </fieldset>
+    }
+
+
+
+</body>
+</html>

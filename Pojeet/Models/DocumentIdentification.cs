@@ -8,13 +8,14 @@ namespace Pojeet.Models
     public class DocumentIdentification
     {
         public int Id { get; set; }
-        public enum Document
-        {
-            CarteIdentite,
-            PermisConduire
-        }
-        public Image CarteIdentite { get; set; }
 
-        public Image PermisConduire { get; set; }
+        public byte[] Photo { get; set; }
+
+        public Document Document { get; set; }
+    }
+    public enum Document
+    {
+        CarteIdentite,
+        PermisConduire
     }
 }

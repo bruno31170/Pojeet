@@ -1,5 +1,4 @@
-﻿using System;
-namespace Pojeet.Models
+﻿namespace Pojeet.Models
 {
     public class AnnonceService : AnnonceBesoin
     {

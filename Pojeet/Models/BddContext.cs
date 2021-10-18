@@ -19,7 +19,7 @@ namespace Pojeet.Models
         }
         public void InitializeDb()
         {
-            this.Database.EnsureDeleted();
+            //this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             /*this.CompteConsumer.AddRange(
                 new CompteConsumer

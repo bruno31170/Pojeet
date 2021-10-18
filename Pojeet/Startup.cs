@@ -40,7 +40,7 @@ namespace Pojeet
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Inscription}/{action=Index}/{id?}");
             });
         }
     }

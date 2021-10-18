@@ -11,7 +11,13 @@ namespace Pojeet.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<CompteConsumer> listConsumer = new List<CompteConsumer>();
+            using (IDal dal = new Dal())
+            {
+                listConsumer = dal.ObtientTousConsumer();
+            }
+                
+            return View(listConsumer);
         }
 
         public IActionResult ModifierConsumer(int id)
@@ -36,7 +42,7 @@ namespace Pojeet.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("ModifierConsumer");
+               return View("ModifierConsumer");
             }
 
 
@@ -44,8 +50,9 @@ namespace Pojeet.Controllers
             {
                 using (Dal ctx = new Dal())
                 {
-                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo);
-                    return RedirectToAction("ModifierConsumer", new { @id = consumer.Id });
+                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+            consumer.Profil.Adresse, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Competence);
+                    return RedirectToAction("Index");
                 }
             }
             else

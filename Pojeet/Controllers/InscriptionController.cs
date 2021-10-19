@@ -16,7 +16,7 @@ namespace Pojeet.Controllers
             {
                 listConsumer = dal.ObtientTousConsumer();
             }
-                
+
             return View(listConsumer);
         }
 
@@ -42,7 +42,7 @@ namespace Pojeet.Controllers
         {
             if (!ModelState.IsValid)
             {
-               return View("ModifierConsumer");
+                return View("ModifierConsumer");
             }
 
 
@@ -51,7 +51,7 @@ namespace Pojeet.Controllers
                 using (Dal ctx = new Dal())
                 {
                     ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Competence);
+            consumer.Profil.Adresse, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description);
                     return RedirectToAction("Index");
                 }
             }
@@ -73,7 +73,7 @@ namespace Pojeet.Controllers
             using (Dal ctx = new Dal())
             {
                 ctx.AjouterConsumer(consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Competence);
+            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description);
                 return RedirectToAction("AjouterConsumer", new { @id = consumer.Id });
             }
 

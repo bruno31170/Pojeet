@@ -497,8 +497,8 @@ a {
             margin-right: 0px;
         }
 
-    .btn [class*="ti-"],
-    .navbar .navbar-nav > li > a.btn [class*="ti-"] {
+    .btn [class*="bi-"],
+    .navbar .navbar-nav > li > a.btn [class*="bi-"] {
         vertical-align: middle;
     }
 
@@ -1072,9 +1072,9 @@ a {
         transition: font-size 0.2s linear;
     }
 
-        .nav-pills > li.active > a [class*="ti-"],
-        .nav-pills > li.active > a:hover [class*="ti-"],
-        .nav-pills > li.active > a:focus [class*="ti-"] {
+        .nav-pills > li.active > a [class*="bi-"],
+        .nav-pills > li.active > a:hover [class*="bi-"],
+        .nav-pills > li.active > a:focus [class*="bi-"] {
             color: #2b6777;
             font-size: 24px;
             top: 21px;
@@ -1266,12 +1266,13 @@ a {
         top: -2px;
     }
 
-        .wizard-card .icon-circle [class*="ti-"] {
+        .wizard-card .icon-circle [class*="bi-"] {
             position: absolute;
             z-index: 1;
             left: 1px;
             right: 0px;
-            top: 23px;
+            top: 8px;
+            font-size: 32px;
         }
 
     .wizard-card .picture {

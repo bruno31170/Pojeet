@@ -22,7 +22,7 @@ namespace Pojeet.Models
 
         public List<CompteConsumer> ObtientTousConsumer()
         {
-            return _context.CompteConsumer.Include(c=> c.Profil).ToList();
+            return _context.CompteConsumer.Include(c => c.Profil).ToList();
         }
 
         public void Dispose()
@@ -30,23 +30,31 @@ namespace Pojeet.Models
             _context.Dispose();
         }
 
-        public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance, 
-            string adresse, string mail, int numeroTelephone, string description, string competence)
+        public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+            string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description)
         {
-            Profil profil = new Profil { Nom = nom, Prenom = prenom, DateDeNaissance = dateNaissance, Adresse = adresse, Mail = mail, 
-                NumeroTelephone = numeroTelephone, Description = description, Competence = competence };
+            Profil profil = new Profil
+            {
+                Nom = nom,
+                Prenom = prenom,
+                DateDeNaissance = dateNaissance,
+                Adresse = adresse,
+                Mail = mail,
+                NumeroTelephone = numeroTelephone,
+                Description = description,
+            };
             CompteConsumer consumer = new CompteConsumer { MotDePasse = motdepasse, Pseudo = pseudo, Profil = profil };
-            
-            
+
+
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
             return consumer.Id;
         }
         public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-            string adresse, string mail, int numeroTelephone, string description, string competence)
+            string adresse, string mail, int numeroTelephone, string description)
         {
-            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c=>c.Id==id).FirstOrDefault();
-            
+            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
+
             if (consumer != null)
             {
                 consumer.Profil.Nom = nom;
@@ -58,10 +66,9 @@ namespace Pojeet.Models
                 consumer.Profil.Mail = mail;
                 consumer.Profil.NumeroTelephone = numeroTelephone;
                 consumer.Profil.Description = description;
-                consumer.Profil.Competence = competence;
                 _context.SaveChanges();
             }
-            
+
         }
 
         public void SuppressionConsumer(int id)

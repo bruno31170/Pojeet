@@ -10,8 +10,8 @@ namespace Pojeet.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Le pseudo doit être rempli.")]
-        [Display(Name = "Pseudo")]
+        //[Required(ErrorMessage = "Le pseudo doit être rempli.")]
+        //[Display(Name = "Pseudo")]
         public string Pseudo { get; set; }
 
 

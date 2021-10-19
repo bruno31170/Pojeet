@@ -187,8 +187,6 @@ nav-link-hover-green:hover {
 .home-hero {
     min-height: 768px;
     height: 80vh;
-    background: url(../../../wwwroot/img/section_hero.svg) bottom center;
-    background-size: cover;
 }
 
     .home-hero .container, .home-hero .hero {

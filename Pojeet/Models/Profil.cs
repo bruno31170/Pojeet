@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,28 +9,25 @@ namespace Pojeet.Models
     public class Profil
     {
         public int Id { get; set; }
-        public int CompteConsumerId { get; set; }
-        public virtual CompteConsumer CompteConsumer { get; set; }
+        
 
-        /// <summary>
-        /// bruno yolo
-        /// </summary>
-        public string Descrition { get; set; }
+        //On peut metre [key] avant une propriété pour la définir comme clés principale
+        public string Description { get; set; }
         public string Competence { get; set; }
+        [MaxLength(20)]
+        [Required(ErrorMessage = "Le Nom doit être rempli.")]
         public string Nom { get; set; }
+        [Required(ErrorMessage = "Le Prenom doit être rempli.")]
         public string Prenom { get; set; }
+        [Required(ErrorMessage = "La Date de naissance doit être rempli.")]
         public string DateDeNaissance { get; set; }
+        [Required(ErrorMessage = "L'Adresse doit être rempli.")]
         public string Adresse { get; set; }
+        [Required(ErrorMessage = "Le Mail doit être rempli.")]
         public string Mail { get; set; }
+        [Required(ErrorMessage = "Le Numéros de téléphone doit être rempli.")]
         public int NumeroTelephone { get; set; }
-        public Image Photo { get; set; }
-    }
-
-    public class Image
-    {
-        public int Id { get; set; }
-        public string TitreImage { get; set; }
-        public byte ImageData { get; set; }
+        public byte[] Photo { get; set; }
     }
 
 }

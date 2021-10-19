@@ -9,8 +9,10 @@ namespace Pojeet.Models
     {
         void DeleteCreateDatabase();
         List<CompteConsumer> ObtientTousConsumer();
-        int CreerConsumer(string lieu, string telephone);
-        void ModifierConsumer(int id, string lieu, string telephone);
+        int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+            string adresse, string mail, int numeroTelephone, string description, string competence);
+        void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+            string adresse, string mail, int numeroTelephone, string description, string competence);
         void SuppressionConsumer(int id);
     }
 }

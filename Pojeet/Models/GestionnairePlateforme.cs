@@ -4,10 +4,9 @@ namespace Pojeet.Models
     public class GestionnairePlateforme
     {
         public string Id { get; set; }
-        public short GestionairePlateforme_Id { get; set; }
         public String Nom { get; set; }
         public String Prenom { get; set; }
-        public String CategorieAnnonce { get; set; } // enumération 
+         // enumération 
 
         //TODO méthode pour valider ou refuser un compte consumer
 

@@ -13,7 +13,7 @@ namespace Pojeet.Models
 
         //On peut metre [key] avant une propriété pour la définir comme clés principale
         public string Description { get; set; }
-        public string Competence { get; set; }
+        
         [MaxLength(20)]
         [Required(ErrorMessage = "Le Nom doit être rempli.")]
         public string Nom { get; set; }
@@ -28,6 +28,8 @@ namespace Pojeet.Models
         [Required(ErrorMessage = "Le Numéros de téléphone doit être rempli.")]
         public int NumeroTelephone { get; set; }
         public byte[] Photo { get; set; }
+
+        public List<Avis> Avis { get; set; }
     }
 
 }

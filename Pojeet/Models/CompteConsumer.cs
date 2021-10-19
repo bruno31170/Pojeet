@@ -14,6 +14,7 @@ namespace Pojeet.Models
         public string Pseudo { get; set; }
         [Required(ErrorMessage = "Le mot de passe doit être rempli.")]
         public string MotDePasse { get; set; }
+        public string Competence { get; set; }
 
 
         public int ProfilId { get; set; }

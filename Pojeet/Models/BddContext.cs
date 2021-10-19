@@ -12,8 +12,7 @@ namespace Pojeet.Models
         public DbSet<CompteProvider> CompteProvider { get; set; }
         public DbSet<DocumentIdentification> DocumentIdentification { get; set; }
         public DbSet<Profil> Profil { get; set; }
-<<<<<<< Updated upstream
-=======
+
         public DbSet<Message> Messages { get; set; }
         public DbSet<Messagerie> Messagerie { get; set; }
         public DbSet<Conversation> Conversation { get; set; }
@@ -21,7 +20,7 @@ namespace Pojeet.Models
         public DbSet<GestionnairePlateforme> GestionnairePlateforme { get; set; }
         public DbSet<AnnonceBesoin> AnnonceBesoin { get; set; }
         public DbSet<AnnonceService> AnnonceService { get; set; }
->>>>>>> Stashed changes
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,6 +45,6 @@ namespace Pojeet.Models
                 }
             );*/
             this.SaveChanges();
-        }
+        }//
     }
 }

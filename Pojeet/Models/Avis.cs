@@ -9,11 +9,15 @@ namespace Pojeet.Models
     public class Avis 
     {
         public int Id { get; set; }
-        public DateTime date { get; set; }
-        public string commentaire { get; set; }
-        public int note { get; set; }
+        public DateTime Date { get; set; }
+        public string Commentaire { get; set; }
+        public int Note { get; set; }
 
-        public int CompteConsumerId { get; set; }
+        public virtual CompteProvider CompteProvider { get; set; }
+        public virtual CompteConsumer Auteur { get; set; }
         public virtual CompteConsumer CompteConsumer { get; set; }
-}
+        
+        
+        
+    }
 }

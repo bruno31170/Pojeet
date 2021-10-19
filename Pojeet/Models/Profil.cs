@@ -9,7 +9,7 @@ namespace Pojeet.Models
     public class Profil
     {
         public int Id { get; set; }
-        
+
 
         //On peut metre [key] avant une propriété pour la définir comme clés principale
         public string Description { get; set; }
@@ -20,6 +20,7 @@ namespace Pojeet.Models
         [Required(ErrorMessage = "Le Prenom doit être rempli.")]
         public string Prenom { get; set; }
         [Required(ErrorMessage = "La Date de naissance doit être rempli.")]
+        [Display(Name = "Date de naissance")]
         public string DateDeNaissance { get; set; }
         [Required(ErrorMessage = "L'Adresse doit être rempli.")]
         public string Adresse { get; set; }

@@ -1,11 +1,13 @@
 ﻿using System;
 
-public class Class1
+
+namespace Pojeet.Models
 {
-	public Class1()
+	public class Message
 	{
-	public int Id { get; set; }
-	public DateTime Date;
-	public string Message;
-}
+		public int Id { get; set; }
+		public DateTime Date;
+		public string message;
+	}
+
 }

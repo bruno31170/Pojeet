@@ -11,10 +11,5 @@ namespace Pojeet.Models
         public int Id { get; set; }
         public int auteur_id;
         public List<Message> Messages;
-
-        public Conversation(List<Message> messages)
-        {
-            Messages = messages;
-        }
     }
 }

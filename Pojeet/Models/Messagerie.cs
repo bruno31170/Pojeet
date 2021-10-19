@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class Class1
+namespace Pojeet.Models
 {
-	public Messagerie()
+	public class Messagerie
 	{
-	public int Id { get; set; }
-	public List<Conversation> Historique { get; set; }
+		public int Id { get; set; }
+		public List<Conversation> Historique { get; set; }
+	}
 }
-}
+

@@ -15,7 +15,7 @@ namespace Pojeet.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=ChoixSejour");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=HelpMyCar");
         }
     }
 }

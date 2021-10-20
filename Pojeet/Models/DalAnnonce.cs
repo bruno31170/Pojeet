@@ -19,16 +19,20 @@ namespace Pojeet.Models
         }
 
 
-        public void PosterAnnonce(string titreAnnonce, string description, DateTime dateParution, string localisation, DateTime dateButoir, int prix)
+        public void PosterAnnonce(TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo)
         {
             Annonce annonce = new Annonce
             {
+                TypeDeAnnonce = typeAnnonce,
                 TitreAnnonce = titreAnnonce,
                 Description = description,
-                DateParution = dateParution,
+                DateParution = DateTime.Now,
                 Localisation = localisation,
                 DateButoir = dateButoir,
-                Prix = prix
+                Prix = prix,
+                CategorieDeAnnonce = categorieAnnonce,
+                Photo = photo
+
 
             };
 

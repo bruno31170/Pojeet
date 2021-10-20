@@ -33,7 +33,7 @@ namespace Pojeet.Controllers
         [HttpPost]
         public IActionResult Index(UtilisateurViewModel viewModel, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (viewModel.CompteConsumer.MotDePasse != null && viewModel.CompteConsumer.Pseudo != null)
             {
                 CompteConsumer CompteConsumer = dal.Authentifier(viewModel.CompteConsumer.Pseudo, viewModel.CompteConsumer.MotDePasse);
                 if (CompteConsumer != null)

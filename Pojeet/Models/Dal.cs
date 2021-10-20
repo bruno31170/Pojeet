@@ -103,7 +103,8 @@ namespace Pojeet.Models
         public CompteConsumer Authentifier(string pseudo, string password)
         {
             string motDePasse = EncodeMD5(password);
-            CompteConsumer user = _context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            //CompteConsumer user = _context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
             //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
             return user;
         }

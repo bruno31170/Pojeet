@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'CerebriSans';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_2_0-3f7d98eb932a1bd5077483182bfd42b9ca2b187c03faec2f84ae4cc69cb9743d.eot");
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_2_0-3f7d98eb932a1bd5077483182bfd42b9ca2b187c03faec2f84ae4cc69cb9743d.eot?#iefix") format("embedded-opentype"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_2_0-e8a779d098eb21720399f02b523021639133f894cbc4ced9949c18f631b8b66b.woff2") format("woff2"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_2_0-bef329ef57115a1730d492c55cd635533a34c6dd4b573f011a1b21072ab40369.woff") format("woff"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_2_0-087c7389d2f32a67b24e2a7b7c51b7d673375f91123a12c69101cc43cb1fcd68.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'CerebriSans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_1_0-e7f7fbe6e97cb2c3fcd8c9e7217716831a7c8dfe1f9153ea43818df0dbad07fa.eot");
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_1_0-e7f7fbe6e97cb2c3fcd8c9e7217716831a7c8dfe1f9153ea43818df0dbad07fa.eot?#iefix") format("embedded-opentype"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_1_0-d699142e232382e6842eb046f54e6220ead5a734d8795fcfd0d99a4e553ce2bc.woff2") format("woff2"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_1_0-e12ff8c1242ed81effccedbc2dd3c9f105d101eff3a9c83f564273cebc929dfc.woff") format("woff"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_1_0-a4cdebe5722b545a9ab29f6da75c3481f5d38d446bdba31409bab9a4d42dfac9.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'CerebriSans';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_3_0-ac0da2c4e9cf92a4559a49f2b96e7983341e7a77bd0979e77b86f1318012b0ad.eot");
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_3_0-ac0da2c4e9cf92a4559a49f2b96e7983341e7a77bd0979e77b86f1318012b0ad.eot?#iefix") format("embedded-opentype"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_3_0-7cb766c4ab802a73fdaa8fcdcba2ea5915f65aa698ec823a5649546b0137dfd3.woff2") format("woff2"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_3_0-d817c85c0fe3971df99a0a5216ac087efb6b2e1d7ea1a8c6447ca05c4bb25c51.woff") format("woff"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_3_0-64df49b8445a7a58a34a5f5e3183464297880a09bab66bbb665b32b6dfe3af93.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'CerebriSans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_0_0-f3725c06cedf5bb580fcf7f8b2ccc9e543678373fce613b3df6176f87cb4f6b7.eot");
+  src: url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_0_0-f3725c06cedf5bb580fcf7f8b2ccc9e543678373fce613b3df6176f87cb4f6b7.eot?#iefix") format("embedded-opentype"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_0_0-1035cf8856422bbc7e9c8bca8c18a1d6d27f79983445a07b8bf4e435391c5256.woff2") format("woff2"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_0_0-bc222bb6ea0cf725052607813b5453250ff0bc996e3cbe07e85215dff4970420.woff") format("woff"),url("https://d1b747rczec55w.cloudfront.net/assets/39E68B_0_0-b6b3c6e1cf92d76d957dd27071d42b620b9613d5d393fd3218695146e3ee14c6.ttf") format("truetype");
+}
+
+
+body {
+  margin: 0;
+  font-family: "CerebriSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #13151b;
+  text-align: left;
+  background-color: #fff;
+}
+
+
+h1{
+  font-weight: bold;
+}
+
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+
+h1,
+.h1 {
+  font-size: 1.8rem;
+}
+
+h2,
+.h2 {
+  font-size: 1.3rem;
+}
+
+h3,
+.h3 {
+  font-size: 1.2rem;
+}
+
+h4,
+.h4 {
+  font-size: 1.1rem;
+}
+
+h5,
+.h5 {
+  font-size: 1rem;
+}
+
+h6,
+.h6 {
+  font-size: 0.9rem;
+}
+
+p{
+  font-size: 1rem;
+}
+
+.font-size-6 {
+  font-size: 0.5rem;
+}
+
+.font-size-8 {
+  font-size: 0.6rem;
+}
+
+.font-size-11 {
+  font-size: 0.7rem;
+}
+
+.font-size-12 {
+  font-size: 0.8rem;
+}
+
+.font-size-13 {
+  font-size: 0.9rem;
+}
+
+.font-size-14 {
+  font-size: 0.9rem;
+}
+
+.font-size-15 {
+  font-size: 1rem;
+}
+
+
+.font-size-16 {
+  font-size: 1.1rem;
+}
+
+.font-size-17 {
+  font-size: 1.2rem;
+}
+
+.font-size-18 {
+  font-size: 1.3rem;
+}
+
+.font-size-20 {
+  font-size: 1.4rem;
+}
+
+.font-size-22 {
+  font-size: 1.5rem;
+}
+
+.font-size-24 {
+  font-size: 1.6rem;
+}
+
+.font-size-25 {
+  font-size: 1.7rem;
+}
+
+.font-size-26 {
+  font-size: 1.8rem;
+}
+
+.font-weight-light {
+  font-weight: 300 !important;
+}
+
+.font-weight-lighter {
+  font-weight: lighter !important;
+}
+
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.font-weight-900{
+  font-weight: 900;
+}
+
+.jq-selectbox__select-text,
+.search_select_form,
+.jq-selectbox__dropdown li{
+  font-family: 'Montserrat', sans-serif;
+  color: #333e48;
+  font-size: 0.9rem !important;
+}

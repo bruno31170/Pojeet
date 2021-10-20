@@ -26,8 +26,9 @@ namespace Pojeet.Controllers
         {
             if (!ModelState.IsValid)
                 return View("Error");
-            dal.PosterAnnonce(annonce.TitreAnnonce, annonce.Description, annonce.DateParution, annonce.Localisation, annonce.DateButoir, annonce.Prix);
-            return RedirectToAction("Reussi");
+            dal.PosterAnnonce(annonce.TypeDeAnnonce, annonce.TitreAnnonce, annonce.Description, annonce.DateParution, annonce.Localisation, annonce.DateButoir, annonce.Prix, annonce.CategorieDeAnnonce, annonce.Photo);
+            
+            return RedirectToAction("Reussi"); //Retourner view mes annonces
         }
 
 
@@ -40,7 +41,7 @@ namespace Pojeet.Controllers
         public ActionResult SupprimerAnnonce(int id)
         {
             dal.SupprimerAnnonce(id);
-            return RedirectToAction("Reussi");
+            return RedirectToAction("Reussi"); //Retourner view mes annonces
         }
     }
 }

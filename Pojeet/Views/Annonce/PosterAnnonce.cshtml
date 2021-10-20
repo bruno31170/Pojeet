@@ -1,4 +1,5 @@
 ﻿@model Pojeet.Models.Annonce
+
 @{
     Layout = null;
 }
@@ -98,59 +99,79 @@
 
         <div class="annonce">
 
+            @using (Html.BeginForm())
+            {
+
 
             <form>
 
                 <!-- Type d'annonce -->
 
-                
-                <label for="type">Type d'annonce :</label><br>
-                <input type="radio" id="offre" name="offre" value="offre" />
-                <label for="offre">Offre</label>
-                <input type="radio" id="demande" name="demande" value="demande" />
-                <label for="demande">Demande</label><br><br>
+                <h3>Selectionner le type d'annonce*</h3><br>
+                <span>Besoin : </span> @Html.RadioButtonFor(m => m.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Besoin))
+                <span> | Service : </span> @Html.RadioButtonFor(m => m.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Service)
+                @Html.ValidationMessageFor(model => model.TypeDeAnnonce)<br>
+
+
+
+                <!-- Catégorie --><br>
+
+                <h3>Selectionner la catégorie*</h3>
+                @Html.DropDownListFor(m => m.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))))
+                @Html.ValidationMessageFor(model => model.CategorieDeAnnonce)<br>
 
                 <!-- Catégorie -->
-              
-                <label for="categorie" class="inline">Catégorie :</label> <br>
-                <input type="text" list="catégorie_proposee" id="categorie" name="categorie" />
-                <datalist id="catégorie_proposee">
-                    <option value="Moteur"></option>
-                    <option value="Habitacle"></option>
-                    <option value="Carrosserie"></option>
-                    <option value="Roue"></option>
-                </datalist><br><br>
+
+                <h3>Selectionner une image</h3><br>
+                <input type="file" /><br>
+
+                <!-- FAIRE AFFICHER LES IMAGES -->
 
                 <!-- Titre de l'annonce -->
 
-                <label for="titre" class="inline">Titre de l'annonce :</label> <br>
-                <input type="text" id="titre" name="titre"><br><br>
+                <h3>Titre de l'annonce*</h3><br>
+                @Html.TextBoxFor(model => model.TitreAnnonce)
+                @Html.LabelFor(model => model.TitreAnnonce)
+                @Html.ValidationMessageFor(model => model.TitreAnnonce)<br>
 
                 <!-- Description -->
 
-                <label for="description" class="inline">Description :</label> <br>
-                <textarea style="width: 500px;" type="textarea" rows="10" cols="50" id="description"
-                          name="description"></textarea><br><br>
+                <h3>Description*</h3><br>
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Description" })
+                @Html.LabelFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)<br>
+
 
                 <!-- Date butoire -->
 
-                <label for="date" class="inline">Date butoire :</label> <br>
-                <input type="date" id="date" name="date"><br><br>
+                <h3>Date butoir*</h3><br>
+                @Html.TextBoxFor(model => model.DateButoir, new { @type = "date" })
+                @Html.LabelFor(model => model.DateButoir)
+                @Html.ValidationMessageFor(model => model.DateButoir)<br>
+
 
                 <!-- Département -->
 
-                <label for="departement" class="inline">Département :</label> <br>
-                <input type="number" id="prix" name="prix"><br><br>
+                <h3>Département*</h3><br>
+                @Html.TextBoxFor(model => model.Localisation)
+                @Html.LabelFor(model => model.Localisation)
+                @Html.ValidationMessageFor(model => model.Localisation)<br>
+
 
                 <!-- Prix -->
 
-                <label for="prix" class="inline">Prix :</label> <br>
-                <input type="number" id="prix" name="prix"><br><br>
+                <h3>Prix</h3><br>
+                @Html.TextBoxFor(model => model.Prix)
+                @Html.LabelFor(model => model.Prix)<br>
 
-                <input type="submit" value="Publier" class="boutonEnvoyerPublier" />
+
+
+                <input type="submit" value="Publier" class="Publier" /><br>
+
+                <p>* : Champ obligatoire</p>
 
             </form>
-
+            }
         </div>
 
 

@@ -30,7 +30,7 @@ namespace Pojeet.Models
         public string Mail { get; set; }
         [Required(ErrorMessage = "Le Numéros de téléphone doit être rempli.")]
         public int NumeroTelephone { get; set; }
-        public byte[] Photo { get; set; }
+        public String Photo { get; set; }
     }
 
 }

@@ -24,6 +24,17 @@ namespace Pojeet.Models
         {
             return _context.CompteConsumer.Include(c => c.Profil).ToList();
         }
+        public List<Conversation> ObtientToutesLesConversations(int id)
+        {
+            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c=> c.Messages).Include(c=> c.Auteur_Message.Profil).ToList();
+            return listeConversations;
+        }
+
+        public List<Message> ObtientTousLesMessages(int id)
+        {
+            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).ToList();
+            return listeMessages;
+        }
 
         public void Dispose()
         {

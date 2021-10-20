@@ -14,5 +14,8 @@ namespace Pojeet.Models
         void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
             string adresse, string mail, int numeroTelephone, string description);
         void SuppressionConsumer(int id);
+
+        List<Conversation> ObtientToutesLesConversations(int id);
+        List<Message> ObtientTousLesMessages(int conversationId);
     }
 }

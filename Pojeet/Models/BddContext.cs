@@ -26,13 +26,15 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+
             
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
 
         }
         public void InitializeDb()
         {
-            this.Database.EnsureDeleted();
+            //this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             /*this.CompteConsumer.AddRange(
                 new CompteConsumer

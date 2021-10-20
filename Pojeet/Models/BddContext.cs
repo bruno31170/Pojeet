@@ -24,6 +24,10 @@ namespace Pojeet.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+<<<<<<< Updated upstream
+=======
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+>>>>>>> Stashed changes
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
         }
         public void InitializeDb()

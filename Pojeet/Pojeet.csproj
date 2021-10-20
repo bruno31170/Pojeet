@@ -20,9 +20,15 @@
     <Content Remove="wwwroot\img\" />
   </ItemGroup>
   <ItemGroup>
+
+    <Folder Include="Views\Home\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\img\" />
+
     <Folder Include="wwwroot\css\css-e\gf\" />
     <Folder Include="wwwroot\img\img-e\gf\" />
     <Folder Include="wwwroot\js\js-e\gf\" />
+
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />

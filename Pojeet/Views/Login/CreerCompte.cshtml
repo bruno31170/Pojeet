@@ -6,7 +6,7 @@
 }
 
 <div class="image-container" style="background: url('@Url.Content("~/img/section_inscription.svg")') bottom center; background-size: cover; padding-top:50px">
-    <div class="container">
+    <div class="container mb-5">
         <div class="row d-flex justify-content-center">
 
             <div class="col-sm-8 col-sm-offset-2">
@@ -187,12 +187,13 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 <label>Pays<small> (requis)</small></label><br>
-                                                <select name="country" class="form-control" value="pays"
+                                                <select name="country" class="form-control" name="pays"
                                                         id="pays">
                                                     <option value="Afghanistan"> France </option>
                                                     <option value="Albania"> Belgique </option>
                                                     <option value="Algeria"> Suisse </option>
                                                 </select>
+                                                @*@Html.DropDownListFor(m => m.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Selectionner la catégorie")*@
                                             </div>
                                         </div>
                                     </div>

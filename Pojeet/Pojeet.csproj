@@ -22,8 +22,6 @@
   <ItemGroup>
 
     <Folder Include="Views\Home\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\img\" />
 
     <Folder Include="wwwroot\css\css-e\gf\" />
     <Folder Include="wwwroot\img\img-e\gf\" />
@@ -34,12 +32,12 @@
     <None Remove="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
-    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
-    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
-    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
-    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
-    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\css\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\css\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\css\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\css\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\css\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\css\webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\img\avatar_exemple.png">

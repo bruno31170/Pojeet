@@ -10,39 +10,39 @@
 
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="~css/css-e/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/bootstrap.min.css">
 
-
+    @RenderSection("css", required: false)
     <!-- Fonts -->
-    <link rel="stylesheet" href="~css/css-e/fontawesome-all.min.css">
+    <link rel="stylesheet" href="~/css/css-e/fontawesome-all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Rubik|Dancing+Script" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital@1&family=Montserrat:wght@300;500;800;900&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    
+
 
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="~css/css-e/style1.css">
-    <link rel="stylesheet" type="text/css" href="~css/css-e/typography1.css">
-    <link rel="stylesheet" type="text/css" href="~css/css-e/colors1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/style1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/typography1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/colors1.css">
 
     <!-- Responsive -->
-    <link rel="stylesheet" type="text/css" href="~css/css-e/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/responsive.css">
 
     <!-- STYLE JS -->
-    <link href="~js/js-e/jquery.formstyler.css" rel="stylesheet" />
-    <link href="~js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
+    <link href="~/js/js-e/jquery.formstyler.css" rel="stylesheet" />
+    <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="~js/js-e/jquery.formstyler.min.js"></script>
+    <script src="~/js/js-e/jquery.formstyler.min.js"></script>
     <script>
-    (function($) {
-      $(function() {
-        $('select, option, input').styler({
-          selectSearch: true,
-        });
-      });
-    })(jQuery);
+        (function ($) {
+            $(function () {
+                $('select, option, input').styler({
+                    selectSearch: true,
+                });
+            });
+        })(jQuery);
     </script>
 
 </head>
@@ -52,7 +52,7 @@
         <div class="nav-menu-block">
             <div class="flex-row w-100 justify-content-between">
                 <div class="nav-logo">
-                    <img src="~img/img-e/logo1.png" alt="">
+                    <img src="~/img/img-e/logo1.png" alt="">
                 </div>
                 <div class="align-self-end mt-min mb-1">
                     <a class="btn_registration font-size-18 " href="#">Demander un service</a>
@@ -89,19 +89,6 @@
             </div>
         </div>
     </header>
-
-    <!-- navigation site -->
-    <!-- <div class="navbar">
-      <ul class=" flex-row w-100 justify-content-around">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Annonces</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <ul>
-
-      </ul>
-    </div> -->
-    <!--End navigation site -->
     <main>
         <div class="page_layout">
 
@@ -110,7 +97,7 @@
                 <div class="side_bar_inner">
                     <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
                         <li class="text-center">
-                            <img class="border-e mb-3" src="img/user2.png" alt="">
+                            <img class="border-e mb-3" src="~/img/img-e/user2.png" alt="">
                             <a class="font-size-18" href="#"> Marie <br> Brasseur</a>
                         </li>
                         <li>
@@ -182,7 +169,7 @@
         </div>
         <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
     </footer>
-    <script type="text/javascript" src="~js/js-e/custom-e.js"></script>
+    <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
 
 </body>
 

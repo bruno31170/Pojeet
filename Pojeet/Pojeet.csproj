@@ -21,23 +21,43 @@
   </ItemGroup>
   <ItemGroup>
 
-    <Folder Include="Views\Home\" />
-
-    <Folder Include="wwwroot\css\css-e\gf\" />
-    <Folder Include="wwwroot\img\img-e\gf\" />
-    <Folder Include="wwwroot\js\js-e\gf\" />
+    <Folder Include="Views\Gf\" />
 
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <None Include="wwwroot\css\webfonts\fa-brands-400.svg" />
     <None Include="wwwroot\css\webfonts\fa-brands-400.woff2" />
     <None Include="wwwroot\css\webfonts\fa-regular-400.svg" />
     <None Include="wwwroot\css\webfonts\fa-regular-400.woff2" />
     <None Include="wwwroot\css\webfonts\fa-solid-900.svg" />
     <None Include="wwwroot\css\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\js-e\gf\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\js\js-e\gf\chart.js\Chart.bundle.js" />
+    <None Include="wwwroot\js\js-e\gf\chart.js\Chart.bundle.min.js" />
+    <None Include="wwwroot\js\js-e\gf\chart.js\Chart.js" />
+    <None Include="wwwroot\js\js-e\gf\chart.js\Chart.min.js" />
+    <None Include="wwwroot\js\js-e\gf\jquery\jquery.js" />
+    <None Include="wwwroot\js\js-e\gf\jquery\jquery.min.js" />
+    <None Include="wwwroot\js\js-e\gf\jquery\jquery.min.map" />
+    <None Include="wwwroot\js\js-e\gf\jquery\jquery.slim.js" />
+    <None Include="wwwroot\js\js-e\gf\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\js\js-e\gf\jquery\jquery.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\img\avatar_exemple.png">

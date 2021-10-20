@@ -1,0 +1,288 @@
+﻿@{
+    Layout = "_LayoutGf";
+    ViewBag.Title = "GF commandes";
+}
+<!-- Content Header (Page header) -->
+<div class="content-header pl-3">
+    <h1 class="pt-4 pl-4 mb-2 font-size-16">Commandes</h1>
+</div>
+<!-- /.content-header -->
+<!-- Small boxes (Stat box) -->
+<div class="flex-row small_box_list">
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>53</h3>
+
+                <p>Nombre de commandes</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">Mois en cours</a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>11520 € <sup style="font-size: 18px">TTC</sup></h3>
+
+                <p>Chiffre d'affaire</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-coins"></i>
+            </div>
+            <a href="#" class="small-box-footer">Mois en cours</a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>50</h3>
+
+                <p>Nouveaux Helper</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <a href="#" class="small-box-footer">Mois en cours</a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>650 €</h3>
+
+                <p>Marge brut</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <a href="#" class="small-box-footer">Mois en cours</a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+<!-- End Small boxes (Stat box) -->
+<input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+<br>
+<div class="table_commandes">
+    <table class="table table-hover border-e w-80 table_sort">
+        <thead>
+            <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Data</th>
+                <th scope="col">Helper</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Statut</th>
+            </tr>
+        </thead>
+        <tbody id="commande">
+            <tr>
+                <th scope="row"><a href="commande.html">101</a></th>
+                <td>12/09/2021</td>
+                <td><a class="popup-open" href=""> Lopez Catrin</a></td>
+                <td>150 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">102</a></th>
+                <td>23/09/2021</td>
+                <td><a class="popup-open" href="">Carpentier Nicola</a></td>
+                <td>89 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">103</a></th>
+                <td>29/09/2021</td>
+                <td><a class="popup-open" href="">Roux Michael</a></td>
+                <td>142 €</td>
+                <td>Termine</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">101</a></th>
+                <td>12/09/2021</td>
+                <td><a class="popup-open" href=""> Lopez Catrin</a></td>
+                <td>150 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">102</a></th>
+                <td>23/09/2021</td>
+                <td><a class="popup-open" href="">Carpentier Nicola</a></td>
+                <td>89 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">103</a></th>
+                <td>29/09/2021</td>
+                <td><a class="popup-open" href="">Roux Michael</a></td>
+                <td>142 €</td>
+                <td>Termine</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">106</a></th>
+                <td>12/09/2021</td>
+                <td><a class="popup-open" href=""> Lopez Catrin</a></td>
+                <td>150 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">104</a></th>
+                <td>23/09/2021</td>
+                <td><a class="popup-open" href="">Aline Blaïn</a></td>
+                <td>89 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">105</a></th>
+                <td>29/09/2021</td>
+                <td><a class="popup-open" href="">Roux Michael</a></td>
+                <td>142 €</td>
+                <td>Termine</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">106</a></th>
+                <td>12/09/2021</td>
+                <td><a class="popup-open" href=""> Jeanne Delétang</a></td>
+                <td>150 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">1108</a></th>
+                <td>23/09/2021</td>
+                <td><a class="popup-open" href="">Carpentier Nicola</a></td>
+                <td>89 €</td>
+                <td>Valide</td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="commande.html">112</a></th>
+                <td>29/09/2021</td>
+                <td><a class="popup-open" href="">Clémence Rioual</a></td>
+                <td>142 €</td>
+                <td>Termine</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal fenetre utilisateur -->
+<div class="popup-fade">
+    <div class="popup">
+        <a class="popup-close" href="#"><i class="far fa-times-circle font-size-18"></i></a>
+
+        <!-- info_helper -->
+        <div class="w-100 mb-3 user_contact message-box border-e">
+            <div class="flex-row align-items-center pl-4 mb-2">
+                <img class="user_img mr-3" src="img/avatar5.png" alt="">
+                <a class="font-size-16 bold" href="">Catrin Lopez</a>
+            </div>
+            <div class="flex-row pl-2">
+                <div class="flex-col col">
+
+                    <div class="flex-col">
+                        <div class="flex-row">
+                            <span>Pseudo</span>
+                            <h5>Catrin89</h5>
+                        </div>
+                        <div class="flex-row">
+                            <span>Email</span>
+                            <h5>catrin89@gmail.ru</h5>
+                        </div>
+                        <div class="flex-row">
+                            <span>Telephone</span>
+                            <h5>0665245129</h5>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flex-col col">
+                    <span class="mb-1">Adresse</span>
+                    <h5>3000 route de Greasque</h5>
+                    <div class="flex-row">
+                        <h5 class="mr-3">Gardanne</h5>
+                        <h5>13120</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End info_helper -->
+        <!-- Liste de toutes les commandes du Helper -->
+
+        <input class="form-control mb-3" id="myInput_helper" type="text" placeholder="Recherche">
+        <div class="w-100 table_commande_helper">
+
+            <table class="table table-hover m-0 w-100 border-e-1 text-center">
+                <thead>
+                    <tr class="border-bottom-grey">
+                        <th scope="col">N°</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Consumer</th>
+                        <th scope="col">Article</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                    </tr>
+                </thead>
+                <tbody id="commande_helper">
+                    <tr>
+                        <th scope="row">100</th>
+                        <td>12/09/2021</td>
+                        <td>Christophe Brasseur</td>
+                        <td>Dépannage  Transport</td>
+                        <td>150 €</td>
+                        <td>Valide</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">121</th>
+                        <td>05/08/2021</td>
+                        <td>Nicola Poirier</td>
+                        <td>Dépannage  Transport</td>
+                        <td>150 €</td>
+                        <td>Termine</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">148</th>
+                        <td>06/08/2021</td>
+                        <td>Carole Vasseur</td>
+                        <td>Réparation Entretien</td>
+                        <td>45 €</td>
+                        <td>Termine</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">100</th>
+                        <td>12/09/2021</td>
+                        <td>Christophe Brasseur</td>
+                        <td>Dépannage  Transport</td>
+                        <td>150 €</td>
+                        <td>Valide</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">121</th>
+                        <td>05/08/2021</td>
+                        <td>Nicola Poirier</td>
+                        <td>Dépannage  Transport</td>
+                        <td>150 €</td>
+                        <td>Termine</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">148</th>
+                        <td>06/08/2021</td>
+                        <td>Carole Vasseur</td>
+                        <td>Réparation Entretien</td>
+                        <td>45 €</td>
+                        <td>Termine</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Liste de toutes les commandes du Helper -->
+    </div>
+</div>
+<!-- End Modal fenetre d'utilisateur -->

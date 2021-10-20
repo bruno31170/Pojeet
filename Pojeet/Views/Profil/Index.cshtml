@@ -1,6 +1,365 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Pojeet.Models.CompteConsumer
 @{
+    Layout = "_Layout";
+    ViewBag.Title = "Mon profil";
+    ViewBag.ColorNav = "navbar-color";
 }
-profil
+
+
+
+<!--SECTION HERO-->
+<div class="d-flex align-items-start img_mur overflow-x-hidden position-relative"
+     style="background: url('@Url.Content("~/img/section_profil.svg")') bottom center; background-size: cover">
+    <div class="w-100" style="padding-top:77px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12 mt-5">
+                    <h1 class="mb-4 display-5 mt-3">
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center col-12" id="container_profil">
+    <div class="row col-11 m-0 p-0">
+
+        <!--Partie Gauche-->
+        <div class="col-2" id="left_side">
+            <!--Photo Profil-->
+            <img class="img_profil" src="~/img/avatar_exemple.png" alt="" />
+            <h3 class="text-center">HUGO Victor</h3>
+            <div class="text-center">Consumer</div>
+            <div class="rating mt-3">
+                <div class="stars">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-star-fill gold" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-star-fill gold" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-star-fill gold" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-center mt-4">
+                <a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
+                   href="#">
+                    Devenez Helper
+                </a>
+            </div>
+        </div>
+
+        <!--Partie Centrale-->
+        <div class="col-7" id="center_side">
+            <div class="p-5 rounded mb-5">
+                <!-- nav profil-->
+                <ul id="myTab2" role="tablist"
+                    class="nav nav-tabs nav-pills flex-column flex-sm-row text-center">
+                    <li class="nav-item flex-sm-fill col-3">
+                        <a id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2"
+                           aria-selected="true"
+                           class="nav-link text-uppercase ligne mr-sm-3 rounded-0 active">Profil</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill col-3">
+                        <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab"
+                           aria-controls="profile2" aria-selected="false"
+                           class="nav-link ligne text-uppercase  mr-sm-3 rounded-0">Annonces</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill col-3">
+                        <a id="contact2-tab" data-toggle="tab" href="#contact2" role="tab"
+                           aria-controls="contact2" aria-selected="false"
+                           class="nav-link ligne text-uppercase  rounded-0">Transactions</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill col-3">
+                        <a id="avis2-tab" data-toggle="tab" href="#avis2" role="tab" aria-controls="avis2"
+                           aria-selected="false" class="nav-link ligne text-uppercase  rounded-0">Avis</a>
+                    </li>
+                </ul>
+
+                <div id="myTab2Content" class="tab-content">
+                    <!-- A propos de moi -->
+                    <div id="home2" role="tabpanel" aria-labelledby="home-tab"
+                         class="tab-pane fade px-4 py-5 show active">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Pseudo</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            BricoloDuDimanche
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Mot de Passe</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            **************
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            test@gmail.com
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Téléphone</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            0666470777
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Adresse</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            12, rue Général de Gaulle 75001 Paris
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Description</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                            aliquip ex ea commodo consequat. Duis aute
+                                            irure dolor in reprehenderit in voluptate velit esse
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12 d-flex justify-content-center">
+                                            <a class="btn btnGreen"
+                                               style="background-color: #52ab98; color: white;"
+                                               target="__blank" href="#">Modifier le profil</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mes annonces -->
+                    <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
+                         class="tab-pane fade px-4 py-5">
+
+                        <div class=" d-flex justify-content-center">
+                            <a class="btn btnGreen" href="#">Ajouter une annonce</a>
+                        </div>
+
+                        <!-- exemple annonce 1 -->
+                        <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
+                            <div class="d-flex justify-content-end mb-2">
+                                <p>10 août 2021</p>
+                            </div>
+                            <div class=" row flex-row">
+                                <div class="wall_post_img col-6">
+                                    <img src="assets/img/design_service.png" alt="">
+                                </div>
+                                <div class="post_info col-6 flex-col justify-content-between">
+                                    <div class="post_info_text ml-1">
+                                        <h5>Dépannage assistance 24/24 auto moto</h5>
+                                        <p class="text-justify">
+                                            Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                                            dolore magna aliqua....
+
+                                        </p>
+                                    </div>
+                                    <div class="post_price font-size-15 ml-1">
+                                        <span>Prix: <strong> 30 €/h</strong></span>
+                                    </div>
+
+                                    <div class="w-100 mt-3">
+                                        <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
+                                    </div>
+
+                                    <div class="d-flex mt-3">
+                                        <div class=" w-100 col-6 ">
+                                            <a class="btn w-100 btnDarkGreen" href="#">Modifier</a>
+                                        </div>
+                                        <div class=" w-100 col-6">
+                                            <a class="btn w-100 btnOrange" href="#">Supprimer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- exemple annonce 2 -->
+                        <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
+                            <div class="d-flex justify-content-end mb-2">
+                                <p>13 octobre 2021</p>
+                            </div>
+                            <div class=" row flex-row">
+                                <div class="wall_post_img col-6">
+                                    <img src="assets/img/design_louer.png" alt="">
+                                </div>
+                                <div class="post_info col-6 flex-col justify-content-between">
+                                    <div class="post_info_text ml-1">
+                                        <h5>Changement de batterie</h5>
+                                        <p class="text-justify">
+                                            Lorem ipsum dolor sit amet, consectetur
+                                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                                            dolore magna aliqua....
+
+                                        </p>
+                                    </div>
+                                    <div class="post_price font-size-15 ml-1">
+                                        <span>Prix: <strong> 90€</strong></span>
+                                    </div>
+
+                                    <div class="btn-primary-e w-100 mt-3">
+                                        <a class="btn btnGreen w-100" href="#">Voir l'annonce</a>
+                                    </div>
+                                    <div class="d-flex mt-3">
+                                        <div class=" w-100 col-6 ">
+                                            <a class="btn w-100 btnDarkGreen" href="#">Modifier</a>
+                                        </div>
+                                        <div class=" w-100 col-6">
+                                            <a class="btn w-100 btnOrange" href="#">Supprimer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- mes transactions  -->
+                    <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
+                         class="tab-pane fade px-4 py-5">
+
+                        <button type="button" class="collapsible mt-4 d-flex justify-content-between">
+                            <span>En cours</span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="content mt-4">
+                            <div class="d-flex flex-column">
+                                <div class="transaction d-flex">
+                                    <div class="col-1">
+                                        <img src="assets/img/design_service.png" alt=""
+                                             style="width:50px">
+                                    </div>
+                                    <div class="col-7">
+                                        <span><strong>Changement de batterie</strong></span><br>
+                                        <span class="small text-muted">
+                                            <span style="color:#52ab98">
+                                                Demande de
+                                                service
+                                            </span> à <em>Bricolodusamedi</em>
+                                        </span>
+                                    </div>
+                                    <div class="col-2" style="color:#52ab98">90€</div>
+                                    <div class="col-2"><small><em>En cours</em></small></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="collapsible mt-4 d-flex justify-content-between">
+                            <span> Finalisé</span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                     fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="content mt-4">
+                            <div class="d-flex flex-column">
+                                <div class="transaction d-flex">
+                                    <div class="col-1">
+                                        <img src="assets/img/design_acheter.png" alt=""
+                                             style="width:50px">
+                                    </div>
+                                    <div class="col-7">
+                                        <span><strong>Roue de secours Peugeot 208</strong></span><br>
+                                        <span class="small text-muted">
+                                            <span style="color:#52ab98">Achat</span>
+                                            à
+                                            <em>MrDurand89</em>
+                                        </span>
+                                    </div>
+                                    <div class="col-2" style="color:#52ab98">50€</div>
+                                    <div class="col-2"><small><em>Finalisé</em></small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Partie Droite-->
+        <div class="col-2" id="right_side">
+            <div class="row mt-5">
+                <div class="col-sm-12 d-flex justify-content-center">
+                    <a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
+                       href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-gear-fill ml-1 mr-1" viewBox="0 0 16 16">
+                            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                        </svg> Modifier le profil
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+@section scripts {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="~/js/jquery.bootstrap.wizard.js"></script>
+    <script src="~/js/paper-bootstrap-wizard.js"></script>
+    <script src="~/js/jquery.validate.min.js" type="text/javascript"></script>
+}
+

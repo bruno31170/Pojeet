@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Pojeet.Models
@@ -9,6 +11,7 @@ namespace Pojeet.Models
     public class Dal : IDal
     {
         private BddContext _context;
+
         public Dal()
         {
             _context = new BddContext();
@@ -30,29 +33,7 @@ namespace Pojeet.Models
             _context.Dispose();
         }
 
-        public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-            string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description)
-        {
-            Profil profil = new Profil
-            {
-                Nom = nom,
-                Prenom = prenom,
-                DateDeNaissance = dateNaissance,
-                Adresse = adresse,
-                Ville = ville,
-                CodePostal = code_postal,
-                Pays = pays,
-                Mail = mail,
-                NumeroTelephone = numeroTelephone,
-                Description = description,
-            };
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motdepasse, Pseudo = pseudo, Profil = profil };
 
-
-            _context.CompteConsumer.Add(consumer);
-            _context.SaveChanges();
-            return consumer.Id;
-        }
         public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
             string adresse, string mail, int numeroTelephone, string description)
         {
@@ -83,5 +64,64 @@ namespace Pojeet.Models
                 _context.SaveChanges();
             }
         }
+
+        // pour l'authentification
+
+        private string EncodeMD5(string motDePasse)
+        {
+            string motDePasseSel = "HelpMyCar" + motDePasse + "ASP.NET MVC";
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
+        }
+
+
+        public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description)
+        {
+            string motDePasse = EncodeMD5(motdepasse);
+            Profil profil = new Profil
+            {
+                Nom = nom,
+                Prenom = prenom,
+                DateDeNaissance = dateNaissance,
+                Adresse = adresse,
+                Ville = ville,
+                CodePostal = code_postal,
+                Pays = pays,
+                Mail = mail,
+                NumeroTelephone = numeroTelephone,
+                Description = description,
+            };
+            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
+
+
+            _context.CompteConsumer.Add(consumer);
+            _context.SaveChanges();
+            return consumer.Id;
+        }
+
+
+        public CompteConsumer Authentifier(string pseudo, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            CompteConsumer user = _context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
+            return user;
+        }
+
+        public CompteConsumer ObtenirConsumer(int id)
+        {
+            return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
+        }
+
+        public CompteConsumer ObtenirConsumer(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.ObtenirConsumer(id);
+            }
+            return null;
+        }
+
     }
 }

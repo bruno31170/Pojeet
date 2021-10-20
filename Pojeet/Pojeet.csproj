@@ -24,9 +24,15 @@
     <Folder Include="Views\Home\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\img\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Profil\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />
+    <None Remove="Views\Login\" />
+    <None Remove="ViewModels\" />
+    <None Remove="Views\Profil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\img\avatar_exemple.png">

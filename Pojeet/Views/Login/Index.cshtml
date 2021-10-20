@@ -1,0 +1,37 @@
+﻿@model Pojeet.ViewModels.UtilisateurViewModel
+
+
+<section class="page-section portfolio mt-5">
+
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Connexion</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-floating mb-3">
+                        @Html.TextBoxFor(model => model.CompteConsumer.Pseudo, new { @class = "form-control", placeholder = "Nom" })
+                        @Html.LabelFor(model => model.CompteConsumer.Pseudo)
+                        @Html.ValidationMessageFor(model => model.CompteConsumer.Pseudo)
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        @Html.TextBoxFor(model => model.CompteConsumer.MotDePasse, new { @type = "password", @class = "form-control", placeholder = "Téléphone" })
+                        @Html.LabelFor(model => model.CompteConsumer.MotDePasse)
+                        @Html.ValidationMessageFor(model => model.CompteConsumer.MotDePasse)
+                    </div>
+
+
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl" type="submit">Se Connecter</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>

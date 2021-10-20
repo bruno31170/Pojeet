@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~css/css-e/bootstrap.min.css">
+
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Rubik|Dancing+Script" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital@1&family=Montserrat:wght@300;500;800;900&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!-- MENU CSS -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~css/css-e/style1.css">
+    <link rel="stylesheet" type="text/css" href="~css/css-e/typography1.css">
+    <link rel="stylesheet" type="text/css" href="~css/css-e/colors1.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <!-- STYLE JS -->
+    <link href="~js/js-e/jquery.formstyler.css" rel="stylesheet" />
+    <link href="~js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~js/js-e/jquery.formstyler.min.js"></script>
+    <script>
+    (function($) {
+      $(function() {
+        $('select, option, input').styler({
+          selectSearch: true,
+        });
+      });
+    })(jQuery);
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="nav-menu-block">
+            <div class="flex-row w-100 justify-content-between">
+                <div class="nav-logo">
+                    <img src="~img/img-e/logo1.png" alt="">
+                </div>
+                <div class="align-self-end mt-min mb-1">
+                    <a class="btn_registration font-size-18 " href="#">Demander un service</a>
+                </div>
+                <div class="align-self-end mt-min mb-1">
+                    <a class="btn_registration font-size-18" href="#">Devenir Helper</a>
+                </div>
+                <ul class="nav-menu-icon flex-row align-item-end justify-content-around mb-2 mr-4">
+                    <li class="mr-3 text-right">
+                        <div class="info">
+                            <img src="img\MonCompte.png" alt="">
+                        </div>
+                        <a href="#">
+                            <i class="font-size-24 fa fa-user"></i>
+                        </a>
+                    </li>
+                    <li class="mr-3 ml-2 text-right">
+                        <div class="info">
+                            <img src="img\Messagerie.png" alt="">
+                        </div>
+                        <a href="#">
+                            <i class="font-size-24 fa fa-envelope"></i>
+                        </a>
+                    </li>
+                    <li class="ml-2 text-right">
+                        <div class="info">
+                            <img src="img\Notification.png" alt="">
+                        </div>
+                        <a href="#">
+                            <i class="font-size-24 fa fa-bell"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- navigation site -->
+    <!-- <div class="navbar">
+      <ul class=" flex-row w-100 justify-content-around">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Annonces</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul>
+
+      </ul>
+    </div> -->
+    <!--End navigation site -->
+    <main>
+        <div class="page_layout">
+
+            <div class="page_container p-3 pb-5 flex-row">
+                <!-- Menu utilisateur à geuche -->
+                <div class="side_bar_inner">
+                    <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
+                        <li class="text-center">
+                            <img class="border-e mb-3" src="img/user2.png" alt="">
+                            <a class="font-size-18" href="#"> Marie <br> Brasseur</a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="font-size-25 fa fa-home mr-2"></i> Ma page</a>
+                        </li>
+                        <li id="">
+                            <a href="#"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Fin menu utilisateur -->
+
+                <div class="post_item flex-col border-e w-100 pr-5 pl-5 pb-5 white mt-4">
+                    <div class="breadcrumb-wrapper">
+                        <div class="breadcrumb">
+                            <ul class="list-inline ml-4 font-size-13">
+                                <li>
+                                    <a href="#">Accueil</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Toutes les annonces</a>
+                                </li>
+                                <li>
+                                    <a href="#">Catégorie</a>
+                                </li>
+                                <li>
+                                    <span>Title l'annonce</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="flex-row p-4 justify-content-around" style="border-bottom: 1px solid white;">
+            <div class="flex-col">
+                <span class="bold ">A propos</span>
+                <a href="#">Qui sommes-nous</a>
+                <a href="#">Demander un service</a>
+                <a href="#">Devenir Helper</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Informations légales</span>
+                <a href="#">Conditions générales client</a>
+                <a href="#">Conditions générales Helper</a>
+                <a href="#">Confiance et sécurité</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Assistance</span>
+                <a href="#">Centre d'aide</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+        <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
+    </footer>
+    <script type="text/javascript" src="~js/js-e/custom-e.js"></script>
+
+</body>
+
+</html>

@@ -12,8 +12,7 @@ namespace Pojeet.Models
         public DbSet<CompteProvider> CompteProvider { get; set; }
         public DbSet<DocumentIdentification> DocumentIdentification { get; set; }
         public DbSet<Profil> Profil { get; set; }
-        public DbSet<AnnonceBesoin> AnnonceBesoin { get; set; }
-        public DbSet<AnnonceService> AnnonceService { get; set; }
+        public DbSet<Annonce> Annonce { get; set; }
         public DbSet<GestionnairePlateforme> GestionnairePlateforme { get; set; }
         public DbSet<Message> Message { get; set; }
         public DbSet<Messagerie> Messagerie { get; set; }

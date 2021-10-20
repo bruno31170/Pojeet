@@ -1,0 +1,147 @@
+﻿
+@{
+    Layout = "_LayoutIdentifie";
+    ViewBag.Title = "PosterAnnonce";
+}
+
+
+
+    <!-- Entete page-->
+
+    <div class="bottom">
+
+        <!-- Logo-->
+
+        <div class="logo">
+            <img src="~/ImagePosterAnnonce/logo1.png" title="Logo"
+                 alt="Erreur affichage" style="width:120px" />
+        </div>
+
+        <!-- Menu haut droite-->
+
+        <div class="menu">
+            <a href="">
+                <img src="~/ImagePosterAnnonce/icons8-cloche-200.png"
+                     style="float: right;margin-left: 30px;" title="Cloche" alt="Erreur affichage" width="50" />
+            </a>
+            <a href="">
+                <img src="~/ImagePosterAnnonce/icons8-message-100.png"
+                     style="float: right;margin-left: 30px;" title="Message" alt="Erreur affichage" width="40" />
+            </a>
+            <a href="">
+                <img src="~/ImagePosterAnnonce/icons8-utilisateur-90.png"
+                     style="float: right;margin-left: 30px;" title="User" alt="Erreur affichage" width="40" />
+            </a>
+            <a href="">
+                <img src="~/ImagePosterAnnonce/icons8-loupe-64.png"
+                     style="float: right;" title="Loupe" alt="Erreur affichage" width="30" />
+            </a>
+
+        </div>
+    </div>
+
+    <div class="center">
+
+        <div class="profil">
+
+            <!-- Entete profil-->
+
+            <div style="text-align: center;">
+
+
+
+                <a href="">
+                    <img src="~/ImagePosterAnnonce/icons8-personne-homme-100.png"
+                         style="text-align: center;" title="ImageUser" alt="Erreur affichage" width="70" />
+                </a><br>
+                <a href=""><label for="Nom" class="inline">Nom</label></a><br>
+                <a href=""><label for="Prenom" class="inline">Prenom</label></a><br><br>
+            </div>
+
+            <!-- Menu profil -->
+
+            <div>
+                <img src="~/ImagePosterAnnonce/icons8-accueil-50.png"
+                     style="text-align: center;" title="Profil" alt="Erreur affichage" width="20" />
+                <a href=""><label for="MonProfil" class="inline">Mon Profil</label></a> <br><br>
+
+                <img src="~/ImagePosterAnnonce/icons8-write-64.png"
+                     style="text-align: center;" title="MesAnnonces" alt="Erreur affichage" width="20" />
+                <a href=""><label for="MesAnnonces" class="inline">Mes Annonces</label></a> <br><br>
+
+                <img src="~/ImagePosterAnnonce/icons8-agreement-64.png"
+                     style="text-align: center;" title="MesTransactions" alt="Erreur affichage" width="20" />
+                <a href=""><label for="MesTransactions" class="inline">Mes Transactions</label></a> <br><br>
+
+                <img src="~/ImagePosterAnnonce/icons8-check-64.png"
+                     style="text-align: center;" title="DevenirHelper" alt="Erreur affichage" width="20" />
+                <a href=""><label for="DevenirHelper" class="inline">Devenir Helper</label></a> <br><br>
+
+                <img src="~/ImagePosterAnnonce/icons8-info-50.png"
+                     style="text-align: center;" title="Aide" alt="Erreur affichage" width="20" />
+                <a href=""><label for="Aide" class="inline">Aide</label></a> <br><br>
+            </div>
+        </div>
+
+        <!-- Annonce -->
+
+        <div class="annonce">
+
+
+            <form>
+
+                <!-- Type d'annonce -->
+
+                <label for="type">Type d'annonce :</label><br>
+                <input type="radio" id="offre" name="offre" value="offre" />
+                <label for="offre">Offre</label>
+                <input type="radio" id="demande" name="demande" value="demande" />
+                <label for="demande">Demande</label><br><br>
+
+                <!-- Catégorie -->
+
+                <label for="categorie" class="inline">Catégorie :</label> <br>
+                <input type="text" list="catégorie_proposee" id="categorie" name="categorie" />
+                <datalist id="catégorie_proposee">
+                    <option value="Moteur"></option>
+                    <option value="Habitacle"></option>
+                    <option value="Carrosserie"></option>
+                    <option value="Roue"></option>
+                </datalist><br><br>
+
+                <!-- Titre de l'annonce -->
+
+                <label for="titre" class="inline">Titre de l'annonce :</label> <br>
+                <input type="text" id="titre" name="titre"><br><br>
+
+                <!-- Description -->
+
+                <label for="description" class="inline">Description :</label> <br>
+                <textarea style="width: 500px;" type="textarea" rows="10" cols="50" id="description"
+                          name="description"></textarea><br><br>
+
+                <!-- Date butoire -->
+
+                <label for="date" class="inline">Date butoire :</label> <br>
+                <input type="date" id="date" name="date"><br><br>
+
+                <!-- Département -->
+
+                <label for="departement" class="inline">Département :</label> <br>
+                <input type="number" id="prix" name="prix"><br><br>
+
+                <!-- Prix -->
+
+                <label for="prix" class="inline">Prix :</label> <br>
+                <input type="number" id="prix" name="prix"><br><br>
+
+                <input type="submit" value="Publier" class="boutonEnvoyerPublier" />
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+

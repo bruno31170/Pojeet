@@ -22,9 +22,13 @@ namespace Pojeet.Models
             List<Annonce> listeAnnonce = this._context.Annonce.ToList();
             return listeAnnonce;
         }
+        public CompteConsumer ObtientConsumer(int id)
+        {
+            CompteConsumer consumer = this._context.CompteConsumer.FirstOrDefault(c=>c.Id==id);
+            return consumer;
+        }
 
-        
 
-        
+
     }
 }

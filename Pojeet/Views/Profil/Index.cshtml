@@ -1,4 +1,4 @@
-﻿@model Tuple<List<Pojeet.Models.Annonce>, Pojeet.Models.CompteConsumer>
+﻿@model Pojeet.ViewModels.ProfilViewModel
 
 @{
     Layout = "_Layout";
@@ -170,28 +170,27 @@
                     </div>
 
                     <!-- Mes annonces -->
-                    @foreach (var annonce in Model.Item1)
-                    {
-                        <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
-                             class="tab-pane fade px-4 py-5">
+                    
+                    <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
+                         class="tab-pane fade px-4 py-5">
 
-                            <div class=" d-flex justify-content-center">
-                                <a class="btn btnGreen" href="#">Ajouter une annonce</a>
-                            </div>
+                        <div class=" d-flex justify-content-center">
+                            <a class="btn btnGreen" href="#">Ajouter une annonce</a>
+                        </div>
 
-                            <!-- exemple annonce 1 -->
-
-                                @*Date de parution : @annonce.DateParution<br>
-                                Catégorie : @annonce.CategorieDeAnnonce<br>
-                                Auteur : @annonce.ProfilId<br>
-                                Titre : @annonce.TitreAnnonce<br>
-                                Type de l'annonce : @annonce.TypeDeAnnonce<br>
-                                Description : @annonce.Description<br>
-                                Date butoir : @annonce.DateButoir<br>
-                                Localisation : @annonce.Localisation<br>
-                                Prix : @annonce.Prix<br>
-                                Photo : @annonce.Photo*@
-
+                        <!-- exemple annonce 1 -->
+                        @*Date de parution : @annonce.DateParution<br>
+        Catégorie : @annonce.CategorieDeAnnonce<br>
+        Auteur : @annonce.ProfilId<br>
+        Titre : @annonce.TitreAnnonce<br>
+        Type de l'annonce : @annonce.TypeDeAnnonce<br>
+        Description : @annonce.Description<br>
+        Date butoir : @annonce.DateButoir<br>
+        Localisation : @annonce.Localisation<br>
+        Prix : @annonce.Prix<br>
+        Photo : @annonce.Photo*@
+                        @foreach (var annonce in Model.Annonce)
+                        {
                             <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
                                 <div class="d-flex justify-content-end mb-2">
                                     <p>@annonce.DateParution</p>
@@ -217,21 +216,19 @@
                                         </div>
 
                                         <div class="d-flex mt-3">
-                                            <div class=" w-100 col-6 ">
-                                                <a class="btn w-100 btnDarkGreen" href="#">Modifier</a>
-                                            </div>
                                             <div class=" w-100 col-6">
-                                                <a class="btn w-100 btnOrange" href="#">Supprimer</a>
+                                                <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
 
 
 
-                        </div>
-                    }
+                    </div>
+                    
                     <!-- mes transactions  -->
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">

@@ -28,10 +28,8 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
 
         }
@@ -41,6 +39,8 @@ namespace Pojeet.Models
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
+
+            //PROFIL
             this.Profil.AddRange(
             new Profil
             {
@@ -52,7 +52,7 @@ namespace Pojeet.Models
                 Adresse = "Boulevard Rocheplatte",
                 Ville = "Orléans",
                 CodePostal = "45000",
-                Pays = "France",
+                Pays = 0,
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 6875,
                 Photo = "https://bootdey.com/img/Content/avatar/avatar3.png"
@@ -67,12 +67,13 @@ namespace Pojeet.Models
                 Adresse = "Boulevard Rocheplatte",
                 Ville = "Orléans",
                 CodePostal = "45000",
-                Pays = "France",
+                Pays = 0,
                 Mail = "CécileLepillouer@gmail.com",
                 NumeroTelephone = 6257,
                 Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
             });
 
+            //ANNONCE
             this.Annonce.AddRange(
             new Annonce
             {
@@ -119,6 +120,7 @@ namespace Pojeet.Models
 
             });
 
+            //CONSUMER
             this.CompteConsumer.AddRange(
             new CompteConsumer
             {
@@ -127,15 +129,17 @@ namespace Pojeet.Models
                 MotDePasse = Dal.EncodeMD5("lolilol"),
                 ProfilId = 1,
                 statut = Models.CompteConsumer.Statut.Actif
-            }
+            },
              new CompteConsumer
-                {
-                    Id = 2,
-                    Pseudo = "Toto",
-                    MotDePasse = Dal.EncodeMD5("tototo"),
-                    ProfilId = 1,
-                }
+             {
+                 Id = 2,
+                 Pseudo = "tata",
+                 MotDePasse = Dal.EncodeMD5("tatata"),
+                 ProfilId = 2,
+             }
             );
+
+            //MESSAGE
             this.Message.AddRange(
             new Message
             {
@@ -153,6 +157,8 @@ namespace Pojeet.Models
                 ProfilId = 2,
                 ConversationId = 1
             });
+
+            //CONVERSATION
             this.Conversation.AddRange(
             new Conversation
             {
@@ -161,6 +167,8 @@ namespace Pojeet.Models
                 MessagerieId = 1,
 
             });
+
+            //MESSAGERIE
             this.Messagerie.AddRange(
             new Messagerie
             {

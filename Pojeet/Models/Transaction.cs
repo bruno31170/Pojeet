@@ -11,8 +11,8 @@ namespace Pojeet.Models
         [Key]
         public int Reference { get; set; }
         public DateTime Date { get; set; }
-        public int AnnonceBesoinId { get; set; }
-        public virtual Annonce AnnonceBesoin { get; set; }
+        public int AnnonceId { get; set; }
+        public virtual Annonce Annonce { get; set; }
         public double Montant { get; set; }
         public EtatTransaction EtatTransaction { get; set; }
 

@@ -75,7 +75,7 @@ namespace Pojeet.Controllers
                 {
                     ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
             consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
-                    return RedirectToAction("Profil");
+                    return RedirectToAction("Index");
                 }
             }
             else

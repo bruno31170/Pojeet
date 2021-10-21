@@ -37,10 +37,12 @@ namespace Pojeet.Models
         public void InitializeDb()
         {
 
+
            this.Database.EnsureDeleted();
            this.Database.EnsureCreated();
             this.Profil.AddRange(
                 new Profil
+
 
 
                 {
@@ -113,6 +115,7 @@ namespace Pojeet.Models
                 Id = 1,
 
             });
+
 
             this.SaveChanges();
         }

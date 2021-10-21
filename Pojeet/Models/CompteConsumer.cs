@@ -25,8 +25,9 @@ namespace Pojeet.Models
         public virtual Profil Profil { get; set; }
         public Statut statut { get; set; }
 
+        
 
-    public enum Statut
+        public enum Statut
         {
             Actif,
             Supprimé,

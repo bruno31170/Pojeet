@@ -12,18 +12,19 @@ namespace Pojeet.Controllers
 {
     public class ProfilController : Controller
     {
-        private Dal dal;
+        private DalProfil dal;
         public ProfilController()
         {
-            this.dal = new Dal();
+            this.dal = new DalProfil();
         }
 
         // GET: /<controller>/
-        public IActionResult Index(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description)
+        public IActionResult Indexx(int profilId)
         {
-            
-                
+            /*string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description*/
+
+                /*
                 Profil profil = new Profil
                 {
                     Nom = nom,
@@ -36,11 +37,20 @@ namespace Pojeet.Controllers
                     Mail = mail,
                     NumeroTelephone = numeroTelephone,
                     Description = description,
-                };
-            CompteConsumer consumer = new CompteConsumer {Id= id, Pseudo = pseudo, Profil = profil };
+                };*/
+            CompteConsumer consumer = new CompteConsumer 
+            {
+                /*Id= idConsumer, 
+                Pseudo = pseudo, 
+                Profil = profil */
+            };
 
-                
-            return View("Index", consumer);
+            List<Annonce> annonce = dal.ObtientAnnonceProfil(profilId);
+
+            ProfilViewModel model = new ProfilViewModel { CompteConsumer = consumer, Annonce = annonce };
+
+
+            return View("Indexx", model);
         }
     }
 }

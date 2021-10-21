@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pojeet.Models
 {
-    [Table("Annonce")]
+    
     public class Annonce
     {
         public int Id { set; get; }

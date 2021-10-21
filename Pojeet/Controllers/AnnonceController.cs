@@ -33,16 +33,13 @@ namespace Pojeet.Controllers
         }
 
 
-        public IActionResult SupprimerAnnonce()
-        {
-            return View();
-        }
+        
 
-        [HttpPost]
+        
         public ActionResult SupprimerAnnonce(int id)
         {
             dal.SupprimerAnnonce(id);
-            return View("Reussi"); //Retourner view mes annonces
+            return Redirect("~/Profil/Index"); //Retourner view mes annonces
         }
     }
 }

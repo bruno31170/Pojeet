@@ -29,7 +29,7 @@ namespace Pojeet.Models
         {
 
 
-            
+
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
 
@@ -38,59 +38,56 @@ namespace Pojeet.Models
         {
 
 
-           this.Database.EnsureDeleted();
-           this.Database.EnsureCreated();
+            this.Database.EnsureDeleted();
+            this.Database.EnsureCreated();
             this.Profil.AddRange(
-                new Profil
-
-
-
-                {
-                    Id = 1,
-                    Description = "Mécanicien",
-                    Nom = "Guissouma",
-                    Prenom = "Ines",
-                    DateDeNaissance = "12/12/2020",
-                    Adresse = "Boulevard Rocheplatte",
-                    Ville = "Orléans",
-                    CodePostal = "45000",
-                    Pays = "France",
-                    Mail = "inesguissouma@gmail.com",
-                    NumeroTelephone=6875,
-                    Photo= "https://bootdey.com/img/Content/avatar/avatar3.png"
-                },
-                new Profil
-                {
-                    Id = 2,
-                    Description = "Besoin",
-                    Nom = "LePillouer",
-                    Prenom = "Cécile",
-                    DateDeNaissance = "12/12/2020",
-                    Adresse = "Boulevard Rocheplatte",
-                    Ville = "Orléans",
-                    CodePostal = "45000",
-                    Pays = "France",
-                    Mail = "CécileLepillouer@gmail.com",
-                    NumeroTelephone = 6257,
-                    Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
-                });
+            new Profil
+            {
+                Id = 1,
+                Description = "Mécanicien",
+                Nom = "Guissouma",
+                Prenom = "Ines",
+                DateDeNaissance = "12/12/2020",
+                Adresse = "Boulevard Rocheplatte",
+                Ville = "Orléans",
+                CodePostal = "45000",
+                Pays = "France",
+                Mail = "inesguissouma@gmail.com",
+                NumeroTelephone = 6875,
+                Photo = "https://bootdey.com/img/Content/avatar/avatar3.png"
+            },
+            new Profil
+            {
+                Id = 2,
+                Description = "Besoin",
+                Nom = "LePillouer",
+                Prenom = "Cécile",
+                DateDeNaissance = "12/12/2020",
+                Adresse = "Boulevard Rocheplatte",
+                Ville = "Orléans",
+                CodePostal = "45000",
+                Pays = "France",
+                Mail = "CécileLepillouer@gmail.com",
+                NumeroTelephone = 6257,
+                Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
+            });
 
             this.Annonce.AddRange(
-                new Annonce
-                {
-                    Id = 1,
-                    TypeDeAnnonce = TypeAnnonce.Besoin,
-                    TitreAnnonce = "Changement batterie",
-                    Description = "voiture modèle Ford Fusion",
-                    DateParution = DateTime.Now,
-                    Localisation = "31000",
-                    DateButoir = DateTime.Today,
-                    Prix = 5,
-                    CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
-                    ProfilId = 1,
+            new Annonce
+            {
+                Id = 1,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Changement batterie",
+                Description = "voiture modèle Ford Fusion",
+                DateParution = DateTime.Now,
+                Localisation = "31000",
+                DateButoir = DateTime.Today,
+                Prix = 5,
+                CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
+                ProfilId = 1,
 
-                });
-            this.Annonce.AddRange(
+            },
+
             new Annonce
             {
                 Id = 2,
@@ -104,8 +101,8 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Roue,
                 ProfilId = 1,
 
-            });
-            this.Annonce.AddRange(
+            },
+
             new Annonce
             {
                 Id = 3,
@@ -117,20 +114,20 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
-                ProfilId = 1,
+                ProfilId = 2,
 
             });
 
             this.CompteConsumer.AddRange(
-                new CompteConsumer
-                {
-                    Id = 1,
-                    Pseudo = "Toto",
-                    MotDePasse = "lolilol",
-                    ProfilId = 1,
-                    statut = Models.CompteConsumer.Statut.Actif
-                }
-            ) ;
+            new CompteConsumer
+            {
+                Id = 1,
+                Pseudo = "Toto",
+                MotDePasse = "lolilol",
+                ProfilId = 1,
+                statut = Models.CompteConsumer.Statut.Actif
+            }
+            );
             this.Message.AddRange(
             new Message
             {
@@ -147,7 +144,7 @@ namespace Pojeet.Models
                 message = " Bonjour, oui bien sûr, vous demander combien ? ",
                 ProfilId = 2,
                 ConversationId = 1
-            }); 
+            });
             this.Conversation.AddRange(
             new Conversation
             {
@@ -155,15 +152,13 @@ namespace Pojeet.Models
                 CompteConsumerId = 1,
                 MessagerieId = 1,
 
-            }) ;
+            });
             this.Messagerie.AddRange(
             new Messagerie
             {
                 Id = 1,
 
             });
-
-
 
             this.SaveChanges();
         }

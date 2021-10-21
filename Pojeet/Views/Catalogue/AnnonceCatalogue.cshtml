@@ -1,4 +1,4 @@
-﻿@model List<Pojeet.Models.Annonce>
+﻿@model Tuple<List<Pojeet.Models.Annonce>, Pojeet.Models.CompteConsumer>
 @{
     Layout = "_LayoutIdentifie";
     ViewBag.Title = "AnnonceCatalogue";
@@ -69,22 +69,22 @@
                         </select>
                     </div>
                 </div>
-
-                <!-- FOR EACH ICI CODE -->
-                @foreach (var annonce in Model)
+                
+                    <!-- FOR EACH ICI CODE -->
+                @foreach (var annonce in Model.Item1)
                 {
                     <div class="post_content p-4 border-e flex-col white">
 
-                               @*Date de parution : @annonce.DateParution<br>
-                               Catégorie : @annonce.CategorieDeAnnonce<br>
-                               Auteur : @annonce.ProfilId<br>
-                               Titre : @annonce.TitreAnnonce<br>
-                               Type de l'annonce : @annonce.TypeDeAnnonce<br>
-                               Description : @annonce.Description<br>
-                               Date butoir : @annonce.DateButoir<br>
-                               Localisation : @annonce.Localisation<br>
-                               Prix : @annonce.Prix<br>
-                               Photo : @annonce.Photo*@
+                        @*Date de parution : @annonce.DateParution<br>
+                Catégorie : @annonce.CategorieDeAnnonce<br>
+                Auteur : @annonce.ProfilId<br>
+                Titre : @annonce.TitreAnnonce<br>
+                Type de l'annonce : @annonce.TypeDeAnnonce<br>
+                Description : @annonce.Description<br>
+                Date butoir : @annonce.DateButoir<br>
+                Localisation : @annonce.Localisation<br>
+                Prix : @annonce.Prix<br>
+                Photo : @annonce.Photo*@
 
 
                         <div class="post_header flex-row align-items-center mb-2">

@@ -37,8 +37,8 @@ namespace Pojeet.Models
         [Display(Name = "Code postal")]
         public string CodePostal { get; set; }
 
-        [Display(Name = "Pays")]
-        public string Pays { get; set; }
+        //[Display(Name = "Pays")]
+        //public string Pays { get; set; }
 
         //[Required(ErrorMessage = "Le Mail doit être rempli.")]
         [Display(Name = "Email")]
@@ -48,8 +48,18 @@ namespace Pojeet.Models
         [Display(Name = "Numéro de téléphone")]
         public int NumeroTelephone { get; set; }
 
+        public Pays Pays { get; set; }
 
         public byte[] Photo { get; set; }
+
+
+    }
+
+    public enum Pays
+    {
+        France,
+        Suisse,
+        Belgique
     }
 
 }

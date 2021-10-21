@@ -75,7 +75,7 @@ namespace Pojeet.Models
 
 
         public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description)
         {
             string motDePasse = EncodeMD5(motdepasse);
             Profil profil = new Profil

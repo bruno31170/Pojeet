@@ -2,6 +2,10 @@
     color: #2b6777;
 }
 
+    .linkInscription:hover {
+        color: #52ab98;
+    }
+
 .image-container {
     min-height: 100vh;
     background-position: center center;

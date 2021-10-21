@@ -13,6 +13,8 @@ namespace Pojeet.Models
 
         public int DocumentIdentificationId { get; set; }
         public virtual DocumentIdentification DocumentIdentification { get; set; }
+        public int RibId { get; set; }
+        public virtual Rib Rib { get; set; }
 
         public Etat Etat { get; set; }
 

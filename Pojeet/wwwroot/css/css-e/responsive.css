@@ -1,0 +1,47 @@
+@media only screen and (max-width:1270px) {
+  .top_post {
+    display: none;
+  }
+
+  .btn_registration {
+    font-size: 1rem !important;
+  }
+
+  .nav-menu-icon li{
+    width: 40px;
+
+  }
+
+  .nav-menu-icon i {
+    font-size: 1.3rem !important;
+  }
+}
+
+
+@media only screen and (max-width:992px) {
+  .side_bar_inner{
+    display: none;
+  }
+}
+
+@media only screen and (max-width:768px) {
+.post_search{
+  height: 400px;
+}
+h1{
+  font-size: 1.4rem;
+}
+.post_search span{
+  font-size: 1rem;
+}
+
+.wall_post_img img{
+ display: none;
+}
+}
+
+@media only screen and (max-width:576px){
+  .page_container{
+    width: 100%;
+  }
+}

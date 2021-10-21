@@ -10,8 +10,8 @@ namespace Pojeet.Models
     {
         public int Id { get; set; }
 
-        //[Required(ErrorMessage = "Le pseudo doit être rempli.")]
-        //[Display(Name = "Pseudo")]
+        [Required(ErrorMessage = "Le pseudo doit être rempli.")]
+        [Display(Name = "Pseudo")]
         public string Pseudo { get; set; }
 
 
@@ -21,9 +21,15 @@ namespace Pojeet.Models
 
 
         public int ProfilId { get; set; }
-        [Required]
+        //[Required]
         public virtual Profil Profil { get; set; }
+        public Statut statut { get; set; }
 
 
+    public enum Statut
+        {
+            Actif,
+            Supprimé,
+        }
     }
 }

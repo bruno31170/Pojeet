@@ -68,8 +68,6 @@ namespace Pojeet.Controllers
                 return View("AjouterConsumer");
             }
 
-
-
             using (Dal ctx = new Dal())
             {
                 ctx.AjouterConsumer(consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,

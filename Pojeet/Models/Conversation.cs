@@ -9,7 +9,10 @@ namespace Pojeet.Models
     public class Conversation 
     {
         public int Id { get; set; }
-        public int auteur_id;
-        public List<Message> Messages;
+
+        public int CompteConsumerId { get; set; }
+        public virtual CompteConsumer Auteur_Message{ get; set; }
+        public int MessagerieId { get; set; }
+        public virtual List<Message> Messages { get; set; }
     }
 }

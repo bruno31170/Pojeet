@@ -29,14 +29,15 @@ namespace Pojeet.Models
         {
 
 
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
 
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
 
         }
+
         public void InitializeDb()
         {
-
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
@@ -123,10 +124,17 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 Pseudo = "Toto",
-                MotDePasse = "lolilol",
+                MotDePasse = Dal.EncodeMD5("lolilol"),
                 ProfilId = 1,
                 statut = Models.CompteConsumer.Statut.Actif
             }
+             new CompteConsumer
+                {
+                    Id = 2,
+                    Pseudo = "Toto",
+                    MotDePasse = Dal.EncodeMD5("tototo"),
+                    ProfilId = 1,
+                }
             );
             this.Message.AddRange(
             new Message
@@ -159,6 +167,7 @@ namespace Pojeet.Models
                 Id = 1,
 
             });
+
 
             this.SaveChanges();
         }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +28,10 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
 
 
         }
@@ -147,7 +149,7 @@ namespace Pojeet.Models
                 Date = new DateTime(2005, 11, 20, 12, 1, 10),
                 message = "Bonjour, je pourrais vous rendre le service que vous demandez ce weekend,êtes vous d'accord?",
                 ProfilId = 1,
-                ConversationId = 1,
+                ConversationId = 1
             },
             new Message
             {
@@ -164,7 +166,7 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                MessagerieId = 1,
+                MessagerieId = 1
 
             });
 
@@ -172,9 +174,41 @@ namespace Pojeet.Models
             this.Messagerie.AddRange(
             new Messagerie
             {
-                Id = 1,
+                Id = 1
 
             });
+
+            this.Annonce.AddRange(
+                new Annonce
+                {
+                    Id = 1,
+                    TypeDeAnnonce = 0,
+                    TitreAnnonce = "Titre",
+                    Description = "Blablabla",
+                    DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
+                    Localisation = "13000",
+                    DateButoir = new DateTime(2021, 11, 20, 12, 1, 10),
+                    Prix = 100,
+                    CategorieDeAnnonce = 0,
+                    ProfilId = 1,
+
+
+
+
+
+                });
+
+            this.Transactions.AddRange(
+                new Transaction
+                {
+                    Reference = 123,
+                    Date = new DateTime(2021, 11, 20, 12, 1, 10),
+                    AnnonceId = 1,
+                    Montant = 20.15,
+                    EtatTransaction = 0
+
+                }); 
+
 
 
             this.SaveChanges();

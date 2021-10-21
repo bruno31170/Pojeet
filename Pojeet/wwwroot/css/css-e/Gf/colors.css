@@ -1,0 +1,108 @@
+.white
+{
+  background-color: white !important;
+}
+
+.navbar,
+.badge-circle{
+  background-color: #52ab98;
+}
+
+.navbar-expand,
+.navbar-expand a,
+.media h3,
+.media p
+{
+  background-color: white;
+  color: rgb(83, 83, 83) !important;
+}
+
+.aqua,
+.number_service,
+.service_info i {
+  color: #52ab98 !important;
+}
+
+.navbar a,
+footer span,
+footer a,
+.badge-circle span{
+  color: white;
+}
+
+.arrow:hover,
+.post_item h1,
+.post_item i,
+.post_item h2
+{
+  color: #2b6777 !important;
+}
+
+.page_layout,
+.content-wrapper,
+.list-user-message,
+footer
+{
+  background-color: #c8d8e4 !important;
+}
+
+a,
+.btn-primary-e:hover a,
+.post_search_text span,
+.btn_like:hover,
+.side_bar_nav li,
+footer a{
+  color:#225360;
+}
+
+/* .type_post label{
+  color: #1e454f;
+} */
+
+.jq-radio.checked .jq-radio__div{
+  background: #317e6e !important;
+}
+
+
+
+.btn-primary-e a{
+  color: #c8d8e4;
+}
+
+
+a:hover,
+.side_bar_nav a:hover,
+.btn_like,
+.post_view small,
+.like_cont span,
+.post_counter,
+.arrow {
+  color: #52ab98;
+}
+
+.btn-primary-e{
+  color: #c8d8e4 !important;
+  background-color: #2b6777;
+
+}
+
+
+.btn-primary-e:hover
+{
+  background-color: #c8d8e4;
+/*  border: 1px solid #2b6777;*/
+  color: #255b6a !important;
+
+}
+
+.btn-primary-e:active{
+  background-color: #b1cde2;
+/*  border: 1px solid #2b6777;*/
+  color: #255b6a;
+
+}
+
+.list-user-message>.card-header,
+.send .btn{
+  background-color: transparent !important;
+}

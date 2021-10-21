@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Dal\**" />
+    <Content Remove="Models\Dal\**" />
+    <EmbeddedResource Remove="Models\Dal\**" />
+    <None Remove="Models\Dal\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
@@ -22,16 +29,16 @@
   </ItemGroup>
   <ItemGroup>
 
-    <Folder Include="Models\Dal\" />
-
     <Folder Include="Views\Home\" />
-
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\img\" />
     <Folder Include="Views\Login\" />
+
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Profil\" />
+
     <Folder Include="wwwroot\css\css-e\gf\" />
     <Folder Include="wwwroot\img\img-e\gf\" />
     <Folder Include="wwwroot\js\js-e\gf\" />
+
 
 
   </ItemGroup>
@@ -42,12 +49,36 @@
     <None Remove="Views\Profil\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\css\css-e\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <None Include="wwwroot\css\webfonts\fa-brands-400.svg" />
     <None Include="wwwroot\css\webfonts\fa-brands-400.woff2" />
     <None Include="wwwroot\css\webfonts\fa-regular-400.svg" />
     <None Include="wwwroot\css\webfonts\fa-regular-400.woff2" />
     <None Include="wwwroot\css\webfonts\fa-solid-900.svg" />
     <None Include="wwwroot\css\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\js-e\Gf\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\js\js-e\Gf\chart.js\Chart.bundle.js" />
+    <None Include="wwwroot\js\js-e\Gf\chart.js\Chart.bundle.min.js" />
+    <None Include="wwwroot\js\js-e\Gf\chart.js\Chart.js" />
+    <None Include="wwwroot\js\js-e\Gf\chart.js\Chart.min.js" />
+    <None Include="wwwroot\js\js-e\Gf\jquery\jquery.js" />
+    <None Include="wwwroot\js\js-e\Gf\jquery\jquery.min.js" />
+    <None Include="wwwroot\js\js-e\Gf\jquery\jquery.min.map" />
+    <None Include="wwwroot\js\js-e\Gf\jquery\jquery.slim.js" />
+    <None Include="wwwroot\js\js-e\Gf\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\js\js-e\Gf\jquery\jquery.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\img\avatar_exemple.png">

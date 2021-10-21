@@ -21,6 +21,8 @@
   </ItemGroup>
   <ItemGroup>
 
+    <Folder Include="Models\Dal\" />
+
     <Folder Include="Views\Home\" />
 
     <Folder Include="wwwroot\css\css-e\gf\" />

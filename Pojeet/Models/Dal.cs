@@ -111,7 +111,8 @@ namespace Pojeet.Models
 
         public CompteConsumer ObtenirConsumer(int id)
         {
-            return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
+            //return this._context.CompteConsumer.Include(u => u.Profil).FirstOrDefault(u => u.Id == id);
+            return this._context.CompteConsumer.Include(u => u.Profil).FirstOrDefault(u => u.Id == id);
         }
 
         public CompteConsumer ObtenirConsumer(string idStr)

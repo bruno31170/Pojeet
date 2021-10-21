@@ -9,6 +9,12 @@ namespace Pojeet.Controllers
 {
     public class InscriptionController : Controller
     {
+        private Dal dal;
+        public InscriptionController()
+        {
+            this.dal = new Dal();
+        }
+
         public IActionResult Index()
         {
             List<CompteConsumer> listConsumer = new List<CompteConsumer>();

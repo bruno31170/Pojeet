@@ -1,4 +1,5 @@
-﻿@model Pojeet.Models.CompteConsumer
+﻿@model Pojeet.ViewModels.UtilisateurViewModel
+
 @{
     Layout = "_Layout";
     ViewBag.Title = "Mon profil";
@@ -13,7 +14,9 @@
 
 <!--SECTION HERO-->
 <div class="d-flex align-items-start img_mur overflow-x-hidden position-relative"
-     style="background: url(assets/img/section_profil.svg) bottom center; background-size: cover">
+     style="    background: url('@Url.Content("~/img/section_profil.svg")') bottom center;
+                background-size: cover;
+                margin-top: 90px;">
     <div class="w-100" style="padding-top:77px">
         <div class="container">
             <div class="row">
@@ -28,11 +31,19 @@
 
 <div class="container d-flex justify-content-center col-12" id="container_profil">
     <div class="row col-11 m-0 p-0">
+        @*@if (User.Identity.IsAuthenticated)
+            {
+                <a class="navbar-brand" href="#page-top">Bonjour @User.Identity.Name</a>
 
+            }
+            else
+            {
+                <a class="navbar-brand" href="#page-top">Bienvenue</a>
+            }*@
         <!--Partie Gauche-->
         <div class="col-2" id="left_side">
             <!--Photo Profil-->
-            <img class="img_profil" src="assets/img/avatar_exemple.png" alt="" />
+            <img class="img_profil" src="~/img/avatar_exemple.png" alt="" />
             <h3 class="text-center">HUGO Victor</h3>
             <div class="text-center">Consumer</div>
             <div class="rating mt-3">
@@ -107,7 +118,7 @@
                                             <h6 class="mb-0">Pseudo</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            BricoloDuDimanche
+                                            @Model.CompteConsumer.Pseudo
                                         </div>
                                     </div>
                                     <hr>

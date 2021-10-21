@@ -103,16 +103,18 @@ namespace Pojeet.Models
         public CompteConsumer Authentifier(string pseudo, string password)
         {
             string motDePasse = EncodeMD5(password);
-            //CompteConsumer user = _context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
-            CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
+            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            //CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
             //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
             return user;
         }
 
         public CompteConsumer ObtenirConsumer(int id)
         {
-            //return this._context.CompteConsumer.Include(u => u.Profil).FirstOrDefault(u => u.Id == id);
-            return this._context.CompteConsumer.Include(u => u.Profil).FirstOrDefault(u => u.Id == id);
+            //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
+            //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).FirstOrDefault();
+
         }
 
         public CompteConsumer ObtenirConsumer(string idStr)
@@ -121,6 +123,23 @@ namespace Pojeet.Models
             if (int.TryParse(idStr, out id))
             {
                 return this.ObtenirConsumer(id);
+            }
+            return null;
+        }
+
+        public Profil ObtenirProfil(int idConsumer)
+        {
+            CompteConsumer compteConsumer = this._context.CompteConsumer.FirstOrDefault(u => u.Id == idConsumer);
+            Profil profil = this._context.Profil.FirstOrDefault(u => u.Id == compteConsumer.ProfilId);
+            return profil;
+        }
+
+        public Profil ObtenirProfil(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.ObtenirProfil(id);
             }
             return null;
         }

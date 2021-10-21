@@ -23,11 +23,11 @@ namespace Pojeet.Controllers
 
         public IActionResult Index()
         {
-            //var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
             {
                 viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                //viewModel.Profil = dal.ObtenirProfil(viewModel.CompteConsumer.Id);
                 return View(viewModel);
             }
             return View(viewModel);

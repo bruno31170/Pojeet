@@ -44,7 +44,7 @@
         <div class="col-2" id="left_side">
             <!--Photo Profil-->
             <img class="img_profil" src="~/img/avatar_exemple.png" alt="" />
-            <h3 class="text-center">HUGO Victor</h3>
+            <h3 class="text-center">@Model.CompteConsumer.Profil.Nom @Model.CompteConsumer.Profil.Prenom</h3>
             <div class="text-center">Consumer</div>
             <div class="rating mt-3">
                 <div class="stars">
@@ -136,7 +136,7 @@
                                             <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            test@gmail.com
+                                            @Model.CompteConsumer.Profil.Mail
                                         </div>
                                     </div>
                                     <hr>
@@ -145,7 +145,7 @@
                                             <h6 class="mb-0">Téléphone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            0666470777
+                                            @Model.CompteConsumer.Profil.NumeroTelephone
                                         </div>
                                     </div>
                                     <hr>
@@ -154,7 +154,7 @@
                                             <h6 class="mb-0">Adresse</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            12, rue Général de Gaulle 75001 Paris
+                                            @Model.CompteConsumer.Profil.Adresse @Model.CompteConsumer.Profil.CodePostal @Model.CompteConsumer.Profil.Ville
                                         </div>
                                     </div>
                                     <hr>
@@ -163,11 +163,7 @@
                                             <h6 class="mb-0">Description</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                            aliquip ex ea commodo consequat. Duis aute
-                                            irure dolor in reprehenderit in voluptate velit esse
+                                            @Model.CompteConsumer.Profil.Description
                                         </div>
                                     </div>
                                     <hr>

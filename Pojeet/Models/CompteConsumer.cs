@@ -21,7 +21,7 @@ namespace Pojeet.Models
 
 
         public int ProfilId { get; set; }
-        [Required]
+        //[Required]
         public virtual Profil Profil { get; set; }
 
 

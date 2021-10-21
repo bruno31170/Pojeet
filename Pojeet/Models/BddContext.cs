@@ -26,30 +26,38 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-
-
             optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
 
-
         }
+
         public void InitializeDb()
         {
-            //this.Database.EnsureDeleted();
+            this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            /*this.CompteConsumer.AddRange(
-                new CompteConsumer
-                {
-                    Id = 1,
-                    Pseudo = "Toto",
-                    MotDePasse = "lolilol"
-                },
-                new CompteConsumer
-                {
-                    Id = 2,
-                    Pseudo = "Tata",
-                    MotDePasse = "Kamoulox"
-                }
-            );*/
+            //this.CompteConsumer.AddRange(
+            //    new CompteConsumer
+            //    {
+            //        Id = 1,
+            //        Pseudo = "Toto",
+            //        MotDePasse = "tototo",
+            //        ProfilId = 1,
+            //    }
+            //);
+            //this.Profil.AddRange(
+            //    new Profil
+            //    {
+            //        Id = 1,
+            //        Nom = "durand",
+            //        Prenom = "Pierre",
+            //        DateDeNaissance = "01/01/2000",
+            //        Adresse = "Rue Charles de Gaulle",
+            //        Ville = "Paris",
+            //        CodePostal = "75001",
+            //        Pays = 0,
+            //        Mail = "test@gmail.com",
+            //        NumeroTelephone = 0123875433,
+            //        Description = "description",
+            //    });
             this.SaveChanges();
         }
     }

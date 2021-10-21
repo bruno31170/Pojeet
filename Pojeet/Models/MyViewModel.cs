@@ -9,5 +9,7 @@ namespace Pojeet.Models
         public List<Message> List2 { get; set; }
         public int id1 { get; set; }
         public int id2 { get; set; }
+        public Message NouveauMessage { get; set; }
+
     }
 }

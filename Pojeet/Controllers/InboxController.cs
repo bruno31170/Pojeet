@@ -14,23 +14,26 @@ namespace Pojeet.Controllers
         {
             List<Conversation> listeConversations = new List<Conversation>();
             List<Message> listeMessages = new List<Message>();
-            
+
             using (IDal dal = new Dal())
             {
-             listeConversations = dal.ObtientToutesLesConversations(id1);
-             listeMessages = dal.ObtientTousLesMessages(id2);
+                listeConversations = dal.ObtientToutesLesConversations(id1);
+                listeMessages = dal.ObtientTousLesMessages(id2);
             }
-            return View(new MyViewModel { List1 = listeConversations, List2 = listeMessages, id1=id1, id2=id2 });
+            return View(new MyViewModel { List1 = listeConversations, List2 = listeMessages, id1 = id1, id2 = id2 });
         }
 
-        public IActionResult AfficherConversation(int conversationId)
+        [HttpPost]
+        public IActionResult AfficherMessagerie(Message nouveaumessage)
         {
-            List<Message> listeMessages = new List<Message>();
-            using (IDal dal = new Dal())
+            
+            using (Dal ctx = new Dal())
             {
-                listeMessages = dal.ObtientTousLesMessages(conversationId);
+                ctx.AjouterMessage(nouveaumessage.message, nouveaumessage.ProfilId, nouveaumessage.ConversationId);
+                return RedirectToAction("AfficherMessagerie", new { id1 = 1, id2 = 1 });
             }
-            return View(listeMessages);
+
         }
+
     }
 }

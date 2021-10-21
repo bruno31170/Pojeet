@@ -39,10 +39,21 @@ namespace Pojeet.Models
 
            this.Database.EnsureDeleted();
            this.Database.EnsureCreated();
-            this.Profil.AddRange(
+            this.Annonce.AddRange(
+                new Annonce
+                {
+                    Id = 1,
+                    TypeDeAnnonce = 0,
+                    TitreAnnonce = "Roue",
+                    Description = "Roue usée",
+                    DateParution = new DateTime(2000,1,1),
+                    Localisation="Paris",
+                    Prix =20,
+                    DateButoir= new DateTime(2000, 1, 1),
+                    CategorieDeAnnonce =CategorieAnnonce.Roue
+                });
+           this.Profil.AddRange(
                 new Profil
-
-
                 {
                     Id = 1,
                     Description = "Mécanicien",
@@ -105,6 +116,7 @@ namespace Pojeet.Models
                 Id = 1,
                 CompteConsumerId = 1,
                 MessagerieId = 1,
+                AnnonceId=1
 
             }) ;
             this.Messagerie.AddRange(

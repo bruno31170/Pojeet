@@ -19,9 +19,6 @@ namespace Pojeet.Models
         public Etat Etat { get; set; }
 
         public string Competence { get; set; }
-
-
-
     }
     public enum Etat
     {

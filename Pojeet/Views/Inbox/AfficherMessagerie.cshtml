@@ -21,8 +21,11 @@
                             <ul class="list-unstyled chat-list mt-2 mb-0">
                                 @foreach (var conversation in Model.List1)
                                 {
-                                    <li class="clearfix">
-                                        @Html.ActionLink("Afficher", "AfficherMessagerie", "Inbox", new { @id1 = conversation.MessagerieId, @id2 = conversation.Id })
+                                    <a href="@Url.Action( "AfficherMessagerie","Inbox", new { @id1 = conversation.MessagerieId, @id2 = conversation.Id })">
+
+
+                                    <li class="nav-item clearfix">
+                                        @*@Html.ActionLink("Afficher", "AfficherMessagerie", "Inbox", new { @id1 = conversation.MessagerieId, @id2 = conversation.Id }, null)*@
                                         <img src=@Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Photo alt="avatar">
                                         <div class="about">
                                             <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
@@ -35,6 +38,8 @@
                                             </div>
                                         </div>
                                     </li>
+                                   
+                                    </a>
                                 }
                             </ul>
                         </div>
@@ -50,7 +55,7 @@
                                         </div>
                                     </div>
                                     <div class="container">
-                                        <button type="button" class="btn btn-link float-right">Annonce N°512746</button>
+                                        <button type="button" class="btn btn-link float-right">Annonce N° @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id</button>
                                     </div>
                                 </div>
                             </div>
@@ -60,40 +65,51 @@
                                     {
                                         @if (message.ProfilId == @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Id)
                                         {
-                                    <li class="clearfix">
-                                        <div class="message-data">
-                                            <span class="message-data-time">@message.Date</span>
-                                        </div>
-                                        <div class="message my-message">
-                                            @message.message
-                                        </div>
-                                    </li>
+                                            <li class="clearfix">
+                                                <div class="message-data">
+                                                    <span class="message-data-time">@message.Date</span>
+                                                </div>
+                                                <div class="message my-message">
+                                                    @message.message
+                                                </div>
+                                            </li>
                                         }
                                         else
                                         {
-                                    <li class="clearfix">
-                                        <div class="message-data text-right">
-                                            <span class="message-data-time">10:10, Aujoud'hui</span>
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                                        </div>
-                                        <div class="message other-message float-right">
-                                            @message.message
-                                        </div>
-                                    </li>
+                                            <li class="clearfix">
+                                                <div class="message-data text-right">
+                                                    <span class="message-data-time">@message.Date</span>
+                                                    <img src=@message.Profil.Photo alt="avatar">
+                                                </div>
+                                                <div class="message other-message float-right">
+                                                    @message.message
+                                                </div>
+                                            </li>
                                         }
-               
+
                                     }
                                 </ul>
                             </div>
-                            <div class="chat-message clearfix">
-                                <div class="input-group mb-0">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            @using (Html.BeginForm())
+                            {
+                                <div class="form-group">
+                                    <div class="chat-message clearfix">
+                                        <div class="input-group mb-0">
+                                            <div class="input-group-prepend">
+                                                <button type="submit" class="input-group-text">
+                                                    <i class="fa fa-send"></i>
+                                                </button>
+                                            </div>
+                                            @Html.TextBoxFor(model => model.NouveauMessage.message, new { @classe = "form-control", @placeholder = "Tapez votre message..." })
+                                            @Html.HiddenFor(model => model.NouveauMessage.ProfilId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })
+                                            @Html.HiddenFor(model => model.NouveauMessage.ConversationId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })
+                                            @*<input type="text" id="nouveauMessage"  class="form-control" placeholder="Tapez votre message..." value="">*@
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="Tapez votre message...">
                                 </div>
+                            }
                             </div>
-                        </div>
+                            
                     </div>
                 </div>
             </div>

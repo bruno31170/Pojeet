@@ -29,14 +29,28 @@ namespace Pojeet.Models
         }
         public List<Conversation> ObtientToutesLesConversations(int id)
         {
-            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c=> c.Messages).Include(c=> c.Auteur_Message.Profil).ToList();
+            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c=> c.Messages).Include(c => c.Annonce).Include(c=> c.Auteur_Message.Profil).ToList();
             return listeConversations;
         }
 
         public List<Message> ObtientTousLesMessages(int id)
         {
-            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).ToList();
+            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).Include(c=> c.Profil).ToList();
             return listeMessages;
+        }
+
+        public void AjouterMessage(string textmessage, int profilId, int conversationId )
+        {
+
+            Message message = new Message
+            {
+               message=textmessage,
+               Date=DateTime.Now,
+               ProfilId=1,
+               ConversationId=1
+            };
+            _context.Message.Add(message);
+            _context.SaveChanges();
         }
 
         public void Dispose()

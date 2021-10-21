@@ -5,6 +5,11 @@
     ViewBag.ColorNav = "navbar-color";
 }
 
+@section stylesheets {
+    <link rel="stylesheet" media="all" href="~/css/Profil.css">
+    <link rel="stylesheet" media="all" href="~/css/Inscription_form.css">
+}
+
 <div class="image-container" style="background: url('@Url.Content("~/img/section_inscription.svg")') bottom center; background-size: cover; padding-top:50px">
     <div class="container mb-5">
         <div class="row d-flex justify-content-center">
@@ -186,14 +191,10 @@
 
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
-                                                <label>Pays<small> (requis)</small></label><br>
-                                                <select name="country" class="form-control" name="pays"
-                                                        id="pays">
-                                                    <option value="Afghanistan"> France </option>
-                                                    <option value="Albania"> Belgique </option>
-                                                    <option value="Algeria"> Suisse </option>
-                                                </select>
-                                                @*@Html.DropDownListFor(m => m.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Selectionner la catégorie")*@
+                                                @Html.LabelFor(m => Model.Profil.Pays)<small> (requis)</small>
+                                                @Html.DropDownListFor(m => m.Profil.Pays, new SelectList(
+                                                    Enum.GetValues(typeof(Pojeet.Models.Pays))),
+                                                    "Selectionner le pays", new { @class = "form-control" })
                                             </div>
                                         </div>
                                     </div>

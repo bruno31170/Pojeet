@@ -18,16 +18,17 @@
     <Content Remove="wwwroot\css\" />
     <Content Remove="wwwroot\js\" />
     <Content Remove="wwwroot\img\" />
+    <Content Remove="wwwroot\js\EmptyJSFile.js" />
   </ItemGroup>
   <ItemGroup>
+
+    <Folder Include="Models\Dal\" />
 
     <Folder Include="Views\Home\" />
 
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\img\" />
     <Folder Include="Views\Login\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\Profil\" />
     <Folder Include="wwwroot\css\css-e\gf\" />
     <Folder Include="wwwroot\img\img-e\gf\" />
     <Folder Include="wwwroot\js\js-e\gf\" />

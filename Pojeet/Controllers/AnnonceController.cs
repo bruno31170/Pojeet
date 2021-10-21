@@ -26,7 +26,8 @@ namespace Pojeet.Controllers
         {
             if (!ModelState.IsValid)
                 return View("Error");
-            dal.PosterAnnonce(annonce.TypeDeAnnonce, annonce.TitreAnnonce, annonce.Description, annonce.DateParution, annonce.Localisation, annonce.DateButoir, annonce.Prix, annonce.CategorieDeAnnonce, annonce.Photo);
+            dal.PosterAnnonce(annonce.TypeDeAnnonce, annonce.TitreAnnonce, annonce.Description, annonce.DateParution, 
+                annonce.Localisation, annonce.DateButoir, annonce.Prix, annonce.CategorieDeAnnonce, annonce.Photo);
             
             return View("Reussi"); //Retourner view mes annonces
         }

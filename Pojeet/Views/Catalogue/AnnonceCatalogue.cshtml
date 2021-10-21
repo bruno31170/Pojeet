@@ -71,7 +71,7 @@
                     </div>
 
                     <!-- FOR EACH ICI CODE -->
-                    @foreach (var annonce in Model)
+                    @*@foreach (var annonce in Model)*@
                     {
                     <div class="post_content p-4 border-e flex-col white">
 
@@ -82,7 +82,7 @@
                                     <a href="#">Nom Prenom</a>
                                 </div>
                                 <div class="post_date font-size-11">
-                                    <span class="post_link">@annonce.DateParution</span>
+                                    <span class="post_link">annonce.DateParution</span>
                                 </div>
                                 <span class="post_city font-size-11">Paris</span>
                             </div>
@@ -95,13 +95,13 @@
                             <div class="post_info flex-col justify-content-between">
 
                                 <div class="post_info_text ml-1">
-                                    <span class="font-size-17 bold">@annonce.TitreAnnonce</span>
+                                    <span class="font-size-17 bold">annonce.TitreAnnonce</span>
                                     <p class="text-justify">
-                                        @annonce.Description
+                                        annonce.Description
                                     </p>
                                 </div>
                                 <div class="post_price font-size-15 ml-1">
-                                    <span>Prix: @annonce.Prix</span>
+                                    <span>Prix: annonce.Prix</span>
                                 </div>
 
                                 <div class="btn-primary-e w-100 mt-2 btn_post">

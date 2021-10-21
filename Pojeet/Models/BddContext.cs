@@ -34,20 +34,23 @@ namespace Pojeet.Models
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            /*this.CompteConsumer.AddRange(
-                new CompteConsumer
+            this.Profil.AddRange(
+                new Profil
                 {
                     Id = 1,
-                    Pseudo = "Toto",
-                    MotDePasse = "lolilol"
-                },
-                new CompteConsumer
-                {
-                    Id = 2,
-                    Pseudo = "Tata",
-                    MotDePasse = "Kamoulox"
-                }
-            );*/
+                    Description = "Mécanicien",
+                    Nom = "Guissouma",
+                    Prenom = "Ines",
+                    DateDeNaissance = "12/12/2020",
+                    Adresse = "Boulevard Rocheplatte",
+                    Ville = "Orléans",
+                    CodePostal = "45000",
+                    Pays = "France",
+                    Mail = "inesguissouma@gmail.com",
+                    NumeroTelephone = 6875,
+                    
+                });
+
             this.SaveChanges();
         }
     }

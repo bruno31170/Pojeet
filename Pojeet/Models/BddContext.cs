@@ -50,6 +50,51 @@ namespace Pojeet.Models
                     NumeroTelephone = 6875,
                     
                 });
+            this.Annonce.AddRange(
+                new Annonce
+                {
+                    Id = 1,
+                    TypeDeAnnonce = TypeAnnonce.Besoin,
+                    TitreAnnonce = "Changement batterie",
+                    Description = "voiture modèle Ford Fusion",
+                    DateParution = DateTime.Now,
+                    Localisation = "31000",
+                    DateButoir = DateTime.Today,
+                    Prix = 5,
+                    CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
+                    ProfilId = 1,
+
+                });
+            this.Annonce.AddRange(
+            new Annonce
+            {
+                Id = 2,
+                TypeDeAnnonce = TypeAnnonce.Service,
+                TitreAnnonce = "Changer pneu",
+                Description = "Toute voiture",
+                DateParution = DateTime.Now,
+                Localisation = "32000",
+                DateButoir = DateTime.Today,
+                Prix = 50,
+                CategorieDeAnnonce = CategorieAnnonce.Roue,
+                ProfilId = 1,
+
+            });
+            this.Annonce.AddRange(
+            new Annonce
+            {
+                Id = 3,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Changement essuie glace",
+                Description = "voiture modèle Fiat Punto",
+                DateParution = DateTime.Now,
+                Localisation = "33000",
+                DateButoir = DateTime.Today,
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
+                ProfilId = 1,
+
+            });
 
             this.SaveChanges();
         }

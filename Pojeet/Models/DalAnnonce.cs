@@ -43,6 +43,12 @@ namespace Pojeet.Models
             
         }
 
+        public List<Annonce> ObtientAnnonce()
+        {
+            List<Annonce> listeAnnonce = this._context.Annonce.ToList();
+            return listeAnnonce;
+        }
+
         public void SupprimerAnnonce(int id)
         {
             Annonce annonce = _context.Annonce.Find(id);

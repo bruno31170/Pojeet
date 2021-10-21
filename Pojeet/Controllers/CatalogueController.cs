@@ -15,7 +15,7 @@ namespace Pojeet.Controllers
             this.dal = new DalCatalogue();
         }
         public IActionResult AnnonceCatalogue()
-        {
+        {        
             
                 List<Annonce> listeAnnonce = dal.ObtientAnnonce();
                 return View(listeAnnonce);

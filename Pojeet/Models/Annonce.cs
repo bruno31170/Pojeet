@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pojeet.Models
 {
+    
     public class Annonce
     {
         public int Id { set; get; }
@@ -50,4 +52,6 @@ namespace Pojeet.Models
         Carrosserie,
         Roue
     }
+
+
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Pojeet.Models
 {
@@ -37,8 +39,8 @@ namespace Pojeet.Models
         [Display(Name = "Code postal")]
         public string CodePostal { get; set; }
 
-        [Display(Name = "Pays")]
-        public string Pays { get; set; }
+        //[Display(Name = "Pays")]
+        //public string Pays { get; set; }
 
         //[Required(ErrorMessage = "Le Mail doit être rempli.")]
         [Display(Name = "Email")]
@@ -48,7 +50,18 @@ namespace Pojeet.Models
         [Display(Name = "Numéro de téléphone")]
         public int NumeroTelephone { get; set; }
 
-        public String Photo { get; set; }
+
+        public Pays Pays { get; set; }
+
+        public string Photo { get; set; }
+
+    }
+
+    public enum Pays
+    {
+        France,
+        Suisse,
+        Belgique
 
     }
 

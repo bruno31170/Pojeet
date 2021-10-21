@@ -46,21 +46,25 @@ namespace Pojeet.Models
 
 
         public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-            string adresse, string mail, int numeroTelephone, string description)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
         {
             CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
 
             if (consumer != null)
             {
-                consumer.Profil.Nom = nom;
                 consumer.MotDePasse = motdepasse;
                 consumer.Pseudo = pseudo;
+                consumer.Profil.Nom = nom;
                 consumer.Profil.Prenom = prenom;
                 consumer.Profil.DateDeNaissance = dateNaissance;
                 consumer.Profil.Adresse = adresse;
+                consumer.Profil.Ville = ville;
+                consumer.Profil.CodePostal = code_postal;
+                consumer.Profil.Pays = pays;
                 consumer.Profil.Mail = mail;
                 consumer.Profil.NumeroTelephone = numeroTelephone;
                 consumer.Profil.Description = description;
+                consumer.Profil.Photo = photo;
                 _context.SaveChanges();
             }
 
@@ -78,7 +82,7 @@ namespace Pojeet.Models
 
         // pour l'authentification
 
-        private string EncodeMD5(string motDePasse)
+        public static string EncodeMD5(string motDePasse)
         {
             string motDePasseSel = "HelpMyCar" + motDePasse + "ASP.NET MVC";
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
@@ -86,9 +90,10 @@ namespace Pojeet.Models
 
 
         public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
         {
             string motDePasse = EncodeMD5(motdepasse);
+
             Profil profil = new Profil
             {
                 Nom = nom,
@@ -101,6 +106,7 @@ namespace Pojeet.Models
                 Mail = mail,
                 NumeroTelephone = numeroTelephone,
                 Description = description,
+
             };
             CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
@@ -114,15 +120,18 @@ namespace Pojeet.Models
         public CompteConsumer Authentifier(string pseudo, string password)
         {
             string motDePasse = EncodeMD5(password);
-            //CompteConsumer user = _context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
-            CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
+            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            //CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
             //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
             return user;
         }
 
         public CompteConsumer ObtenirConsumer(int id)
         {
-            return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
+            //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
+            //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).FirstOrDefault();
+
         }
 
         public CompteConsumer ObtenirConsumer(string idStr)
@@ -134,6 +143,8 @@ namespace Pojeet.Models
             }
             return null;
         }
+
+
 
     }
 }

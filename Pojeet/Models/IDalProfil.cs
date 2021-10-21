@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace Pojeet.Models
 {
-    public interface IDalCatalogue : IDisposable
+    public interface IDalProfil : IDisposable
     {
         
-        List<Annonce> ObtientAnnonce();
+        List<Annonce> ObtientAnnonceProfil(int profilId);
 
         CompteConsumer ObtientConsumer(int id);
 
+        List<Annonce> ObtientAnnonce();
     }
 }

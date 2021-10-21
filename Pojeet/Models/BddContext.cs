@@ -34,30 +34,30 @@ namespace Pojeet.Models
         {
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            //this.CompteConsumer.AddRange(
-            //    new CompteConsumer
-            //    {
-            //        Id = 1,
-            //        Pseudo = "Toto",
-            //        MotDePasse = "tototo",
-            //        ProfilId = 1,
-            //    }
-            //);
-            //this.Profil.AddRange(
-            //    new Profil
-            //    {
-            //        Id = 1,
-            //        Nom = "durand",
-            //        Prenom = "Pierre",
-            //        DateDeNaissance = "01/01/2000",
-            //        Adresse = "Rue Charles de Gaulle",
-            //        Ville = "Paris",
-            //        CodePostal = "75001",
-            //        Pays = 0,
-            //        Mail = "test@gmail.com",
-            //        NumeroTelephone = 0123875433,
-            //        Description = "description",
-            //    });
+            this.CompteConsumer.AddRange(
+                new CompteConsumer
+                {
+                    Id = 1,
+                    Pseudo = "Toto",
+                    MotDePasse = Dal.EncodeMD5("tototo"),
+                    ProfilId = 1,
+                }
+            );
+            this.Profil.AddRange(
+                new Profil
+                {
+                    Id = 1,
+                    Nom = "durand",
+                    Prenom = "Pierre",
+                    DateDeNaissance = "01/01/2000",
+                    Adresse = "Rue Charles de Gaulle",
+                    Ville = "Paris",
+                    CodePostal = "75001",
+                    Pays = 0,
+                    Mail = "test@gmail.com",
+                    NumeroTelephone = 0123875433,
+                    Description = "description",
+                });
             this.SaveChanges();
         }
     }

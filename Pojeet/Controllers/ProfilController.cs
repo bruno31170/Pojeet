@@ -34,5 +34,55 @@ namespace Pojeet.Controllers
 
 
         }
+
+        public IActionResult ModifierConsumer()
+        {
+            //if (id != 0)
+            //{
+            //    using (IDal dal = new Dal())
+            //    {
+            //        CompteConsumer consumer = dal.ObtientTousConsumer().Where(r => r.Id == id).FirstOrDefault();
+            //        if (consumer == null)
+            //        {
+            //            return View("Error");
+            //        }
+            //        return View(consumer);
+            //    }
+            //}
+            //return View("Error");
+
+            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                return View(compteConsumer);
+            }
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ModifierConsumer(CompteConsumer consumer)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("ModifierConsumer");
+            //}
+
+
+            if (consumer.Id != 0)
+            {
+                using (Dal ctx = new Dal())
+                {
+                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
+                    return RedirectToAction("Profil");
+                }
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
     }
 }

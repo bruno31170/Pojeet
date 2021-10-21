@@ -11,6 +11,10 @@
         <legend>Modifier un Consumer : </legend>
 
 
+        @Html.LabelFor(m => Model.Id)
+        @Html.TextBoxFor(m => Model.Id)
+        @Html.ValidationMessageFor(m => Model.Id)
+
         @Html.LabelFor(m => Model.Pseudo)
         @Html.TextBoxFor(m => Model.Pseudo)
         @Html.ValidationMessageFor(m => Model.Pseudo)

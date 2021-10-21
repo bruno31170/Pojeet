@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Pojeet.Models
 {
@@ -50,8 +52,7 @@ namespace Pojeet.Models
 
         public Pays Pays { get; set; }
 
-        public byte[] Photo { get; set; }
-
+        public string Photo { get; set; }
 
     }
 

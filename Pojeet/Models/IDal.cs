@@ -20,7 +20,12 @@ namespace Pojeet.Models
 
         void SuppressionConsumer(int id);
 
+
+        List<Conversation> ObtientToutesLesConversations(int id);
+        List<Message> ObtientTousLesMessages(int conversationId);
+
         CompteConsumer ObtenirConsumer(int id);
         CompteConsumer ObtenirConsumer(string idStr);
+
     }
 }

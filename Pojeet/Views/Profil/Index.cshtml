@@ -1,4 +1,7 @@
-﻿@model Pojeet.ViewModels.UtilisateurViewModel
+
+@model Pojeet.ViewModels.UtilisateurViewModel
+@*@model Pojeet.ViewModels.ProfilViewModel*@
+
 
 @{
     Layout = "_Layout";
@@ -180,6 +183,7 @@
                     </div>
 
                     <!-- Mes annonces -->
+                    
                     <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
                          class="tab-pane fade px-4 py-5">
 
@@ -188,84 +192,56 @@
                         </div>
 
                         <!-- exemple annonce 1 -->
-                        <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
-                            <div class="d-flex justify-content-end mb-2">
-                                <p>10 août 2021</p>
-                            </div>
-                            <div class=" row flex-row">
-                                <div class="wall_post_img col-6">
-                                    <img src="assets/img/design_service.png" alt="">
+                        @*Date de parution : @annonce.DateParution<br>
+        Catégorie : @annonce.CategorieDeAnnonce<br>
+        Auteur : @annonce.ProfilId<br>
+        Titre : @annonce.TitreAnnonce<br>
+        Type de l'annonce : @annonce.TypeDeAnnonce<br>
+        Description : @annonce.Description<br>
+        Date butoir : @annonce.DateButoir<br>
+        Localisation : @annonce.Localisation<br>
+        Prix : @annonce.Prix<br>
+        Photo : @annonce.Photo*@
+                        @foreach (var annonce in Model.Annonce)
+                        {
+                            <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
+                                <div class="d-flex justify-content-end mb-2">
+                                    <p>@annonce.DateParution</p>
                                 </div>
-                                <div class="post_info col-6 flex-col justify-content-between">
-                                    <div class="post_info_text ml-1">
-                                        <h5>Dépannage assistance 24/24 auto moto</h5>
-                                        <p class="text-justify">
-                                            Lorem ipsum dolor sit amet, consectetur
-                                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua....
-
-                                        </p>
+                                <div class=" row flex-row">
+                                    <div class="wall_post_img col-6">
+                                        <img src="assets/img/design_service.png" alt="">
                                     </div>
-                                    <div class="post_price font-size-15 ml-1">
-                                        <span>Prix: <strong> 30 €/h</strong></span>
-                                    </div>
+                                    <div class="post_info col-6 flex-col justify-content-between">
+                                        <div class="post_info_text ml-1">
+                                            <h5>@annonce.TitreAnnonce</h5>
+                                            <p class="text-justify">
+                                                @annonce.Description
 
-                                    <div class="w-100 mt-3">
-                                        <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
-                                    </div>
-
-                                    <div class="d-flex mt-3">
-                                        <div class=" w-100 col-6 ">
-                                            <a class="btn w-100 btnDarkGreen" href="#">Modifier</a>
+                                            </p>
                                         </div>
-                                        <div class=" w-100 col-6">
-                                            <a class="btn w-100 btnOrange" href="#">Supprimer</a>
+                                        <div class="post_price font-size-15 ml-1">
+                                            <span>Prix: <strong> @annonce.Prix €</strong></span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- exemple annonce 2 -->
-                        <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
-                            <div class="d-flex justify-content-end mb-2">
-                                <p>13 octobre 2021</p>
-                            </div>
-                            <div class=" row flex-row">
-                                <div class="wall_post_img col-6">
-                                    <img src="assets/img/design_louer.png" alt="">
-                                </div>
-                                <div class="post_info col-6 flex-col justify-content-between">
-                                    <div class="post_info_text ml-1">
-                                        <h5>Changement de batterie</h5>
-                                        <p class="text-justify">
-                                            Lorem ipsum dolor sit amet, consectetur
-                                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                            dolore magna aliqua....
-
-                                        </p>
-                                    </div>
-                                    <div class="post_price font-size-15 ml-1">
-                                        <span>Prix: <strong> 90€</strong></span>
-                                    </div>
-
-                                    <div class="btn-primary-e w-100 mt-3">
-                                        <a class="btn btnGreen w-100" href="#">Voir l'annonce</a>
-                                    </div>
-                                    <div class="d-flex mt-3">
-                                        <div class=" w-100 col-6 ">
-                                            <a class="btn w-100 btnDarkGreen" href="#">Modifier</a>
+                                        <div class="w-100 mt-3">
+                                            <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
                                         </div>
-                                        <div class=" w-100 col-6">
-                                            <a class="btn w-100 btnOrange" href="#">Supprimer</a>
+
+                                        <div class="d-flex mt-3">
+                                            <div class=" w-100 col-6">
+                                                <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+
+
 
                     </div>
-
+                    
                     <!-- mes transactions  -->
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">

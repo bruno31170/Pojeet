@@ -6,7 +6,7 @@ namespace Pojeet.Models
 	public class Messagerie
 	{
 		public int Id { get; set; }
-		public List<Conversation> Historique { get; set; }
+		public virtual List<Conversation> Historique { get; set; }
 	}
 }
 

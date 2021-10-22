@@ -29,14 +29,36 @@ namespace Pojeet.Models
         }
         public List<Conversation> ObtientToutesLesConversations(int id)
         {
-            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c=> c.Messages).Include(c=> c.Auteur_Message.Profil).ToList();
+            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c=> c.Messages).Include(c => c.Annonce).Include(c=> c.Auteur_Message.Profil).ToList();
             return listeConversations;
         }
 
         public List<Message> ObtientTousLesMessages(int id)
         {
-            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).ToList();
-            return listeMessages;
+            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).Include(c => c.Profil).ToList();
+            var messages = listeMessages.OrderBy(c => c.Id).ToList();
+            return messages;
+        }
+        public Messagerie ObtientLaMessagerie(int id)
+        {
+            Messagerie messagerie = _context.Messagerie.Where(r => r.Id==id).Include(c => c.Profil).Include(c => c.Historique).FirstOrDefault();
+            return messagerie;
+        }
+
+
+
+        public void AjouterMessage(string textmessage, int profilId, int conversationId )
+        {
+
+            Message message = new Message
+            {
+               message=textmessage,
+               Date=DateTime.Now,
+               ProfilId= profilId,
+               ConversationId= conversationId
+            };
+            _context.Message.Add(message);
+            _context.SaveChanges();
         }
 
         public void Dispose()

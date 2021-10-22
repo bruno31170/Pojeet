@@ -51,6 +51,7 @@ namespace Pojeet.Models
         public int NumeroTelephone { get; set; }
 
 
+
         public Pays Pays { get; set; }
 
         public string Photo { get; set; }
@@ -62,6 +63,7 @@ namespace Pojeet.Models
         France,
         Suisse,
         Belgique
+
 
     }
 

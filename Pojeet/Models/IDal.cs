@@ -23,7 +23,7 @@ namespace Pojeet.Models
 
         List<Conversation> ObtientToutesLesConversations(int id);
         List<Message> ObtientTousLesMessages(int conversationId);
-
+        Messagerie ObtientLaMessagerie(int id);
         CompteConsumer ObtenirConsumer(int id);
         CompteConsumer ObtenirConsumer(string idStr);
 

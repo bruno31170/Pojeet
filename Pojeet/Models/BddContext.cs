@@ -28,16 +28,21 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+
+
+            
+
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+
 
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
 
 
         }
-
         public void InitializeDb()
         {
+
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
@@ -146,7 +151,7 @@ namespace Pojeet.Models
             new Message
             {
                 Id = 1,
-                Date = new DateTime(2005, 11, 20, 12, 1, 10),
+                Date = new DateTime(2004, 11, 20, 12, 1, 10),
                 message = "Bonjour, je pourrais vous rendre le service que vous demandez ce weekend,êtes vous d'accord?",
                 ProfilId = 1,
                 ConversationId = 1
@@ -158,16 +163,43 @@ namespace Pojeet.Models
                 message = " Bonjour, oui bien sûr, vous demander combien ? ",
                 ProfilId = 2,
                 ConversationId = 1
-            });
+
+            },
+            new Message
+            {
+                Id = 3,
+                Date = new DateTime(2006, 11, 20, 12, 1, 10),
+                message = " ok ",
+                ProfilId = 1,
+                ConversationId = 1
+            },
+            new Message
+            {
+                Id = 4,
+                Date = new DateTime(2006, 11, 20, 12, 1, 10),
+                message = " hey ",
+                ProfilId = 2,
+                ConversationId = 1
+            }); 
+
+
 
             //CONVERSATION
+
             this.Conversation.AddRange(
             new Conversation
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                MessagerieId = 1
+                MessagerieId = 1,
+                AnnonceId=1
 
+            }) ;
+            this.Messagerie.AddRange(
+            new Messagerie
+            {
+                Id = 1,
+                ProfilId=2
             });
 
             //MESSAGERIE
@@ -178,26 +210,7 @@ namespace Pojeet.Models
 
             });
 
-            this.Annonce.AddRange(
-                new Annonce
-                {
-                    Id = 1,
-                    TypeDeAnnonce = 0,
-                    TitreAnnonce = "Titre",
-                    Description = "Blablabla",
-                    DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
-                    Localisation = "13000",
-                    DateButoir = new DateTime(2021, 11, 20, 12, 1, 10),
-                    Prix = 100,
-                    CategorieDeAnnonce = 0,
-                    ProfilId = 1,
-
-
-
-
-
-                });
-
+            
             this.Transactions.AddRange(
                 new Transaction
                 {
@@ -208,7 +221,6 @@ namespace Pojeet.Models
                     EtatTransaction = 0
 
                 }); 
-
 
 
             this.SaveChanges();

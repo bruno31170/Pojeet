@@ -28,18 +28,12 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-
-
-            
-
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-
-
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-
-
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
         }
+
+
         public void InitializeDb()
         {
 
@@ -180,29 +174,28 @@ namespace Pojeet.Models
                 message = " hey ",
                 ProfilId = 2,
                 ConversationId = 1
-            }); 
+            });
 
 
 
             //CONVERSATION
-
             this.Conversation.AddRange(
             new Conversation
             {
                 Id = 1,
                 CompteConsumerId = 1,
                 MessagerieId = 1,
-                AnnonceId=1
+                AnnonceId = 1
 
-            }) ;
+            });
             this.Messagerie.AddRange(
             new Messagerie
             {
                 Id = 1,
-                ProfilId=2
+                ProfilId = 2
             });
 
-            
+            //TRANSACTION
             this.Transactions.AddRange(
                 new Transaction
                 {
@@ -212,7 +205,7 @@ namespace Pojeet.Models
                     Montant = 20.15,
                     EtatTransaction = 0
 
-                }); 
+                });
 
 
             this.SaveChanges();

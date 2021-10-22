@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
@@ -39,40 +40,40 @@ namespace Pojeet.Controllers
 
 
 
-       /*public IActionResult MesAnnoncesProfil(int profilId)
-        {
-            string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description
-
-            
-            Profil profil = new Profil
-            {
-                Nom = nom,
-                Prenom = prenom,
-                DateDeNaissance = dateNaissance,
-                Adresse = adresse,
-                Ville = ville,
-                CodePostal = code_postal,
-                Pays = pays,
-                Mail = mail,
-                NumeroTelephone = numeroTelephone,
-                Description = description,
-            };
-            CompteConsumer consumer = new CompteConsumer
-            {
-                Id= idConsumer, 
-                Pseudo = pseudo, 
-                Profil = profil 
-            };
-
-            List<Annonce> annonce = dalProfil.ObtientAnnonceProfil(profilId);
-
-            UtilisateurViewModel model = new UtilisateurViewModel { CompteConsumer = consumer, Annonce = annonce };
+        /*public IActionResult MesAnnoncesProfil(int profilId)
+         {
+             string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+            string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description
 
 
-            return View("Index", model);
+             Profil profil = new Profil
+             {
+                 Nom = nom,
+                 Prenom = prenom,
+                 DateDeNaissance = dateNaissance,
+                 Adresse = adresse,
+                 Ville = ville,
+                 CodePostal = code_postal,
+                 Pays = pays,
+                 Mail = mail,
+                 NumeroTelephone = numeroTelephone,
+                 Description = description,
+             };
+             CompteConsumer consumer = new CompteConsumer
+             {
+                 Id= idConsumer, 
+                 Pseudo = pseudo, 
+                 Profil = profil 
+             };
 
-        }*/
+             List<Annonce> annonce = dalProfil.ObtientAnnonceProfil(profilId);
+
+             UtilisateurViewModel model = new UtilisateurViewModel { CompteConsumer = consumer, Annonce = annonce };
+
+
+             return View("Index", model);
+
+         }*/
 
         public IActionResult ModifierConsumer()
         {
@@ -123,5 +124,32 @@ namespace Pojeet.Controllers
             }
         }
 
+
+
+        public IActionResult SupprimerConsumer()
+        {
+
+            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+
+                if (compteConsumer.Id != 0)
+                {
+                    using (Dal ctx = new Dal())
+                    {
+                        ctx.SuppressionConsumer(compteConsumer.Id);
+                        HttpContext.SignOutAsync();
+                        return Redirect("~../Home/Index");
+                    }
+                }
+                else
+                {
+                    return View("Error");
+                }
+
+            }
+            return View("");
+        }
     }
 }

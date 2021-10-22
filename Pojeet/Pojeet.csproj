@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Dal\**" />
+    <Content Remove="Models\Dal\**" />
+    <EmbeddedResource Remove="Models\Dal\**" />
+    <None Remove="Models\Dal\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
@@ -21,8 +28,6 @@
     <Content Remove="wwwroot\js\EmptyJSFile.js" />
   </ItemGroup>
   <ItemGroup>
-
-    <Folder Include="Models\Dal\" />
 
     <Folder Include="Views\Home\" />
 

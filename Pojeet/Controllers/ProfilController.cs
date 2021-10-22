@@ -37,7 +37,7 @@ namespace Pojeet.Controllers
 
 
 
-    
+    //
         public IActionResult Indexx(int profilId)
         {
             /*string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,

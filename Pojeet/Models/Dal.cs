@@ -168,5 +168,31 @@ namespace Pojeet.Models
 
 
 
+        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, string documentIdentification, List<string> competence)
+        {
+
+            Rib rib = new Rib
+            {
+                Iban = iban,
+                Bic = bic,
+                TitulaireCompte = titulaire
+            };
+
+            CompteProvider Provider = new CompteProvider
+            {
+                CompteConsumerId = compteConsumer.Id,
+                DocumentIdentification = documentIdentification,
+                Rib = rib,
+                Etat = 0,
+                Competence = competence
+            };
+
+
+            _context.CompteProvider.Add(Provider);
+            _context.SaveChanges();
+            return Provider.Id;
+        }
+
+
     }
 }

@@ -140,7 +140,7 @@ namespace Pojeet.Controllers
                     {
                         ctx.SuppressionConsumer(compteConsumer.Id);
                         HttpContext.SignOutAsync();
-                        return Redirect("~../Home/Index");
+                        return Redirect("/");
                     }
                 }
                 else

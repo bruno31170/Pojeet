@@ -191,7 +191,7 @@ namespace Pojeet.Controllers
             using (Dal ctx = new Dal())
             {
                 ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, compteProvider.DocumentIdentification, compteProvider.Competence);
-                return RedirectToAction("CreerHelper", new { @id = compteProvider.Id });
+                return RedirectToAction("../Profil/Index");
             }
 
         }

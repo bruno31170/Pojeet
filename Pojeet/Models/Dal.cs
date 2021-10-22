@@ -35,9 +35,17 @@ namespace Pojeet.Models
 
         public List<Message> ObtientTousLesMessages(int id)
         {
-            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).Include(c=> c.Profil).ToList();
-            return listeMessages;
+            List<Message> listeMessages = _context.Message.Where(r => r.ConversationId == id).Include(c => c.Profil).ToList();
+            var messages = listeMessages.OrderBy(c => c.Id).ToList();
+            return messages;
         }
+        public Messagerie ObtientLaMessagerie(int id)
+        {
+            Messagerie messagerie = _context.Messagerie.Where(r => r.Id==id).Include(c => c.Profil).Include(c => c.Historique).FirstOrDefault();
+            return messagerie;
+        }
+
+
 
         public void AjouterMessage(string textmessage, int profilId, int conversationId )
         {
@@ -46,8 +54,8 @@ namespace Pojeet.Models
             {
                message=textmessage,
                Date=DateTime.Now,
-               ProfilId=1,
-               ConversationId=1
+               ProfilId= profilId,
+               ConversationId= conversationId
             };
             _context.Message.Add(message);
             _context.SaveChanges();

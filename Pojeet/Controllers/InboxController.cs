@@ -14,13 +14,16 @@ namespace Pojeet.Controllers
         {
             List<Conversation> listeConversations = new List<Conversation>();
             List<Message> listeMessages = new List<Message>();
+            Messagerie messagerie = new Messagerie();
 
             using (IDal dal = new Dal())
             {
                 listeConversations = dal.ObtientToutesLesConversations(id1);
                 listeMessages = dal.ObtientTousLesMessages(id2);
+                messagerie = dal.ObtientLaMessagerie(id1);
             }
-            return View(new MyViewModel { List1 = listeConversations, List2 = listeMessages, id1 = id1, id2 = id2 });
+
+            return View(new MyViewModel { List1 = listeConversations, List2 = listeMessages, id1 = id1, id2 = id2, Messagerie=messagerie });
         }
 
         [HttpPost]

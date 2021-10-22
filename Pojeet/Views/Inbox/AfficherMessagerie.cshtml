@@ -19,7 +19,7 @@
                                 <input type="text" class="form-control" placeholder="Rechercher...">
                             </div>
                             <ul class="list-unstyled chat-list mt-2 mb-0">
-                                @foreach (var conversation in Model.List1)
+                                @foreach (var conversation in Model.Messagerie.Historique)
                                 {
                                     <a href="@Url.Action( "AfficherMessagerie","Inbox", new { @id1 = conversation.MessagerieId, @id2 = conversation.Id })">
 
@@ -61,20 +61,11 @@
                             </div>
                             <div class="chat-history">
                                 <ul class="m-b-0">
+
                                     @foreach (var message in Model.List2)
                                     {
-                                        @if (message.ProfilId == @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Id)
-                                        {
-                                            <li class="clearfix">
-                                                <div class="message-data">
-                                                    <span class="message-data-time">@message.Date</span>
-                                                </div>
-                                                <div class="message my-message">
-                                                    @message.message
-                                                </div>
-                                            </li>
-                                        }
-                                        else
+
+                                        @if (message.ProfilId == @Model.Messagerie.ProfilId)
                                         {
                                             <li class="clearfix">
                                                 <div class="message-data text-right">
@@ -86,29 +77,41 @@
                                                 </div>
                                             </li>
                                         }
-
+                                        else
+                                        {
+                                            <li class="clearfix">
+                                                <div class="message-data">
+                                                    <span class="message-data-time">@message.Date</span>
+                                                </div>
+                                                <div class="message my-message">
+                                                    @message.message
+                                                </div>
+                                            </li>
+                                        }
                                     }
                                 </ul>
                             </div>
                             @using (Html.BeginForm())
                             {
-                                <div class="form-group">
-                                    <div class="chat-message clearfix">
-                                        <div class="input-group mb-0">
-                                            <div class="input-group-prepend">
-                                                <button type="submit" class="input-group-text">
-                                                    <i class="fa fa-send"></i>
-                                                </button>
-                                            </div>
-                                            @Html.TextBoxFor(model => model.NouveauMessage.message, new { @classe = "form-control", @placeholder = "Tapez votre message..." })
-                                            @Html.HiddenFor(model => model.NouveauMessage.ProfilId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })
-                                            @Html.HiddenFor(model => model.NouveauMessage.ConversationId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })
-                                            @*<input type="text" id="nouveauMessage"  class="form-control" placeholder="Tapez votre message..." value="">*@
+
+                                <div class="form-group chat-message clearfix">
+                                    <div class="input-group mb-0">
+                                        <div class="input-group-prepend">
+                                            <button type="submit" class="input-group-text">
+                                                <i class="fa fa-send"></i>
+                                            </button>
                                         </div>
+                                        @*@Html.TextBoxFor(model => model.NouveauMessage.message, new { @classe = "form-control", @placeholder = "Tapez votre message..." })
+                                        @Html.HiddenFor(model => model.NouveauMessage.ProfilId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })
+                                        @Html.HiddenFor(model => model.NouveauMessage.ConversationId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })*@
+                                        <input type="text" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="">
+                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="2">
+                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="1">
                                     </div>
                                 </div>
+
                             }
-                            </div>
+                        </div>
                             
                     </div>
                 </div>

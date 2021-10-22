@@ -97,7 +97,7 @@ namespace Pojeet.Models
             new Message
             {
                 Id = 1,
-                Date = new DateTime(2005, 11, 20, 12, 1, 10),
+                Date = new DateTime(2004, 11, 20, 12, 1, 10),
                 message = "Bonjour, je pourrais vous rendre le service que vous demandez ce weekend,êtes vous d'accord?",
                 ProfilId = 1,
                 ConversationId = 1,
@@ -107,6 +107,22 @@ namespace Pojeet.Models
                 Id = 2,
                 Date = new DateTime(2005, 11, 20, 12, 1, 10),
                 message = " Bonjour, oui bien sûr, vous demander combien ? ",
+                ProfilId = 2,
+                ConversationId = 1
+            },
+            new Message
+            {
+                Id = 3,
+                Date = new DateTime(2006, 11, 20, 12, 1, 10),
+                message = " ok ",
+                ProfilId = 1,
+                ConversationId = 1
+            },
+            new Message
+            {
+                Id = 4,
+                Date = new DateTime(2006, 11, 20, 12, 1, 10),
+                message = " hey ",
                 ProfilId = 2,
                 ConversationId = 1
             }); 
@@ -123,7 +139,7 @@ namespace Pojeet.Models
             new Messagerie
             {
                 Id = 1,
-
+                ProfilId=2
             });
 
             this.SaveChanges();

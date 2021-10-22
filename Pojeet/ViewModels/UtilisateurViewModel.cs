@@ -10,6 +10,11 @@ namespace Pojeet.ViewModels
         public bool Authentifie { get; set; }
         public List<Annonce> Annonce { get; set; }
 
-        public Annonce annonce { get; set; }
+
+        public List<Avis> ListeAvis { get; set; }
+        public int NoteGlobale { get; set; }
+
+        public CompteProvider CompteProvider { get; set; }
+
     }
 }

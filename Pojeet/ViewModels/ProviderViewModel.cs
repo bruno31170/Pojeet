@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using Pojeet.Models;
 
 namespace Pojeet.ViewModels
 {
-    public class UtilisateurViewModel
+    public class ProviderViewModel
     {
         public CompteConsumer CompteConsumer { get; set; }
-        public bool Authentifie { get; set; }
-        public List<Annonce> Annonce { get; set; }
         public CompteProvider CompteProvider { get; set; }
+        public Rib rib { get; set; }
     }
 }

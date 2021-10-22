@@ -19,7 +19,7 @@
                 <div class="w-container">
                     <div class="card wizard-card" data-color="red" id="wizard">
 
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="wizard-header">
                                 <h3 class="wizard-title">Création de votre profil HelpMyCar</h3>

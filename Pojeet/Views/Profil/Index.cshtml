@@ -48,7 +48,28 @@
             <!--Photo Profil-->
             <img class="img_profil" src="~/img/avatar_exemple.png" alt="" />
             <h3 class="text-center">@Model.CompteConsumer.Profil.Nom @Model.CompteConsumer.Profil.Prenom</h3>
-            <div class="text-center">Consumer</div>
+            <div class="text-center">
+
+
+                @if (@Model.CompteProvider != null && @Model.CompteProvider.CompteConsumerId == @Model.CompteConsumer.Id)
+                {
+                    <div class="text-center">
+                        Helper
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center">
+                        Consumer
+                    </div>
+                }
+
+
+
+
+
+
+            </div>
             <div class="rating mt-3">
                 <div class="stars">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -75,10 +96,16 @@
                 </div>
             </div>
             <div class="col-sm-12 d-flex justify-content-center mt-4">
-                <a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
-                   href="#">
-                    Devenez Helper
-                </a>
+
+                @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new { @class = "btn btnGreen", @style = "background-color: #52ab98; color: white;" })
+            </div>
+            <div class="col-sm-12 d-flex justify-content-center mt-4">
+                @Html.ActionLink("Se deconnecter", "Deconnexion", "Login", null, null, null, null, new { @class = "btn btnOrange", @style = "background-color: #52ab98; color: white;" })
+
+                @*<a class="btn btnOrange" style="background-color: #52ab98; color: white;" target="__blank"
+                       href="#">
+                        Se deconnecter
+                    </a>*@
             </div>
         </div>
 
@@ -172,9 +199,15 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-12 d-flex justify-content-center">
-                                            <a class="btn btnGreen"
-                                               style="background-color: #52ab98; color: white;"
-                                               target="__blank" href="#">Modifier le profil</a>
+                                            @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new
+                                            {
+                                                @class = "btn btnGreen",
+                                                @style = "background-color: #52ab98; color: white;"
+                                            })
+
+                                            @*<a class="btn btnGreen"
+                                                style="background-color: #52ab98; color: white;"
+                                                target="__blank" href="#">Modifier le profil</a>*@
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +216,7 @@
                     </div>
 
                     <!-- Mes annonces -->
-                    
+
                     <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
                          class="tab-pane fade px-4 py-5">
 
@@ -191,59 +224,48 @@
                             <a class="btn btnGreen" href="#">Ajouter une annonce</a>
                         </div>
 
-                        <!-- exemple annonce 1 -->
-                        @*Date de parution : @annonce.DateParution<br>
-        Catégorie : @annonce.CategorieDeAnnonce<br>
-        Auteur : @annonce.ProfilId<br>
-        Titre : @annonce.TitreAnnonce<br>
-        Type de l'annonce : @annonce.TypeDeAnnonce<br>
-        Description : @annonce.Description<br>
-        Date butoir : @annonce.DateButoir<br>
-        Localisation : @annonce.Localisation<br>
-        Prix : @annonce.Prix<br>
-        Photo : @annonce.Photo*@
                         @if (Model.Annonce != null)
                         {
-                        @foreach (var annonce in Model.Annonce)
-                        {
-                            <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
-                                <div class="d-flex justify-content-end mb-2">
-                                    <p>@annonce.DateParution</p>
-                                </div>
-                                <div class=" row flex-row">
-                                    <div class="wall_post_img col-6">
-                                        <img src="assets/img/design_service.png" alt="">
+                            @foreach (var annonce in Model.Annonce)
+                            {
+                                <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
+                                    <div class="d-flex justify-content-end mb-2">
+                                        <p>@annonce.DateParution</p>
                                     </div>
-                                    <div class="post_info col-6 flex-col justify-content-between">
-                                        <div class="post_info_text ml-1">
-                                            <h5>@annonce.TitreAnnonce</h5>
-                                            <p class="text-justify">
-                                                @annonce.Description
-
-                                            </p>
+                                    <div class=" row flex-row">
+                                        <div class="wall_post_img col-6">
+                                            <img src="assets/img/design_service.png" alt="">
                                         </div>
-                                        <div class="post_price font-size-15 ml-1">
-                                            <span>Prix: <strong> @annonce.Prix €</strong></span>
-                                        </div>
+                                        <div class="post_info col-6 flex-col justify-content-between">
+                                            <div class="post_info_text ml-1">
+                                                <h5>@annonce.TitreAnnonce</h5>
+                                                <p class="text-justify">
+                                                    @annonce.Description
 
-                                        <div class="w-100 mt-3">
-                                            <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
-                                        </div>
+                                                </p>
+                                            </div>
+                                            <div class="post_price font-size-15 ml-1">
+                                                <span>Prix: <strong> @annonce.Prix €</strong></span>
+                                            </div>
 
-                                        <div class="d-flex mt-3">
-                                            <div class=" w-100 col-6">
-                                                <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                            <div class="w-100 mt-3">
+                                                <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center x mt-3">
+                                                <div class=" w-100 col-6">
+                                                    <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
                         }
 
                     </div>
-                    
+
                     <!-- mes transactions  -->
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">
@@ -318,6 +340,16 @@
             <div class="row mt-5">
                 <div class="col-sm-12 d-flex justify-content-center">
                     @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new { @class = "btn btnGreen", @style = "background-color: #52ab98; color: white;" })
+                    @*<a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
+                           href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-gear-fill ml-1 mr-1" viewBox="0 0 16 16">
+                                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                            </svg> Modifier le profil
+                        </a>*@
+                </div>
+                <div class="col-sm-12 d-flex justify-content-center mt-3">
+                    @Html.ActionLink("Supprimer mon profil", "SupprimerConsumer", "Profil", null, null, null, null, new { @class = "btn btnOrange", @style = "background-color: #52ab98; color: white;" })
                     @*<a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
                            href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

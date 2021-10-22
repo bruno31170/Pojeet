@@ -10,6 +10,7 @@ namespace Pojeet.ViewModels
     {
         public CompteConsumer CompteConsumer { get; set; }
         public List<Annonce> Annonce { get; set; }
+        public CompteProvider CompteProvider { get; set; }
 
     }
 }

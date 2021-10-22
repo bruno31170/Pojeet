@@ -28,16 +28,15 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-
-
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
         }
 
+
         public void InitializeDb()
         {
+
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
@@ -63,7 +62,7 @@ namespace Pojeet.Models
             {
                 Id = 2,
                 Description = "Besoin",
-                Nom = "LePillouer",
+                Nom = "Le Pillouer",
                 Prenom = "Cécile",
                 DateDeNaissance = "12/12/2020",
                 Adresse = "Boulevard Rocheplatte",
@@ -88,7 +87,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 5,
                 CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
-                ProfilId = 1,
+                ProfilId = 2,
 
             },
 
@@ -146,7 +145,7 @@ namespace Pojeet.Models
             new Message
             {
                 Id = 1,
-                Date = new DateTime(2005, 11, 20, 12, 1, 10),
+                Date = new DateTime(2004, 11, 20, 12, 1, 10),
                 message = "Bonjour, je pourrais vous rendre le service que vous demandez ce weekend,êtes vous d'accord?",
                 ProfilId = 1,
                 ConversationId = 1
@@ -158,7 +157,26 @@ namespace Pojeet.Models
                 message = " Bonjour, oui bien sûr, vous demander combien ? ",
                 ProfilId = 2,
                 ConversationId = 1
+
+            },
+            new Message
+            {
+                Id = 3,
+                Date = new DateTime(2006, 11, 20, 12, 1, 10),
+                message = " ok ",
+                ProfilId = 1,
+                ConversationId = 1
+            },
+            new Message
+            {
+                Id = 4,
+                Date = new DateTime(2006, 11, 20, 12, 1, 10),
+                message = " hey ",
+                ProfilId = 2,
+                ConversationId = 1
             });
+
+
 
             //CONVERSATION
             this.Conversation.AddRange(
@@ -166,18 +184,21 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                MessagerieId = 1
+                MessagerieId = 1,
+                AnnonceId = 1
 
             });
-
-            //MESSAGERIE
             this.Messagerie.AddRange(
             new Messagerie
             {
-                Id = 1
-
+                Id = 1,
+                ProfilId = 2
             });
 
+
+
+
+            //TRANSACTION
 
             this.Transactions.AddRange(
                 new Transaction
@@ -188,11 +209,42 @@ namespace Pojeet.Models
                     Montant = 20.15,
                     EtatTransaction = 0
 
-                }); 
+                });
+
+            this.Avis.AddRange(
+           new Avis
+           {
+               Id = 1,
+               date = new DateTime(2004, 11, 20, 12, 1, 10),
+               commentaire = "Super service!",
+               note = 4,
+               CompteConsumerId = 1,
+               ProfilId = 2});
 
 
 
-            this.SaveChanges();
+            //RIB
+            this.Rib.AddRange(
+                new Rib
+                {
+                    Id = 1,
+                    TitulaireCompte = "Le Pillouer",
+                    Iban = "FR56789899878766567878998",
+                    Bic = "VDHDBHBD66567",
+                });
+
+            //CompteHelper
+            this.CompteProvider.AddRange(
+                new CompteProvider
+                {
+                    Id = 1,
+                    CompteConsumerId = 2,
+                    DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
+                    RibId = 1,
+                    Etat = 0,
+                });
+
+           this.SaveChanges();
         }
     }
 }

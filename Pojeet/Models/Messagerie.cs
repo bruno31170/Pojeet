@@ -7,6 +7,8 @@ namespace Pojeet.Models
 	{
 		public int Id { get; set; }
 		public virtual List<Conversation> Historique { get; set; }
+		public int ProfilId { get; set; }
+		public virtual Profil Profil { get; set; }
 	}
 }
 

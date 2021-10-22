@@ -28,8 +28,6 @@
     <Content Remove="wwwroot\js\EmptyJSFile.js" />
   </ItemGroup>
   <ItemGroup>
-
-    <Folder Include="Views\Home\" />
     <Folder Include="Views\Login\" />
 
     <Folder Include="ViewModels\" />

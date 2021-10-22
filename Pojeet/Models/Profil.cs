@@ -55,6 +55,8 @@ namespace Pojeet.Models
 
         public string Photo { get; set; }
 
+        public virtual List<Avis> ListeAvis { get; set; }
+
     }
 
     public enum Pays
@@ -62,6 +64,7 @@ namespace Pojeet.Models
         France,
         Suisse,
         Belgique
+
 
     }
 

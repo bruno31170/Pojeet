@@ -195,7 +195,11 @@ namespace Pojeet.Models
                 ProfilId = 2
             });
 
+
+
+
             //TRANSACTION
+
             this.Transactions.AddRange(
                 new Transaction
                 {

@@ -152,9 +152,30 @@ namespace Pojeet.Models
         {
             //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
             //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
-            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).FirstOrDefault();
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).FirstOrDefault();
 
         }
+
+        public List<Avis> ObtenirListeAvis(int id)
+        {
+            Profil profil = ObtenirConsumer(id).Profil;
+            return  _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();          
+        }
+        public int ObtenirNoteGlobale(int id)
+        {
+            List<Avis> listeAvis = ObtenirConsumer(id).Profil.ListeAvis;
+            int i = 0;
+            int noteGlobale = 0;
+            foreach (Avis avis in listeAvis)
+            {
+                noteGlobale = (noteGlobale + avis.note);
+                i++;
+            }
+            noteGlobale = noteGlobale/i;
+            return noteGlobale;
+
+        }
+
 
         public CompteConsumer ObtenirConsumer(string idStr)
         {

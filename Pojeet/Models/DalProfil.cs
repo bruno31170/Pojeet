@@ -18,7 +18,7 @@ namespace Pojeet.Models
         }
         public CompteConsumer ObtientConsumer(int id)
         {
-            CompteConsumer consumer = this._context.CompteConsumer.FirstOrDefault(c => c.Id == id);
+            CompteConsumer consumer = this._context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil.ListeAvis).FirstOrDefault();
             return consumer;
         }
         public List<Annonce> ObtientAnnonceProfil(int profilId)

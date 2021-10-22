@@ -87,7 +87,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 5,
                 CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
-                ProfilId = 1,
+                ProfilId = 2,
 
             },
 
@@ -207,6 +207,17 @@ namespace Pojeet.Models
 
                 });
 
+            this.Avis.AddRange(
+           new Avis
+           {
+               Id = 1,
+               date = new DateTime(2004, 11, 20, 12, 1, 10),
+               commentaire = "Super service!",
+               note = 4,
+               CompteConsumerId = 1,
+               ProfilId = 2});
+
+
 
             //RIB
             this.Rib.AddRange(
@@ -229,9 +240,7 @@ namespace Pojeet.Models
                     Etat = 0,
                 });
 
-
-
-            this.SaveChanges();
+           this.SaveChanges();
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Pojeet.Models
 
         void SuppressionConsumer(int id);
 
+        int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, string documentIdentification, List<string> competence);
+
 
         List<Conversation> ObtientToutesLesConversations(int id);
         List<Message> ObtientTousLesMessages(int conversationId);

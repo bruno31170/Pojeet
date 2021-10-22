@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
@@ -15,9 +15,11 @@ namespace Pojeet.Controllers
         {
             this.dal = new DalCatalogue();
         }
+
         public IActionResult AnnonceCatalogue(int id)
         {
                 CompteConsumer consumer = dal.ObtientConsumer(id);
+
                 List<Annonce> listeAnnonce = dal.ObtientAnnonce();
                 return View(new ProfilViewModel {Annonce=listeAnnonce,CompteConsumer= consumer});
             

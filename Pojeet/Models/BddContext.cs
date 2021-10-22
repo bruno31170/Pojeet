@@ -30,7 +30,7 @@ namespace Pojeet.Models
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
 
 
@@ -178,26 +178,7 @@ namespace Pojeet.Models
 
             });
 
-            this.Annonce.AddRange(
-                new Annonce
-                {
-                    Id = 1,
-                    TypeDeAnnonce = 0,
-                    TitreAnnonce = "Titre",
-                    Description = "Blablabla",
-                    DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
-                    Localisation = "13000",
-                    DateButoir = new DateTime(2021, 11, 20, 12, 1, 10),
-                    Prix = 100,
-                    CategorieDeAnnonce = 0,
-                    ProfilId = 1,
-
-
-
-
-
-                });
-
+           
             this.Transactions.AddRange(
                 new Transaction
                 {
@@ -205,9 +186,20 @@ namespace Pojeet.Models
                     Date = new DateTime(2021, 11, 20, 12, 1, 10),
                     AnnonceId = 1,
                     Montant = 20.15,
-                    EtatTransaction = 0
+                    EtatTransaction = EtatTransaction.Valide,
+                    ProfilId = 2
 
-                }); 
+
+                },
+            new Transaction
+            {
+                Reference = 125,
+                Date = new DateTime(2021, 11, 09, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 2
+            });
 
 
 

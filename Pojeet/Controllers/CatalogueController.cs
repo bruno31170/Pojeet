@@ -26,7 +26,14 @@ namespace Pojeet.Controllers
            
         }
 
-        
+        public ActionResult Annonce(int id)
+        {
+            CompteConsumer consumer = dal.ObtientConsumer(id);
+            Annonce annonce = dal.ObtientUneAnnonnce(id);
+            return View();
+        }
+
+
 
 
     }

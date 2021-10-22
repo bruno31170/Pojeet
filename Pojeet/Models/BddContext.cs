@@ -202,14 +202,6 @@ namespace Pojeet.Models
                 ProfilId=2
             });
 
-            //MESSAGERIE
-            this.Messagerie.AddRange(
-            new Messagerie
-            {
-                Id = 1
-
-            });
-
             
             this.Transactions.AddRange(
                 new Transaction

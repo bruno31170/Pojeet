@@ -30,7 +30,7 @@ namespace Pojeet.Controllers
             if (viewModel.Authentifie)
             {
                 viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-                //viewModel.Profil = dal.ObtenirProfil(viewModel.CompteConsumer.Id);
+                viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
                 return View(viewModel);
             }
             return View(viewModel);
@@ -39,12 +39,12 @@ namespace Pojeet.Controllers
 
 
 
-        public IActionResult Indexx(int profilId)
+       /*public IActionResult MesAnnoncesProfil(int profilId)
         {
-            /*string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description*/
+            string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+           string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description
 
-            /*
+            
             Profil profil = new Profil
             {
                 Nom = nom,
@@ -57,22 +57,22 @@ namespace Pojeet.Controllers
                 Mail = mail,
                 NumeroTelephone = numeroTelephone,
                 Description = description,
-            };*/
+            };
             CompteConsumer consumer = new CompteConsumer
             {
-                /*Id= idConsumer, 
+                Id= idConsumer, 
                 Pseudo = pseudo, 
-                Profil = profil */
+                Profil = profil 
             };
 
             List<Annonce> annonce = dalProfil.ObtientAnnonceProfil(profilId);
 
-            ProfilViewModel model = new ProfilViewModel { CompteConsumer = consumer, Annonce = annonce };
+            UtilisateurViewModel model = new UtilisateurViewModel { CompteConsumer = consumer, Annonce = annonce };
 
 
-            return View("Indexx", model);
+            return View("Index", model);
 
-        }
+        }*/
 
         public IActionResult ModifierConsumer()
         {

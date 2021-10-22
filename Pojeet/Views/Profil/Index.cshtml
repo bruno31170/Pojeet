@@ -202,6 +202,8 @@
         Localisation : @annonce.Localisation<br>
         Prix : @annonce.Prix<br>
         Photo : @annonce.Photo*@
+                        @if (Model.Annonce != null)
+                        {
                         @foreach (var annonce in Model.Annonce)
                         {
                             <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
@@ -238,7 +240,7 @@
                             </div>
                         }
 
-
+                        }
 
                     </div>
                     

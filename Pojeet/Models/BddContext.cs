@@ -62,7 +62,7 @@ namespace Pojeet.Models
             {
                 Id = 2,
                 Description = "Besoin",
-                Nom = "LePillouer",
+                Nom = "Le Pillouer",
                 Prenom = "Cécile",
                 DateDeNaissance = "12/12/2020",
                 Adresse = "Boulevard Rocheplatte",
@@ -206,6 +206,29 @@ namespace Pojeet.Models
                     EtatTransaction = 0
 
                 });
+
+
+            //RIB
+            this.Rib.AddRange(
+                new Rib
+                {
+                    Id = 1,
+                    TitulaireCompte = "Le Pillouer",
+                    Iban = "FR56789899878766567878998",
+                    Bic = "VDHDBHBD66567",
+                });
+
+            //CompteHelper
+            this.CompteProvider.AddRange(
+                new CompteProvider
+                {
+                    Id = 1,
+                    CompteConsumerId = 2,
+                    DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
+                    RibId = 1,
+                    Etat = 0,
+                });
+
 
 
             this.SaveChanges();

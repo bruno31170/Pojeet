@@ -193,6 +193,11 @@ namespace Pojeet.Models
             return Provider.Id;
         }
 
+        public CompteProvider ObtenirHelper(int id)
+        {
+            return _context.CompteProvider.Where(c => c.CompteConsumerId == id).Include(c => c.Rib).FirstOrDefault();
+        }
+
 
     }
 }

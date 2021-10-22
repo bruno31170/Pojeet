@@ -32,6 +32,7 @@ namespace Pojeet.Controllers
             {
                 viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
                 viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
+                viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
                 return View(viewModel);
             }
             return View(viewModel);

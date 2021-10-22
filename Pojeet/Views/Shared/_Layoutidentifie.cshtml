@@ -1,3 +1,5 @@
+@model Pojeet.ViewModels.UtilisateurViewModel
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -104,22 +106,24 @@
                     <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
                         <li class="text-center">
                             <img class="border-e mb-3" src="~/img/img-e/user2.png" alt="">
-                            <a class="font-size-18" href="#"> Marie <br> Brasseur</a>
+                            <a class="font-size-18" href="http://localhost:5000/Profil">Prenom <br> Nom</a>
                         </li>
                         <li>
-                            <a href="#"> <i class="font-size-25 fa fa-home mr-2"></i> Ma page</a>
+                            <a href="http://localhost:5000/Profil"> <i class="font-size-25 fa fa-home mr-2"></i> Ma page</a>
                         </li>
                         <li id="">
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
+                            <a href="http://localhost:5000/Profil#profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
+                            @Html.ActionLink("Mes annonces test lien", "Index", "Profil", null, null, "profile2", null, null)
+
                         </li>
                         <li>
-                            <a href="#"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+                            <a href="http://localhost:5000/Profil"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
                         </li>
                         <li>
                             <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                         </li>
                         <li>
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                            <a href="http://localhost:5000/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
                         </li>
                     </ul>
                 </div>

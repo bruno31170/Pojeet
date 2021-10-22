@@ -21,7 +21,7 @@ namespace Pojeet.Controllers
                 CompteConsumer consumer = dal.ObtientConsumer(id);
 
                 List<Annonce> listeAnnonce = dal.ObtientAnnonce();
-                return View(new ProfilViewModel {Annonce=listeAnnonce,CompteConsumer= consumer});
+                return View(new UtilisateurViewModel {Annonce=listeAnnonce,CompteConsumer= consumer});
             
            
         }

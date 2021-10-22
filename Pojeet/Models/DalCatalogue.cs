@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Pojeet.Models
         }
         public List<Annonce> ObtientAnnonce()
         {
-            List<Annonce> listeAnnonce = this._context.Annonce.ToList();
+            List<Annonce> listeAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             return listeAnnonce;
         }
         public CompteConsumer ObtientConsumer(int id)
@@ -28,7 +29,17 @@ namespace Pojeet.Models
             return consumer;
         }
 
-
+        public List<Annonce> RechercherAnnonce(string titreAnnonce)
+        {
+            List<Annonce> rechercheAnnonce = new List<Annonce>();
+            List<Annonce> annonce= ObtientAnnonce();
+            foreach (var item in annonce)
+            {
+                if (item.TitreAnnonce == titreAnnonce)
+                    rechercheAnnonce.Add(item);
+            }
+            return rechercheAnnonce;
+        }
 
     }
 }

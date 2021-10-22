@@ -50,7 +50,7 @@ namespace Pojeet.Models
         [Display(Name = "Numéro de téléphone")]
         public int NumeroTelephone { get; set; }
 
-
+        
 
         public Pays Pays { get; set; }
 

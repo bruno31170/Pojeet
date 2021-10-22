@@ -9,5 +9,8 @@ namespace Pojeet.ViewModels
         public CompteConsumer CompteConsumer { get; set; }
         public bool Authentifie { get; set; }
         public List<Annonce> Annonce { get; set; }
+        public Annonce Anonce { get; set; }
+        public Profil Profil { get; set; }
+        
     }
 }

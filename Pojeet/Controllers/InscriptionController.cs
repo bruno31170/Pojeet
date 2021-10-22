@@ -9,6 +9,12 @@ namespace Pojeet.Controllers
 {
     public class InscriptionController : Controller
     {
+        private Dal dal;
+        public InscriptionController()
+        {
+            this.dal = new Dal();
+        }
+
         public IActionResult Index()
         {
             List<CompteConsumer> listConsumer = new List<CompteConsumer>();
@@ -51,7 +57,7 @@ namespace Pojeet.Controllers
                 using (Dal ctx = new Dal())
                 {
                     ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description);
+            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
                     return RedirectToAction("Index");
                 }
             }
@@ -60,28 +66,28 @@ namespace Pojeet.Controllers
                 return View("Error");
             }
         }
-        [HttpPost]
-        public IActionResult AjouterConsumer(CompteConsumer consumer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("AjouterConsumer");
-            }
+        //[HttpPost]
+        //public IActionResult AjouterConsumer(CompteConsumer consumer)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View("AjouterConsumer");
+        //    }
 
-            using (Dal ctx = new Dal())
-            {
-                ctx.AjouterConsumer(consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description);
-                return RedirectToAction("AjouterConsumer", new { @id = consumer.Id });
-            }
+        //    using (Dal ctx = new Dal())
+        //    {
+        //        ctx.AjouterConsumer(consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+        //    consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description);
+        //        return RedirectToAction("AjouterConsumer", new { @id = consumer.Id });
+        //    }
 
-        }
+        //}
 
-        public IActionResult AjouterConsumer()
-        {
+        //public IActionResult AjouterConsumer()
+        //{
 
-            return View();
+        //    return View();
 
-        }
+        //}
     }
 }

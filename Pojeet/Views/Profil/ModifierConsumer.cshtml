@@ -1,0 +1,237 @@
+﻿@model Pojeet.Models.CompteConsumer
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Modifier mon compte";
+    ViewBag.ColorNav = "navbar-color";
+}
+
+
+@section stylesheets {
+    <link rel="stylesheet" media="all" href="~/css/Profil.css">
+}
+
+
+
+
+
+
+
+<!--SECTION HERO-->
+<div class="d-flex align-items-start img_mur overflow-x-hidden position-relative"
+     style="background: url(assets/img/section_profil.svg) bottom center; background-size: cover">
+    <div class="w-100" style="padding-top:77px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12 mt-5">
+                    <h1 class="mb-4 display-5 mt-3">
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center col-12" id="container_profil">
+    <div class="row col-11 m-0 p-0">
+
+        <!--Partie Centrale-->
+        <div class="col-8" id="center_side">
+            <div class="p-5 rounded  mb-5">
+
+                <div id="myTab2Content" class="tab-content">
+                    <!-- A propos de moi -->
+                    <h4 class="text-center">Modification du profil</h4>
+                    <div id="home2" role="tabpanel" aria-labelledby="home-tab"
+                         class="tab-pane fade px-4 py-5 show active">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm())
+                            {
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        @Html.HiddenFor(m => Model.Id, new { Value = Model.Id })
+                                        <div class="row align-items-center align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Nom</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*@Html.LabelFor(m => Model.Pseudo)*@
+                                                @Html.TextBoxFor(m => Model.Profil.Nom, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.Nom)
+                                                @*<input type="text" class="form-control" value="bricolodudimanche">*@
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Prenom</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*@Html.LabelFor(m => Model.Pseudo)*@
+                                                @Html.TextBoxFor(m => Model.Profil.Prenom, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.Prenom)
+                                                @*<input type="text" class="form-control" value="bricolodudimanche">*@
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Pseudo</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*@Html.LabelFor(m => Model.Pseudo)*@
+                                                @Html.TextBoxFor(m => Model.Pseudo, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Pseudo)
+                                                @*<input type="text" class="form-control" value="bricolodudimanche">*@
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Mot de Passe</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value="***********">*@
+                                                @Html.TextBoxFor(m => Model.MotDePasse, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.MotDePasse)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Email</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value=" test@gmail.com">*@
+                                                @*@Html.LabelFor(m => Model.Profil.Mail)*@
+                                                @Html.TextBoxFor(m => Model.Profil.Mail, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.Mail)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Téléphone</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value="    0666470777">*@
+                                                @*@Html.LabelFor(m => Model.Profil.NumeroTelephone)*@
+                                                @Html.TextBoxFor(m => Model.Profil.NumeroTelephone, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.NumeroTelephone)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Date de naissance</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value="    0666470777">*@
+                                                @*@Html.LabelFor(m => Model.Profil.NumeroTelephone)*@
+                                                @Html.TextBoxFor(m => Model.Profil.DateDeNaissance, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.DateDeNaissance)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Rue</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value=" 12, rue Général de Gaulle">
+                                                    @Html.LabelFor(m => Model.Profil.Adresse)*@
+                                                @Html.TextBoxFor(m => Model.Profil.Adresse, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.Adresse)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Ville</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value=" Paris">*@
+                                                @Html.TextBoxFor(m => Model.Profil.Ville, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.Ville)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Code Postal</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value="75001">*@
+                                                @*<input type="text" class="form-control" value=" Paris">*@
+                                                @Html.TextBoxFor(m => Model.Profil.CodePostal, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.CodePostal)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Description</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                @*<input type="text" class="form-control" value=" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                                                    enim
+                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                                    ut
+                                                    aliquip ex ea commodo consequat. Duis aute
+                                                    irure dolor in reprehenderit in voluptate velit esse">*@
+                                                @Html.TextBoxFor(m => Model.Profil.Description, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => Model.Profil.Description)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-12 d-flex justify-content-center">
+                                                <input type="submit" value="Valider les changements" class="btn btnGreen"
+                                                       style="background-color: #52ab98; color: white;" />
+                                                @*<a class="btn btnGreen"
+                                                    style="background-color: #52ab98; color: white;"
+                                                    target="__blank" href="#">Valider les changements</a>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!--Partie Droite-->
+        <div class="col-2" id="right_side">
+            <div class="row mt-5">
+                <div class="col-sm-12 d-flex justify-content-center">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+@section scripts {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="~/js/profil.js" type="text/javascript"></script>
+}

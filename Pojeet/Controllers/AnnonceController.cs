@@ -26,22 +26,20 @@ namespace Pojeet.Controllers
         {
             if (!ModelState.IsValid)
                 return View("Error");
-            dal.PosterAnnonce(annonce.TypeDeAnnonce, annonce.TitreAnnonce, annonce.Description, annonce.DateParution, annonce.Localisation, annonce.DateButoir, annonce.Prix, annonce.CategorieDeAnnonce, annonce.Photo);
+            dal.PosterAnnonce(annonce.TypeDeAnnonce, annonce.TitreAnnonce, annonce.Description, annonce.DateParution, 
+                annonce.Localisation, annonce.DateButoir, annonce.Prix, annonce.CategorieDeAnnonce, annonce.Photo);
             
             return View("Reussi"); //Retourner view mes annonces
         }
 
 
-        public IActionResult SupprimerAnnonce()
-        {
-            return View();
-        }
+        
 
-        [HttpPost]
+        
         public ActionResult SupprimerAnnonce(int id)
         {
             dal.SupprimerAnnonce(id);
-            return View("Reussi"); //Retourner view mes annonces
+            return Redirect("~/Profil/Index"); //Retourner view mes annonces
         }
     }
 }

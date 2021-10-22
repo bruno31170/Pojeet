@@ -19,7 +19,8 @@ namespace Pojeet.Models
         }
 
 
-        public void PosterAnnonce(TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo)
+        public void PosterAnnonce(TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, 
+            string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo)
         {
             Annonce annonce = new Annonce
             {
@@ -31,7 +32,8 @@ namespace Pojeet.Models
                 DateButoir = dateButoir,
                 Prix = prix,
                 CategorieDeAnnonce = categorieAnnonce,
-                Photo = photo
+                Photo = photo,
+                ProfilId = 1
 
 
             };
@@ -39,6 +41,12 @@ namespace Pojeet.Models
             _context.Annonce.Add(annonce);
             _context.SaveChanges();
             
+        }
+
+        public List<Annonce> ObtientAnnonce()
+        {
+            List<Annonce> listeAnnonce = this._context.Annonce.ToList();
+            return listeAnnonce;
         }
 
         public void SupprimerAnnonce(int id)

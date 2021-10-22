@@ -13,19 +13,22 @@ namespace Pojeet.Models
         {
             _context = new BddContext();
         }
-
-
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
         public List<Annonce> ObtientAnnonce()
         {
             List<Annonce> listeAnnonce = this._context.Annonce.ToList();
             return listeAnnonce;
         }
-
-        public void Dispose()
+        public CompteConsumer ObtientConsumer(int id)
         {
-            _context.Dispose();
+            CompteConsumer consumer = this._context.CompteConsumer.FirstOrDefault(c=>c.Id==id);
+            return consumer;
         }
 
-        
+
+
     }
 }

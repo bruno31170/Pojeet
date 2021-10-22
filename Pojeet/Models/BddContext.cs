@@ -28,8 +28,10 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+
             optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
 
         }
 
@@ -207,7 +209,20 @@ namespace Pojeet.Models
                     Date = new DateTime(2021, 11, 20, 12, 1, 10),
                     AnnonceId = 1,
                     Montant = 20.15,
-                    EtatTransaction = 0
+                    EtatTransaction = EtatTransaction.Valide,
+                    ProfilId = 2
+
+
+
+                },
+            new Transaction
+            {
+                Reference = 125,
+                Date = new DateTime(2021, 11, 09, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 2
 
                 });
 
@@ -220,6 +235,7 @@ namespace Pojeet.Models
                note = 4,
                CompteConsumerId = 1,
                ProfilId = 2});
+
 
 
 

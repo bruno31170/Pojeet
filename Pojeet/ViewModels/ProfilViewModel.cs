@@ -12,5 +12,6 @@ namespace Pojeet.ViewModels
         public List<Annonce> Annonce { get; set; }
         public CompteProvider CompteProvider { get; set; }
 
-    }
+       
+}
 }

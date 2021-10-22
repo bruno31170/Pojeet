@@ -28,7 +28,11 @@ namespace Pojeet.Models
             return consumer;
         }
 
-
+        public Annonce ObtientUneAnnonnce(int id)
+        {
+            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
+            return annonce;
+        }
 
     }
 }

@@ -178,25 +178,6 @@ namespace Pojeet.Models
 
             });
 
-            this.Annonce.AddRange(
-                new Annonce
-                {
-                    Id = 1,
-                    TypeDeAnnonce = 0,
-                    TitreAnnonce = "Titre",
-                    Description = "Blablabla",
-                    DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
-                    Localisation = "13000",
-                    DateButoir = new DateTime(2021, 11, 20, 12, 1, 10),
-                    Prix = 100,
-                    CategorieDeAnnonce = 0,
-                    ProfilId = 1,
-
-
-
-
-
-                });
 
             this.Transactions.AddRange(
                 new Transaction

@@ -28,11 +28,7 @@
     <Content Remove="wwwroot\js\EmptyJSFile.js" />
   </ItemGroup>
   <ItemGroup>
-
-    <Folder Include="Views\Home\" />
     <Folder Include="Views\Login\" />
-
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Profil\" />
 
     <Folder Include="wwwroot\css\css-e\gf\" />

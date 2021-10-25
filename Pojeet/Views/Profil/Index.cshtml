@@ -48,37 +48,57 @@
             <!--Photo Profil-->
             <img class="img_profil" src="~/img/avatar_exemple.png" alt="" />
             <h3 class="text-center">@Model.CompteConsumer.Profil.Nom @Model.CompteConsumer.Profil.Prenom</h3>
-            <div class="text-center">Consumer</div>
+            <div class="text-center">
+
+
+                @if (@Model.CompteProvider != null && @Model.CompteProvider.CompteConsumerId == @Model.CompteConsumer.Id)
+                {
+                    <div class="text-center">
+                        Helper
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center">
+                        Consumer
+                    </div>
+                }
+
+
+
+
+
+
+            </div>
             <div class="rating mt-3">
                 <div class="stars">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-star-fill gold" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-star-fill gold" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-star-fill gold" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-star-fill" viewBox="0 0 16 16">
-                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                    </svg>
+                    @for (int i = 0; i < Model.NoteGlobale; i++)
+                    {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-star-fill gold" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                    }
+                    @for (int i = Model.NoteGlobale; i <5 ; i++)
+                    {
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-star-fill gray" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                    }
                 </div>
             </div>
             <div class="col-sm-12 d-flex justify-content-center mt-4">
-                <a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
-                   href="#">
-                    Devenez Helper
-                </a>
+
+                @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new { @class = "btn btnGreen", @style = "background-color: #52ab98; color: white;" })
+            </div>
+            <div class="col-sm-12 d-flex justify-content-center mt-4">
+                @Html.ActionLink("Se deconnecter", "Deconnexion", "Login", null, null, null, null, new { @class = "btn btnOrange", @style = "background-color: #52ab98; color: white;" })
+
+                @*<a class="btn btnOrange" style="background-color: #52ab98; color: white;" target="__blank"
+                       href="#">
+                        Se deconnecter
+                    </a>*@
             </div>
         </div>
 
@@ -172,9 +192,15 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-12 d-flex justify-content-center">
-                                            <a class="btn btnGreen"
-                                               style="background-color: #52ab98; color: white;"
-                                               target="__blank" href="#">Modifier le profil</a>
+                                            @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new
+                                            {
+                                                @class = "btn btnGreen",
+                                                @style = "background-color: #52ab98; color: white;"
+                                            })
+
+                                            @*<a class="btn btnGreen"
+                                                style="background-color: #52ab98; color: white;"
+                                                target="__blank" href="#">Modifier le profil</a>*@
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +209,7 @@
                     </div>
 
                     <!-- Mes annonces -->
-                    
+
                     <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
                          class="tab-pane fade px-4 py-5">
 
@@ -191,59 +217,52 @@
                             <a class="btn btnGreen" href="http://localhost:5000/Annonce/PosterAnnonce">Poster une annonce</a>
                         </div>
 
-                        <!-- exemple annonce 1 -->
-                        @*Date de parution : @annonce.DateParution<br>
-        Catégorie : @annonce.CategorieDeAnnonce<br>
-        Auteur : @annonce.ProfilId<br>
-        Titre : @annonce.TitreAnnonce<br>
-        Type de l'annonce : @annonce.TypeDeAnnonce<br>
-        Description : @annonce.Description<br>
-        Date butoir : @annonce.DateButoir<br>
-        Localisation : @annonce.Localisation<br>
-        Prix : @annonce.Prix<br>
-        Photo : @annonce.Photo*@
+
+
                         @if (Model.Annonce != null)
                         {
-                        @foreach (var annonce in Model.Annonce)
-                        {
-                            <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
-                                <div class="d-flex justify-content-end mb-2">
-                                    <p>@annonce.DateParution</p>
-                                </div>
-                                <div class=" row flex-row">
-                                    <div class="wall_post_img col-6">
-                                        <img src="assets/img/design_service.png" alt="">
+                            @foreach (var annonce in Model.Annonce)
+                            {
+                                <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
+                                    <div class="d-flex justify-content-end mb-2">
+                                        <p>@annonce.DateParution</p>
                                     </div>
-                                    <div class="post_info col-6 flex-col justify-content-between">
-                                        <div class="post_info_text ml-1">
-                                            <h5>@annonce.TitreAnnonce</h5>
-                                            <p class="text-justify">
-                                                @annonce.Description
-
-                                            </p>
+                                    <div class=" row flex-row">
+                                        <div class="wall_post_img col-6">
+                                            <img src="assets/img/design_service.png" alt="">
                                         </div>
-                                        <div class="post_price font-size-15 ml-1">
-                                            <span>Prix: <strong> @annonce.Prix €</strong></span>
-                                        </div>
+                                        <div class="post_info col-6 flex-col justify-content-between">
+                                            <div class="post_info_text ml-1">
+                                                <h5>@annonce.TitreAnnonce</h5>
+                                                <p class="text-justify">
+                                                    @annonce.Description
 
-                                        <div class="w-100 mt-3">
-                                            <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
-                                        </div>
+                                                </p>
+                                            </div>
+                                            <div class="post_price font-size-15 ml-1">
+                                                <span>Prix: <strong> @annonce.Prix €</strong></span>
+                                            </div>
 
-                                        <div class="d-flex mt-3">
-                                            <div class=" w-100 col-6">
-                                                <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                            <div class="w-100 mt-3">
+                                                <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
+                                            </div>
+
+
+                                            <div class="d-flex justify-content-center x mt-3">
+
+                                                <div class=" w-100 col-6">
+                                                    <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
                         }
 
                     </div>
-                    
+
                     <!-- mes transactions  -->
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">
@@ -309,6 +328,59 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- mes avis  -->
+                    <div id="avis2" role="tabpanel" aria-labelledby="home-tab"
+                         class="tab-pane fade px-4 py-5 show active">
+
+                        <div class="container bootstrap snippets bootdey">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="blog-comment">
+                                       
+                                        <ul class="comments">
+                          
+                                            @foreach (var avis in Model.ListeAvis)
+                                            {
+                                            <li class="clearfix">
+                                                <img src= @avis.CompteConsumer.Profil.Photo class="avatar" alt=""> 
+                                                <div class="post-comments">
+                                                    <p class="data-time">@avis.date <br /> <a href="#">@avis.CompteConsumer.Profil.Prenom @avis.CompteConsumer.Profil.Nom </a> </p>
+                                                    <!-- Add icon library -->
+                                                    <link rel="stylesheet"
+                                                          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                                                    @for (int i = 0; i < avis.note; i++)
+                                                    {
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-star-fill gold" viewBox="0 0 16 16">
+                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                        </svg>
+                                                    }
+                                                    @for (int i = avis.note; i < 5; i++)
+                                                    {
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-star-fill gray" viewBox="0 0 16 16">
+                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                        </svg>
+                                                    }
+                                                    <p>
+                                                        @avis.commentaire
+                                                    </p>
+
+                                                </div>
+                                            </li>
+                                            }
+                                           
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -326,6 +398,16 @@
                             </svg> Modifier le profil
                         </a>*@
                 </div>
+                <div class="col-sm-12 d-flex justify-content-center mt-3">
+                    @Html.ActionLink("Supprimer mon profil", "SupprimerConsumer", "Profil", null, null, null, null, new { @class = "btn btnOrange", @style = "background-color: #52ab98; color: white;" })
+                    @*<a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
+                           href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-gear-fill ml-1 mr-1" viewBox="0 0 16 16">
+                                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                            </svg> Modifier le profil
+                        </a>*@
+                </div>
             </div>
         </div>
 
@@ -334,7 +416,120 @@
 
 </div>
 
+<style type="text/css">
+    body {
+        background: #eee;
+    }
 
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #FFFFFF;
+    }
+
+    a {
+        color: rgb(45, 179, 202);
+        text-decoration: none;
+    }
+
+    .blog-comment::before,
+    .blog-comment::after,
+    .blog-comment-form::before,
+    .blog-comment-form::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .blog-comment {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+        .blog-comment ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .blog-comment img {
+            opacity: 1;
+            filter: Alpha(opacity=100);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+        }
+
+            .blog-comment img.avatar {
+                position: relative;
+                float: left;
+                margin-left: 0;
+                margin-top: 0;
+                width: 65px;
+                height: 65px;
+            }
+
+        .blog-comment .post-comments {
+            border: 1px solid #eee;
+            margin-bottom: 20px;
+            margin-left: 85px;
+            margin-right: 0px;
+            padding: 10px 20px;
+            position: relative;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+            background: #fff;
+            color: #6b6e80;
+            position: relative;
+        }
+
+        .blog-comment .meta {
+            font-size: 13px;
+            color: #aaaaaa;
+            padding-bottom: 8px;
+            margin-bottom: 10px !important;
+            border-bottom: 1px solid #eee;
+        }
+
+        .blog-comment ul.comments ul {
+            list-style-type: none;
+            padding: 0;
+            margin-left: 85px;
+        }
+
+    .blog-comment-form {
+        padding-left: 15%;
+        padding-right: 15%;
+        padding-top: 40px;
+    }
+
+        .blog-comment h3,
+        .blog-comment-form h3 {
+            margin-bottom: 40px;
+            font-size: 26px;
+            line-height: 30px;
+            font-weight: 800;
+        }
+
+    .title-text {
+        color: rgb(45, 179, 202);
+    }
+
+    .checked {
+        color: orange;
+    }
+
+    .bg-white {
+        background: #ffffff;
+    }
+</style>
+
+<script type="text/javascript">
+
+</script>
 
 
 @section scripts {

@@ -8,5 +8,6 @@ namespace Pojeet.Models
     public interface IDalTransaction
     {
         List<Transaction> ObtientTransaction();
+        List<CompteConsumer> ObtientConsumer();
     }
 }

@@ -12,5 +12,7 @@ namespace Pojeet.Models
 
         CompteConsumer ObtientConsumer(int id);
 
+        Annonce ObtientUneAnnonnce(int id);
+
     }
 }

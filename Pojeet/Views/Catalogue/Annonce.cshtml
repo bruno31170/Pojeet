@@ -1,4 +1,4 @@
-﻿
+﻿@model Pojeet.ViewModels.UtilisateurViewModel
 
 @{
     Layout = "_LayoutIdentifie";
@@ -7,173 +7,172 @@
 
 
 
-            <div class="page_container p-3 pb-5 flex-row">
-               <!-- Fin menu utilisateur -->
+<div class="page_container p-3 pb-5 flex-row">
+    <!-- Fin menu utilisateur -->
 
-                <div>
-                    
-                    <div class="flex-col flex-sm-row justify-content-between align-items-center">
-                        <div class="post_header flex-row align-items-center mb-2">
-                            <a class="post_img" href="#"><img src="img/user4.jpg" alt=""></a>
-                            <div class="post_header_info ml-4">
-                                <div class="post_author font-size-17">
-                                    <a href="#">Nom Prenom</a>
-                                </div>
-                                <span class="post_city font-size-15">Paris</span>
+    <div>
 
-                                <div class="top_view flex-row align-items-center">
-                                    <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
-                                    <span class="font-size-14 bold">5.0</span>
-                                    <span class="font-size-14 ml-1">(250 avis)</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="btn-primary-e mb-1" href="#">Contacter</a>
+        <div class="flex-col flex-sm-row justify-content-between align-items-center">
+            <div class="post_header flex-row align-items-center mb-2">
+                <a class="post_img" href="#"><img src="~/img/img-e/user4.jpg" alt=""></a>
+                <div class="post_header_info ml-4">
+                    <div class="post_author font-size-17">
+                        <a href="#"></a>
                     </div>
-                    <div class="post_info_item flex-row justify-content-between pt-4">
-                        <div class="flex-col">
-                            <h1 class="font-size-22">Dépannage assistance 24/24 auto moto</h1>
-                            <span>Date de publication: <b>08 sep 2021</b> </span>
-                            <span class="font-size-18">Prix: <b>30€</b> </span>
-                        </div>
-                        <span><i class="fa fa-heart font-size-20"></i></span>
+                    <span class="post_city font-size-15">Paris</span>
+
+                    <div class="top_view flex-row align-items-center">
+                        <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
+                        <span class="font-size-14 bold">5.0</span>
+                        <span class="font-size-14 ml-1">(250 avis)</span>
                     </div>
+                </div>
+            </div>
+            <a class="btn-primary-e mb-1" href="#">Contacter</a>
+        </div>
+        <div class="post_info_item flex-row justify-content-between pt-4">
+            <div class="flex-col">
+                <h1 class="font-size-22">Dépannage assistance 24/24 auto moto</h1>
+                <span>Date de publication: <b>08 sep 2021</b> </span>
+                <span class="font-size-18">Prix: <b>30€</b> </span>
+            </div>
+            <span><i class="fa fa-heart font-size-20"></i></span>
+        </div>
 
 
 
-                    <!-- Carousel image l'annonce -->
+        <!-- Carousel image l'annonce -->
 
-                    <div class="slideshow-container">
+        <div class="slideshow-container">
 
-                        <div class="slide">
-                            <div class="numbertext">1 / 4</div>
-                            <img src="img/img1.jpg" style="height: 380px;">
+            <div class="slide">
+                <div class="numbertext">1 / 4</div>
+                <img src="~/img/img-e/img1.jpg">
+            </div>
+
+            <div class="slide">
+                <div class="numbertext">2 / 4</div>
+                <img src="~/img/img-e/img2.jpg">
+            </div>
+
+            <div class="slide">
+                <div class="numbertext">3 / 4</div>
+                <img src="~/img/img-e/img3.jpg">
+            </div>
+            <div class="slide">
+                <div class="numbertext">4 / 4</div>
+                <img src="~/img/img-e/img4.jpg">
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+
+        </div>
+        <br>
+
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        <!-- End Carousel image l'annonce -->
+        <div class="bar_icons flex-row justify-content-between border-top-e border-bottom-e">
+            <a href="#"><i class="fas fa-shield-alt pr-2"></i>Prestations assurées</a>
+            <a href="#"><i class="far fa-handshake pr-2"></i>Budget respecté</a>
+            <a href="#"><i class="fas fa-phone pr-2"></i>Service encadré</a>
+        </div>
+        <div class="post_info_item_description mt-1">
+            <h2 class="bold">Description</h2>
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+
+        <div class="post_info_item_location">
+            <h2 class="bold">Localisation</h2>
+            <!-- <div class="map-responsive"> -->
+            <address>gardanne, france</address>
+            <!-- </div> -->
+        </div>
+        <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
+            <div class="flex-col service_info  text-center">
+                <div class="flex-row justify-content-center align-items-center">
+                    <span class="number_service bold">1</span>
+                    <i class="fas fa-search-location ml-2"></i>
+                </div>
+                <span class="bold">Trouvez votre Helper</span>
+                <span class="font-size-12">Des Helpers compétents et proches de chez vous vous proposent leurs services</span>
+            </div>
+
+            <div class="flex-col service_info text-center">
+                <div class="flex-row justify-content-center align-items-center">
+                    <span class="number_service bold">2</span>
+                    <i class="far fa-comments ml-2"></i>
+                </div>
+                <span class="bold">Demandez un service</span>
+                <span class="font-size-12">Échangez par messagerie sur le site pour convenir de la date et du prix</span>
+            </div>
+
+            <div class="flex-col service_info text-center">
+                <div class="flex-row justify-content-center align-items-center">
+                    <span class="number_service bold">3</span>
+                    <i class="far fa-calendar-check ml-2"></i>
+                </div>
+                <span class="bold">Souriez, c'est fait !</span>
+                <span class="font-size-12">Votre Helper vous rend service. il est payé après votre confirmation.</span>
+            </div>
+        </div>
+
+        <div class="view_of_post mt-3">
+            <h2 class="bold">Les avis sur Nom Prenom</h2>
+            <!-- Avis 1 -->
+            <div class="flex-col mb-3">
+                <div class="flex-row">
+                    <a href="#"><img src="img/user5.jpeg" alt=""></a>
+                    <div class="flex-col ml-3">
+                        <span class="font-size-16">Nom Prenom</span>
+                        <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star text-muted" aria-hidden="true"></small>
                         </div>
-
-                        <div class="slide">
-                            <div class="numbertext">2 / 4</div>
-                            <img src="img/img2.jpg" style="height: 380px;">
-                        </div>
-
-                        <div class="slide">
-                            <div class="numbertext">3 / 4</div>
-                            <img src="img/img3.jpg" style="height: 380px;">
-                        </div>
-                        <div class="slide">
-                            <div class="numbertext">4 / 4</div>
-                            <img src="img/img4.jpg" style="height: 380px;">
-                        </div>
-                        <a class="prev" onclick="plusSlides(-1)">❮</a>
-                        <a class="next" onclick="plusSlides(1)">❯</a>
-
-                    </div>
-                    <br>
-
-                    <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
-                        <span class="dot" onclick="currentSlide(4)"></span>
-                    </div>
-                    <!-- End Carousel image l'annonce -->
-                    <div class="bar_icons flex-row justify-content-between border-top-e border-bottom-e">
-                        <a href="#"><i class="fas fa-shield-alt pr-2"></i>Prestations assurées</a>
-                        <a href="#"><i class="far fa-handshake pr-2"></i>Budget respecté</a>
-                        <a href="#"><i class="fas fa-phone pr-2"></i>Service encadré</a>
-                    </div>
-                    <div class="post_info_item_description mt-1">
-                        <h2 class="bold">Description</h2>
-                        <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
-
-                    <div class="post_info_item_location">
-                        <h2 class="bold">Localisation</h2>
-                        <!-- <div class="map-responsive"> -->
-                        <address>gardanne, france</address>
-                        <!-- </div> -->
-                    </div>
-                    <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
-                        <div class="flex-col service_info  text-center">
-                            <div class="flex-row justify-content-center align-items-center">
-                                <span class="number_service bold">1</span>
-                                <i class="fas fa-search-location ml-2"></i>
-                            </div>
-                            <span class="bold">Trouvez votre Helper</span>
-                            <span class="font-size-12">Des Helpers compétents et proches de chez vous vous proposent leurs services</span>
-                        </div>
-
-                        <div class="flex-col service_info text-center">
-                            <div class="flex-row justify-content-center align-items-center">
-                                <span class="number_service bold">2</span>
-                                <i class="far fa-comments ml-2"></i>
-                            </div>
-                            <span class="bold">Demandez un service</span>
-                            <span class="font-size-12">Échangez par messagerie sur le site pour convenir de la date et du prix</span>
-                        </div>
-
-                        <div class="flex-col service_info text-center">
-                            <div class="flex-row justify-content-center align-items-center">
-                                <span class="number_service bold">3</span>
-                                <i class="far fa-calendar-check ml-2"></i>
-                            </div>
-                            <span class="bold">Souriez, c'est fait !</span>
-                            <span class="font-size-12">Votre Helper vous rend service. il est payé après votre confirmation.</span>
-                        </div>
-                    </div>
-
-                    <div class="view_of_post mt-3">
-                        <h2 class="bold">Les avis sur Nom Prenom</h2>
-                        <!-- Avis 1 -->
-                        <div class="flex-col mb-3">
-                            <div class="flex-row">
-                                <a href="#"><img src="img/user5.jpeg" alt=""></a>
-                                <div class="flex-col ml-3">
-                                    <span class="font-size-16">Nom Prenom</span>
-                                    <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star text-muted" aria-hidden="true"></small>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <span>Commenté le 8 décembre 2020</span>
-
-                            <span class="mt-2 font-size-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </span>
-                        </div>
-
-                        <!-- End Avis 1 -->
-                        <!-- Avis 2 -->
-                        <div class="flex-col mb-4">
-                            <div class="flex-row">
-                                <a href="#"><img src="img/user5.jpeg" alt=""></a>
-                                <div class="flex-col ml-3">
-                                    <span class="font-size-16">Nom Prenom</span>
-                                    <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star text-muted" aria-hidden="true"></small>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <span>Commenté le 8 décembre 2020</span>
-
-                            <span class="mt-2 font-size-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  </span>
-                        </div>
-
-                        <!-- End Avis 2 -->
                     </div>
 
                 </div>
+                <span>Commenté le 8 décembre 2020</span>
+
+                <span class="mt-2 font-size-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </span>
             </div>
-        
+
+            <!-- End Avis 1 -->
+            <!-- Avis 2 -->
+            <div class="flex-col mb-4">
+                <div class="flex-row">
+                    <a href="#"><img src="img/user5.jpeg" alt=""></a>
+                    <div class="flex-col ml-3">
+                        <span class="font-size-16">Nom Prenom</span>
+                        <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star" aria-hidden="true"></small>
+                            <small class="fa fa-star text-muted" aria-hidden="true"></small>
+                        </div>
+                    </div>
+
+                </div>
+                <span>Commenté le 8 décembre 2020</span>
+
+                <span class="mt-2 font-size-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  </span>
+            </div>
+
+            <!-- End Avis 2 -->
+        </div>
+
+    </div>
+</div>

@@ -1,6 +1,4 @@
-﻿
-
-.img_mur {
+﻿.img_mur {
     height: 40vh;
     padding-top: 20px;
 }
@@ -8,7 +6,7 @@
 .img_profil {
     width: 280px;
     height: 150px;
-    border-radius: 75px;
+    border-radius: 30px;
     position: relative;
     top: -50px;
     margin: 0 auto;

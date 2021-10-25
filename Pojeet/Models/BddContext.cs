@@ -73,7 +73,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "CécileLepillouer@gmail.com",
                 NumeroTelephone = 6257,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
+                Photo = "cielrose.jpg"
             });
 
             //ANNONCE

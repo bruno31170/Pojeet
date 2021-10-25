@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,24 +26,35 @@ namespace Pojeet.Models
         }
         public CompteConsumer ObtientConsumer(int id)
         {
-            CompteConsumer consumer = this._context.CompteConsumer.FirstOrDefault(c=>c.Id==id);
+            CompteConsumer consumer = this._context.CompteConsumer.FirstOrDefault(c => c.Id == id);
             return consumer;
         }
 
 
 
-        public List<Annonce> RechercherAnnonce(string titreAnnonce)
+
+        public List<Annonce> RechercherAnnonce(UtilisateurViewModel uvm)
+
+
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
-            List<Annonce> annonce= ObtientAnnonce();
+            List<Annonce> annonce = ObtientAnnonce();
             foreach (var item in annonce)
             {
-                if (item.TitreAnnonce == titreAnnonce)
+                if (item.TitreAnnonce == uvm.Anonce.TitreAnnonce)
                     rechercheAnnonce.Add(item);
             }
             return rechercheAnnonce;
 
         public Annonce ObtientUneAnnonnce(int id)
+        {
+            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
+            return annonce;
+
+        }
+
+
+        public Annonce ObtientUneAnnonce(int id)
         {
             Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
             return annonce;

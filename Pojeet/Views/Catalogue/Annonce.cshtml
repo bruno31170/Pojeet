@@ -1,8 +1,8 @@
-﻿@model Pojeet.ViewModels.UtilisateurViewModel
+﻿
 
 @{
     Layout = "_LayoutIdentifie";
-    ViewBag.Title = "AnnonceCatalogue";
+    ViewBag.Title = "Annonce";
 }
 
 
@@ -14,12 +14,12 @@
 
         <div class="flex-col flex-sm-row justify-content-between align-items-center">
             <div class="post_header flex-row align-items-center mb-2">
-                <a class="post_img" href="#"><img src="~/img/img-e/user4.jpg" alt=""></a>
+                <a class="post_img" href="#"><img src="@Model.Annonce.profil.Photo" alt=""></a>
                 <div class="post_header_info ml-4">
-                    <div class="post_author font-size-17">
-                        <a href="#"></a>
+                    <div class="post_author font-size-17">                        
+                        <a href="#">@Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</a>
                     </div>
-                    <span class="post_city font-size-15">Paris</span>
+                    <span class="post_city font-size-15">@Model.Annonce.profil.Ville</span>
 
                     <div class="top_view flex-row align-items-center">
                         <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
@@ -32,9 +32,9 @@
         </div>
         <div class="post_info_item flex-row justify-content-between pt-4">
             <div class="flex-col">
-                <h1 class="font-size-22">Dépannage assistance 24/24 auto moto</h1>
-                <span>Date de publication: <b>08 sep 2021</b> </span>
-                <span class="font-size-18">Prix: <b>30€</b> </span>
+                <h1 class="font-size-22">@Model.Annonce.TitreAnnonce</h1>
+                <span>Date de publication: <b>@Model.Annonce.DateParution</b> </span>
+                <span class="font-size-18">Prix: <b>@Model.Annonce.Prix €</b> </span>
             </div>
             <span><i class="fa fa-heart font-size-20"></i></span>
         </div>
@@ -83,18 +83,15 @@
         </div>
         <div class="post_info_item_description mt-1">
             <h2 class="bold">Description</h2>
-            <p class="text-justify">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <p class="text-justify">@Model.Annonce.Description
+                
             </p>
         </div>
 
         <div class="post_info_item_location">
             <h2 class="bold">Localisation</h2>
             <!-- <div class="map-responsive"> -->
-            <address>gardanne, france</address>
+            <address>@Model.Annonce.profil.Ville, @Model.Annonce.profil.Pays</address>
             <!-- </div> -->
         </div>
         <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
@@ -127,13 +124,14 @@
         </div>
 
         <div class="view_of_post mt-3">
-            <h2 class="bold">Les avis sur Nom Prenom</h2>
+            <h2 class="bold">Les avis sur @Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</h2>
             <!-- Avis 1 -->
+            @foreach (var Avis in Model.Avis) {
             <div class="flex-col mb-3">
                 <div class="flex-row">
-                    <a href="#"><img src="img/user5.jpeg" alt=""></a>
+                    <a href="#"><img src=@Avis.CompteConsumer.Profil.Photo alt=""></a>
                     <div class="flex-col ml-3">
-                        <span class="font-size-16">Nom Prenom</span>
+                        <span class="font-size-16">@Avis.CompteConsumer.Profil.Nom  @Avis.CompteConsumer.Profil.Prenom</span>
                         <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
                             <small class="fa fa-star" aria-hidden="true"></small>
                             <small class="fa fa-star" aria-hidden="true"></small>
@@ -144,34 +142,13 @@
                     </div>
 
                 </div>
-                <span>Commenté le 8 décembre 2020</span>
+                <span class="mt-2 font-size-12">Commenté le @Avis.date</span>
 
-                <span class="mt-2 font-size-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla </span>
+                <span class="mt-2 font-size-16">@Avis.commentaire </span>
             </div>
-
+            }
             <!-- End Avis 1 -->
-            <!-- Avis 2 -->
-            <div class="flex-col mb-4">
-                <div class="flex-row">
-                    <a href="#"><img src="img/user5.jpeg" alt=""></a>
-                    <div class="flex-col ml-3">
-                        <span class="font-size-16">Nom Prenom</span>
-                        <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star text-muted" aria-hidden="true"></small>
-                        </div>
-                    </div>
-
-                </div>
-                <span>Commenté le 8 décembre 2020</span>
-
-                <span class="mt-2 font-size-15">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  </span>
-            </div>
-
-            <!-- End Avis 2 -->
+            
         </div>
 
     </div>

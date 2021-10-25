@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
+using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace Pojeet.Controllers
     public class AnnonceController : Controller
     {
         private IDalAnnonce dal;
+        
         public AnnonceController()
         {
             this.dal = new DalAnnonce();
@@ -41,5 +44,7 @@ namespace Pojeet.Controllers
             dal.SupprimerAnnonce(id);
             return Redirect("~/Profil/Index"); //Retourner view mes annonces
         }
+
+        
     }
 }

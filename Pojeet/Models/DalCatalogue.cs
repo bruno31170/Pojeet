@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using Pojeet.ViewModels;
 using System;
@@ -32,7 +32,9 @@ namespace Pojeet.Models
 
 
 
+
         public List<Annonce> RechercherAnnonce(UtilisateurViewModel uvm)
+
 
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
@@ -51,12 +53,14 @@ namespace Pojeet.Models
 
         }
 
+
         public Annonce ObtientUneAnnonce(int id)
         {
             Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
             return annonce;
 
         }
+
 
     }
 }

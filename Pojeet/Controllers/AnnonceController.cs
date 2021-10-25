@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
@@ -10,7 +11,9 @@ namespace Pojeet.Controllers
 {
     public class AnnonceController : Controller
     {
+
         private IDalAnnonce idal;
+
         
         public AnnonceController()
         {
@@ -44,6 +47,5 @@ namespace Pojeet.Controllers
         }
 
 
-       
     }
 }

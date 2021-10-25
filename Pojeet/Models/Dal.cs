@@ -68,14 +68,13 @@ namespace Pojeet.Models
         }
 
 
-        public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+        public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
            string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile pictureFile)
         {
             CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
 
             if (consumer != null)
             {
-                consumer.MotDePasse = motdepasse;
                 consumer.Pseudo = pseudo;
                 consumer.Profil.Nom = nom;
                 consumer.Profil.Prenom = prenom;

@@ -16,7 +16,7 @@ namespace Pojeet.Models
             string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo);
 
 
-        void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
+        void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
            string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo);
 
         void SuppressionConsumer(int id);

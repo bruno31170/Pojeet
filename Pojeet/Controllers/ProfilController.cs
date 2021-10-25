@@ -124,15 +124,8 @@ namespace Pojeet.Controllers
             {
                 using (Dal ctx = new Dal())
                 {
-                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+                    ctx.ModifierConsumer(consumer.Id, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
             consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, pictureFile);
-
-                    if (pictureFile.Length > 0)
-                    {
-                        string path3 = _env.WebRootPath + "/media/profil/" + pictureFile.FileName;
-                        FileStream stream3 = new FileStream(path3, FileMode.Create);
-                        pictureFile.CopyTo(stream3);
-                    }
 
                     return RedirectToAction("Index");
                 }

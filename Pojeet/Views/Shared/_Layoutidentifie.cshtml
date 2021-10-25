@@ -106,24 +106,24 @@
                     <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
                         <li class="text-center">
                             <img class="border-e mb-3" src="~/img/img-e/user2.png" alt="">
-                            <a class="font-size-18" href="http://localhost:5000/Profil">Prenom <br> Nom</a>
+                            <a class="font-size-18" href="/Profil">Prenom <br> Nom</a>
                         </li>
                         <li>
-                            <a href="http://localhost:5000/Profil"> <i class="font-size-25 fa fa-home mr-2"></i> Ma page</a>
+                            <a href="/Profil"> <i class="font-size-25 fa fa-home mr-2"></i> Ma page</a>
                         </li>
                         <li id="">
-                            <a href="http://localhost:5000/Profil#profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
-                            @Html.ActionLink("Mes annonces test lien", "Index", "Profil", null, null, "profile2", null, null)
+                            <a href="/Profil/Index?tabId=profile2" ><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
+                            
 
                         </li>
                         <li>
-                            <a href="http://localhost:5000/Profil"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+                            <a href="/Profil/Index?tabId=contact2"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
                         </li>
                         <li>
                             <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                         </li>
                         <li>
-                            <a href="http://localhost:5000/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                            <a href="/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
                         </li>
                     </ul>
                 </div>
@@ -180,6 +180,12 @@
         <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
     </footer>
     <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
+    <script src="~/js/js-e/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        function switchTab(tabId) {
+            $(tabId).addClass("active").siblings().removeClass("active");
+        }
+    </script>
 
 </body>
 

@@ -1,7 +1,7 @@
 @model Pojeet.ViewModels.UtilisateurViewModel
 @{
     Layout = "_LayoutIdentifie";
-    ViewBag.Title = "AnnonceCatalogue";
+    ViewBag.Title = "RechercherAnnonce";
 }
 <div class="page_layout">
     <!-- Recherche -->
@@ -21,21 +21,20 @@
             </div>
         </div>
         <div class="flex-col flex-md-row justify-content-center">
-            @using (Html.BeginForm())
+            <form id="search-form" action="index.html" method="post">
+                <div class="flex-col flex-md-row">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })
+                    }
 
-            {<form id="search-form" action="index.html" method="post">
-                 <div class="flex-col flex-md-row">
-                     
-                     @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
+                    <input type="search" name="mot-cle" placeholder="Que recherchez-vous ?" class="search_select_form  text-center mb-1 align-self-center">
+                    @*<input type="search" name="mot-cle" placeholder="Code postal/Lieu" class="search_select_form  text-center mb-2 align-self-center">*@
+                </div>
+            </form>
+            <!-- ICI LA FONCTION RECHERCHE A FAIRE -->
+            <a href="/Catalogue/RechercherAnnonce"><input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search mb-1" onclick="RechercherAnnonce"></a>
 
-                     @Html.TextBoxFor(m => m.Recherche, new { id = "recherche" })
-                     @*<input type="search" name="mot-cle" placeholder="Que recherchez-vous ?" class="search_select_form  text-center mb-1 align-self-center">*@
-                     @*<input type="search" name="mot-cle" placeholder="Code postal/Lieu" class="search_select_form  text-center mb-2 align-self-center">*@
-                 </div>
-                </form>
-                <!-- ICI LA FONCTION RECHERCHE A FAIRE -->
-                <a href="/Catalogue/RechercherAnnonce"><input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search mb-1"></a>
-            }
         </div>
     </div>
     <!-- Fin Recherche -->
@@ -58,9 +57,8 @@
                     </div>
                 </div>
                 <!-- FOR EACH ICI CODE -->
-                @*@if (rec)*@
                 @foreach (var annonce in Model.Annonce)
-                {
+                        {
                     <div class="post_content p-4 border-e flex-col white">
                         @*Date de parution : @annonce.DateParution<br>
                             Catégorie : @annonce.CategorieDeAnnonce<br>

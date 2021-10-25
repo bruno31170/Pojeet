@@ -183,7 +183,7 @@
                     </div>
 
                     <!-- Mes annonces -->
-                    
+
                     <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
                          class="tab-pane fade px-4 py-5">
 
@@ -193,57 +193,57 @@
 
                         <!-- exemple annonce 1 -->
                         @*Date de parution : @annonce.DateParution<br>
-        Catégorie : @annonce.CategorieDeAnnonce<br>
-        Auteur : @annonce.ProfilId<br>
-        Titre : @annonce.TitreAnnonce<br>
-        Type de l'annonce : @annonce.TypeDeAnnonce<br>
-        Description : @annonce.Description<br>
-        Date butoir : @annonce.DateButoir<br>
-        Localisation : @annonce.Localisation<br>
-        Prix : @annonce.Prix<br>
-        Photo : @annonce.Photo*@
+                            Catégorie : @annonce.CategorieDeAnnonce<br>
+                            Auteur : @annonce.ProfilId<br>
+                            Titre : @annonce.TitreAnnonce<br>
+                            Type de l'annonce : @annonce.TypeDeAnnonce<br>
+                            Description : @annonce.Description<br>
+                            Date butoir : @annonce.DateButoir<br>
+                            Localisation : @annonce.Localisation<br>
+                            Prix : @annonce.Prix<br>
+                            Photo : @annonce.Photo*@
                         @if (Model.Annonce != null)
                         {
-                        @foreach (var annonce in Model.Annonce)
-                        {
-                            <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
-                                <div class="d-flex justify-content-end mb-2">
-                                    <p>@annonce.DateParution</p>
-                                </div>
-                                <div class=" row flex-row">
-                                    <div class="wall_post_img col-6">
-                                        <img src="assets/img/design_service.png" alt="">
+                            @foreach (var annonce in Model.Annonce)
+                            {
+                                <div class="p-4 mt-3 border-e d-flex flex-column bg-white">
+                                    <div class="d-flex justify-content-end mb-2">
+                                        <p>@annonce.DateParution</p>
                                     </div>
-                                    <div class="post_info col-6 flex-col justify-content-between">
-                                        <div class="post_info_text ml-1">
-                                            <h5>@annonce.TitreAnnonce</h5>
-                                            <p class="text-justify">
-                                                @annonce.Description
-
-                                            </p>
+                                    <div class=" row flex-row">
+                                        <div class="wall_post_img col-6">
+                                            <img src="assets/img/design_service.png" alt="">
                                         </div>
-                                        <div class="post_price font-size-15 ml-1">
-                                            <span>Prix: <strong> @annonce.Prix €</strong></span>
-                                        </div>
+                                        <div class="post_info col-6 flex-col justify-content-between">
+                                            <div class="post_info_text ml-1">
+                                                <h5>@annonce.TitreAnnonce</h5>
+                                                <p class="text-justify">
+                                                    @annonce.Description
 
-                                        <div class="w-100 mt-3">
-                                            <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
-                                        </div>
+                                                </p>
+                                            </div>
+                                            <div class="post_price font-size-15 ml-1">
+                                                <span>Prix: <strong> @annonce.Prix €</strong></span>
+                                            </div>
 
-                                        <div class="d-flex mt-3">
-                                            <div class=" w-100 col-6">
-                                                <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                            <div class="w-100 mt-3">
+                                                <a class=" w-100 btn btnGreen" href="#">Voir l'annonce</a>
+                                            </div>
+
+                                            <div class="d-flex mt-3">
+                                                <div class=" w-100 col-6">
+                                                    <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
+                            }
 
                         }
 
                     </div>
-                    
+
                     <!-- mes transactions  -->
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">
@@ -333,6 +333,12 @@
 
 
 </div>
+<script src="~/js/js-e/jquery-3.2.1.min.js"></script>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $(@ViewBag.tabId).addClass("active").siblings().removeClass("active");
+    });
+</script>*@
 
 
 
@@ -350,5 +356,11 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="~/js/profil.js" type="text/javascript"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+           $("@ViewBag.tabId").addClass("active").siblings().removeClass("active");
+           $("@ViewBag.tabId").addClass("show").siblings().removeClass("show");
+           $("@ViewBag.tabId-tab").addClass("active").parent().siblings().children().removeClass("active");
+       });</script>
 }
 

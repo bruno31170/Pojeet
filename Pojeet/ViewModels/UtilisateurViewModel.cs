@@ -6,6 +6,7 @@ namespace Pojeet.ViewModels
 {
     public class UtilisateurViewModel
     {
+        public Recherche Recherche { get; set; }
         public CompteConsumer CompteConsumer { get; set; }
         public bool Authentifie { get; set; }
         public List<Annonce> Annonce { get; set; }

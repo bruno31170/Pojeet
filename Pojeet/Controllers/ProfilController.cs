@@ -24,8 +24,9 @@ namespace Pojeet.Controllers
             this.dalProfil = new DalProfil();
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string tabId)
         {
+            ViewBag.tabId = "#"+tabId;
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
             {

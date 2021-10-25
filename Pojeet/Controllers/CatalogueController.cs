@@ -22,11 +22,17 @@ namespace Pojeet.Controllers
 
                 List<Annonce> listeAnnonce = dal.ObtientAnnonce();
                 return View(new UtilisateurViewModel {Annonce=listeAnnonce,CompteConsumer= consumer});
-            
-           
         }
 
-        
+        public IActionResult RechercherAnnonce(UtilisateurViewModel uvm)
+        {
+            CompteConsumer consumer = dal.ObtientConsumer(uvm.CompteConsumer.Id);
+
+            List<Annonce> listeAnnonce = dal.RechercherAnnonce(uvm);
+            return View(new UtilisateurViewModel { Annonce = listeAnnonce, CompteConsumer = consumer });
+        }
+
+
 
 
     }

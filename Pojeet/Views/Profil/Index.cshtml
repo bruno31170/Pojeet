@@ -216,7 +216,6 @@
                         </div>
 
 
-
                         @if (Model.Annonce != null)
                         {
                             @foreach (var annonce in Model.Annonce)
@@ -246,7 +245,9 @@
                                             </div>
 
 
+
                                             <div class="d-flex justify-content-center x mt-3">
+
 
                                                 <div class=" w-100 col-6">
                                                     <a class="btn w-100 btnOrange" href="http://localhost:5000/Annonce/SupprimerAnnonce?id=@annonce.Id">Supprimer</a>
@@ -433,6 +434,12 @@
 
 
 </div>
+<script src="~/js/js-e/jquery-3.2.1.min.js"></script>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $(@ViewBag.tabId).addClass("active").siblings().removeClass("active");
+    });
+</script>*@
 
 
 
@@ -450,5 +457,11 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="~/js/profil.js" type="text/javascript"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+           $("@ViewBag.tabId").addClass("active").siblings().removeClass("active");
+           $("@ViewBag.tabId").addClass("show").siblings().removeClass("show");
+           $("@ViewBag.tabId-tab").addClass("active").parent().siblings().children().removeClass("active");
+       });</script>
 }
 

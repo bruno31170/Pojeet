@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,15 +36,43 @@ namespace Pojeet.Models
         }
 
 
-        public List<Annonce> RechercherAnnonce(string titreAnnonce)
+
+        
+        public List<Annonce> RechercherAnnonce(ProfilViewModel uvm)
+
+
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
             List<Annonce> annonce = ObtientAnnonce();
+
+            string MotRechercher = uvm.Recherche.Rechercher;
+            string Departement = uvm.Recherche.Localisation;
+           // string TypeRecherche = uvm.Recherche.TypeDeRecherche;
+
             foreach (var item in annonce)
-            {
-                if (item.TitreAnnonce == titreAnnonce)
-                    rechercheAnnonce.Add(item);
+            {   if (MotRechercher != null && Departement != null)
+                {
+                    if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement) && item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                        rechercheAnnonce.Add(item);
+                }
+                if (MotRechercher != null && Departement == null && item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                {
+                    if (item.TitreAnnonce.Contains(MotRechercher))
+                        rechercheAnnonce.Add(item);
+                }
+                if (MotRechercher == null && Departement != null && item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                {
+                    if (item.Localisation.Contains(Departement))
+                        rechercheAnnonce.Add(item);
+                }
+                if (MotRechercher == null && Departement == null)
+                {
+                    if (item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                        rechercheAnnonce.Add(item);
+                }
+
             }
+            //rechercheAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             return rechercheAnnonce;
         }
 
@@ -52,6 +82,8 @@ namespace Pojeet.Models
             return annonce;
 
         }
+
+
 
     }
 }

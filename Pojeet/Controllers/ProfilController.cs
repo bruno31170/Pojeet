@@ -30,8 +30,9 @@ namespace Pojeet.Controllers
             _env = env;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string tabId)
         {
+            ViewBag.tabId = "#"+tabId;
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
             {
@@ -48,6 +49,8 @@ namespace Pojeet.Controllers
             return View(viewModel);
 
         }
+
+      
 
 
 
@@ -151,5 +154,7 @@ namespace Pojeet.Controllers
             }
             return View("");
         }
+
+        
     }
 }

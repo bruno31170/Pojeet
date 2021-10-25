@@ -16,6 +16,7 @@ namespace Pojeet.Models
         public int CompteConsumerId { get; set; }
         public virtual CompteConsumer CompteConsumer { get; set; }
         public int ProfilId { get; set; }
+        public virtual Profil Profil { get; set; }
 
     }
 

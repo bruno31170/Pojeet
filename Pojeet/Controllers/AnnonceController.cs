@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
@@ -10,7 +11,9 @@ namespace Pojeet.Controllers
 {
     public class AnnonceController : Controller
     {
+
         private IDalAnnonce idal;
+
         
         public AnnonceController()
         {
@@ -24,13 +27,13 @@ namespace Pojeet.Controllers
         }
 
         [HttpPost]
-        public ActionResult PosterAnnonce(Annonce annonce)
+        public ActionResult PosterAnnonce(UtilisateurViewModel uvm)
         {
             
-                //if (!ModelState.IsValid)
-                   // return View("Error");
-                idal.PosterAnnonce(annonce.TypeDeAnnonce, annonce.TitreAnnonce, annonce.Description, annonce.DateParution,
-                    annonce.Localisation, annonce.DateButoir, annonce.Prix, annonce.CategorieDeAnnonce, annonce.Photo);
+                if (!ModelState.IsValid)
+                   return View("Error");
+               idal.PosterAnnonce(uvm.Anonce.TypeDeAnnonce, uvm.Anonce.TitreAnnonce, uvm.Anonce.Description, uvm.Anonce.DateParution,
+                   uvm.Anonce.Localisation, uvm.Anonce.DateButoir, uvm.Anonce.Prix, uvm.Anonce.CategorieDeAnnonce, uvm.Anonce.Photo);
             
             return View("Reussi"); //Retourner view mes annonces
         }
@@ -44,6 +47,5 @@ namespace Pojeet.Controllers
         }
 
 
-       
     }
 }

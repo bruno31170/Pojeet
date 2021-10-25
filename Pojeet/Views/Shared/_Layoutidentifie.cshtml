@@ -1,4 +1,3 @@
-@model Pojeet.ViewModels.UtilisateurViewModel
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -50,7 +49,7 @@
             });
         })(jQuery);
     </script>
-@RenderSection("scripts", required:false)
+
 </head>
 
 <body>
@@ -58,37 +57,47 @@
         <div class="nav-menu-block">
             <div class="flex-row w-100 justify-content-between">
                 <div class="nav-logo">
-                    <img src="~/img/img-e/logo1.png" alt="">
+                    <a class="navbar-brand" href="~/Home/">
+                        <img src="~/img/img-e/logo1.png" alt="HelpMyCar" />
+                    </a>
                 </div>
-                <div class="align-self-end mt-min mb-1">
-                    <a class="btn_registration font-size-18 " href="#">Demander un service</a>
-                </div>
-                <div class="align-self-end mt-min mb-1">
-                    <a class="btn_registration font-size-18" href="#">Devenir Helper</a>
-                </div>
+                @*<div class="search_header align-self-end">
+                        <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
+                        <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+                    </div>*@
                 <ul class="nav-menu-icon flex-row align-item-end justify-content-around mb-2 mr-4">
+                    <li class="mr-3 ml-2 text-right">
+                        @*@Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })*@
+
+                        <a href="~/Catalogue/AnnonceCatalogue">
+                            <i class="font-size-24 fas fa-search btn-search-all_post_icon"></i>
+                        </a>
+                    </li>
+                    <li class="btn-search-all_post">
+                        @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "btn-primary-e align-items-center" })
+                    </li>
                     <li class="mr-3 text-right">
-                        <div class="info">
 
-                            <img src="~/img/img-e/MonCompte.png" alt="">
-
-                        </div>
                         <a href="#">
                             <i class="font-size-24 fa fa-user"></i>
                         </a>
+
+                        <ul>
+                            <div class="triangle"> </div>
+                            <li class="mt-2"><a href="~/Profil/Index">Mon profil</a></li>
+                            <li><a href="/Profil/Index?tabId=profile2">Mes annonce</a></li>
+                            <li><a href="/Profil/Index?tabId=contact2">Mes transactions</a></li>
+                            <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;"})</li>
+                           
+                        </ul>
                     </li>
                     <li class="mr-3 ml-2 text-right">
-                        <div class="info">
-                            <img src="~/img/img-e/Messagerie.png" alt="">
-                        </div>
-                        <a href="#">
+                        <a href="~/Inbox/AfficherMessagerie">
                             <i class="font-size-24 fa fa-envelope"></i>
+                            <span class="badge badge-danger navbar-badge">3</span>
                         </a>
                     </li>
                     <li class="ml-2 text-right">
-                        <div class="info">
-                            <img src="~/img/img-e/Notification.png" alt="">
-                        </div>
                         <a href="#">
                             <i class="font-size-24 fa fa-bell"></i>
                         </a>
@@ -105,27 +114,53 @@
                 <div class="side_bar_inner">
                     <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
                         <li class="text-center">
-                            <img class="border-e mb-3" src="~/img/img-e/user2.png" alt="">
-                            <a class="font-size-18" href="http://localhost:5000/Profil">Prenom <br> Nom</a>
+
+
+                            @{
+                                var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+                            }
+                            <img class="border-e mb-3" src="@Compte1.Profil.Photo" alt="">
+
+                            <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
                         </li>
                         <li>
-                            <a href="http://localhost:5000/Profil"> <i class="font-size-25 fa fa-home mr-2"></i> Ma page</a>
-                        </li>
-                        <li id="">
-                            <a href="http://localhost:5000/Profil#profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
-                            @Html.ActionLink("Mes annonces test lien", "Index", "Profil", null, null, "profile2", null, null)
+
+
+                            <a href="~/Profil/Index"> <i class="font-size-25 fa fa-home mr-2"></i> Mon profil</a>
 
                         </li>
-                        <li>
-                            <a href="http://localhost:5000/Profil"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+                        <li id="">
+                            <a href="/Profil/Index?tabId=profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
                         </li>
                         <li>
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+
+
+                            <a href="/Profil/Index?tabId=contact2"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+
                         </li>
-                        <li>
-                            <a href="http://localhost:5000/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
-                        </li>
-                    </ul>
+                        @{
+                            var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
+                        }
+                        @if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)
+                        {
+                            <li style="display: none;">
+                                <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                            </li>
+                            }
+
+                            <li>
+                                <a href="/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
+                            </li>
+                            <li>
+                                <a href="/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                            </li>
+                        </ul>
                 </div>
                 <!-- Fin menu utilisateur -->
 
@@ -180,6 +215,16 @@
         <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
     </footer>
     <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
+
+    <script src="~/js/js-e/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        function switchTab(tabId) {
+            $(tabId).addClass("active").siblings().removeClass("active");
+        }
+    </script>
+
+    @RenderSection("scripts", required: false)
+
 
 </body>
 

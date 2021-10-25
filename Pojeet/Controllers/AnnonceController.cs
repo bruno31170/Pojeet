@@ -35,7 +35,7 @@ namespace Pojeet.Controllers
             return View("Reussi"); //Retourner view mes annonces
         }
 
-
+       
         
         public ActionResult SupprimerAnnonce(int id)
         {

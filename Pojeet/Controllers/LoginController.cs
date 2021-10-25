@@ -148,6 +148,61 @@ namespace Pojeet.Controllers
             HttpContext.SignOutAsync();
             return Redirect("/");
         }
+
+
+        //public IActionResult CreerProvider()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public IActionResult CreerProvider(CompteProvider compteProvider)
+        //{
+        //    UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+        //    CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+        //    if (viewModel.Authentifie)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            int id = dal.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, compteProvider.DocumentIdentification, compteProvider.Competence);
+
+        //            return Redirect("../Profil/Index");
+        //        }
+        //        return View(compteProvider);
+        //    }
+
+        //    return View(compteProvider);
+        //}
+
+
+
+
+        [HttpPost]
+        public IActionResult CreerHelper(CompteProvider compteProvider)
+        {
+            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("CreerHelper");
+            //}
+
+            using (Dal ctx = new Dal())
+            {
+                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, compteProvider.DocumentIdentification, compteProvider.Competence);
+                return RedirectToAction("../Profil/Index");
+            }
+
+        }
+
+        public IActionResult CreerHelper()
+        {
+
+            return View();
+
+        }
+
     }
 }
 

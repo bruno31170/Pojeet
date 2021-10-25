@@ -42,16 +42,23 @@
                 <div class="collapse navbar-collapse" id="nav_site_help">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item d-flex align-items-center">
+
                             <a class="  nav-link nav-link-hover-green rounded btnGreen" href="http://localhost:5000/Catalogue/AnnonceCatalogue" style="color:white">
                                 Trouver une annonce
                             </a>
+
+                            @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "nav-link nav-link-hover-green rounded btnGreen", @style = "color:white" })
+                            @*<a class="  nav-link nav-link-hover-green rounded btnGreen" href="" style="color:white">
+                                    Trouver une annonce
+                                </a>*@
+
                         </li>
                         <li class="nav-item border-right ml-3 mr-1"></li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class=" nav-link nav-link-hover-black rounded" href="">Devenir Helper</a>
+                            @Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
+                            @*<a class=" nav-link nav-link-hover-black rounded" href="">Devenir Helper</a>*@
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            @*<a class=" nav-link nav-link-hover-black rounded" href="">Connexion</a>*@
                             @Html.ActionLink("Connexion", "Index", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
                         </li>
                         <li class="nav-item d-flex align-items-center">

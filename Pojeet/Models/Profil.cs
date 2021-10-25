@@ -50,11 +50,11 @@ namespace Pojeet.Models
         [Display(Name = "Numéro de téléphone")]
         public int NumeroTelephone { get; set; }
 
-        
-
         public Pays Pays { get; set; }
 
         public string Photo { get; set; }
+
+        public virtual List<Avis> ListeAvis { get; set; }
 
     }
 

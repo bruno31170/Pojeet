@@ -1,10 +1,10 @@
 ﻿@model Pojeet.Models.MyViewModel
     @{
-        Layout = "_Layout";
+        Layout = "_LayoutIdentifie";
         ViewBag.Title = "Inbox";
     }
 
-    <body>
+
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
         <div class="container">
@@ -37,8 +37,7 @@
                                                 @conversation.Auteur_Message.statut
                                             </div>
                                         </div>
-                                    </li>
-                                   
+                                    </li>                                 
                                     </a>
                                 }
                             </ul>
@@ -55,10 +54,15 @@
                                         </div>
                                     </div>
                                     <div class="container">
-                                        <button type="button" class="btn btn-link float-right">Annonce N° @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id</button>
+                                        @if (Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil != Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.profil)
+                                        {
+                                                <button type="submit" class="btn btn-info float-right">Proposez un prix</button>
+                                                }
+
+                                                <button type="button" class="btn btn-link float-right">Annonce N° @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             <div class="chat-history">
                                 <ul class="m-b-0">
 
@@ -392,7 +396,7 @@
         <script type="text/javascript">
 
         </script>
-    </body>
+ 
 
 
 

@@ -1,4 +1,5 @@
-﻿@model List<Pojeet.Models.Transaction>
+﻿@*@model List<Pojeet.Models.Transaction>*@
+@model Pojeet.ViewModels.TransactionViewModel
 @{
     Layout = "_LayoutAdmin";
     ViewBag.Title = "Les commandes";
@@ -82,43 +83,50 @@
                     <th scope="col">N°</th>
                     <th scope="col">Data</th>
                     <th scope="col">Helper</th>
+                    <th scope="col">Consumer</th>
                     <th scope="col">Montant</th>
                     <th scope="col">Statut</th>
                 </tr>
             </thead>
             <tbody id="commande">
-                @foreach (var transaction in Model)
+                @foreach (var transaction in Model.Transaction)
                 {
                 <tr>
 
-                    <th scope="row"><a href="commande.html">@transaction.AnnonceId</a></th>
+                    <th scope="row"><a href="commande.html">@transaction.Reference</a></th>
                     <td>@transaction.Date</td>
-                    <td><a class="popup-open" href="">Nom Prenom</a></td>
+                    @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+                    {
+
+
+                        <td><a class="popup-open" href="">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                    }
+                    else
+                    {
+                        <td><a class="popup-open" href="">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                    }
+                    @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
+                    {
+
+
+                        <td><a class="popup-open" href="">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                    }
+                    else
+                    {
+                        <td><a class="popup-open" href="">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                    }
+
                     <td>@transaction.Montant</td>
                     <td>
-                        En_attente
-
-                        @*@switch (var transaction in Model)
-            {
-                case transaction.EtatTransaction 0:
-                    <p> En_attente </p>
-                    break;
-                case transaction.EtatTransaction 1:
-                    <p>Valide</p>
-                    break;
-                case transaction.EtatTransaction 2:
-        <p>Termine</p>
-                    break;
-            }*@
-                        @*@if (transaction.EtatTransaction == 0)
-        {<p>En_attente</p>}
-        else if (transaction.EtatTransaction = 1)
-        { <p>Termine</p>}
-        else if (transaction.EtatTransaction = 2)
-        { <p>Valide</p>}
-        else
-        { <p>En_attente</p>}*@
-                    </td> 
+                        @if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                        {<p>En_attente</p>}
+                        else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                        { <p>Valide</p>}
+                        else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
+                        { <p>Refuse</p>}
+                        else
+                        { <p>Termine</p>}
+                    </td>
                 </tr>
                 }
                 <tr>

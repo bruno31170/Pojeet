@@ -20,10 +20,19 @@
                                 <span id="slider" class="typewriter"></span>
                             </div>
                             <div class="d-flex justify-content-center mt-5">
-                                <a class="d-flex btn my-2 my-lg-0 rounded askService px-2 px-3 btnGreen"
-                                   style="background-color: #52ab98; color: white; width:50%; text-align:center; border-radius:999px">
-                                    <span class="m-auto" style="margin:auto">Trouver votre Helper</span>
-                                </a>
+                                @Html.ActionLink("Trouvez votre Helper", "AnnonceCatalogue", "Catalogue", null, null, null, null, new
+                                {
+                                    @class = "d-flex justify-content-center btn my-lg-0 rounded askService px-2 px-3 btnGreen mx-auto",
+                                    @style = "background-color: #52ab98!important; color: white!important; width:50%!important; text-align:center!important"
+                                })
+
+
+                                @*@Html.ActionLink("Trouvez votre Helper", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "d-flex btn my-2 my-lg-0 rounded askService px-2 px-3 btnGreen", @style = "backgroundcolor: #52ab98; color: white; width:50%; text-align:center; border-radius:999px" })*@
+
+                                @*<a class="d-flex btn my-2 my-lg-0 rounded askService px-2 px-3 btnGreen"
+                                       style="background-color: #52ab98; color: white; width:50%; text-align:center; border-radius:999px">
+                                        <span class="m-auto" style="margin:auto">Trouver votre Helper</span>
+                                    </a>*@
                             </div>
                         </div>
                     </h1>
@@ -186,8 +195,14 @@
             Vous avez besoin d'un service ? Un provider est là pour vous dépanner
             tout en réalisant des économies !
         </p>
-        <a class="nav-link rounded col-6 mx-auto text-center" href=""
-           style="background-color: #52ab98; color: white;">Trouver votre provider</a>
+        @Html.ActionLink("Trouvez votre Helper", "AnnonceCatalogue", "Catalogue", null, null, null, null, new
+        {
+            @class = "d-flex justify-content-center btn my-lg-0 rounded askService px-2 px-3 btnGreen mx-auto",
+            @style = "background-color: #52ab98!important; color: white!important; width:50%!important; text-align:center!important"
+        })
+
+        @*<a class="nav-link rounded col-6 mx-auto text-center" href=""
+            style="background-color: #52ab98; color: white;">Trouver votre provider</a>*@
     </div>
 </div>
 
@@ -205,10 +220,16 @@
                             </span>
                         </div>
                         <div class="d-flex justify-content-center mt-5">
-                            <button class="d-flex btn my-2 my-lg-0 rounded askService px-2 px-3"
-                                    style="background-color: #52ab98; color: white; width:50%; text-align:center;  border-radius:999px">
-                                <span class="m-auto" style="margin:auto">Devener Helper</span>
-                            </button>
+                            @Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new
+                            {
+                                      @class = "d-flex justify-content-center btn my-lg-0 rounded askService px-2 px-3 btnGreen mx-auto",
+                                      @style = "background-color: #52ab98!important; color: white!important; width:50%!important; text-align:center!important"
+                                  })
+
+                            @*<button class="d-flex btn my-2 my-lg-0 rounded askService px-2 px-3"
+                                        style="background-color: #52ab98; color: white; width:50%; text-align:center;  border-radius:999px">
+                                    <span class="m-auto" style="margin:auto">Devener Helper</span>
+                                </button>*@
                         </div>
                     </div>
                 </h2>

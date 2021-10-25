@@ -31,7 +31,9 @@ namespace Pojeet.Models
         }
 
 
+
         public List<Annonce> RechercherAnnonce(UtilisateurViewModel uvm)
+
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
             List<Annonce> annonce = ObtientAnnonce();
@@ -41,6 +43,12 @@ namespace Pojeet.Models
                     rechercheAnnonce.Add(item);
             }
             return rechercheAnnonce;
+
+        public Annonce ObtientUneAnnonnce(int id)
+        {
+            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
+            return annonce;
+
         }
 
         public Annonce ObtientUneAnnonce(int id)

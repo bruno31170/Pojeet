@@ -13,7 +13,9 @@ namespace Pojeet.Models
 
         CompteConsumer ObtientConsumer(int id);
 
+
         List<Annonce> RechercherAnnonce(UtilisateurViewModel uvm);
+
 
     }
 }

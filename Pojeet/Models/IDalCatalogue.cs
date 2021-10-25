@@ -15,7 +15,7 @@ namespace Pojeet.Models
 
 
 
-        List<Annonce> RechercherAnnonce(UtilisateurViewModel uvm);
+        List<Annonce> RechercherAnnonce(ProfilViewModel uvm);
 
     }
 }

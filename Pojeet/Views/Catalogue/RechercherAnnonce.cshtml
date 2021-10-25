@@ -1,4 +1,4 @@
-@model Pojeet.ViewModels.UtilisateurViewModel
+@model Pojeet.ViewModels.ProfilViewModel
 @{
     Layout = "_LayoutIdentifie";
     ViewBag.Title = "RechercherAnnonce";
@@ -28,7 +28,7 @@
                         @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })
                     }
 
-                    <input type="search" name="mot-cle" placeholder="Que recherchez-vous ?" class="search_select_form  text-center mb-1 align-self-center">
+                    @*<input type="search" name="mot-cle" placeholder="Que recherchez-vous ?" class="search_select_form  text-center mb-1 align-self-center">*@
                     @*<input type="search" name="mot-cle" placeholder="Code postal/Lieu" class="search_select_form  text-center mb-2 align-self-center">*@
                 </div>
             </form>
@@ -60,16 +60,7 @@
                 @foreach (var annonce in Model.Annonce)
                         {
                     <div class="post_content p-4 border-e flex-col white">
-                        @*Date de parution : @annonce.DateParution<br>
-                            Catégorie : @annonce.CategorieDeAnnonce<br>
-                            Auteur : @annonce.ProfilId<br>
-                            Titre : @annonce.TitreAnnonce<br>
-                            Type de l'annonce : @annonce.TypeDeAnnonce<br>
-                            Description : @annonce.Description<br>
-                            Date butoir : @annonce.DateButoir<br>
-                            Localisation : @annonce.Localisation<br>
-                            Prix : @annonce.Prix<br>
-                            Photo : @annonce.Photo*@
+                        
                         <div class="post_header flex-row align-items-center mb-2">
                             <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
                             <div class="post_header_info ml-4">

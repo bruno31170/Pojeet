@@ -23,32 +23,32 @@ namespace Pojeet.Controllers
 
         public IActionResult AnnonceCatalogue(int id)
         {
-                CompteConsumer consumer = dal.ObtientConsumer(id);
+            CompteConsumer consumer = dal.ObtientConsumer(id);
 
-                List<Annonce> listeAnnonce = dal.ObtientAnnonce();
-                return View(new UtilisateurViewModel {Annonce=listeAnnonce,CompteConsumer= consumer});
+            List<Annonce> listeAnnonce = dal.ObtientAnnonce();
+            return View(new ProfilViewModel { Annonce = listeAnnonce, CompteConsumer = consumer });
         }
 
 
-
-        public IActionResult RechercherAnnonce(UtilisateurViewModel uvm)
+     
+        public IActionResult RechercherAnnonce(ProfilViewModel uvm)
         {
-            CompteConsumer consumer = dal.ObtientConsumer(uvm.CompteConsumer.Id);
+            /*CompteConsumer consumer = dal.ObtientConsumer(uvm.CompteConsumer.Id);*/
 
             List<Annonce> listeAnnonce = dal.RechercherAnnonce(uvm);
-            return View(new UtilisateurViewModel { Annonce = listeAnnonce, CompteConsumer = consumer });
+            return View(new ProfilViewModel { Annonce = listeAnnonce});
 
-      
+        }
 
         public ActionResult Annonce(int Id)
         {
             CompteConsumer consumer = dal1.ObtientConsumer();
             Annonce annonce1 = dal1.ObtientAnnonce(Id);
             List<Avis> listeAvis = dal1.ObtientAvis(annonce1.ProfilId);
-           // List<Avis> listeAvis = dal2.ObtenirListeAvis(Id);
+            // List<Avis> listeAvis = dal2.ObtenirListeAvis(Id);
             return View(new AnnonceViewModel { Annonce = annonce1, CompteConsumer = consumer, Avis = listeAvis });
 
         }
 
-        }
+    }
 }

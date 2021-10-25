@@ -123,25 +123,28 @@ namespace Pojeet.Controllers
         [HttpPost]
         public IActionResult CreerHelper(CompteProvider compteProvider)
         {
-            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            ProviderViewModel viewModel = new ProviderViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-
-            //if (!ModelState.IsValid)
-            //{
-            //    return View("CreerHelper");
-            //}
 
             using (Dal ctx = new Dal())
             {
                 ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, compteProvider.DocumentIdentification, compteProvider.Competence);
+
                 return RedirectToAction("../Profil/Index");
             }
 
         }
         public IActionResult CreerHelper()
         {
+            ProviderViewModel viewModel = new ProviderViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
 
-            return View();
+                return View(viewModel);
+            }
+            return View(viewModel);
 
         }
 

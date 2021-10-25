@@ -29,6 +29,7 @@ namespace Pojeet.Models
             return consumer;
         }
 
+
         public List<Annonce> RechercherAnnonce(string titreAnnonce)
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
@@ -39,6 +40,12 @@ namespace Pojeet.Models
                     rechercheAnnonce.Add(item);
             }
             return rechercheAnnonce;
+
+        public Annonce ObtientUneAnnonnce(int id)
+        {
+            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
+            return annonce;
+
         }
 
     }

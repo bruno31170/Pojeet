@@ -11,11 +11,7 @@ namespace Pojeet.Models
 
         public byte[] Photo { get; set; }
 
-        public Document Document { get; set; }
+        public string Document { get; set; }
     }
-    public enum Document
-    {
-        CarteIdentite,
-        PermisConduire
-    }
+
 }

@@ -16,6 +16,7 @@
 
 
 
+
     <!-- Annonce -->
 
     <div class="annonce">
@@ -34,6 +35,9 @@
             @Html.ValidationMessageFor(model => model.Anonce.TypeDeAnnonce)
 
 
+
+            @using (Html.BeginForm())
+            {
 
             <!-- Catégorie --><br>
 
@@ -98,8 +102,14 @@
             <p>* : Champ obligatoire</p>
 
 
+
+             <input type="submit" value="Publier" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
+
+
         }
     </div>
+
+
 
 
 </div>

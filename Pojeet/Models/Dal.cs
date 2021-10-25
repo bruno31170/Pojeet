@@ -29,7 +29,7 @@ namespace Pojeet.Models
         }
         public List<Conversation> ObtientToutesLesConversations(int id)
         {
-            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c=> c.Messages).Include(c => c.Annonce).Include(c=> c.Auteur_Message.Profil).ToList();
+            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c => c.Messages).Include(c => c.Annonce).Include(c => c.Auteur_Message.Profil).ToList();
             return listeConversations;
         }
 
@@ -41,21 +41,21 @@ namespace Pojeet.Models
         }
         public Messagerie ObtientLaMessagerie(int id)
         {
-            Messagerie messagerie = _context.Messagerie.Where(r => r.Id==id).Include(c => c.Profil).Include(c => c.Historique).FirstOrDefault();
+            Messagerie messagerie = _context.Messagerie.Where(r => r.Id == id).Include(c => c.Profil).Include(c => c.Historique).FirstOrDefault();
             return messagerie;
         }
 
 
 
-        public void AjouterMessage(string textmessage, int profilId, int conversationId )
+        public void AjouterMessage(string textmessage, int profilId, int conversationId)
         {
 
             Message message = new Message
             {
-               message=textmessage,
-               Date=DateTime.Now,
-               ProfilId= profilId,
-               ConversationId= conversationId
+                message = textmessage,
+                Date = DateTime.Now,
+                ProfilId = profilId,
+                ConversationId = conversationId
             };
             _context.Message.Add(message);
             _context.SaveChanges();
@@ -152,9 +152,30 @@ namespace Pojeet.Models
         {
             //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
             //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
-            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).FirstOrDefault();
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).FirstOrDefault();
 
         }
+
+        public List<Avis> ObtenirListeAvis(int id)
+        {
+            Profil profil = ObtenirConsumer(id).Profil;
+            return  _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();          
+        }
+        public int ObtenirNoteGlobale(int id)
+        {
+            List<Avis> listeAvis = ObtenirConsumer(id).Profil.ListeAvis;
+            int i = 0;
+            int noteGlobale = 0;
+            foreach (Avis avis in listeAvis)
+            {
+                noteGlobale = (noteGlobale + avis.note);
+                i++;
+            }
+            noteGlobale = noteGlobale/i;
+            return noteGlobale;
+
+        }
+
 
         public CompteConsumer ObtenirConsumer(string idStr)
         {
@@ -166,6 +187,37 @@ namespace Pojeet.Models
             return null;
         }
 
+
+
+        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, string documentIdentification, List<string> competence)
+        {
+
+            Rib rib = new Rib
+            {
+                Iban = iban,
+                Bic = bic,
+                TitulaireCompte = titulaire
+            };
+
+            CompteProvider Provider = new CompteProvider
+            {
+                CompteConsumerId = compteConsumer.Id,
+                DocumentIdentification = documentIdentification,
+                Rib = rib,
+                Etat = 0,
+                Competence = competence
+            };
+
+
+            _context.CompteProvider.Add(Provider);
+            _context.SaveChanges();
+            return Provider.Id;
+        }
+
+        public CompteProvider ObtenirHelper(int id)
+        {
+            return _context.CompteProvider.Where(c => c.CompteConsumerId == id).Include(c => c.Rib).FirstOrDefault();
+        }
 
 
     }

@@ -224,7 +224,7 @@ namespace Pojeet.Models
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 2
 
-                });
+            });
 
             this.Avis.AddRange(
            new Avis
@@ -234,7 +234,8 @@ namespace Pojeet.Models
                commentaire = "Super service!",
                note = 4,
                CompteConsumerId = 1,
-               ProfilId = 2});
+               ProfilId = 2
+           });
 
 
 
@@ -260,7 +261,7 @@ namespace Pojeet.Models
                     Etat = 0,
                 });
 
-           this.SaveChanges();
+            this.SaveChanges();
         }
     }
 }

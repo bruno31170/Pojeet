@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -112,7 +113,7 @@ namespace Pojeet.Models
 
 
         public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
         {
             string motDePasse = EncodeMD5(motdepasse);
 
@@ -130,6 +131,12 @@ namespace Pojeet.Models
                 Description = description,
 
             };
+
+            if (photo != null)
+            {
+                profil.Photo = photo.FileName;
+            }
+
             CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
 
@@ -159,7 +166,7 @@ namespace Pojeet.Models
         public List<Avis> ObtenirListeAvis(int id)
         {
             Profil profil = ObtenirConsumer(id).Profil;
-            return  _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();          
+            return _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();
         }
         public int ObtenirNoteGlobale(int id)
         {
@@ -171,7 +178,7 @@ namespace Pojeet.Models
                 noteGlobale = (noteGlobale + avis.note);
                 i++;
             }
-            noteGlobale = noteGlobale/i;
+            noteGlobale = noteGlobale / i;
             return noteGlobale;
 
         }

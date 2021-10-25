@@ -9,6 +9,7 @@
     <Content Remove="Models\Dal\**" />
     <EmbeddedResource Remove="Models\Dal\**" />
     <None Remove="Models\Dal\**" />
+    <Content Remove="wwwroot\media\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,7 @@
 
 
 
+    <Folder Include="wwwroot\media\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />

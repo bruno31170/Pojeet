@@ -6,7 +6,7 @@
 }
 
 .img_profil {
-    width: 150px;
+    width: 280px;
     height: 150px;
     border-radius: 75px;
     position: relative;
@@ -122,4 +122,3 @@
     overflow: hidden;
     background-color: #f1f1f1;
 }
-

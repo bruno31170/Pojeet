@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
@@ -12,14 +14,19 @@ using Pojeet.ViewModels;
 
 namespace Pojeet.Controllers
 {
+
+
     public class LoginController : Controller
     {
 
         private Dal dal;
 
-        public LoginController()
+        private IWebHostEnvironment _env;
+
+        public LoginController(IWebHostEnvironment env)
         {
             this.dal = new Dal();
+            _env = env;
         }
 
         public IActionResult Index()
@@ -68,12 +75,19 @@ namespace Pojeet.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreerCompte(CompteConsumer compteConsumer)
+        public IActionResult CreerCompte(CompteConsumer compteConsumer, IFormFile pictureFile)
         {
             if (ModelState.IsValid)
             {
                 int id = dal.AjouterConsumer(compteConsumer.MotDePasse, compteConsumer.Pseudo, compteConsumer.Profil.Nom, compteConsumer.Profil.Prenom, compteConsumer.Profil.DateDeNaissance,
-            compteConsumer.Profil.Adresse, compteConsumer.Profil.Ville, compteConsumer.Profil.CodePostal, compteConsumer.Profil.Pays, compteConsumer.Profil.Mail, compteConsumer.Profil.NumeroTelephone, compteConsumer.Profil.Description, compteConsumer.Profil.Photo);
+            compteConsumer.Profil.Adresse, compteConsumer.Profil.Ville, compteConsumer.Profil.CodePostal, compteConsumer.Profil.Pays, compteConsumer.Profil.Mail, compteConsumer.Profil.NumeroTelephone, compteConsumer.Profil.Description, pictureFile);
+
+                if (pictureFile.Length > 0)
+                {
+                    string path3 = _env.WebRootPath + "/media/" + pictureFile.FileName;
+                    FileStream stream3 = new FileStream(path3, FileMode.Create);
+                    pictureFile.CopyTo(stream3);
+                }
 
                 var userClaims = new List<Claim>()
                     {
@@ -94,19 +108,6 @@ namespace Pojeet.Controllers
 
         public IActionResult ModifierConsumer()
         {
-            //if (id != 0)
-            //{
-            //    using (IDal dal = new Dal())
-            //    {
-            //        CompteConsumer consumer = dal.ObtientTousConsumer().Where(r => r.Id == id).FirstOrDefault();
-            //        if (consumer == null)
-            //        {
-            //            return View("Error");
-            //        }
-            //        return View(consumer);
-            //    }
-            //}
-            //return View("Error");
 
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)

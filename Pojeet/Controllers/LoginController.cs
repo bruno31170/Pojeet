@@ -84,7 +84,7 @@ namespace Pojeet.Controllers
 
                 if (pictureFile.Length > 0)
                 {
-                    string path3 = _env.WebRootPath + "/media/" + pictureFile.FileName;
+                    string path3 = _env.WebRootPath + "/media/profil/" + pictureFile.FileName;
                     FileStream stream3 = new FileStream(path3, FileMode.Create);
                     pictureFile.CopyTo(stream3);
                 }
@@ -106,41 +106,41 @@ namespace Pojeet.Controllers
 
 
 
-        public IActionResult ModifierConsumer()
-        {
+        //public IActionResult ModifierConsumer()
+        //{
 
-            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
-            if (viewModel.Authentifie)
-            {
-                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-                return View(compteConsumer);
-            }
-            return View(viewModel);
-        }
+        //    UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+        //    if (viewModel.Authentifie)
+        //    {
+        //        CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+        //        return View(compteConsumer);
+        //    }
+        //    return View(viewModel);
+        //}
 
-        [HttpPost]
-        public IActionResult ModifierConsumer(CompteConsumer consumer)
-        {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View("ModifierConsumer");
-            //}
+        //[HttpPost]
+        //public IActionResult ModifierConsumer(CompteConsumer consumer)
+        //{
+        //    //if (!ModelState.IsValid)
+        //    //{
+        //    //    return View("ModifierConsumer");
+        //    //}
 
 
-            if (consumer.Id != 0)
-            {
-                using (Dal ctx = new Dal())
-                {
-                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
-                    return RedirectToAction("Index");
-                }
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
+        //    if (consumer.Id != 0)
+        //    {
+        //        using (Dal ctx = new Dal())
+        //        {
+        //            ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+        //    consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return View("Error");
+        //    }
+        //}
 
 
 
@@ -149,33 +149,6 @@ namespace Pojeet.Controllers
             HttpContext.SignOutAsync();
             return Redirect("/");
         }
-
-
-        //public IActionResult CreerProvider()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult CreerProvider(CompteProvider compteProvider)
-        //{
-        //    UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
-        //    CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-        //    if (viewModel.Authentifie)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            int id = dal.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, compteProvider.DocumentIdentification, compteProvider.Competence);
-
-        //            return Redirect("../Profil/Index");
-        //        }
-        //        return View(compteProvider);
-        //    }
-
-        //    return View(compteProvider);
-        //}
-
-
 
 
         [HttpPost]

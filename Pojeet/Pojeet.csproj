@@ -11,6 +11,8 @@
     <None Remove="Models\Dal\**" />
     <Content Remove="wwwroot\media\" />
     <Content Remove="wwwroot\media\profil\" />
+    <Content Remove="wwwroot\media\annonce\" />
+    <Content Remove="wwwroot\media\provider\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +43,8 @@
 
     <Folder Include="wwwroot\media\" />
     <Folder Include="wwwroot\media\profil\" />
+    <Folder Include="wwwroot\media\annonce\" />
+    <Folder Include="wwwroot\media\provider\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />

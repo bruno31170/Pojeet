@@ -69,7 +69,7 @@ namespace Pojeet.Models
 
 
         public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile pictureFile)
         {
             CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
 
@@ -87,10 +87,13 @@ namespace Pojeet.Models
                 consumer.Profil.Mail = mail;
                 consumer.Profil.NumeroTelephone = numeroTelephone;
                 consumer.Profil.Description = description;
-                consumer.Profil.Photo = photo;
                 _context.SaveChanges();
             }
 
+            if (pictureFile != null)
+            {
+                consumer.Profil.Photo = pictureFile.FileName;
+            }
         }
 
         public void SuppressionConsumer(int id)

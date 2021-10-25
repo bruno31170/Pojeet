@@ -26,68 +26,46 @@ namespace Pojeet.Controllers
             return View(listConsumer);
         }
 
-        public IActionResult ModifierConsumer(int id)
-        {
-            if (id != 0)
-            {
-                using (IDal dal = new Dal())
-                {
-                    CompteConsumer consumer = dal.ObtientTousConsumer().Where(r => r.Id == id).FirstOrDefault();
-                    if (consumer == null)
-                    {
-                        return View("Error");
-                    }
-                    return View(consumer);
-                }
-            }
-            return View("Error");
-        }
+        //public IActionResult ModifierConsumer(int id)
+        //{
+        //    if (id != 0)
+        //    {
+        //        using (IDal dal = new Dal())
+        //        {
+        //            CompteConsumer consumer = dal.ObtientTousConsumer().Where(r => r.Id == id).FirstOrDefault();
+        //            if (consumer == null)
+        //            {
+        //                return View("Error");
+        //            }
+        //            return View(consumer);
+        //        }
+        //    }
+        //    return View("Error");
+        //}
 
-        [HttpPost]
-        public IActionResult ModifierConsumer(CompteConsumer consumer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("ModifierConsumer");
-            }
-
-
-            if (consumer.Id != 0)
-            {
-                using (Dal ctx = new Dal())
-                {
-                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
-                    return RedirectToAction("Index");
-                }
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
         //[HttpPost]
-        //public IActionResult AjouterConsumer(CompteConsumer consumer)
+        //public IActionResult ModifierConsumer(CompteConsumer consumer)
         //{
         //    if (!ModelState.IsValid)
         //    {
-        //        return View("AjouterConsumer");
+        //        return View("ModifierConsumer");
         //    }
 
-        //    using (Dal ctx = new Dal())
+
+        //    if (consumer.Id != 0)
         //    {
-        //        ctx.AjouterConsumer(consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-        //    consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description);
-        //        return RedirectToAction("AjouterConsumer", new { @id = consumer.Id });
+        //        using (Dal ctx = new Dal())
+        //        {
+        //            ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+        //    consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
+        //            return RedirectToAction("Index");
+        //        }
         //    }
-
+        //    else
+        //    {
+        //        return View("Error");
+        //    }
         //}
 
-        //public IActionResult AjouterConsumer()
-        //{
-
-        //    return View();
-
-        //}
     }
 }

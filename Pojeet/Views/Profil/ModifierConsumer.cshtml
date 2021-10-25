@@ -5,15 +5,9 @@
     ViewBag.ColorNav = "navbar-color";
 }
 
-
 @section stylesheets {
     <link rel="stylesheet" media="all" href="~/css/Profil.css">
 }
-
-
-
-
-
 
 
 <!--SECTION HERO-->
@@ -44,7 +38,9 @@
                     <div id="home2" role="tabpanel" aria-labelledby="home-tab"
                          class="tab-pane fade px-4 py-5 show active">
                         <div class="col-md-12">
-                            @using (Html.BeginForm())
+
+
+                            @using (Html.BeginForm("ModifierConsumer", "Profil", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 <div class="card mb-3">
                                     <div class="card-body">
@@ -172,15 +168,17 @@
                                                 <h6 class="mb-0">Description</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value=" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                    enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                                    ut
-                                                    aliquip ex ea commodo consequat. Duis aute
-                                                    irure dolor in reprehenderit in voluptate velit esse">*@
                                                 @Html.TextBoxFor(m => Model.Profil.Description, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Description)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Photo de profil</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="file" id="pictureFile" name="pictureFile" />
                                             </div>
                                         </div>
                                         <hr>

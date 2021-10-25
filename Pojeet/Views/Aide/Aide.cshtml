@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "_LayoutIdentifie";
+    ViewBag.Title = "PosterAnnonce";
+}
+
+
+
+
+
+<div class="aide">
+
+    <h2>Contact</h2><br>
+    <p>
+        Veuillez apporter toutes les précisions qui pourraient être utiles à notre équipe dans la résolution de
+        votre problème : numéro de transaction,
+        description exhaustive du souci rencontré, etc...<br>
+        Nous ferons de notre mieux pour vous répondre sous 48 heures.
+    </p>
+
+    <form>
+
+        <!-- Coordonnées -->
+
+        <h3>Coordonnées</h3><br>
+
+        <label for="coordonnées">Nom :</label>
+        <input type="text" id="nom" name="nom"><br><br>
+
+        <label for="coordonnées">Email :</label>
+        <input type="mail" id="mail" name="mail" /><br><br>
+
+        <h3>Objet du message</h3><br>
+
+        <label for="objet">Objet :</label>
+        <input type="text" id="objet" name="objet" /><br><br>
+
+        <h3>Votre message : </h3><br>
+
+
+        <textarea style="width: 500px;" type="textarea" rows="10" cols="50" id="message"
+                  name="message"></textarea><br>
+
+        <input type="submit" value="Envoyer" class="boutonEnvoyerPublier" />
+
+    </form>
+
+</div>
+
+
+   

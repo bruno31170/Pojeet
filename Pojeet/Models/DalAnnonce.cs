@@ -22,7 +22,7 @@ namespace Pojeet.Models
         public void PosterAnnonce(TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, 
             string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo)
         {
-            Annonce annonce = new Annonce
+            Annonce anonce = new Annonce
             {
                 TypeDeAnnonce = typeAnnonce,
                 TitreAnnonce = titreAnnonce,
@@ -38,7 +38,7 @@ namespace Pojeet.Models
 
             };
 
-            _context.Annonce.Add(annonce);
+            _context.Annonce.Add(anonce);
             _context.SaveChanges();
             
         }

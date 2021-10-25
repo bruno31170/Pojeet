@@ -1,5 +1,5 @@
 
-@model Pojeet.Models.Annonce
+@model Pojeet.ViewModels.UtilisateurViewModel
 
 
 @{
@@ -7,88 +7,110 @@
     ViewBag.Title = "PosterAnnonce";
 }
 
-    
-    
+
+
 
 
 
 <div class="annonce_form">
 
+
+
+
+    <!-- Annonce -->
+
+    <div class="annonce">
+
+        @using (Html.BeginForm())
+        {
+
+
+
+
+            <!-- Type d'annonce -->
+
+            <h3>Selectionner le type d'annonce*</h3>
+            <span>Besoin : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Besoin, "Besoin")
+            <span> | Service : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Service, "Service")<br>
+            @Html.ValidationMessageFor(model => model.Anonce.TypeDeAnnonce)
+
+
+
             @using (Html.BeginForm())
             {
 
-                
-            
+            <!-- Catégorie --><br>
 
-                <!-- Type d'annonce -->
+            <h3>Selectionner la catégorie*</h3>
+            @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie")<br><br>
+            @Html.ValidationMessageFor(model => model.Anonce.CategorieDeAnnonce)
 
-                <h3>Selectionner le type d'annonce*</h3>
-                <span>Besoin : </span> @Html.RadioButtonFor(m => m.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Besoin, "Besoin") 
-                <span> | Service : </span> @Html.RadioButtonFor(m => m.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Service, "Service")<br>
-                @Html.ValidationMessageFor(model => model.TypeDeAnnonce)
+            <!-- Image -->
 
+            <h3>Selectionner une image</h3>
+            <input type="file" /><br><br>
 
+            <!-- FAIRE AFFICHER LES IMAGES -->
 
-                <!-- Catégorie --><br>
+            <!-- Titre annonce -->
 
-                <h3>Selectionner la catégorie*</h3>
-                @Html.DropDownListFor(m => m.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))))<br><br>
-                @Html.ValidationMessageFor(model => model.CategorieDeAnnonce)
+            <h3>Titre de l'annonce*</h3>
 
-                <!-- Image -->
+            @Html.TextBoxFor(model => model.Anonce.TitreAnnonce, new { placeholder = "Titre" })<br><br>
+            @Html.ValidationMessageFor(model => model.Anonce.TitreAnnonce)
 
-                <h3>Selectionner une image</h3>
-                <input type="file" /><br><br>
-
-                <!-- FAIRE AFFICHER LES IMAGES -->
-
-                <!-- Titre annonce -->
-
-                <h3>Titre de l'annonce*</h3>
-
-                @Html.TextBoxFor(model => model.TitreAnnonce)<br><br>
-                @Html.ValidationMessageFor(model => model.TitreAnnonce)
+            //@Html.HiddenFor(m => Model.Anonce.ProfilId, new { Value = Model.CompteConsumer.Profil.Id })
+            //@Html.HiddenFor(m => Model.Profil.Id, new { Value = Model.Profil.Id })
 
 
-                <!-- Description -->
 
-                <h3>Description*</h3>
-                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Description" })<br><br>
+            <!-- Description -->
 
-                @Html.ValidationMessageFor(model => model.Description)
+            <h3>Description*</h3>
+            @Html.TextAreaFor(model => model.Anonce.Description, new { @class = "form-control", placeholder = "Description" })<br><br>
 
-
-                <!-- Date butoir -->
+            @Html.ValidationMessageFor(model => model.Anonce.Description)
 
 
-                <h3>Date butoir*</h3>
-                @Html.TextBoxFor(model => model.DateButoir, new { @type = "date" })<br><br>
-
-                @Html.ValidationMessageFor(model => model.DateButoir)
+            <!-- Date butoir -->
 
 
-                <!-- Département -->
+            <h3>Date butoir*</h3>
+            @Html.TextBoxFor(model => model.Anonce.DateButoir, new { @type = "date" })<br><br>
 
-                <h3>Département*</h3>
-                @Html.TextBoxFor(model => model.Localisation)<br><br>
-
-                @Html.ValidationMessageFor(model => model.Localisation)
+            @Html.ValidationMessageFor(model => model.Anonce.DateButoir)
 
 
-                <!-- Prix -->
+            <!-- Département -->
 
-                <h3>Prix</h3>
-                @Html.TextBoxFor(model => model.Prix)<br><br>
+            <h3>Département*</h3>
+            @Html.TextBoxFor(model => model.Anonce.Localisation, new {placeholder = "Localisation" })<br><br>
 
+            @Html.ValidationMessageFor(model => model.Anonce.Localisation)
+
+
+            <!-- Prix -->
+
+            <h3>Prix</h3>
+            @Html.TextBoxFor(model => model.Anonce.Prix, new {placeholder = "Prix" })<br><br>
+
+
+
+
+            <input type="submit" value="Publier" class="Publier" /><br><br>
+
+            <p>* : Champ obligatoire</p>
 
 
 
              <input type="submit" value="Publier" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
 
-                <p>* : Champ obligatoire</p>
 
-            
-            }
-    
+        }
+    </div>
+
+
+
+
 </div>
 

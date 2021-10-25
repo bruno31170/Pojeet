@@ -5,15 +5,9 @@
     ViewBag.ColorNav = "navbar-color";
 }
 
-
 @section stylesheets {
     <link rel="stylesheet" media="all" href="~/css/Profil.css">
 }
-
-
-
-
-
 
 
 <!--SECTION HERO-->
@@ -44,7 +38,9 @@
                     <div id="home2" role="tabpanel" aria-labelledby="home-tab"
                          class="tab-pane fade px-4 py-5 show active">
                         <div class="col-md-12">
-                            @using (Html.BeginForm())
+
+
+                            @using (Html.BeginForm("ModifierConsumer", "Profil", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 <div class="card mb-3">
                                     <div class="card-body">
@@ -54,10 +50,8 @@
                                                 <h6 class="mb-0">Nom</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*@Html.LabelFor(m => Model.Pseudo)*@
                                                 @Html.TextBoxFor(m => Model.Profil.Nom, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Nom)
-                                                @*<input type="text" class="form-control" value="bricolodudimanche">*@
                                             </div>
                                         </div>
                                         <hr>
@@ -66,10 +60,8 @@
                                                 <h6 class="mb-0">Prenom</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*@Html.LabelFor(m => Model.Pseudo)*@
                                                 @Html.TextBoxFor(m => Model.Profil.Prenom, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Prenom)
-                                                @*<input type="text" class="form-control" value="bricolodudimanche">*@
                                             </div>
                                         </div>
                                         <hr>
@@ -78,21 +70,8 @@
                                                 <h6 class="mb-0">Pseudo</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*@Html.LabelFor(m => Model.Pseudo)*@
                                                 @Html.TextBoxFor(m => Model.Pseudo, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Pseudo)
-                                                @*<input type="text" class="form-control" value="bricolodudimanche">*@
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row align-items-center">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Mot de Passe</h6>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value="***********">*@
-                                                @Html.TextBoxFor(m => Model.MotDePasse, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m => Model.MotDePasse)
                                             </div>
                                         </div>
                                         <hr>
@@ -101,8 +80,6 @@
                                                 <h6 class="mb-0">Email</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value=" test@gmail.com">*@
-                                                @*@Html.LabelFor(m => Model.Profil.Mail)*@
                                                 @Html.TextBoxFor(m => Model.Profil.Mail, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Mail)
                                             </div>
@@ -113,8 +90,6 @@
                                                 <h6 class="mb-0">Téléphone</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value="    0666470777">*@
-                                                @*@Html.LabelFor(m => Model.Profil.NumeroTelephone)*@
                                                 @Html.TextBoxFor(m => Model.Profil.NumeroTelephone, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.NumeroTelephone)
                                             </div>
@@ -125,9 +100,9 @@
                                                 <h6 class="mb-0">Date de naissance</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value="    0666470777">*@
-                                                @*@Html.LabelFor(m => Model.Profil.NumeroTelephone)*@
-                                                @Html.TextBoxFor(m => Model.Profil.DateDeNaissance, new { @class = "form-control" })
+
+                                                <input type="date" name="Profil.DateDeNaissance" value=@Convert.ToDateTime(Model.Profil.DateDeNaissance).Date.ToString("yyyy-MM-dd") class="form-control" />
+                                                @*@Html.TextBoxFor(m => Model.Profil.DateDeNaissance, new { Value = Convert.ToDateTime(Model.Profil.DateDeNaissance).Date.ToString("yyyy-MM-dd"), @type = "date", @class = "form-control" })*@
                                                 @Html.ValidationMessageFor(m => Model.Profil.DateDeNaissance)
                                             </div>
                                         </div>
@@ -137,8 +112,6 @@
                                                 <h6 class="mb-0">Rue</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value=" 12, rue Général de Gaulle">
-                                                    @Html.LabelFor(m => Model.Profil.Adresse)*@
                                                 @Html.TextBoxFor(m => Model.Profil.Adresse, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Adresse)
                                             </div>
@@ -149,7 +122,6 @@
                                                 <h6 class="mb-0">Ville</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value=" Paris">*@
                                                 @Html.TextBoxFor(m => Model.Profil.Ville, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Ville)
                                             </div>
@@ -160,8 +132,6 @@
                                                 <h6 class="mb-0">Code Postal</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value="75001">*@
-                                                @*<input type="text" class="form-control" value=" Paris">*@
                                                 @Html.TextBoxFor(m => Model.Profil.CodePostal, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.CodePostal)
                                             </div>
@@ -172,15 +142,17 @@
                                                 <h6 class="mb-0">Description</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                @*<input type="text" class="form-control" value=" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                                    enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                                    ut
-                                                    aliquip ex ea commodo consequat. Duis aute
-                                                    irure dolor in reprehenderit in voluptate velit esse">*@
                                                 @Html.TextBoxFor(m => Model.Profil.Description, new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Description)
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Photo de profil</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="file" id="pictureFile" name="pictureFile" />
                                             </div>
                                         </div>
                                         <hr>

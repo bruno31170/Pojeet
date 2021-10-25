@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
@@ -18,11 +21,13 @@ namespace Pojeet.Controllers
 
         private Dal dal;
         private DalProfil dalProfil;
+        private IWebHostEnvironment _env;
 
-        public ProfilController()
+        public ProfilController(IWebHostEnvironment env)
         {
             this.dal = new Dal();
             this.dalProfil = new DalProfil();
+            _env = env;
         }
 
         public IActionResult Index(string tabId)
@@ -35,7 +40,7 @@ namespace Pojeet.Controllers
                 viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
                 viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
 
-                viewModel.NoteGlobale=dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
+                viewModel.NoteGlobale = dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
 
                 viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
 
@@ -86,19 +91,6 @@ namespace Pojeet.Controllers
 
         public IActionResult ModifierConsumer()
         {
-            //if (id != 0)
-            //{
-            //    using (IDal dal = new Dal())
-            //    {
-            //        CompteConsumer consumer = dal.ObtientTousConsumer().Where(r => r.Id == id).FirstOrDefault();
-            //        if (consumer == null)
-            //        {
-            //            return View("Error");
-            //        }
-            //        return View(consumer);
-            //    }
-            //}
-            //return View("Error");
 
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
@@ -110,20 +102,23 @@ namespace Pojeet.Controllers
         }
 
         [HttpPost]
-        public IActionResult ModifierConsumer(CompteConsumer consumer)
+        public IActionResult ModifierConsumer(CompteConsumer consumer, IFormFile pictureFile)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View("ModifierConsumer");
-            //}
-
 
             if (consumer.Id != 0)
             {
                 using (Dal ctx = new Dal())
                 {
-                    ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
+                    ctx.ModifierConsumer(consumer.Id, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
+            consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, pictureFile);
+
+                    if (pictureFile != null && pictureFile.Length > 0)
+                    {
+                        string path3 = _env.WebRootPath + "/media/profil/" + pictureFile.FileName;
+                        FileStream stream3 = new FileStream(path3, FileMode.Create);
+                        pictureFile.CopyTo(stream3);
+                    }
+
                     return RedirectToAction("Index");
                 }
             }
@@ -132,7 +127,6 @@ namespace Pojeet.Controllers
                 return View("Error");
             }
         }
-
 
 
         public IActionResult SupprimerConsumer()

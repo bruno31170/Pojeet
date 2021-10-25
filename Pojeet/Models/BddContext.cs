@@ -18,8 +18,6 @@ namespace Pojeet.Models
         public DbSet<Messagerie> Messagerie { get; set; }
         public DbSet<Conversation> Conversation { get; set; }
         public DbSet<Avis> Avis { get; set; }
-
-
         public DbSet<Rib> Rib { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Paiement> Paiement { get; set; }
@@ -27,18 +25,13 @@ namespace Pojeet.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-
            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-
-
         }
 
 
         public void InitializeDb()
         {
-
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
@@ -261,7 +254,7 @@ namespace Pojeet.Models
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 2
 
-                });
+            });
 
             this.Avis.AddRange(
            new Avis
@@ -291,9 +284,6 @@ namespace Pojeet.Models
                 ProfilId = 2
             });
 
-
-
-
             //RIB
             this.Rib.AddRange(
                 new Rib
@@ -315,7 +305,7 @@ namespace Pojeet.Models
                     Etat = 0,
                 });
 
-           this.SaveChanges();
+            this.SaveChanges();
         }
     }
 }

@@ -19,13 +19,11 @@ namespace Pojeet.Models
         [Display(Name = "Mot de passe")]
         public string MotDePasse { get; set; }
 
-
         public int ProfilId { get; set; }
         //[Required]
         public virtual Profil Profil { get; set; }
         public Statut statut { get; set; }
 
-        
 
         public enum Statut
         {

@@ -20,15 +20,16 @@ namespace Pojeet.Controllers
     {
 
         private Dal dal;
-
         private IWebHostEnvironment _env;
 
+        //CONSTRUCTEUR
         public LoginController(IWebHostEnvironment env)
         {
             this.dal = new Dal();
             _env = env;
         }
 
+        // PAGE DE CONNEXION
         public IActionResult Index()
         {
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
@@ -39,7 +40,6 @@ namespace Pojeet.Controllers
             }
             return View(viewModel);
         }
-
         [HttpPost]
         public IActionResult Index(UtilisateurViewModel viewModel, string returnUrl)
         {
@@ -63,12 +63,16 @@ namespace Pojeet.Controllers
 
                     return Redirect("../Profil/Index");
                 }
-                ModelState.AddModelError("Utilisateur.Pseudo", "Pseudo et/ou mot de passe incorrect(s)");
+                //ModelState.AddModelError("Utilisateur.Pseudo", "Pseudo et/ou mot de passe incorrect(s)");
+                viewModel.ErrorMessage = "Pseudo et/ou mot de passe incorrect(s)";
+                return View(viewModel);
             }
             return View(viewModel);
         }
 
 
+
+        //CREATION DU COMPTE CONSUMER
         public IActionResult CreerCompte()
         {
             return View();
@@ -106,44 +110,7 @@ namespace Pojeet.Controllers
 
 
 
-        //public IActionResult ModifierConsumer()
-        //{
-
-        //    UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
-        //    if (viewModel.Authentifie)
-        //    {
-        //        CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-        //        return View(compteConsumer);
-        //    }
-        //    return View(viewModel);
-        //}
-
-        //[HttpPost]
-        //public IActionResult ModifierConsumer(CompteConsumer consumer)
-        //{
-        //    //if (!ModelState.IsValid)
-        //    //{
-        //    //    return View("ModifierConsumer");
-        //    //}
-
-
-        //    if (consumer.Id != 0)
-        //    {
-        //        using (Dal ctx = new Dal())
-        //        {
-        //            ctx.ModifierConsumer(consumer.Id, consumer.MotDePasse, consumer.Pseudo, consumer.Profil.Nom, consumer.Profil.Prenom, consumer.Profil.DateDeNaissance,
-        //    consumer.Profil.Adresse, consumer.Profil.Ville, consumer.Profil.CodePostal, consumer.Profil.Pays, consumer.Profil.Mail, consumer.Profil.NumeroTelephone, consumer.Profil.Description, consumer.Profil.Photo);
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return View("Error");
-        //    }
-        //}
-
-
-
+        //DECONNEXION
         public ActionResult Deconnexion()
         {
             HttpContext.SignOutAsync();
@@ -151,6 +118,8 @@ namespace Pojeet.Controllers
         }
 
 
+
+        //CREATIN DU COMPTE HELPER 
         [HttpPost]
         public IActionResult CreerHelper(CompteProvider compteProvider)
         {
@@ -169,7 +138,6 @@ namespace Pojeet.Controllers
             }
 
         }
-
         public IActionResult CreerHelper()
         {
 

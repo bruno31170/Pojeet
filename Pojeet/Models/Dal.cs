@@ -142,7 +142,6 @@ namespace Pojeet.Models
 
             CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
-
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
             return consumer.Id;
@@ -153,8 +152,6 @@ namespace Pojeet.Models
         {
             string motDePasse = EncodeMD5(password);
             CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
-            //CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
-            //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
             return user;
         }
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -30,6 +30,7 @@ namespace Pojeet.Models
         }
 
 
+
         public List<Annonce> RechercherAnnonce(string titreAnnonce)
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
@@ -47,6 +48,7 @@ namespace Pojeet.Models
             return annonce;
 
         }
+
 
     }
 }

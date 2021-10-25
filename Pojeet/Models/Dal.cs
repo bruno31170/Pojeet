@@ -218,7 +218,15 @@ namespace Pojeet.Models
         {
             return _context.CompteProvider.Where(c => c.CompteConsumerId == id).Include(c => c.Rib).FirstOrDefault();
         }
+        public CompteProvider ObtenirHelper(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.ObtenirHelper(id);
+            }
+            return null;
 
-
+        }
     }
 }

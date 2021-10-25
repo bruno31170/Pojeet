@@ -29,8 +29,8 @@ namespace Pojeet.Models
         {
 
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+           //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
 
         }
@@ -68,12 +68,27 @@ namespace Pojeet.Models
                 Prenom = "Cécile",
                 DateDeNaissance = "12/12/2020",
                 Adresse = "Boulevard Rocheplatte",
-                Ville = "Orléans",
+                Ville = "Paris",
                 CodePostal = "45000",
                 Pays = 0,
                 Mail = "CécileLepillouer@gmail.com",
                 NumeroTelephone = 6257,
                 Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
+            },
+            new Profil
+            {
+                Id = 3,
+                Description = "",
+                Nom = "Ikonnikova",
+                Prenom = "Evgeniia",
+                DateDeNaissance = "12/12/1985",
+                Adresse = "3000 route de Greasque",
+                Ville = "Gardanne",
+                CodePostal = "13120",
+                Pays = 0,
+                Mail = "evgeniya@mail.ru",
+                NumeroTelephone = 625785402,
+                Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
             });
 
             //ANNONCE
@@ -120,6 +135,21 @@ namespace Pojeet.Models
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
                 ProfilId = 2,
+            },
+                new Annonce
+                {
+                    Id = 4,
+                    TypeDeAnnonce = TypeAnnonce.Service,
+                    TitreAnnonce = "Réparation voiture",
+                    Description = "Je vous propose mes services pour l'entretien ( vidange avec filtres,...), passage à la valise sur tout type de voiture et changement de pièces automobile ( remplacement de pièces du train roulant, plaquettes,..), n'hésiter pas à me demander.",
+                    DateParution = DateTime.Now,
+                    Localisation = "13000",
+                    DateButoir = DateTime.Today,
+                    Prix = 50,
+                    CategorieDeAnnonce = CategorieAnnonce.Roue,
+                    ProfilId = 2,
+
+                
 
             });
 
@@ -139,6 +169,13 @@ namespace Pojeet.Models
                  Pseudo = "tata",
                  MotDePasse = Dal.EncodeMD5("tatata"),
                  ProfilId = 2,
+             },
+             new CompteConsumer
+             {
+                 Id = 3,
+                 Pseudo = "Evgeniia",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 3
              }
             );
 
@@ -231,10 +268,28 @@ namespace Pojeet.Models
            {
                Id = 1,
                date = new DateTime(2004, 11, 20, 12, 1, 10),
-               commentaire = "Super service!",
+               commentaire = "Cécile est un bon locataire d outillage, il nous a rendu le materiel en bon etat et dans le temps convenue. Il est tres sympathique, je vous le recommande.",
                note = 4,
                CompteConsumerId = 1,
-               ProfilId = 2});
+               ProfilId = 2},
+            new Avis
+            {
+                Id = 2,
+                date = new DateTime(2004, 11, 20, 12, 1, 10),
+                commentaire = "Super service!",
+                note = 5,
+                CompteConsumerId = 1,
+                ProfilId = 2
+            },
+            new Avis
+            {
+                Id = 3,
+                date = new DateTime(2004, 11, 20, 12, 1, 10),
+                commentaire = "Bien",
+                note = 4,
+                CompteConsumerId = 3,
+                ProfilId = 2
+            });
 
 
 

@@ -195,11 +195,10 @@ namespace Pojeet.Controllers
                     FileStream stream3 = new FileStream(path3, FileMode.Create);
                     pictureFile.CopyTo(stream3);
                 }
-
                 return Redirect("../Profil/Index");
             }
-
         }
+
         public IActionResult CreerHelper()
         {
             ProviderViewModel viewModel = new ProviderViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
@@ -217,9 +216,7 @@ namespace Pojeet.Controllers
                 return View(viewModel);
             }
             return View(viewModel);
-
         }
-
     }
 }
 

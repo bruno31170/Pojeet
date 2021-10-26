@@ -20,7 +20,9 @@
 
 
 
-
+    if (!String.IsNullOrEmpty(Request.QueryString["error"])) {
+        lblError.Text = "Whatever text you like.";
+    }
 
 
 });

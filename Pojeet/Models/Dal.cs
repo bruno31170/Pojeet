@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +87,7 @@ namespace Pojeet.Models
             return messagerieConversation.Messagerie;
         }
 
+
         public List<MessagerieConversation> ObtientMessagerieConversation(int id)
         {
             List<MessagerieConversation> messagerieConversation = _context.MessagerieConversation.Where(r => r.ConversationId == id).Include(r => r.Conversation).Include(r => r.Messagerie).ToList();
@@ -94,6 +96,7 @@ namespace Pojeet.Models
 
 
         public void AjouterMessage(string textmessage, int profilId, int conversationId, Boolean messageProposition)
+
         {
 
             Message message = new Message
@@ -124,52 +127,23 @@ namespace Pojeet.Models
         }
 
 
-        public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
-        {
-            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
-
-            if (consumer != null)
-            {
-                consumer.MotDePasse = motdepasse;
-                consumer.Pseudo = pseudo;
-                consumer.Profil.Nom = nom;
-                consumer.Profil.Prenom = prenom;
-                consumer.Profil.DateDeNaissance = dateNaissance;
-                consumer.Profil.Adresse = adresse;
-                consumer.Profil.Ville = ville;
-                consumer.Profil.CodePostal = code_postal;
-                consumer.Profil.Pays = pays;
-                consumer.Profil.Mail = mail;
-                consumer.Profil.NumeroTelephone = numeroTelephone;
-                consumer.Profil.Description = description;
-                consumer.Profil.Photo = photo;
-                _context.SaveChanges();
-            }
-
-        }
-
-        public void SuppressionConsumer(int id)
-        {
-            CompteConsumer consumer = _context.CompteConsumer.Find(id);
-            if (consumer != null)
-            {
-                _context.CompteConsumer.Remove(consumer);
-                _context.SaveChanges();
-            }
-        }
 
         // pour l'authentification
-
         public static string EncodeMD5(string motDePasse)
         {
             string motDePasseSel = "HelpMyCar" + motDePasse + "ASP.NET MVC";
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
         }
+        public CompteConsumer Authentifier(string pseudo, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            return user;
+        }
 
 
         public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
         {
             string motDePasse = EncodeMD5(motdepasse);
 
@@ -187,22 +161,62 @@ namespace Pojeet.Models
                 Description = description,
 
             };
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
+            if (photo != null)
+            {
+                profil.Photo = photo.FileName;
+            }
+
+            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
             return consumer.Id;
         }
 
-
-        public CompteConsumer Authentifier(string pseudo, string password)
+        public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
+          string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
         {
-            string motDePasse = EncodeMD5(password);
-            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
-            //CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
-            //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
-            return user;
+            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
+
+            if (consumer != null)
+            {
+                consumer.Pseudo = pseudo;
+                consumer.Profil.Nom = nom;
+                consumer.Profil.Prenom = prenom;
+                consumer.Profil.DateDeNaissance = dateNaissance;
+                consumer.Profil.Adresse = adresse;
+                consumer.Profil.Ville = ville;
+                consumer.Profil.CodePostal = code_postal;
+                consumer.Profil.Pays = pays;
+                consumer.Profil.Mail = mail;
+                consumer.Profil.NumeroTelephone = numeroTelephone;
+                consumer.Profil.Description = description;
+                _context.SaveChanges();
+            }
+
+            if (photo != null)
+            {
+                consumer.Profil.Photo = photo.FileName;
+                _context.SaveChanges();
+            }
+            else if (photo == null)
+            {
+                consumer.Profil.Photo = consumer.Profil.Photo;
+                _context.SaveChanges();
+            }
+
+
+        }
+
+        public void SuppressionConsumer(int id)
+        {
+            CompteConsumer consumer = _context.CompteConsumer.Find(id);
+            if (consumer != null)
+            {
+                _context.CompteConsumer.Remove(consumer);
+                _context.SaveChanges();
+            }
         }
 
         public CompteConsumer ObtenirConsumer(int id)
@@ -216,7 +230,7 @@ namespace Pojeet.Models
         public List<Avis> ObtenirListeAvis(int id)
         {
             Profil profil = ObtenirConsumer(id).Profil;
-            return  _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();          
+            return _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();
         }
         public int ObtenirNoteGlobale(int id)
         {
@@ -232,6 +246,7 @@ namespace Pojeet.Models
             {
                 noteGlobale = noteGlobale / i;
             }
+
             return noteGlobale;
 
         }

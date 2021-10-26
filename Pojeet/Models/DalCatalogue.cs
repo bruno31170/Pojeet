@@ -12,19 +12,23 @@ namespace Pojeet.Models
     public class DalCatalogue : IDalCatalogue
     {
         private BddContext _context;
+
         public DalCatalogue()
         {
             _context = new BddContext();
         }
+
         public void Dispose()
         {
             _context.Dispose();
         }
+
         public List<Annonce> ObtientAnnonce()
         {
             List<Annonce> listeAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             return listeAnnonce;
         }
+
         public CompteConsumer ObtientConsumer(int id)
         {
             CompteConsumer consumer = this._context.CompteConsumer.FirstOrDefault(c => c.Id == id);
@@ -40,9 +44,12 @@ namespace Pojeet.Models
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
             List<Annonce> annonce = ObtientAnnonce();
+
             string MotRechercher = uvm.Recherche.Rechercher;
             string Departement = uvm.Recherche.Localisation;
            // string TypeRecherche = uvm.Recherche.TypeDeRecherche;
+
+
             foreach (var item in annonce)
             {   if (MotRechercher != null && Departement != null)
                 {
@@ -68,14 +75,8 @@ namespace Pojeet.Models
             }
             //rechercheAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             return rechercheAnnonce;
-        }
-        public Annonce ObtientUneAnnonnce(int id)
-        {
-            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
-            return annonce;
 
         }
-
 
         
 

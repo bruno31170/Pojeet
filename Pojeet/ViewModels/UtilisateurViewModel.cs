@@ -13,9 +13,9 @@ namespace Pojeet.ViewModels
 
         public Annonce Anonce { get; set; }
         public Profil Profil { get; set; }
-        
 
 
+        public string ErrorMessage { get; set; }
 
         public List<Avis> ListeAvis { get; set; }
         public int NoteGlobale { get; set; }

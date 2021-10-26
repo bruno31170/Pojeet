@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Pojeet.Controllers
 {
+    [Authorize]
+
     public class CatalogueController : Controller
     {
         private IDalCatalogue dal;
@@ -37,6 +39,12 @@ namespace Pojeet.Controllers
 
             List<Annonce> listeAnnonce = dal.RechercherAnnonce(uvm);
             return View(new ProfilViewModel { Annonce = listeAnnonce});
+
+
+          /*      List<Annonce> listeAnnonce = dal.ObtientAnnonce();
+                return View(new ProfilViewModel {Annonce=listeAnnonce,CompteConsumer= consumer});*/
+            
+           
 
         }
 

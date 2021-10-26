@@ -1,4 +1,4 @@
-﻿@*@model List<Pojeet.Models.Transaction>*@
+﻿
 @model Pojeet.ViewModels.TransactionViewModel
 @{
     Layout = "_LayoutAdmin";
@@ -98,22 +98,21 @@
                     @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
                     {
 
-
-                        <td><a class="popup-open" href="">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
                     }
                     else
                     {
-                        <td><a class="popup-open" href="">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
                     }
                     @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
                     {
 
 
-                        <td><a class="popup-open" href="">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
                     }
                     else
                     {
-                        <td><a class="popup-open" href="">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
                     }
 
                     <td>@transaction.Montant</td>
@@ -129,83 +128,7 @@
                     </td>
                 </tr>
                 }
-                <tr>
-                    <th scope="row"><a href="commande.html">102</a></th>
-                    <td>23/09/2021</td>
-                    <td><a class="popup-open" href="">Carpentier Nicola</a></td>
-                    <td>89 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">103</a></th>
-                    <td>29/09/2021</td>
-                    <td><a class="popup-open" href="">Roux Michael</a></td>
-                    <td>142 €</td>
-                    <td>Termine</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">101</a></th>
-                    <td>12/09/2021</td>
-                    <td><a class="popup-open" href=""> Lopez Catrin</a></td>
-                    <td>150 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">102</a></th>
-                    <td>23/09/2021</td>
-                    <td><a class="popup-open" href="">Carpentier Nicola</a></td>
-                    <td>89 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">103</a></th>
-                    <td>29/09/2021</td>
-                    <td><a class="popup-open" href="">Roux Michael</a></td>
-                    <td>142 €</td>
-                    <td>Termine</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">106</a></th>
-                    <td>12/09/2021</td>
-                    <td><a class="popup-open" href=""> Lopez Catrin</a></td>
-                    <td>150 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">104</a></th>
-                    <td>23/09/2021</td>
-                    <td><a class="popup-open" href="">Aline Blaïn</a></td>
-                    <td>89 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">105</a></th>
-                    <td>29/09/2021</td>
-                    <td><a class="popup-open" href="">Roux Michael</a></td>
-                    <td>142 €</td>
-                    <td>Termine</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">106</a></th>
-                    <td>12/09/2021</td>
-                    <td><a class="popup-open" href=""> Jeanne Delétang</a></td>
-                    <td>150 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">1108</a></th>
-                    <td>23/09/2021</td>
-                    <td><a class="popup-open" href="">Carpentier Nicola</a></td>
-                    <td>89 €</td>
-                    <td>Valide</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="commande.html">112</a></th>
-                    <td>29/09/2021</td>
-                    <td><a class="popup-open" href="">Clémence Rioual</a></td>
-                    <td>142 €</td>
-                    <td>Termine</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
@@ -219,7 +142,7 @@
             <div class="w-100 mb-3 user_contact message-box border-e">
                 <div class="flex-row align-items-center pl-4 mb-2">
                     <img class="user_img mr-3" src="img/avatar5.png" alt="">
-                    <a class="font-size-16 bold" href="">Catrin Lopez</a>
+                    <a class="font-size-16 bold" href="">@*@Model.consumer.Profil.Nom @Model.consumer.Profil.Preno*@m</a>
                 </div>
                 <div class="flex-row pl-2">
                     <div class="flex-col col">
@@ -227,15 +150,15 @@
                         <div class="flex-col">
                             <div class="flex-row">
                                 <span>Pseudo</span>
-                                <h5>Catrin89</h5>
+                                <h5>@*@Model.consumer.Pseudo*@</h5>
                             </div>
                             <div class="flex-row">
                                 <span>Email</span>
-                                <h5>catrin89@gmail.ru</h5>
+                                <h5>@*@Model.consumer.Profil.Mail*@</h5>
                             </div>
                             <div class="flex-row">
                                 <span>Telephone</span>
-                                <h5>0665245129</h5>
+                                <h5>+33 @*@Model.consumer.Profil.NumeroTelephone*@</h5>
                             </div>
                         </div>
 

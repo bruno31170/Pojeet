@@ -8,5 +8,6 @@ namespace Pojeet.ViewModels
         public CompteConsumer CompteConsumer { get; set; }
         public CompteProvider CompteProvider { get; set; }
         public Rib rib { get; set; }
+        public bool Authentifie { get; set; }
     }
 }

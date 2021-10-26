@@ -206,8 +206,14 @@ namespace Pojeet.Controllers
             if (viewModel.Authentifie)
             {
                 viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-                viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
-
+                if (viewModel.CompteConsumer == null)
+                {
+                    viewModel.CompteProvider = null;
+                }
+                else
+                {
+                    viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
+                }
                 return View(viewModel);
             }
             return View(viewModel);

@@ -13,7 +13,7 @@
 @*CONSUMER CONNECTE ET HELPER*@
 @if (@Model.CompteConsumer != null && @Model.CompteProvider != null && @Model.CompteConsumer.Id == @Model.CompteProvider.CompteConsumerId)
 {
-    <div class="image-container mt-5 pt-5" style="background: url(assets/img/section_inscription.svg) bottom center; background-size: cover">
+    <div class="image-container mt-5 pt-5" style="background: url('@Url.Content("~/img/section_inscription_helper.svg")' bottom center; background-size: cover">
         <div class="d-flex justify-content-center">
             <div class="text-center mt-5 pt-5">
                 <h3> Vous êtes déjà Helper !</h3>

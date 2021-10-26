@@ -24,7 +24,6 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 </head>
 
-
 <body>
     <div class="bg-white">
         <div class="fixed-top">
@@ -42,18 +41,11 @@
                 <div class="collapse navbar-collapse" id="nav_site_help">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item d-flex align-items-center">
-
-
                             @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "nav-link nav-link-hover-green rounded btnGreen", @style = "color:white" })
-                            @*<a class="  nav-link nav-link-hover-green rounded btnGreen" href="" style="color:white">
-                                    Trouver une annonce
-                                </a>*@
-
                         </li>
                         <li class="nav-item border-right ml-3 mr-1"></li>
                         <li class="nav-item d-flex align-items-center">
-                            @Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
-                            @*<a class=" nav-link nav-link-hover-black rounded" href="">Devenir Helper</a>*@
+                            @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             @Html.ActionLink("Connexion", "Index", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })

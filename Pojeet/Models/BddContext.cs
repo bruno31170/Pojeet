@@ -25,8 +25,8 @@ namespace Pojeet.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
         }
 
 
@@ -142,9 +142,9 @@ namespace Pojeet.Models
                     CategorieDeAnnonce = CategorieAnnonce.Roue,
                     ProfilId = 2,
 
-                
 
-            });
+
+                });
 
             //CONSUMER
             this.CompteConsumer.AddRange(
@@ -245,12 +245,14 @@ namespace Pojeet.Models
 
             this.MessagerieConversation.AddRange(
             new MessagerieConversation
-            {   Id=1,
-                MessagerieId=1,
-                ConversationId=1,
+            {
+                Id = 1,
+                MessagerieId = 1,
+                ConversationId = 1,
             },
             new MessagerieConversation
-            {   Id=2,
+            {
+                Id = 2,
                 MessagerieId = 2,
                 ConversationId = 1,
             },
@@ -302,7 +304,8 @@ namespace Pojeet.Models
                commentaire = "Cécile est un bon locataire d outillage, il nous a rendu le materiel en bon etat et dans le temps convenue. Il est tres sympathique, je vous le recommande.",
                note = 4,
                CompteConsumerId = 1,
-               ProfilId = 2},
+               ProfilId = 2
+           },
             new Avis
             {
                 Id = 2,

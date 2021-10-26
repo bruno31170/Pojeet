@@ -9,13 +9,7 @@
 
 
 
-
-
-
 <div class="annonce_form">
-
-
-
 
     <!-- Annonce -->
 
@@ -36,7 +30,6 @@
 
 
 
-            
 
             <!-- Catégorie --><br>
 
@@ -83,7 +76,7 @@
             <!-- Département -->
 
             <h3>Département*</h3>
-            @Html.TextBoxFor(model => model.Anonce.Localisation, new {placeholder = "Localisation" })<br><br>
+            @Html.TextBoxFor(model => model.Anonce.Localisation, new { placeholder = "Localisation" })<br><br>
 
             @Html.ValidationMessageFor(model => model.Anonce.Localisation)
 
@@ -91,7 +84,7 @@
             <!-- Prix -->
 
             <h3>Prix</h3>
-            @Html.TextBoxFor(model => model.Anonce.Prix, new {placeholder = "Prix" })<br><br>
+            @Html.TextBoxFor(model => model.Anonce.Prix, new { placeholder = "Prix" })<br><br>
 
 
 
@@ -102,7 +95,7 @@
 
 
 
-             <input type="submit" value="Publier" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
+            <input type="submit" value="Publier" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
 
 
         }

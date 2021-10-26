@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,10 @@ namespace Pojeet.Models
         {
             return _context.CompteConsumer.Include(c => c.Profil).ToList();
         }
-        public List<Conversation> ObtientToutesLesConversations(int id)
+        public Conversation ObtientLaConversation(int id)
         {
-            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c => c.Messages).Include(c => c.Annonce).Include(c => c.Auteur_Message.Profil).ToList();
-            return listeConversations;
+            Conversation conv = _context.Conversation.Where(r => r.Id == id).Include(c => c.Messages).Include(c => c.Annonce).Include(c => c.Auteur_Message.Profil).FirstOrDefault();
+            return conv;
         }
 
         public List<Message> ObtientTousLesMessages(int id)
@@ -39,15 +40,63 @@ namespace Pojeet.Models
             var messages = listeMessages.OrderBy(c => c.Id).ToList();
             return messages;
         }
+        public List<Conversation> ObtientLesConversations(int id)
+        {
+            List<Conversation> listeConversations = new List<Conversation>();
+            List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).ToList();
+            foreach (var listeMessagerieConversation in ListeMessagerieConversation)
+            { listeConversations.Add(listeMessagerieConversation.Conversation); }
+            //listeConversations.OrderBy(c => c.DateCreation).ToList();
+            return listeConversations;
+        }
+
+        public (int,List<Conversation>) ObtientLesConversations(int id, String motCle, Messagerie messagerie)
+        {
+            List<Conversation> listeConversations = new List<Conversation>();
+            List<Conversation> listeConversationsRecherchees = new List<Conversation>();
+            List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation.Messages).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).ToList();
+            foreach (var listeMessagerieConversation in ListeMessagerieConversation)
+            { 
+                listeConversations.Add(listeMessagerieConversation.Conversation); 
+            }
+           foreach(var conversation in listeConversations)
+            {
+                if (conversation.Annonce.ProfilId==messagerie.ProfilId)
+                {
+                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle))
+                    {
+                        listeConversationsRecherchees.Add(conversation);
+                    }
+                }
+                else
+                {
+                    if (conversation.Annonce.profil.Prenom.Contains(motCle))
+                    {
+                        listeConversationsRecherchees.Add(conversation);
+                    }
+                }
+            }
+            int id2 = listeConversationsRecherchees.First().Id;
+            //listeConversations.OrderBy(c => c.DateCreation).ToList();
+            return (id2,listeConversationsRecherchees);
+        }
+
         public Messagerie ObtientLaMessagerie(int id)
         {
-            Messagerie messagerie = _context.Messagerie.Where(r => r.Id == id).Include(c => c.Profil).Include(c => c.Historique).FirstOrDefault();
-            return messagerie;
+            MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
+            return messagerieConversation.Messagerie;
         }
 
 
+        public List<MessagerieConversation> ObtientMessagerieConversation(int id)
+        {
+            List<MessagerieConversation> messagerieConversation = _context.MessagerieConversation.Where(r => r.ConversationId == id).Include(r => r.Conversation).Include(r => r.Messagerie).ToList();
+            return messagerieConversation;
+        }
 
-        public void AjouterMessage(string textmessage, int profilId, int conversationId)
+
+        public void AjouterMessage(string textmessage, int profilId, int conversationId, Boolean messageProposition)
+
         {
 
             Message message = new Message
@@ -55,11 +104,22 @@ namespace Pojeet.Models
                 message = textmessage,
                 Date = DateTime.Now,
                 ProfilId = profilId,
-                ConversationId = conversationId
+                ConversationId = conversationId,
+                MessageProposition = messageProposition
             };
             _context.Message.Add(message);
             _context.SaveChanges();
         }
+        public void RemplacerMessage(int messageId, Boolean messageProposition)
+        {
+            Message message = _context.Message.Include(c => c.Profil).Where(c => c.Id == messageId).FirstOrDefault();
+
+            if (message != null)
+            {
+                message.MessageProposition = messageProposition;
+            };
+        }
+
 
         public void Dispose()
         {
@@ -67,52 +127,23 @@ namespace Pojeet.Models
         }
 
 
-        public void ModifierConsumer(int id, string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
-        {
-            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
-
-            if (consumer != null)
-            {
-                consumer.MotDePasse = motdepasse;
-                consumer.Pseudo = pseudo;
-                consumer.Profil.Nom = nom;
-                consumer.Profil.Prenom = prenom;
-                consumer.Profil.DateDeNaissance = dateNaissance;
-                consumer.Profil.Adresse = adresse;
-                consumer.Profil.Ville = ville;
-                consumer.Profil.CodePostal = code_postal;
-                consumer.Profil.Pays = pays;
-                consumer.Profil.Mail = mail;
-                consumer.Profil.NumeroTelephone = numeroTelephone;
-                consumer.Profil.Description = description;
-                consumer.Profil.Photo = photo;
-                _context.SaveChanges();
-            }
-
-        }
-
-        public void SuppressionConsumer(int id)
-        {
-            CompteConsumer consumer = _context.CompteConsumer.Find(id);
-            if (consumer != null)
-            {
-                _context.CompteConsumer.Remove(consumer);
-                _context.SaveChanges();
-            }
-        }
 
         // pour l'authentification
-
         public static string EncodeMD5(string motDePasse)
         {
             string motDePasseSel = "HelpMyCar" + motDePasse + "ASP.NET MVC";
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
         }
+        public CompteConsumer Authentifier(string pseudo, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            return user;
+        }
 
 
         public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, string photo)
+           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
         {
             string motDePasse = EncodeMD5(motdepasse);
 
@@ -130,22 +161,62 @@ namespace Pojeet.Models
                 Description = description,
 
             };
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
+            if (photo != null)
+            {
+                profil.Photo = photo.FileName;
+            }
+
+            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
 
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
             return consumer.Id;
         }
 
-
-        public CompteConsumer Authentifier(string pseudo, string password)
+        public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
+          string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
         {
-            string motDePasse = EncodeMD5(password);
-            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
-            //CompteConsumer user = this._context.CompteConsumer.FirstOrDefault(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse);
-            //this._bddContext.Utilisateurs.FirstOrDefault(u => u.Prenom == prenom && u.Password == motDePasse);
-            return user;
+            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
+
+            if (consumer != null)
+            {
+                consumer.Pseudo = pseudo;
+                consumer.Profil.Nom = nom;
+                consumer.Profil.Prenom = prenom;
+                consumer.Profil.DateDeNaissance = dateNaissance;
+                consumer.Profil.Adresse = adresse;
+                consumer.Profil.Ville = ville;
+                consumer.Profil.CodePostal = code_postal;
+                consumer.Profil.Pays = pays;
+                consumer.Profil.Mail = mail;
+                consumer.Profil.NumeroTelephone = numeroTelephone;
+                consumer.Profil.Description = description;
+                _context.SaveChanges();
+            }
+
+            if (photo != null)
+            {
+                consumer.Profil.Photo = photo.FileName;
+                _context.SaveChanges();
+            }
+            else if (photo == null)
+            {
+                consumer.Profil.Photo = consumer.Profil.Photo;
+                _context.SaveChanges();
+            }
+
+
+        }
+
+        public void SuppressionConsumer(int id)
+        {
+            CompteConsumer consumer = _context.CompteConsumer.Find(id);
+            if (consumer != null)
+            {
+                _context.CompteConsumer.Remove(consumer);
+                _context.SaveChanges();
+            }
         }
 
         public CompteConsumer ObtenirConsumer(int id)
@@ -159,7 +230,7 @@ namespace Pojeet.Models
         public List<Avis> ObtenirListeAvis(int id)
         {
             Profil profil = ObtenirConsumer(id).Profil;
-            return  _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();          
+            return _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();
         }
         public int ObtenirNoteGlobale(int id)
         {
@@ -171,10 +242,15 @@ namespace Pojeet.Models
                 noteGlobale = (noteGlobale + avis.note);
                 i++;
             }
-            noteGlobale = noteGlobale/i;
+            if (i != 0)
+            {
+                noteGlobale = noteGlobale / i;
+            }
+
             return noteGlobale;
 
         }
+
 
 
         public CompteConsumer ObtenirConsumer(string idStr)
@@ -228,5 +304,40 @@ namespace Pojeet.Models
             return null;
 
         }
+        public void CreerTransaction(double montant, int annonceId, int profilId)
+        {
+
+            Transaction transaction = new Transaction
+            {
+                Date = DateTime.Now,
+                AnnonceId = annonceId,
+                Montant = montant,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 1
+
+            };
+            _context.Transactions.Add(transaction);
+            _context.SaveChanges();
+        }
+
+        public void CreerPaiement(int annonceId)
+        {
+            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault();
+            Paiement paiement = new Paiement
+            {
+                Date = DateTime.Now,
+                TransactionMontant = transaction.Montant,
+                TransactionReference = transaction.Reference,
+            };
+            _context.Paiement.Add(paiement);
+            _context.SaveChanges();
+        }
+
+        public void SupprimerTransaction(int annonceId)
+        {
+            _context.Transactions.RemoveRange(_context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault());
+            _context.SaveChanges();
+        }
+
     }
 }

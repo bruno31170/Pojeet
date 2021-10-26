@@ -18,32 +18,23 @@ namespace Pojeet.Models
         public DbSet<Messagerie> Messagerie { get; set; }
         public DbSet<Conversation> Conversation { get; set; }
         public DbSet<Avis> Avis { get; set; }
-
-
         public DbSet<Rib> Rib { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Paiement> Paiement { get; set; }
-<<<<<<< Updated upstream
-
-=======
-        public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
         public DbSet<Aide> Aide { get; set; }
->>>>>>> Stashed changes
+        public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
+        
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-
            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-
-
         }
 
 
         public void InitializeDb()
         {
-
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
@@ -89,7 +80,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "CécileLepillouer@gmail.com",
                 NumeroTelephone = 6257,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
+                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
             },
             new Profil
             {
@@ -104,7 +95,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
+                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
             });
 
             //ANNONCE
@@ -177,7 +168,7 @@ namespace Pojeet.Models
                 Pseudo = "Toto",
                 MotDePasse = Dal.EncodeMD5("lolilol"),
                 ProfilId = 1,
-                statut = Models.CompteConsumer.Statut.Actif
+
             },
              new CompteConsumer
              {
@@ -239,18 +230,56 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                MessagerieId = 1,
                 AnnonceId = 1
 
-            });
+            },
+             new Conversation
+             {
+                 Id = 2,
+                 CompteConsumerId = 3,
+                 AnnonceId = 1
+
+             });
             this.Messagerie.AddRange(
             new Messagerie
             {
                 Id = 1,
+                ProfilId = 1
+            },
+            new Messagerie
+            {
+                Id = 2,
                 ProfilId = 2
+            },
+            new Messagerie
+            {
+                Id = 3,
+                ProfilId = 3
             });
 
-
+            this.MessagerieConversation.AddRange(
+            new MessagerieConversation
+            {   Id=1,
+                MessagerieId=1,
+                ConversationId=1,
+            },
+            new MessagerieConversation
+            {   Id=2,
+                MessagerieId = 2,
+                ConversationId = 1,
+            },
+            new MessagerieConversation
+            {
+                Id = 3,
+                MessagerieId = 2,
+                ConversationId = 2,
+            },
+             new MessagerieConversation
+             {
+                 Id = 4,
+                 MessagerieId = 3,
+                 ConversationId = 2,
+             });
 
 
             //TRANSACTION
@@ -260,10 +289,10 @@ namespace Pojeet.Models
                 {
                     Reference = 123,
                     Date = new DateTime(2021, 11, 20, 12, 1, 10),
-                    AnnonceId = 1,
+                    AnnonceId = 4,
                     Montant = 20.15,
                     EtatTransaction = EtatTransaction.Valide,
-                    ProfilId = 2
+                    ProfilId = 3
 
 
 
@@ -272,12 +301,12 @@ namespace Pojeet.Models
             {
                 Reference = 125,
                 Date = new DateTime(2021, 11, 09, 12, 1, 10),
-                AnnonceId = 1,
+                AnnonceId = 4,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 1
 
-                });
+            });
 
             this.Avis.AddRange(
            new Avis
@@ -307,9 +336,6 @@ namespace Pojeet.Models
                 ProfilId = 2
             });
 
-
-
-
             //RIB
             this.Rib.AddRange(
                 new Rib
@@ -331,7 +357,7 @@ namespace Pojeet.Models
                     Etat = 0,
                 });
 
-           this.SaveChanges();
+            this.SaveChanges();
         }
     }
 }

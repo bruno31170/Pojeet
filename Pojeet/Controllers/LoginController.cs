@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
+using System.Net;
+using System.Net.Mail;
 
 
 namespace Pojeet.Controllers
@@ -86,12 +88,16 @@ namespace Pojeet.Controllers
                 int id = dal.AjouterConsumer(compteConsumer.MotDePasse, compteConsumer.Pseudo, compteConsumer.Profil.Nom, compteConsumer.Profil.Prenom, compteConsumer.Profil.DateDeNaissance,
             compteConsumer.Profil.Adresse, compteConsumer.Profil.Ville, compteConsumer.Profil.CodePostal, compteConsumer.Profil.Pays, compteConsumer.Profil.Mail, compteConsumer.Profil.NumeroTelephone, compteConsumer.Profil.Description, pictureFile);
 
-                if (pictureFile.Length > 0)
+                if (pictureFile != null)
                 {
-                    string path3 = _env.WebRootPath + "/media/profil/" + pictureFile.FileName;
-                    FileStream stream3 = new FileStream(path3, FileMode.Create);
-                    pictureFile.CopyTo(stream3);
+                    if (pictureFile.Length > 0)
+                    {
+                        string path3 = _env.WebRootPath + "/media/profil/" + pictureFile.FileName;
+                        FileStream stream3 = new FileStream(path3, FileMode.Create);
+                        pictureFile.CopyTo(stream3);
+                    }
                 }
+
 
                 var userClaims = new List<Claim>()
                     {
@@ -102,6 +108,40 @@ namespace Pojeet.Controllers
 
                 var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
                 HttpContext.SignInAsync(userPrincipal);
+
+
+                var fromAddress = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
+                var toAddress = new MailAddress(compteConsumer.Profil.Mail, compteConsumer.Profil.Nom + " " + compteConsumer.Profil.Prenom);
+                const string fromPassword = "helpmycar2021";
+                const string subject = "Inscription HelpMyCar";
+                const string body = @"<html>
+                      <body>
+                      <p>Dear Ms. Susan,</p>
+                      <p>Thank you for your letter of yesterday inviting me to come for an interview on Friday afternoon, 5th July, at 2:30.
+                              I shall be happy to be there as requested and will bring my diploma and other papers with me.</p>
+                      <p>Sincerely,<br>-Jack</br></p>
+                      </body>
+                      </html>
+                     ";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+
 
                 return Redirect("../Profil/Index");
             }

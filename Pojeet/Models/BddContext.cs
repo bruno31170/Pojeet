@@ -237,10 +237,10 @@ namespace Pojeet.Models
                 {
                     Reference = 123,
                     Date = new DateTime(2021, 11, 20, 12, 1, 10),
-                    AnnonceId = 1,
+                    AnnonceId = 4,
                     Montant = 20.15,
                     EtatTransaction = EtatTransaction.Valide,
-                    ProfilId = 2
+                    ProfilId = 3
 
 
 
@@ -249,10 +249,10 @@ namespace Pojeet.Models
             {
                 Reference = 125,
                 Date = new DateTime(2021, 11, 09, 12, 1, 10),
-                AnnonceId = 1,
+                AnnonceId = 4,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 1
 
             });
 

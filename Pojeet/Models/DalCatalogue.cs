@@ -49,6 +49,7 @@ namespace Pojeet.Models
             string Departement = uvm.Recherche.Localisation;
            // string TypeRecherche = uvm.Recherche.TypeDeRecherche;
 
+
             foreach (var item in annonce)
             {   if (MotRechercher != null && Departement != null)
                 {
@@ -74,15 +75,10 @@ namespace Pojeet.Models
             }
             //rechercheAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             return rechercheAnnonce;
-        }
-
-        public Annonce ObtientUneAnnonnce(int id)
-        {
-            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
-            return annonce;
 
         }
 
+        
 
 
     }

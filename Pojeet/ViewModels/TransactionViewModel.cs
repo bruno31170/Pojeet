@@ -12,5 +12,8 @@ namespace Pojeet.ViewModels
         public List<Transaction> Transaction { get; set; }
 
         public List<CompteConsumer> listConsumer { get; set; }
+        public CompteConsumer consumer { get; set; }
+        public Annonce annonce { get; set; }
+        public List<Transaction> listeTransaction { get; set; }
     }
 }

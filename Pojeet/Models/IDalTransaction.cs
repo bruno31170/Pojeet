@@ -9,5 +9,9 @@ namespace Pojeet.Models
     {
         List<Transaction> ObtientTransaction();
         List<CompteConsumer> ObtientConsumer();
+
+        CompteConsumer ObtientCompteConsumer(int id);
+
+        List<Transaction> ObtientTransaction(int id);
     }
 }

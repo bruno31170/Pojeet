@@ -23,7 +23,12 @@ namespace Pojeet.Models
         public DbSet<Rib> Rib { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Paiement> Paiement { get; set; }
+<<<<<<< Updated upstream
 
+=======
+        public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
+        public DbSet<Aide> Aide { get; set; }
+>>>>>>> Stashed changes
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,7 +47,18 @@ namespace Pojeet.Models
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-
+            //AIDE
+            this.Aide.AddRange(
+                new Aide
+                {
+                    Id = 1,
+                    Nom = "Bruno",
+                    Mail = "bruno.gmail",
+                    Objet = "Litige avec un Helper",
+                    Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
+                    ProfilId = 1
+                });
+                
             //PROFIL
             this.Profil.AddRange(
             new Profil

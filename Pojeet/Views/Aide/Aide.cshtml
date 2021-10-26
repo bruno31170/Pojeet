@@ -1,6 +1,8 @@
-﻿@{
+﻿@model Pojeet.ViewModels.AideViewModel
+
+@{
     Layout = "_LayoutIdentifie";
-    ViewBag.Title = "PosterAnnonce";
+    ViewBag.Title = "Aide";
 }
 
 
@@ -17,34 +19,34 @@
         Nous ferons de notre mieux pour vous répondre sous 48 heures.
     </p>
 
-    <form>
+    
+        @using (Html.BeginForm("DemanderAide", "Aide", FormMethod.Post))
+        {
+            <!-- Coordonnées -->
 
-        <!-- Coordonnées -->
+            <h3>Coordonnées</h3><br>
 
-        <h3>Coordonnées</h3><br>
+            <label for="coordonnées">Nom :</label>
+            @Html.TextBoxFor(model => model.Aide.Nom, new { placeholder = "Nom" })<br><br>
 
-        <label for="coordonnées">Nom :</label>
-        <input type="text" id="nom" name="nom"><br><br>
+            <label for="coordonnées">Email :</label>
+            @Html.TextBoxFor(model => model.Aide.Mail, new { placeholder = "Email" })<br><br>
 
-        <label for="coordonnées">Email :</label>
-        <input type="mail" id="mail" name="mail" /><br><br>
+            <h3>Objet du message</h3><br>
 
-        <h3>Objet du message</h3><br>
+            <label for="objet">Objet :</label>
+            @Html.TextBoxFor(model => model.Aide.Objet, new { placeholder = "Objet" })<br><br>
 
-        <label for="objet">Objet :</label>
-        <input type="text" id="objet" name="objet" /><br><br>
+            <h3>Votre message : </h3><br>
 
-        <h3>Votre message : </h3><br>
+            @Html.TextAreaFor(model => model.Aide.Message, new { @class = "form-control", placeholder = "Message", style="rows:10;cols:50;width: 500px" })<br><br>
 
+            <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
 
-        <textarea style="width: 500px;" type="textarea" rows="10" cols="50" id="message"
-                  name="message"></textarea><br>
-
-        <input type="submit" value="Envoyer" class="boutonEnvoyerPublier" />
-
-    </form>
+        }
+    
 
 </div>
 
 
-   
+

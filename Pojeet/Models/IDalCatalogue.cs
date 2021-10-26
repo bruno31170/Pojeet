@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pojeet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +13,9 @@ namespace Pojeet.Models
 
         CompteConsumer ObtientConsumer(int id);
 
-       
+
+
+        List<Annonce> RechercherAnnonce(ProfilViewModel uvm);
 
     }
 }

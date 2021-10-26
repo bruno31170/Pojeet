@@ -3,6 +3,7 @@
     console.log("ready to start!");
 
 
+
     var coll = document.getElementsByClassName("collapsible");
     var i;
 

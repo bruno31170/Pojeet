@@ -1,4 +1,5 @@
 
+
 @model Pojeet.ViewModels.ProfilViewModel
 <!DOCTYPE html>
 <html lang="fr">
@@ -102,6 +103,7 @@
                     </li>
                 </ul>
             </div>
+
         </div>
     </header>
     <main>
@@ -109,46 +111,55 @@
             <!-- Recherche -->
             <div class="flex-col post_search text-center">
                 <img class="position-relative w-100" src="~/img/img-e/recherche.png" alt="">
-                <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
-                    <div class="post_search_text mt-3 mb-2">
-                        <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
-                        <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
-                    </div>
 
-                    <div class="type_post flex-row justify-content-center">
-                        <div class="flex-row">
-                            <input name="type-post" id="typePost1" type="radio" value="offre" checked>
-                            <label class="bold" for="typePost1">Offres</label>
-                        </div>
-                        <div class="flex-row ml-4">
-                            <input name="type-post" id="typePost2" type="radio" value="demande">
-                            <label class="bold" for="typePost2">Demandes</label>
-                        </div>
+                @using (Html.BeginForm("RechercherAnnonce","Catalogue", FormMethod.Get))
+                {
+                     <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
+                            <div class="post_search_text mt-3 mb-2">
+                                <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
+                                <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+                             </div>
 
-                    </div>
-
-                    <div class="flex-col flex-md-row justify-content-center">
-                        <form id="search-form" action="index.html" method="post">
-                            <div class="flex-col flex-md-row">
-                                <div class="search_category select-wrap mb-1" id="search">
-                                    <select class="search_select_form text-center js-select" name="state">
-                                        <option value="">Quelle catégorie?</option>
-                                        <option value="1">Catégorie 1</option>
-                                        <option value="2">Catégorie 2</option>
-                                        <option value="3">Catégorie 3</option>
-                                        <option value="4">Catégorie 4</option>
-                                        <option value="5">Catégorie 5</option>
-                                        <option value="6">Catégorie 6</option>
-                                    </select>
+                            <div class="type_post flex-row justify-content-center">
+                                <div class="flex-row">
+                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
+                                    <label class="bold" for="typePost1">Offres</label>
                                 </div>
-                                <input type="search" name="mot-cle" placeholder="Que recherchez-vous ?" class="search_select_form  text-center mb-1 align-self-center">
-                                <input type="search" name="mot-cle" placeholder="Code postal/Lieu" class="search_select_form  text-center mb-2 align-self-center">
+                                <div class="flex-row ml-4">
+                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
+                                    <label class="bold" for="typePost2">Demandes</label>
+                                </div>
+
 
                             </div>
-                        </form>
-                        <input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
-                    </div>
-                </div>
+
+
+
+                            <div class="flex-col flex-md-row justify-content-center">
+                                <!-- ICI LA FONCTION RECHERCHE A FAIRE -->
+
+
+
+
+
+
+                                <form id="search-form" action="index.html" method="post">
+                                    <div class="flex-col flex-md-row">
+
+                                        @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
+
+                                        @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
+                                        @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
+
+                                    </div>
+
+                                </form>
+                                <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
+
+
+                            </div>
+                     </div>
+                }
 
             </div>
             <!-- Fin Rechercher -->
@@ -220,21 +231,13 @@
                     @foreach (var annonce in Model.Annonce)
                     {
                         <div class="post_content p-4 border-e flex-col white">
-                            @*Date de parution : @annonce.DateParution<br>
-                    Catégorie : @annonce.CategorieDeAnnonce<br>
-                    Auteur : @annonce.ProfilId<br>
-                    Titre : @annonce.TitreAnnonce<br>
-                    Type de l'annonce : @annonce.TypeDeAnnonce<br>
-                    Description : @annonce.Description<br>
-                    Date butoir : @annonce.DateButoir<br>
-                    Localisation : @annonce.Localisation<br>
-                    Prix : @annonce.Prix<br>
-                    Photo : @annonce.Photo*@
+                            
                             <div class="post_header flex-row align-items-center mb-2">
                                 <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
                                 <div class="post_header_info ml-4">
                                     <div class="post_author font-size-15">
                                        <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+
                                 </div>
                                 <div class="post_date font-size-11">
                                     <span class="post_link">Date de parution : @annonce.DateParution</span>

@@ -19,7 +19,7 @@
                 <div class="w-container">
                     <div class="card wizard-card" data-color="red" id="wizard">
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("CreerCompte", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <div class="wizard-header">
                                 <h3 class="wizard-title">Création de votre profil HelpMyCar</h3>
@@ -206,7 +206,7 @@
                                                 <div class="picture">
                                                     <img src="~/img/avatar_exemple.png" class="picture-src"
                                                          id="wizardPicturePreview" title="" />
-                                                    <input type="file" id="wizard-picture">
+                                                    <input type="file" id="pictureFile" name="pictureFile" />
                                                 </div>
                                                 <h6>
                                                     Choisissez une photo de Profil<small> (optionnel)</small>

@@ -23,11 +23,16 @@ namespace Pojeet.Models
         int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, string documentIdentification, List<string> competence);
 
 
-        List<Conversation> ObtientToutesLesConversations(int id);
+        Conversation ObtientLaConversation(int id);
         List<Message> ObtientTousLesMessages(int conversationId);
         Messagerie ObtientLaMessagerie(int id);
+
         CompteConsumer ObtenirConsumer(int id);
         CompteConsumer ObtenirConsumer(string idStr);
+        List<Conversation> ObtientLesConversations(int id1);
+        (int,List<Conversation>) ObtientLesConversations(int id1,String motCle, Messagerie messagerie);
+        List<MessagerieConversation> ObtientMessagerieConversation(int id);
+
 
     }
 }

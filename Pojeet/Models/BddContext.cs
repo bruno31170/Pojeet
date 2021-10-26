@@ -23,7 +23,7 @@ namespace Pojeet.Models
         public DbSet<Rib> Rib { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Paiement> Paiement { get; set; }
-
+        public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -73,7 +73,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "CécileLepillouer@gmail.com",
                 NumeroTelephone = 6257,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar5.png"
+                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
             },
             new Profil
             {
@@ -88,7 +88,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
+                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
             });
 
             //ANNONCE
@@ -161,7 +161,7 @@ namespace Pojeet.Models
                 Pseudo = "Toto",
                 MotDePasse = Dal.EncodeMD5("lolilol"),
                 ProfilId = 1,
-                statut = Models.CompteConsumer.Statut.Actif
+
             },
              new CompteConsumer
              {
@@ -223,18 +223,56 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                MessagerieId = 1,
                 AnnonceId = 1
 
-            });
+            },
+             new Conversation
+             {
+                 Id = 2,
+                 CompteConsumerId = 3,
+                 AnnonceId = 1
+
+             });
             this.Messagerie.AddRange(
             new Messagerie
             {
                 Id = 1,
+                ProfilId = 1
+            },
+            new Messagerie
+            {
+                Id = 2,
                 ProfilId = 2
+            },
+            new Messagerie
+            {
+                Id = 3,
+                ProfilId = 3
             });
 
-
+            this.MessagerieConversation.AddRange(
+            new MessagerieConversation
+            {   Id=1,
+                MessagerieId=1,
+                ConversationId=1,
+            },
+            new MessagerieConversation
+            {   Id=2,
+                MessagerieId = 2,
+                ConversationId = 1,
+            },
+            new MessagerieConversation
+            {
+                Id = 3,
+                MessagerieId = 2,
+                ConversationId = 2,
+            },
+             new MessagerieConversation
+             {
+                 Id = 4,
+                 MessagerieId = 3,
+                 ConversationId = 2,
+             });
 
 
             //TRANSACTION

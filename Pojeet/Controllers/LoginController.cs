@@ -110,19 +110,43 @@ namespace Pojeet.Controllers
                 HttpContext.SignInAsync(userPrincipal);
 
 
-                var fromAddress = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
-                var toAddress = new MailAddress(compteConsumer.Profil.Mail, compteConsumer.Profil.Nom + " " + compteConsumer.Profil.Prenom);
-                const string fromPassword = "helpmycar2021";
-                const string subject = "Inscription HelpMyCar";
-                const string body = @"<html>
-                      <body>
-                      <p>Dear Ms. Susan,</p>
-                      <p>Thank you for your letter of yesterday inviting me to come for an interview on Friday afternoon, 5th July, at 2:30.
-                              I shall be happy to be there as requested and will bring my diploma and other papers with me.</p>
-                      <p>Sincerely,<br>-Jack</br></p>
-                      </body>
-                      </html>
-                     ";
+                //var fromAddress = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
+                //var toAddress = new MailAddress(compteConsumer.Profil.Mail, compteConsumer.Profil.Nom + " " + compteConsumer.Profil.Prenom);
+                //const string fromPassword = "helpmycar2021";
+                //const string subject = "Inscription HelpMyCar";
+                //string body = @"<html>
+                //                    <body>
+                //                        <p>Dear Ms. Susan,</p>
+                //                        <p>Thank you for your letter of yesterday inviting me to come for an interview on Friday afternoon, 5th July, at 2:30.
+                //                        I shall be happy to be there as requested and will bring my diploma and other papers with me.</p>
+                //                        <p>Sincerely,<br>-Jack</br></p>
+                //                    </body>
+                //                </html>";
+
+                //var smtp = new SmtpClient
+                //{
+                //    Host = "smtp.gmail.com",
+                //    Port = 587,
+                //    EnableSsl = true,
+                //    DeliveryMethod = SmtpDeliveryMethod.Network,
+                //    UseDefaultCredentials = false,
+                //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                //};
+                //using (var message = new MailMessage(fromAddress, toAddress)
+                //{
+                //    Subject = subject,
+                //    Body = body
+                //})
+                //{
+                //    smtp.Send(message);
+                //}
+
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("helpmycar.isika@gmail.com");
+                message.To.Add(compteConsumer.Profil.Mail);
+                message.Subject = "Inscription";
+                message.IsBodyHtml = true;
+                message.Body = "<em>It's great to use HTML in mail!!</em>";
 
                 var smtp = new SmtpClient
                 {
@@ -131,13 +155,9 @@ namespace Pojeet.Controllers
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network,
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                    Credentials = new NetworkCredential("helpmycar.isika@gmail.com", "helpmycar2021")
                 };
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = subject,
-                    Body = body
-                })
+
                 {
                     smtp.Send(message);
                 }

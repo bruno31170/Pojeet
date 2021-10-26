@@ -47,28 +47,32 @@ namespace Pojeet.Models
 
             string MotRechercher = uvm.Recherche.Rechercher;
             string Departement = uvm.Recherche.Localisation;
+            string TypeRecherche = uvm.Recherche.TypeDeRecherche.ToString();
            // string TypeRecherche = uvm.Recherche.TypeDeRecherche;
 
 
             foreach (var item in annonce)
-            {   if (MotRechercher != null && Departement != null)
+            {
+                string TypeAnnonce = item.TypeDeAnnonce.ToString();
+
+                if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
                 {
-                    if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement) && item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                    if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
                         rechercheAnnonce.Add(item);
                 }
-                if (MotRechercher != null && Departement == null && item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
                 {
                     if (item.TitreAnnonce.Contains(MotRechercher))
                         rechercheAnnonce.Add(item);
                 }
-                if (MotRechercher == null && Departement != null && item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
                 {
                     if (item.Localisation.Contains(Departement))
                         rechercheAnnonce.Add(item);
                 }
-                if (MotRechercher == null && Departement == null)
+                if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
                 {
-                    if (item.TypeDeAnnonce.Equals(uvm.Recherche.TypeDeRecherche))
+                    if (TypeAnnonce == TypeRecherche)
                         rechercheAnnonce.Add(item);
                 }
 

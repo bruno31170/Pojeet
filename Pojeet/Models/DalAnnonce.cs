@@ -20,10 +20,11 @@ namespace Pojeet.Models
 
 
         public void PosterAnnonce(TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, 
-            string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo)
+            string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo, EtatAnnonce etatAnnonce)
         {
             Annonce anonce = new Annonce
             {
+                
                 TypeDeAnnonce = typeAnnonce,
                 TitreAnnonce = titreAnnonce,
                 Description = description,
@@ -33,7 +34,9 @@ namespace Pojeet.Models
                 Prix = prix,
                 CategorieDeAnnonce = categorieAnnonce,
                 Photo = photo,
-                ProfilId = 1
+                ProfilId = 2,
+                EtatAnnonce = etatAnnonce
+
 
 
             };

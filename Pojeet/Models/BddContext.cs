@@ -23,13 +23,15 @@ namespace Pojeet.Models
         public DbSet<Paiement> Paiement { get; set; }
         public DbSet<Aide> Aide { get; set; }
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
-        
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
         }
 
 
@@ -49,7 +51,7 @@ namespace Pojeet.Models
                     Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
                     ProfilId = 1
                 });
-                
+
             //PROFIL
             this.Profil.AddRange(
             new Profil
@@ -104,61 +106,162 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Changement batterie",
-                Description = "voiture modèle Ford Fusion",
+                TitreAnnonce = "Changement d'une batterie",
+                Description = "Voiture modèle Ford Fusion",
                 DateParution = DateTime.Now,
                 Localisation = "31000",
                 DateButoir = DateTime.Today,
-                Prix = 5,
-                CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
-                ProfilId = 2,
+                Prix = 30,
+                CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                ProfilId = 1,
+                EtatAnnonce = EtatAnnonce.Validé
 
             },
 
             new Annonce
             {
                 Id = 2,
-                TypeDeAnnonce = TypeAnnonce.Service,
-                TitreAnnonce = "Changer pneu",
-                Description = "Toute voiture",
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "recherche visseuse dernier cri",
+                Description = "Modèle à batterie",
                 DateParution = DateTime.Now,
                 Localisation = "32000",
                 DateButoir = DateTime.Today,
-                Prix = 50,
-                CategorieDeAnnonce = CategorieAnnonce.Roue,
-                ProfilId = 1,
-
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 2,
+                EtatAnnonce = EtatAnnonce.Validé
             },
 
             new Annonce
             {
                 Id = 3,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Changement essuie glace",
-                Description = "voiture modèle Fiat Punto",
+                TitreAnnonce = "Achète 4 pneu de 4x4",
+                Description = "Pneu en très bonne état",
                 DateParution = DateTime.Now,
                 Localisation = "33000",
                 DateButoir = DateTime.Today,
-                Prix = 10,
-                CategorieDeAnnonce = CategorieAnnonce.Carrosserie,
-                ProfilId = 2,
+                Prix = 100,
+                CategorieDeAnnonce = CategorieAnnonce.Pièce,
+                ProfilId = 3,
+                EtatAnnonce = EtatAnnonce.Validé
             },
-                new Annonce
-                {
-                    Id = 4,
-                    TypeDeAnnonce = TypeAnnonce.Service,
-                    TitreAnnonce = "Réparation voiture",
-                    Description = "Je vous propose mes services pour l'entretien ( vidange avec filtres,...), passage à la valise sur tout type de voiture et changement de pièces automobile ( remplacement de pièces du train roulant, plaquettes,..), n'hésiter pas à me demander.",
-                    DateParution = DateTime.Now,
-                    Localisation = "13000",
-                    DateButoir = DateTime.Today,
-                    Prix = 50,
-                    CategorieDeAnnonce = CategorieAnnonce.Roue,
-                    ProfilId = 2,
+            new Annonce
+            {
+                Id = 4,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Changement radiateur",
+                Description = "Radiateur trop vieux",
+                DateParution = DateTime.Now,
+                Localisation = "13000",
+                DateButoir = DateTime.Today,
+                Prix = 50,
+                CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                ProfilId = 1,
+                EtatAnnonce = EtatAnnonce.Validé
 
 
+            },
+            new Annonce
+            {
+                Id = 5,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Recherche krik",
+                Description = "Un krik simple pour changer ma roue",
+                DateParution = DateTime.Now,
+                Localisation = "13000",
+                DateButoir = DateTime.Today,
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 2,
+                EtatAnnonce = EtatAnnonce.Validé
 
-                });
+
+            },
+
+             new Annonce
+             {
+                 Id = 6,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Propose changement essuis glace",
+                 Description = "Loue remorque pour voiture",
+                 DateParution = DateTime.Now,
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 10,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 7,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Location de roue de secours",
+                 Description = "Pour voiture commune",
+                 DateParution = DateTime.Now,
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 20,
+                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 ProfilId = 1,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 8,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Vend pare-brise Fiat picasso",
+                 Description = "Pare brise neuf",
+                 DateParution = DateTime.Now,
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 40,
+                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
+                 ProfilId = 2,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 9,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Réparation/changement de pot d'echappement",
+                 Description = "Tout type de véhicule",
+                 DateParution = DateTime.Now,
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 35,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 10,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Loue test anti-pollution",
+                 Description = "Loue remorque pour voiture",
+                 DateParution = DateTime.Now,
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 20,
+                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 ProfilId = 1,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             });
+
+
 
             //CONSUMER
             this.CompteConsumer.AddRange(

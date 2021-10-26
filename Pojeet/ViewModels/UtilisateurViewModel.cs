@@ -22,6 +22,9 @@ namespace Pojeet.ViewModels
 
         public CompteProvider CompteProvider { get; set; }
 
-
+        
     }
+
+    
 }
+

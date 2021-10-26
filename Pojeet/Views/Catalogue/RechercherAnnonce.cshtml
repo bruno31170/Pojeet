@@ -30,6 +30,7 @@
                 <form id="search-form" action="index.html" method="post">
                     <div class="flex-col flex-md-row">
 
+                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), "Catégorie")
                         @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
                         @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
 

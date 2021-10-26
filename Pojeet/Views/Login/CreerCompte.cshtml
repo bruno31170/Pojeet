@@ -68,7 +68,7 @@
 
                             <div class="tab-content d-flex justify-content-center">
 
-                                <div class="tab-pane mt-4" id="location">
+                                <div class="tab-pane mt-4 mb-4" id="location">
                                     <div class="row justify-content-center">
 
                                         <div class="col-sm-10 col-sm-offset-1">
@@ -116,7 +116,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane mt-4" id="type">
+                                <div class="tab-pane mt-4 mb-4" id="type">
                                     <div class="row d-flex justify-content-center">
                                         @*<div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane mt-4" id="facilities">
+                                <div class="tab-pane mt-4 mb-4" id="facilities">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
@@ -199,28 +199,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane mt-4" id="description">
+                                <div class="tab-pane mt-4 mb-4" id="description">
                                     <div class="row d-flex justify-content-around">
                                         <div class="col-sm-5 m-3 col-sm-offset-1 ">
                                             <div class="picture-container">
+                                                <h6>
+                                                    Choisissez une photo de Profil<small> (optionnel)</small>
+                                                </h6>
                                                 <div class="picture">
                                                     <img src="~/img/avatar_exemple.png" class="picture-src"
                                                          id="wizardPicturePreview" title="" />
                                                     <input type="file" id="pictureFile" name="pictureFile" />
                                                 </div>
-                                                <h6>
-                                                    Choisissez une photo de Profil<small> (optionnel)</small>
-                                                </h6>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-5 m-3">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Description)<small> (optionnel)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.Description, new { @class = "form-control w-100", @row = "9" })
-                                                @Html.ValidationMessageFor(m => Model.Profil.Description)
-                                                @*<textarea class="form-control" placeholder=""
-                                                    rows="9"></textarea>*@
+                                                @*@Html.TextBoxFor(m => Model.Profil.Description, new { @class = "form-control w-100", @cols = 80, @rows = 10 })
+                                                    @Html.ValidationMessageFor(m => Model.Profil.Description)*@
+                                                <textarea class="form-control" placeholder="" name="Profil.Description"
+                                                          rows="9"></textarea>
                                             </div>
                                         </div>
 

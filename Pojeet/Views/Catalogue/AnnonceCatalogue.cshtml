@@ -122,31 +122,25 @@
 
                             <div class="type_post flex-row justify-content-center">
                                 <div class="flex-row">
+
                                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
                                     <label class="bold" for="typePost1">Offres</label>
+
                                 </div>
                                 <div class="flex-row ml-4">
+
                                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                                    <label class="bold" for="typePost2">Demandes</label>
+                                    <label class="bold" for="typePost2">Demandes</label> 
+
                                 </div>
 
 
                             </div>
 
-
-
                             <div class="flex-col flex-md-row justify-content-center">
-                                <!-- ICI LA FONCTION RECHERCHE A FAIRE -->
-
-
-
-
-
-
+                               
                                 <form id="search-form" action="index.html" method="post">
                                     <div class="flex-col flex-md-row">
-
-                                        @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
 
                                         @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
                                         @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })

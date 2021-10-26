@@ -9,7 +9,7 @@ namespace Pojeet.Models
     {
         
         void PosterAnnonce(TypeAnnonce TypeDeAnnonce, string titreAnnonce, string description, 
-            DateTime dateParution, string localisation, DateTime dateButoir, int prix, CategorieAnnonce  categorieAnnonce, string photo);
+            DateTime dateParution, string localisation, DateTime dateButoir, int prix, CategorieAnnonce  categorieAnnonce, string photo, EtatAnnonce etatAnnonce);
 
         void SupprimerAnnonce(int id);
     }

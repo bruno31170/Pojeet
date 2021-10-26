@@ -18,8 +18,9 @@
         @using (Html.BeginForm())
         {
 
+            <!-- Etat de l'annonce -->
 
-
+            @Html.HiddenFor(m => m.Anonce.EtatAnnonce, Pojeet.Models.EtatAnnonce.Envoyé)
 
             <!-- Type d'annonce -->
 
@@ -51,8 +52,7 @@
             @Html.TextBoxFor(model => model.Anonce.TitreAnnonce, new { placeholder = "Titre" })<br><br>
             @Html.ValidationMessageFor(model => model.Anonce.TitreAnnonce)
 
-            //@Html.HiddenFor(m => Model.Anonce.ProfilId, new { Value = Model.CompteConsumer.Profil.Id })
-            //@Html.HiddenFor(m => Model.Profil.Id, new { Value = Model.Profil.Id })
+           
 
 
 
@@ -89,7 +89,7 @@
 
 
 
-            
+
 
             <p>* : Champ obligatoire</p>
 

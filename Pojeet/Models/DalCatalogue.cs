@@ -37,7 +37,7 @@ namespace Pojeet.Models
 
 
 
-        
+
         public List<Annonce> RechercherAnnonce(ProfilViewModel uvm)
 
 
@@ -48,42 +48,64 @@ namespace Pojeet.Models
             string MotRechercher = uvm.Recherche.Rechercher;
             string Departement = uvm.Recherche.Localisation;
             string TypeRecherche = uvm.Recherche.TypeDeRecherche.ToString();
-           // string TypeRecherche = uvm.Recherche.TypeDeRecherche;
+            string CategorieRecherche = uvm.Recherche.CategorieDeRecherche.ToString();
+
 
 
             foreach (var item in annonce)
             {
                 string TypeAnnonce = item.TypeDeAnnonce.ToString();
+                string CategorieAnnonce = item.CategorieDeAnnonce.ToString();
 
-                if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                if (CategorieAnnonce == CategorieRecherche)
                 {
-                    if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
-                        rechercheAnnonce.Add(item);
+                    if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                            rechercheAnnonce.Add(item);
+                    }
+                    if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (item.TitreAnnonce.Contains(MotRechercher))
+                            rechercheAnnonce.Add(item);
+                    }
+                    if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (item.Localisation.Contains(Departement))
+                            rechercheAnnonce.Add(item);
+                    }
+                    if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (TypeAnnonce == TypeRecherche)
+                            rechercheAnnonce.Add(item);
+                    }
                 }
-                if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                if (CategorieRecherche == null)
                 {
-                    if (item.TitreAnnonce.Contains(MotRechercher))
-                        rechercheAnnonce.Add(item);
+                    if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                            rechercheAnnonce.Add(item);
+                    }
+                    if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (item.TitreAnnonce.Contains(MotRechercher))
+                            rechercheAnnonce.Add(item);
+                    }
+                    if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (item.Localisation.Contains(Departement))
+                            rechercheAnnonce.Add(item);
+                    }
+                    if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                    {
+                        if (TypeAnnonce == TypeRecherche)
+                            rechercheAnnonce.Add(item);
+                    }
                 }
-                if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
-                {
-                    if (item.Localisation.Contains(Departement))
-                        rechercheAnnonce.Add(item);
-                }
-                if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
-                {
-                    if (TypeAnnonce == TypeRecherche)
-                        rechercheAnnonce.Add(item);
-                }
-
+                //rechercheAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             }
-            //rechercheAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
             return rechercheAnnonce;
-
         }
-
-        
-
-
     }
 }

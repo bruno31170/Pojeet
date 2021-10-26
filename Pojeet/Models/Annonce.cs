@@ -13,7 +13,7 @@ namespace Pojeet.Models
         public TypeAnnonce TypeDeAnnonce { set; get; }
 
         [Required(ErrorMessage = "Le titre de l'annonce doit être renseigné.")]
-        [MaxLength(30)]
+        [MaxLength(50)]
         public string TitreAnnonce { set; get; }
 
         [Required(ErrorMessage = "La descritpion doit être renseigné.")]
@@ -38,6 +38,14 @@ namespace Pojeet.Models
         public int ProfilId { get; set; }
         public virtual Profil profil { get; set; }
 
+        public EtatAnnonce EtatAnnonce { get; set; }
+    }
+
+    public enum EtatAnnonce
+    {
+        Envoyé,
+        Validé,
+        Supprimé
     }
     public enum TypeAnnonce
     {
@@ -47,10 +55,9 @@ namespace Pojeet.Models
 
     public enum CategorieAnnonce
     {
-        Moteur,
-        Habitacle,
-        Carrosserie,
-        Roue
+        Réparation,
+        Pièce,
+        Location
     }
 
 

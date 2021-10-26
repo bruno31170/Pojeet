@@ -14,16 +14,18 @@ namespace Pojeet.Controllers
     public class AnnonceController : Controller
     {
 
+
         private IDalAnnonce dal;
         private IDalCatalogue dal1;
+
 
         public AnnonceController()
         {
             this.dal = new DalAnnonce();
             this.dal1 = new DalCatalogue();
         }
-        
-        
+
+
         public IActionResult PosterAnnonce()
         {
             return View();
@@ -34,6 +36,7 @@ namespace Pojeet.Controllers
         [HttpPost]
         public ActionResult PosterAnnonce(UtilisateurViewModel uvm)
         {
+
             List<Annonce> annonce = dal1.ObtientAnnonce();
             Annonce derniereAnnonce = annonce.Last();
             int id = derniereAnnonce.Id + 1;
@@ -47,6 +50,7 @@ namespace Pojeet.Controllers
 
             return View("Views/Profil/Index.cshtml");
             //return View("Views/Catalogue/AnnonceCatalogue.cshtml");
+
 
         }
 

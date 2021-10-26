@@ -27,6 +27,18 @@ namespace Pojeet.Models
             return listeConsumer;
         }
 
+        public CompteConsumer ObtientCompteConsumer(int id)
+        {
+            CompteConsumer consumer = this._context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).FirstOrDefault();
+            return consumer;
+        }
+
+        public List<Transaction> ObtientTransaction(int id)
+        {
+            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce).ToList();
+            return listeTransaction;
+        }
+
         public void Dispose()
         {
             _context.Dispose();

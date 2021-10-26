@@ -23,9 +23,27 @@ namespace Pojeet.Controllers
 
             List<Transaction> listeTransaction = new List<Transaction>();
             listeTransaction = dal.ObtientTransaction();
-            return View(new TransactionViewModel { listConsumer = listeConsumer , Transaction = listeTransaction });
+            
+            
+            return View(new TransactionViewModel { listConsumer = listeConsumer , Transaction = listeTransaction
+            });
 
 
+        }
+
+        public ActionResult AfficherHelper(int id)
+        {
+            CompteConsumer consumer = new CompteConsumer();
+            consumer = dal.ObtientCompteConsumer(id);
+
+            List<Transaction> transactions = new List<Transaction>();
+            transactions = dal.ObtientTransaction(consumer.Id);
+            //return View(new TransactionViewModel
+            //{
+            //    consumer = consumer,
+            //    listeTransaction = transactions
+            //});
+            return View();
         }
     }
 }

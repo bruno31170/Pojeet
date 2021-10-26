@@ -30,25 +30,19 @@ namespace Pojeet.Models
         }
 
 
-
         public List<Annonce> RechercherAnnonce(string titreAnnonce)
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
-            List<Annonce> annonce= ObtientAnnonce();
+            List<Annonce> annonce = ObtientAnnonce();
             foreach (var item in annonce)
             {
                 if (item.TitreAnnonce == titreAnnonce)
                     rechercheAnnonce.Add(item);
             }
             return rechercheAnnonce;
-
-        public Annonce ObtientUneAnnonnce(int id)
-        {
-            Annonce annonce = this._context.Annonce.FirstOrDefault(c => c.Id == id);
-            return annonce;
-
         }
 
+        
 
     }
 }

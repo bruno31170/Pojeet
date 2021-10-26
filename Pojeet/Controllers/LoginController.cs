@@ -142,11 +142,11 @@ namespace Pojeet.Controllers
                 //}
 
                 MailMessage message = new MailMessage();
-                message.From = new MailAddress("helpmycar.isika@gmail.com");
+                message.From = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
                 message.To.Add(compteConsumer.Profil.Mail);
                 message.Subject = "Inscription";
                 message.IsBodyHtml = true;
-                message.Body = "<em>It's great to use HTML in mail!!</em>";
+                message.Body = "<p>Bienvenu!!</p></br>";
 
                 var smtp = new SmtpClient
                 {
@@ -157,7 +157,6 @@ namespace Pojeet.Controllers
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential("helpmycar.isika@gmail.com", "helpmycar2021")
                 };
-
                 {
                     smtp.Send(message);
                 }

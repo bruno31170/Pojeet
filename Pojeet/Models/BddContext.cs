@@ -28,8 +28,8 @@ namespace Pojeet.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
         }
 
 
@@ -64,23 +64,23 @@ namespace Pojeet.Models
                 CodePostal = "45000",
                 Pays = 0,
                 Mail = "inesguissouma@gmail.com",
-                NumeroTelephone = 6875,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar3.png"
+                NumeroTelephone = 687555634,
+                Photo = null,
             },
             new Profil
             {
                 Id = 2,
-                Description = "Besoin",
+                Description = "Lorum ipsum",
                 Nom = "Le Pillouer",
                 Prenom = "Cécile",
-                DateDeNaissance = "12/12/2020",
+                DateDeNaissance = "12/12/1990",
                 Adresse = "Boulevard Rocheplatte",
                 Ville = "Paris",
                 CodePostal = "45000",
                 Pays = 0,
-                Mail = "CécileLepillouer@gmail.com",
-                NumeroTelephone = 6257,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
+                Mail = "cecileLepillouer@gmail.com",
+                NumeroTelephone = 687555652,
+                Photo = "avatar_exemple.png"
             },
             new Profil
             {
@@ -156,9 +156,9 @@ namespace Pojeet.Models
                     CategorieDeAnnonce = CategorieAnnonce.Roue,
                     ProfilId = 2,
 
-                
 
-            });
+
+                });
 
             //CONSUMER
             this.CompteConsumer.AddRange(
@@ -259,12 +259,14 @@ namespace Pojeet.Models
 
             this.MessagerieConversation.AddRange(
             new MessagerieConversation
-            {   Id=1,
-                MessagerieId=1,
-                ConversationId=1,
+            {
+                Id = 1,
+                MessagerieId = 1,
+                ConversationId = 1,
             },
             new MessagerieConversation
-            {   Id=2,
+            {
+                Id = 2,
                 MessagerieId = 2,
                 ConversationId = 1,
             },
@@ -316,7 +318,8 @@ namespace Pojeet.Models
                commentaire = "Cécile est un bon locataire d outillage, il nous a rendu le materiel en bon etat et dans le temps convenue. Il est tres sympathique, je vous le recommande.",
                note = 4,
                CompteConsumerId = 1,
-               ProfilId = 2},
+               ProfilId = 2
+           },
             new Avis
             {
                 Id = 2,

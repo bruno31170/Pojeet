@@ -32,7 +32,7 @@ namespace Pojeet.Controllers
 
         public IActionResult Index(string tabId)
         {
-            ViewBag.tabId = "#"+tabId;
+            ViewBag.tabId = "#" + tabId;
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
             {
@@ -50,44 +50,6 @@ namespace Pojeet.Controllers
 
         }
 
-      
-
-
-
-        /*public IActionResult MesAnnoncesProfil(int profilId)
-         {
-             string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-            string adresse, string ville, string code_postal, string pays, string mail, int numeroTelephone, string description
-
-
-             Profil profil = new Profil
-             {
-                 Nom = nom,
-                 Prenom = prenom,
-                 DateDeNaissance = dateNaissance,
-                 Adresse = adresse,
-                 Ville = ville,
-                 CodePostal = code_postal,
-                 Pays = pays,
-                 Mail = mail,
-                 NumeroTelephone = numeroTelephone,
-                 Description = description,
-             };
-             CompteConsumer consumer = new CompteConsumer
-             {
-                 Id= idConsumer, 
-                 Pseudo = pseudo, 
-                 Profil = profil 
-             };
-
-             List<Annonce> annonce = dalProfil.ObtientAnnonceProfil(profilId);
-
-             UtilisateurViewModel model = new UtilisateurViewModel { CompteConsumer = consumer, Annonce = annonce };
-
-
-             return View("Index", model);
-
-         }*/
 
         public IActionResult ModifierConsumer()
         {
@@ -155,6 +117,6 @@ namespace Pojeet.Controllers
             return View("");
         }
 
-        
+
     }
 }

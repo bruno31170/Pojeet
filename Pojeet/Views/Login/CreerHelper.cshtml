@@ -6,28 +6,46 @@
 }
 
 @section stylesheets {
-    <link rel="stylesheet" media="all" href="~/css/Profil.css">
+    <link rel="stylesheet" media="all" href="~/css/Profil2.css">
     <link rel="stylesheet" media="all" href="~/css/Inscription_form.css">
 }
 
-<p class="mt'">Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-
 @*CONSUMER CONNECTE ET HELPER*@
-@if (@Model.CompteConsumer != null && @Model.CompteConsumer.Id == @Model.CompteProvider.CompteConsumerId)
+@if (@Model.CompteConsumer != null && @Model.CompteProvider != null && @Model.CompteConsumer.Id == @Model.CompteProvider.CompteConsumerId)
 {
-    <div class="text-center">
-        Vous êtes deja Helper Banane !!!
+    <div class="image-container mt-5 pt-5" style="background: url('@Url.Content("~/img/section_inscription_helper.svg")' bottom center; background-size: cover">
+        <div class="d-flex justify-content-center">
+            <div class="text-center mt-5 pt-5">
+                <h3> Vous êtes déjà Helper !</h3>
+            </div>
+        </div>
     </div>
 
 }@*CONSUMER NON CONNECTE*@
-else if (@Model.CompteConsumer == null)
+else if (@Model.CompteConsumer == null && @Model.CompteProvider == null)
 {
-    <div class="text-center">
-        Pour devenir Helper vous devez avoir un compte HelpMyCar => veuillez vous connectez ou creer un compte
+    <div class="image-container mt-5 pt-5">
+        <div class="text-center mt-5 pt-5">
+            <h5>Pour devenir Helper vous devez avoir un compte HelpMyCar</h5>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="card m-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Connexion</h5>
+                        <p class="card-text">Si vous avez un compte, merci de vous connectez avant de pouvoir devenir Helper</p>
+                        @Html.ActionLink("Connexion", "Index", "Login", null, null, null, null, new { @class = "btn btnDarkGreen nav-link nav-link-hover-black rounded" })
+
+                    </div>
+                </div>
+                <div class="card m-5" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Création de votre compte</h5>
+                        <p class="card-text">Si vous n'avez pas de compte HelpMyCar, merci d'en créer un, c'est simple et rapide ! </p>
+                        @Html.ActionLink("Inscription", "CreerCompte", "Login", null, null, null, null, new { @class = "btn btnDarkGreen nav-link nav-link-hover-black rounded" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 }@*CONSUMER CONNECTE MAIS PAS HELPER*@
 else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
@@ -39,7 +57,7 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="w-container">
                         <div class="card wizard-card" data-color="red" id="wizard">
-                            @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @using (Html.BeginForm("CreerHelper", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
 
                                 <div class="wizard-header">
@@ -83,8 +101,8 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                                             <div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>Pièce d'identité<small> (requis)</small></label>
-                                                    <input name="" type="file" class="form-control w-100"
-                                                           placeholder="" id="pseudo">
+                                                    <input name="pictureFile" type="file" class="form-control w-100"
+                                                           placeholder="" id="pictureFile">
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +133,8 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                                         <div class="row check d-flex justify-content-center">
 
                                             <label tabindex="0">
-                                                <input tabindex="-1" type="checkbox" name="" value="carrosserie" />
+                                                @Html.CheckBox("competence", "carrosserie")
+                                                @*<input tabindex="-1" type="checkbox" name="" value="carrosserie" />*@
                                                 <div class="icon-box">
                                                     <i class="fa fa-heart" aria-hidden="true"></i>
                                                     <span>Carrosserie</span>
@@ -123,7 +142,8 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                                             </label>
 
                                             <label tabindex="0">
-                                                <input tabindex="-1" type="checkbox" name="" />
+                                                @Html.CheckBox("competence", "moteur")
+                                                @*<input tabindex="-1" type="checkbox" name="" />*@
                                                 <div class="icon-box">
                                                     <i class="fa fa-music" aria-hidden="true"></i>
                                                     <span>Moteur</span>
@@ -131,7 +151,8 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                                             </label>
 
                                             <label tabindex="0">
-                                                <input tabindex="-1" type="checkbox" name="" />
+                                                @Html.CheckBox("competence", "habitacle")
+                                                @*<input tabindex="-1" type="checkbox" name="" />*@
                                                 <div class="icon-box">
                                                     <i class="fa fa-imdb" aria-hidden="true"></i>
                                                     <span>Habitacle</span>
@@ -139,7 +160,8 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                                             </label>
 
                                             <label tabindex="0">
-                                                <input tabindex="-1" type="checkbox" name="" />
+                                                @Html.CheckBox("competence", "nettoyage")
+                                                @*<input tabindex="-1" type="checkbox" name="" />*@
                                                 <div class="icon-box">
                                                     <i class="fa fa-book" aria-hidden="true"></i>
                                                     <span>Nettoyage</span>
@@ -147,7 +169,8 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                                             </label>
 
                                             <label tabindex="0">
-                                                <input tabindex="-1" type="checkbox" name="" />
+                                                @*<input tabindex="-1" type="checkbox" name="" />*@
+                                                @Html.CheckBox("competence", "pneus")
                                                 <div class="icon-box">
                                                     <i class="fa fa-dribbble" aria-hidden="true"></i>
                                                     <span>Pneus</span>

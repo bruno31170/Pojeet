@@ -121,16 +121,23 @@ namespace Pojeet.Controllers
 
         //CREATIN DU COMPTE HELPER 
         [HttpPost]
-        public IActionResult CreerHelper(CompteProvider compteProvider)
+        public IActionResult CreerHelper(CompteProvider compteProvider, IFormFile pictureFile)
         {
             ProviderViewModel viewModel = new ProviderViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
 
             using (Dal ctx = new Dal())
             {
-                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, compteProvider.DocumentIdentification, compteProvider.Competence);
+                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, pictureFile, compteProvider.Competence);
 
-                return RedirectToAction("../Profil/Index");
+                if (pictureFile.Length > 0)
+                {
+                    string path3 = _env.WebRootPath + "/media/provider/" + pictureFile.FileName;
+                    FileStream stream3 = new FileStream(path3, FileMode.Create);
+                    pictureFile.CopyTo(stream3);
+                }
+
+                return Redirect("../Profil/Index");
             }
 
         }

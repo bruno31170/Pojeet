@@ -50,18 +50,18 @@ namespace Pojeet.Models
             return listeConversations;
         }
 
-        public (int,List<Conversation>) ObtientLesConversations(int id, String motCle, Messagerie messagerie)
+        public (int, List<Conversation>) ObtientLesConversations(int id, String motCle, Messagerie messagerie)
         {
             List<Conversation> listeConversations = new List<Conversation>();
             List<Conversation> listeConversationsRecherchees = new List<Conversation>();
             List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation.Messages).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).ToList();
             foreach (var listeMessagerieConversation in ListeMessagerieConversation)
-            { 
-                listeConversations.Add(listeMessagerieConversation.Conversation); 
-            }
-           foreach(var conversation in listeConversations)
             {
-                if (conversation.Annonce.ProfilId==messagerie.ProfilId)
+                listeConversations.Add(listeMessagerieConversation.Conversation);
+            }
+            foreach (var conversation in listeConversations)
+            {
+                if (conversation.Annonce.ProfilId == messagerie.ProfilId)
                 {
                     if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle))
                     {
@@ -78,7 +78,7 @@ namespace Pojeet.Models
             }
             int id2 = listeConversationsRecherchees.First().Id;
             //listeConversations.OrderBy(c => c.DateCreation).ToList();
-            return (id2,listeConversationsRecherchees);
+            return (id2, listeConversationsRecherchees);
         }
 
         public Messagerie ObtientLaMessagerie(int id)
@@ -265,7 +265,7 @@ namespace Pojeet.Models
 
 
 
-        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, string documentIdentification, List<string> competence)
+        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, IFormFile photo, List<string> competence)
         {
 
             Rib rib = new Rib
@@ -278,12 +278,15 @@ namespace Pojeet.Models
             CompteProvider Provider = new CompteProvider
             {
                 CompteConsumerId = compteConsumer.Id,
-                DocumentIdentification = documentIdentification,
                 Rib = rib,
                 Etat = 0,
                 Competence = competence
             };
 
+            if (photo != null)
+            {
+                Provider.DocumentIdentification = photo.FileName;
+            }
 
             _context.CompteProvider.Add(Provider);
             _context.SaveChanges();

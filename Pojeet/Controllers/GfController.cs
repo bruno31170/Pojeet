@@ -15,6 +15,49 @@ namespace Pojeet.Controllers
         {
             this.dal = new DalTransaction();
         }
+<<<<<<< Updated upstream
+=======
+        public IActionResult AdminIndex()
+        {
+            
+
+            List<Transaction> listeTransaction = new List<Transaction>();
+            listeTransaction = dal.ObtientTransaction();
+
+            //Liste transaction du jour
+            List<Transaction> listeTransactionJour = new List<Transaction>();
+            foreach (var item in listeTransaction)
+            {
+                if (item.Date.Day == DateTime.Now.Day)
+                {
+                    listeTransactionJour.Add(item);
+                }
+            }
+
+            //Chiffre d'affaire et marge brut du jour
+            Argent argent = new Argent();
+            argent.ChiffreDaffaire = 0;
+
+            foreach (var item in listeTransactionJour)
+            {
+
+                argent.ChiffreDaffaire = argent.ChiffreDaffaire + item.Montant;
+            }
+            argent.MargeBrut = argent.ChiffreDaffaire * 0.05;
+            argent.MargeBrut = Convert.ToInt32(argent.MargeBrut);
+            return View(new CommandeViewModel
+            {
+                
+                Listetransaction = listeTransactionJour,
+                Argent = argent
+            });
+
+            
+        }
+            
+    
+    
+>>>>>>> Stashed changes
         public IActionResult AdminCommandes()
         {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
@@ -24,10 +67,32 @@ namespace Pojeet.Controllers
             List<Transaction> listeTransaction = new List<Transaction>();
             listeTransaction = dal.ObtientTransaction();
 
+            //Liste transaction dans le mois
+            List<Transaction> listeTransactionMois = new List<Transaction>();
+            foreach (var item in listeTransaction)
+            {   
+                if (item.Date.Month == DateTime.Now.Month)
+                {
+                    listeTransactionMois.Add(item);
+                }
+            }
+
+            //Chiffre d'affaire et marge brut du mois
+            Argent argent = new Argent();
+            argent.ChiffreDaffaire = 0;
+            
+            foreach (var item in listeTransactionMois)
+            {
+                
+                argent.ChiffreDaffaire = argent.ChiffreDaffaire + item.Montant;
+            }
+            argent.MargeBrut = argent.ChiffreDaffaire * 0.05;
+            argent.MargeBrut = Convert.ToInt32(argent.MargeBrut);
             return View(new TransactionViewModel
             {
                 listConsumer = listeConsumer,
-                Transaction = listeTransaction
+                Transaction = listeTransactionMois,
+                Argent = argent
             });
 
 

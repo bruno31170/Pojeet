@@ -191,11 +191,14 @@ namespace Pojeet.Controllers
             {
                 ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, pictureFile, compteProvider.Competence);
 
-                if (pictureFile.Length > 0)
+                if (pictureFile != null)
                 {
-                    string path3 = _env.WebRootPath + "/media/provider/" + pictureFile.FileName;
-                    FileStream stream3 = new FileStream(path3, FileMode.Create);
-                    pictureFile.CopyTo(stream3);
+                    if (pictureFile.Length > 0)
+                    {
+                        string path3 = _env.WebRootPath + "/media/provider/" + pictureFile.FileName;
+                        FileStream stream3 = new FileStream(path3, FileMode.Create);
+                        pictureFile.CopyTo(stream3);
+                    }
                 }
                 return Redirect("../Profil/Index");
             }

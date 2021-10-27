@@ -33,10 +33,18 @@ namespace Pojeet.Controllers
         public IActionResult Index(string tabId)
         {
             ViewBag.tabId = "#" + tabId;
+
+
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
             {
                 viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+
+                List<Transaction> transactions = new List<Transaction>();
+                transactions = dal.ObtientTransaction(viewModel.CompteConsumer.Id);
+
+
+                viewModel.ListeTransaction = transactions;
                 viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
                 viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
 
@@ -46,6 +54,23 @@ namespace Pojeet.Controllers
 
                 return View(viewModel);
             }
+            return View(viewModel);
+
+        }
+
+        public IActionResult ProfilVisiteur(int id)
+        {
+
+            UtilisateurViewModel viewModel = new UtilisateurViewModel();
+
+            viewModel.CompteConsumer = dal.ObtenirConsumer(id);
+            viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
+            viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
+
+            viewModel.NoteGlobale = dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
+
+            viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
+
             return View(viewModel);
 
         }

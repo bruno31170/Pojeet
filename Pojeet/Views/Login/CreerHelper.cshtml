@@ -24,7 +24,7 @@
 }@*CONSUMER NON CONNECTE*@
 else if (@Model.CompteConsumer == null && @Model.CompteProvider == null)
 {
-    <div class="image-container mt-5 pt-5">
+    <div class="image-container mt-5 pt-5" style="background-color:#f2f2f2">
         <div class="text-center mt-5 pt-5">
             <h5>Pour devenir Helper vous devez avoir un compte HelpMyCar</h5>
             <div class="d-flex justify-content-center mt-2">
@@ -50,8 +50,8 @@ else if (@Model.CompteConsumer == null && @Model.CompteProvider == null)
 }@*CONSUMER CONNECTE MAIS PAS HELPER*@
 else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
 {
-    <div class="image-container"
-         style="background: url(assets/img/section_inscription.svg) bottom center; background-size: cover">
+    <div class="image-container mt-5 pt-5 mb-5"
+         style="background: url('@Url.Content("~/img/section_inscription_helper.svg")') bottom center; background-size: cover">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-sm-8 col-sm-offset-2">

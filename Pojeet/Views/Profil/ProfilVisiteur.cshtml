@@ -1,4 +1,4 @@
-
+﻿
 @model Pojeet.ViewModels.UtilisateurViewModel
 
 @{
@@ -32,6 +32,7 @@
 
 <div class="container d-flex justify-content-center col-12" id="container_profil">
     <div class="row col-11 m-0 p-0">
+
         <!--Partie Gauche-->
         <div class="col-2" id="left_side">
             <!--Photo Profil-->
@@ -84,23 +85,6 @@
                 </div>
             </div>
 
-
-            @if (@Model.CompteProvider != null && @Model.CompteProvider.CompteConsumerId == @Model.CompteConsumer.Id)
-            {
-                @*<div class="d-none col-sm-12 d-flex justify-content-center mt-4">
-                        @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new { @class = "btn btnGreen", @style = "background-color: #52ab98; color: white;" })
-                    </div>*@
-            }
-            else
-            {
-                <div class="col-sm-12 d-flex justify-content-center mt-4">
-                    @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new { @class = "btn btnGreen", @style = "background-color: #52ab98; color: white;" })
-                </div>
-            }
-
-            <div class="col-sm-12 d-flex justify-content-center mt-4">
-                @Html.ActionLink("Se deconnecter", "Deconnexion", "Login", null, null, null, null, new { @class = "btn btnOrange", @style = "background-color: #52ab98; color: white;" })
-            </div>
         </div>
 
         <!--Partie Centrale-->
@@ -109,22 +93,17 @@
                 <!-- nav profil-->
                 <ul id="myTab2" role="tablist"
                     class="nav nav-tabs nav-pills flex-column flex-sm-row text-center">
-                    <li class="nav-item flex-sm-fill col-3">
+                    <li class="nav-item flex-sm-fill col-4">
                         <a id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2"
                            aria-selected="true"
                            class="nav-link text-uppercase ligne mr-sm-3 rounded-0 active">Profil</a>
                     </li>
-                    <li class="nav-item flex-sm-fill col-3">
+                    <li class="nav-item flex-sm-fill col-4">
                         <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab"
                            aria-controls="profile2" aria-selected="false"
                            class="nav-link ligne text-uppercase  mr-sm-3 rounded-0">Annonces</a>
                     </li>
-                    <li class="nav-item flex-sm-fill col-3">
-                        <a id="contact2-tab" data-toggle="tab" href="#contact2" role="tab"
-                           aria-controls="contact2" aria-selected="false"
-                           class="nav-link ligne text-uppercase  rounded-0">Transactions</a>
-                    </li>
-                    <li class="nav-item flex-sm-fill col-3">
+                    <li class="nav-item flex-sm-fill col-4">
                         <a id="avis2-tab" data-toggle="tab" href="#avis2" role="tab" aria-controls="avis2"
                            aria-selected="false" class="nav-link ligne text-uppercase  rounded-0">Avis</a>
                     </li>
@@ -148,28 +127,10 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Email</h6>
+                                            <h6 class="mb-0">Département</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            @Model.CompteConsumer.Profil.Mail
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Téléphone</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            (+33) @Model.CompteConsumer.Profil.NumeroTelephone
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Adresse</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            @Model.CompteConsumer.Profil.Adresse @Model.CompteConsumer.Profil.CodePostal @Model.CompteConsumer.Profil.Ville
+                                            @Model.CompteConsumer.Profil.CodePostal
                                         </div>
                                     </div>
                                     <hr>
@@ -183,30 +144,24 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-12 d-flex justify-content-center">
-                                            @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new
-                                            {
-                                                @class = "btn btnGreen",
-                                                @style = "background-color: #52ab98; color: white;"
-                                            })
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Compétences</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            Moteur Habitacle
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Mes annonces -->
-
                     <div id="profile2" role="tabpanel" aria-labelledby="profile-tab"
                          class="tab-pane fade px-4 py-5">
 
-                        <div class=" d-flex justify-content-center">
-                            <a class="btn btnGreen" href="/Annonce/PosterAnnonce">Poster une annonce</a>
-                        </div>
-
-
-                        @if (Model.Annonce.Count > 0)
+                        @if (Model.Annonce != null)
                         {
                             @foreach (var annonce in Model.Annonce)
                             {
@@ -216,7 +171,7 @@
                                     </div>
                                     <div class=" row flex-row">
                                         <div class="wall_post_img col-6">
-                                            <img src="~/media/annonce/@annonce.Photo" alt="">
+                                            <img src="assets/img/design_service.png" alt="">
                                         </div>
                                         <div class="post_info col-6 flex-col justify-content-between">
                                             <div class="post_info_text ml-1">
@@ -249,125 +204,6 @@
                             }
 
                         }
-                        @if (Model.Annonce.Count == 0)
-                        {
-                        <br><br><center><p>Vous n'avez pas publié d'annonce.</p></center>
-                        }
-                    </div>
-
-                    <!-- mes transactions  -->
-                    <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
-                         class="tab-pane fade px-4 py-5">
-
-                        @if (Model.ListeTransaction.Count > 0)
-                        {
-                            <button type="button" class="collapsible mt-4 d-flex justify-content-between">
-                                <span>En cours</span>
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                    </svg>
-                                </span>
-                            </button>
-
-
-
-                            @foreach (var item in @Model.ListeTransaction)
-                            {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                                {
-
-                                    <div class="content mt-4">
-                                        <div class="d-flex flex-column">
-                                            <div class="transaction d-flex">
-                                                <div class="col-1">
-                                                    <img src="assets/img/design_service.png" alt=""
-                                                         style="width:50px">
-                                                </div>
-                                                <div class="col-7">
-                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                    <span class="small text-muted">
-                                                        <span style="color:#52ab98">
-                                                            Demande de
-                                                            service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
-                                                    </span>
-                                                </div>
-                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
-                                                <div class="col-2">
-                                                    <small>
-                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                                                        {<em>
-                                                            En cours
-
-                                                        </em>
-                                                        }
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            }
-
-
-
-
-                            <button type="button" class="collapsible mt-4 d-flex justify-content-between">
-                                <span> Finalisé</span>
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                    </svg>
-                                </span>
-                            </button>
-
-
-                            @foreach (var item in @Model.ListeTransaction)
-                            {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
-                                {
-                                    <div class="content mt-4">
-                                        <div class="d-flex flex-column">
-                                            <div class="transaction d-flex">
-                                                <div class="col-1">
-                                                    <img src="assets/img/design_acheter.png" alt=""
-                                                         style="width:50px" />
-                                                </div>
-                                                <div class="col-7">
-                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                    <span class="small text-muted">
-                                                        <span style="color:#52ab98">Achat</span>
-                                                        à  / @item.Annonce.CategorieDeAnnonce
-                                                        <em>MrDurand89</em>
-                                                    </span>
-                                                </div>
-                                                <div class="col-2" style="color:#52ab98">  @item.Montant€</div>
-                                                <div class="col-2">
-                                                    <small>
-                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
-                                                        {
-                                                        <em>
-                                                            Finalisé
-                                                        </em>
-                                                        }
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-
-                            }
-                        }
-                        @if (Model.ListeTransaction.Count == 0)
-                        {
-                            <center><p>Vous n'avez pas de transaction.</p></center>
-                        }
-
-                  
 
                     </div>
 
@@ -438,6 +274,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -445,43 +282,7 @@
         <!--Partie Droite-->
         <div class="col-2" id="right_side">
             <div class="row mt-5">
-                <div class="col-sm-12 d-flex justify-content-center">
-                    @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new { @class = "btn w-100", @style = "background-color: #52ab98; color: white;" })
-                    @*<a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
-                           href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-gear-fill ml-1 mr-1" viewBox="0 0 16 16">
-                                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                            </svg> Modifier le profil
-                        </a>*@
-                </div>
-                <div class="col-sm-12 d-flex justify-content-center mt-3">
-                    <a href="#myModal" class="trigger-btn btn btnOrange" data-toggle="modal">Supprimer mon profil</a>
-                </div>
-            </div>
-        </div>
 
-
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog modal-confirm">
-                <div class="modal-content">
-                    <div class="modal-header d-flex flex-column justify-content-center align-items-center">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <div class="icon-box">
-                            <i class="bi bi-x-circle" style="font-size:65px"></i>
-                        </div>
-                        <h4 class="modal-title text-center">Etes vous sure ?</h4>
-                    </div>
-                    <div class="modal-body text-center text-muted" style="border:none!important">
-                        <p>Etes-vous sure de vouloir supprimer votre compte HelpMyCar ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Retour</button>
-                        <button type="button" style="border:none;background:none;outline:none;padding:0">
-                            @Html.ActionLink("Supprimer", "SupprimerConsumer", "Profil", null, null, null, null, new { @class = " btn btnOrange", @style = "color: white;" })
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -489,6 +290,10 @@
 
 
 </div>
+
+
+
+
 <script src="~/js/js-e/jquery-3.2.1.min.js"></script>
 @*<script type="text/javascript">
         $(document).ready(function () {

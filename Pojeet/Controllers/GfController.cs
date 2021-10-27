@@ -19,31 +19,59 @@ namespace Pojeet.Controllers
         {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
 
-           listeConsumer = dal.ObtientConsumer();
+            listeConsumer = dal.ObtientConsumer();
 
             List<Transaction> listeTransaction = new List<Transaction>();
             listeTransaction = dal.ObtientTransaction();
-            
-            
-            return View(new TransactionViewModel { listConsumer = listeConsumer , Transaction = listeTransaction
+
+            return View(new TransactionViewModel
+            {
+                listConsumer = listeConsumer,
+                Transaction = listeTransaction
             });
 
 
         }
 
-        public ActionResult AfficherHelper(int id)
+        public ActionResult Consumer(int id)
         {
             CompteConsumer consumer = new CompteConsumer();
             consumer = dal.ObtientCompteConsumer(id);
 
             List<Transaction> transactions = new List<Transaction>();
             transactions = dal.ObtientTransaction(consumer.Id);
-            //return View(new TransactionViewModel
-            //{
-            //    consumer = consumer,
-            //    listeTransaction = transactions
-            //});
-            return View();
+            
+            return View(new ConsumerViewModel
+            {
+                Consumer = consumer,
+                ListeTransaction = transactions
+            });
+        }
+
+        public ActionResult Helper(int id)
+        {
+            CompteConsumer consumer = new CompteConsumer();
+            consumer = dal.ObtientCompteConsumer(id);
+
+            List<Transaction> transactions = new List<Transaction>();
+            transactions = dal.ObtientTransaction(consumer.Id);
+
+            return View(new ConsumerViewModel
+            {
+                Consumer = consumer,
+                ListeTransaction = transactions
+            });
+        }
+        public ActionResult Commande(int reference)
+        {
+            Transaction transaction = new Transaction();
+            transaction = dal.ObtientUneTransaction(reference);
+            CompteConsumer compteConsumer = new CompteConsumer();
+            compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);
+            double MargeBrute = dal.ObtenirMargeBrute(transaction.Reference);
+            double Reste = dal.ObtenirReste(transaction.Reference);
+            int NbTransaction = dal.ObtenirNbTransaction(transaction.ProfilId);
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction });
         }
     }
-}
+ }

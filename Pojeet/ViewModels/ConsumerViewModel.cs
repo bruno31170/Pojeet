@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pojeet.ViewModels
 {
-    public class TransactionViewModel
+    public class ConsumerViewModel
     {
-
-        public List<Transaction> Transaction { get; set; }
-        public List<CompteConsumer> listConsumer { get; set; }
-        
+        public List<Transaction> ListeTransaction { get; set; }
+        public CompteConsumer Consumer { get; set; }
         public Annonce annonce { get; set; }
-        
     }
 }

@@ -1,0 +1,144 @@
+﻿@model Pojeet.ViewModels.ConsumerViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Les commandes";
+}
+
+<div class="content-wrapper h-100 commande">
+    <!-- Content Header (Page header) -->
+    <div class="content-header pl-3">
+        <h1 class="pt-4 pl-4 mb-2 font-size-16">Profil</h1>
+    </div>
+    <!-- /.content-header -->
+
+    <div class="border-e mr-3 ml-3 p-4">
+        <!-- info_helper -->
+        <div class="w-100 mb-3 user_contact message-box border-e">
+            <div class="flex-row align-items-center pl-4 mb-2">
+                <img class="user_img mr-3" src="@Model.Consumer.Profil.Photo" alt="">
+                <a class="font-size-16 bold" href="">@Model.Consumer.Profil.Nom @Model.Consumer.Profil.Prenom</a>
+            </div>
+            <div class="flex-row pl-2">
+                <div class="flex-col col">
+
+                    <div class="flex-col">
+                        <div class="flex-row">
+                            <span>Pseudo</span>
+                            <h5>@Model.Consumer.Pseudo</h5>
+                        </div>
+                        <div class="flex-row">
+                            <span>Email</span>
+                            <h5>@Model.Consumer.Profil.Mail</h5>
+                        </div>
+                        <div class="flex-row">
+                            <span>Telephone</span>
+                            <h5>+33 @Model.Consumer.Profil.NumeroTelephone</h5>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flex-col col">
+                    <span class="mb-1">Adresse</span>
+                    <h5>@Model.Consumer.Profil.Adresse</h5>
+                    <div class="flex-row">
+                        <h5 class="mr-3">@Model.Consumer.Profil.Ville</h5>
+                        <h5>@Model.Consumer.Profil.CodePostal</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End info_helper -->
+        <!-- Liste de toutes les commandes du Helper -->
+
+        <input class="form-control mb-3" id="myInput_helper" type="text" placeholder="Recherche">
+        <div class="w-100 table_commande_helper">
+
+            <table class="table table-hover m-0 w-100 border-e-1 text-center">
+                <thead>
+                    <tr class="border-bottom-grey">
+                        <th scope="col">N°</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Consumer</th>
+                        <th scope="col">Article</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Statut</th>
+                    </tr>
+                </thead>
+                <tbody id="commande_helper">
+                    @foreach (var transaction in Model.ListeTransaction)
+                    {
+                        <tr>
+                            <th scope="row">@transaction.Reference</th>
+                            <td>@transaction.Date</td>
+                            @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+                            {
+                                <td>@transaction.Annonce.profil.Nom @transaction.Annonce.profil.Prenom</td>
+                            }
+                            else
+                            {
+                                <td>@transaction.Profil.Nom @transaction.Profil.Prenom</td>
+                            }
+
+
+                            <td>@transaction.Annonce.TitreAnnonce</td>
+                            <td>@transaction.Montant €</td>
+                            <td>
+                                @if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                                {<p>En_attente</p>}
+                                else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                                { <p>Valide</p>}
+                                else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
+                                { <p>Refuse</p>}
+                                else
+                                { <p>Termine</p>}
+                            </td>
+                        </tr>
+                    }
+
+                    @*<tr>
+                            <th scope="row">121</th>
+                            <td>05/08/2021</td>
+                            <td>Nicola Poirier</td>
+                            <td>Dépannage  Transport</td>
+                            <td>150 €</td>
+                            <td>Termine</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">148</th>
+                            <td>06/08/2021</td>
+                            <td>Carole Vasseur</td>
+                            <td>Réparation Entretien</td>
+                            <td>45 €</td>
+                            <td>Termine</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">100</th>
+                            <td>12/09/2021</td>
+                            <td>Christophe Brasseur</td>
+                            <td>Dépannage  Transport</td>
+                            <td>150 €</td>
+                            <td>Valide</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">121</th>
+                            <td>05/08/2021</td>
+                            <td>Nicola Poirier</td>
+                            <td>Dépannage  Transport</td>
+                            <td>150 €</td>
+                            <td>Termine</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">148</th>
+                            <td>06/08/2021</td>
+                            <td>Carole Vasseur</td>
+                            <td>Réparation Entretien</td>
+                            <td>45 €</td>
+                            <td>Termine</td>
+                        </tr>*@
+                </tbody>
+            </table>
+        </div>
+        <!-- End Liste de toutes les commandes du Helper -->
+    </div>
+</div>
+

@@ -1,0 +1,342 @@
+﻿@model Pojeet.ViewModels.CommandeViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Les commandes";
+}
+<div class="content-wrapper h-100 commande">
+    <!-- Content Header (Page header) -->
+
+
+    <div class="content-header pl-3">
+        <h1 class="pt-4 pl-4 mb-2 font-size-16">Commande N° @Model.Transaction.Reference</h1>
+    </div>
+    <!-- /.content-header -->
+    <div class="flex-col ml-4 mr-4" id="info_commande">
+        @if (Model.Transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+        {
+            <div class="flex-row">
+
+                <!-- Information Helper -->
+                <div class="info_helper col">
+                    <div class="w-100 mb-3 user_contact message-box border-e-1 p-4">
+                        <h2 class="m-0">Helper</h2>
+                        <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
+                            <div class="">
+                                <img class="user_img mr-3" src="@Model.Transaction.Profil.Photo" alt="">
+                            </div>
+
+                            <div class="col">
+                                <a class="font-size-16 bold" href="">@Model.Transaction.Profil.Prenom @Model.Transaction.Profil.Nom </a>
+                                <div class="flex-col mt-2">
+                                    <small class="text-nowrap">Compte crée le</small>
+                                    <h5>02/01/2021</h5>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="flex-row border-bottom-e-1">
+                            <div class="flex-col col">
+
+                                <div class="flex-col">
+                                    <div class="flex-row">
+                                        <span>Email</span>
+                                        <h5>@Model.Transaction.Profil.Mail</h5>
+                                    </div>
+                                    <div class="flex-row">
+                                        <span>Telephone</span>
+                                        <h5>@Model.Transaction.Profil.NumeroTelephone</h5>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex-col">
+                                <span class="mb-1">Adresse</span>
+                                <h5>@Model.Transaction.Profil.Adresse</h5>
+                                <div class="flex-row">
+                                    <h5 class="mr-3 text-uppercase">@Model.Transaction.Profil.Ville</h5>
+                                    <h5>@Model.Transaction.Profil.CodePostal</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-row">
+                            <span>Transaction(s)</span>
+                            <div class="ml-2 count_commande popup-open">
+                                <span>4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Information Helper -->
+                <!-- Information Consumer -->
+                <div class="info_helper col">
+                    <div class="w-100 mb-3 user_contact message-box border-e-1 p-4">
+                        <h2 class="m-0">Consumer</h2>
+                        <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
+                            <div class="">
+                                <img class="user_img mr-3" src="@Model.Transaction.Annonce.profil.Photo" alt="">
+                            </div>
+
+                            <div class="col">
+                                <a class="font-size-16 bold" href="">@Model.Transaction.Annonce.profil.Nom @Model.Transaction.Annonce.profil.Prenom</a>
+                                <div class="flex-col mt-2">
+                                    <small class="text-nowrap">Compte crée le</small>
+                                    <h5>29/08/2021</h5>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="flex-row border-bottom-e-1">
+                            <div class="flex-col col">
+
+                                <div class="flex-col">
+                                    <div class="flex-row">
+                                        <span>Email</span>
+                                        <h5>@Model.Transaction.Annonce.profil.Mail</h5>
+                                    </div>
+                                    <div class="flex-row">
+                                        <span>Telephone</span>
+                                        <h5>@Model.Transaction.Annonce.profil.NumeroTelephone</h5>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="flex-col">
+                                <span class="mb-1">Adresse</span>
+                                <h5>@Model.Transaction.Annonce.profil.Adresse</h5>
+                                <div class="flex-row">
+                                    <h5 class="mr-3 text-uppercase">@Model.Transaction.Annonce.profil.Ville</h5>
+                                    <h5>@Model.Transaction.Annonce.profil.CodePostal</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex-row">
+                            <span>Transaction(s)</span>
+                            <div class="ml-2 count_commande popup-open">
+                                <span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Information Consumer -->
+            </div>
+        }
+        else
+        { 
+            <div class="flex-row">
+    <div class="info_helper col">
+        <div class="w-100 mb-3 user_contact message-box border-e-1 p-4">
+            <h2 class="m-0">Helper</h2>
+            <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
+                <div class="">
+                    <img class="user_img mr-3" src="@Model.Transaction.Annonce.profil.Photo" alt="">
+                </div>
+
+                <div class="col">
+                    <a class="font-size-16 bold" href="">@Model.Transaction.Annonce.profil.Nom @Model.Transaction.Profil.Prenom</a>
+                    <div class="flex-col mt-2">
+                        <small class="text-nowrap">Compte crée le</small>
+                        <h5>02/01/2021</h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex-row border-bottom-e-1">
+                <div class="flex-col col">
+
+                    <div class="flex-col">
+                        <div class="flex-row">
+                            <span>Email</span>
+                            <h5>@Model.Transaction.Annonce.profil.Mail</h5>
+                        </div>
+                        <div class="flex-row">
+                            <span>Telephone</span>
+                            <h5>@Model.Transaction.Annonce.profil.NumeroTelephone</h5>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flex-col">
+                    <span class="mb-1">Adresse</span>
+                    <h5>@Model.Transaction.Annonce.profil.Adresse</h5>
+                    <div class="flex-row">
+                        <h5 class="mr-3 text-uppercase">@Model.Transaction.Annonce.profil.Ville</h5>
+                        <h5>@Model.Transaction.Annonce.profil.CodePostal</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-row">
+                <span>Transaction(s)</span>
+                <div class="ml-2 count_commande popup-open">
+                    <span>12</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Information Helper -->
+    <!-- Information Consumer -->
+    <div class="info_helper col">
+        <div class="w-100 mb-3 user_contact message-box border-e-1 p-4">
+            <h2 class="m-0">Consumer</h2>
+            <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
+                <div class="">
+                    <img class="user_img mr-3" src="@Model.Transaction.Profil.Photo" alt="">
+                </div>
+
+                <div class="col">
+                    <a class="font-size-16 bold" href="">@Model.Transaction.Profil.Nom @Model.Transaction.Profil.Prenom</a>
+                    <div class="flex-col mt-2">
+                        <small class="text-nowrap">Compte crée le</small>
+                        <h5>29/08/2021</h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex-row border-bottom-e-1">
+                <div class="flex-col col">
+
+                    <div class="flex-col">
+                        <div class="flex-row">
+                            <span>Email</span>
+                            <h5>@Model.Transaction.Profil.Mail</h5>
+                        </div>
+                        <div class="flex-row">
+                            <span>Telephone</span>
+                            <h5>@Model.Transaction.Profil.NumeroTelephone</h5>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flex-col">
+                    <span class="mb-1">Adresse</span>
+                    <h5>@Model.Transaction.Profil.Adresse</h5>
+                    <div class="flex-row">
+                        <h5 class="mr-3 text-uppercase">@Model.Transaction.Profil.Ville</h5>
+                        <h5>@Model.Transaction.Profil.CodePostal</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-row">
+                <span>Transaction(s)</span>
+                <div class="ml-2 count_commande popup-open">
+                    <span>3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Information Consumer -->
+</div>
+
+            }
+
+        <!-- Information commande -->
+        <h2>Commande N° @Model.Transaction.Reference</h2>
+        <div class="flex-row w-100">
+            <table class="table table-hover ml-3 mr-3 mb-3 border-e-1">
+                <thead>
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Article</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Marge brute</th>
+                        <th scope="col">Reste</th>
+                        <th scope="col">Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">@Model.Transaction.Reference</th>
+                        <td>@Model.Transaction.Date</td>
+                        <td>@Model.Transaction.Annonce.TitreAnnonce</td>
+                        <td>@Model.Transaction.Montant €</td>
+                        <td>@Model.MargeBrute €</td>
+                        <td>@Model.Reste €</td>
+                        <td>
+                            @if (@Model.Transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                            {
+                                <p>En_attente</p>
+                            }
+                            else if (@Model.Transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                            {
+                                <p>Valide</p>
+                            }
+                            else if (@Model.Transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
+                            {
+                                <p>Refuse</p>
+                            }
+                            else
+                            {
+                                <p>Termine</p>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--End  Information commande -->
+        <!-- Information Paiement -->
+        <div class="flex-row">
+            <!-- Information Paiement Consumer-->
+            <div class="col">
+                <h2>Volume financier</h2>
+                <table class="table table-hover border-e-1">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Montant</th>
+                            <th scope="col">Etat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">925456</th>
+                            <td>12/09/2021</td>
+                            <td>150 €</td>
+                            <td>Valide</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- End Information Paiement Consumer-->
+            <!-- Information Transaction Helper-->
+            <div class="col">
+                <h2>Transaction vers Helper</h2>
+                <table class="table table-hover border-e-1">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Montant</th>
+                            <th scope="col">Etat</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">N/A</th>
+                            <td>N/A</td>
+                            <td>141 €</td>
+                            <td>Valide</td>
+                            <td> <a class="p-1 bold" style="color: coral;" href="">Transferer</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Information Transaction Helper-->
+        </div>
+        <!--End  Information Paiement -->
+    </div>
+
+
+</div>
+

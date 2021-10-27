@@ -12,5 +12,14 @@ namespace Pojeet.Models
         public double TransactionMontant { get; set; }
         public int TransactionReference{ get; set; }
         public virtual Transaction Transaction { get; set; }
+        public int ProfilId {get; set; }
+        public virtual Profil ProfilPayant { get; set; }
+        public StatutPaiement StatutPaiement { get; set; }
+
+    }
+    public enum StatutPaiement
+    {
+        Payé,
+        NonPayé,
     }
 }

@@ -42,15 +42,13 @@
     <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/js/js-e/jquery.formstyler.min.js"></script>
-    <script>
-        (function ($) {
+    <script>(function ($) {
             $(function () {
                 $('select, option, input').styler({
                     selectSearch: true,
                 });
             });
-        })(jQuery);
-    </script>
+        })(jQuery);</script>
 
 </head>
 
@@ -122,6 +120,7 @@
                             <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
                         </div>
 
+
                         <div class="type_post flex-row justify-content-center">
                             @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
                             {
@@ -137,18 +136,6 @@
                                     <label class="bold" for="typePost2">Demandes</label>
 
                                 </div>
-
-
-
-                                <div class="type_post flex-row justify-content-center">
-                                    <div class="flex-row">
-                                        @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
-                                        <label class="bold" for="typePost1">Offres</label>
-                                    </div>
-                                    <div class="flex-row ml-4">
-                                        @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                                        <label class="bold" for="typePost2">Demandes</label>
-                                    </div>
 
                                     <div class="flex-col flex-md-row justify-content-center">
 
@@ -173,6 +160,7 @@
 
                                     </div>
                                 </div>
+
                             }
 
                         </div>
@@ -232,6 +220,7 @@
                                     </div>
                                     <div class="mr-4 mb-1">
                                         <span>Trier par</span>
+
 
                                         @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
 
@@ -299,6 +288,7 @@
                                             </div>
                                         </div>
 
+
                                     </div>
                                 }
                             </div>
@@ -357,8 +347,10 @@
                             <!-- Fin top anonce -->
                         </div>
                     </div>
+
                     
                 </div>
+
             </div>
          </main>
             <footer>

@@ -42,11 +42,12 @@ namespace Pojeet.Controllers
             return View();
         }
 
-        
+
 
         [HttpPost]
         public ActionResult PosterAnnonce(UtilisateurViewModel uvm, IFormFile AnnoncePhoto)
         {
+
 
             
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
@@ -54,11 +55,14 @@ namespace Pojeet.Controllers
             {
                 viewModel.CompteConsumer = dal2.ObtenirConsumer(HttpContext.User.Identity.Name);
 
+
                 viewModel.ListeAvis = dal2.ObtenirListeAvis(viewModel.CompteConsumer.Id);
+
 
                 viewModel.NoteGlobale = dal2.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
 
                 viewModel.CompteProvider = dal2.ObtenirHelper(viewModel.CompteConsumer.Id);
+
 
                 dal.PosterAnnonce(viewModel.CompteConsumer.Id, uvm.Anonce.TypeDeAnnonce, uvm.Anonce.TitreAnnonce, uvm.Anonce.Description, uvm.Anonce.DateParution,
                    uvm.Anonce.Localisation, uvm.Anonce.DateButoir, uvm.Anonce.Prix, uvm.Anonce.CategorieDeAnnonce, AnnoncePhoto, uvm.Anonce.EtatAnnonce);

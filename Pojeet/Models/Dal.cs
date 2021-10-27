@@ -28,10 +28,10 @@ namespace Pojeet.Models
         {
             return _context.CompteConsumer.Include(c => c.Profil).ToList();
         }
-        public List<Conversation> ObtientToutesLesConversations(int id)
+        public Conversation ObtientLaConversation(int id)
         {
-            List<Conversation> listeConversations = _context.Conversation.Where(r => r.MessagerieId == id).Include(c => c.Messages).Include(c => c.Annonce).Include(c => c.Auteur_Message.Profil).ToList();
-            return listeConversations;
+            Conversation conv = _context.Conversation.Where(r => r.Id == id).Include(c => c.Messages).Include(c => c.Annonce).Include(c => c.Auteur_Message.Profil).FirstOrDefault();
+            return conv;
         }
 
         public List<Message> ObtientTousLesMessages(int id)
@@ -40,25 +40,97 @@ namespace Pojeet.Models
             var messages = listeMessages.OrderBy(c => c.Id).ToList();
             return messages;
         }
-        public Messagerie ObtientLaMessagerie(int id)
+        public List<Conversation> ObtientLesConversations(int id)
         {
-            Messagerie messagerie = _context.Messagerie.Where(r => r.Id == id).Include(c => c.Profil).Include(c => c.Historique).FirstOrDefault();
-            return messagerie;
+            List<Conversation> listeConversations = new List<Conversation>();
+            List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).ToList();
+            foreach (var listeMessagerieConversation in ListeMessagerieConversation)
+            { listeConversations.Add(listeMessagerieConversation.Conversation); }
+            //listeConversations.OrderBy(c => c.DateCreation).ToList();
+            return listeConversations;
         }
 
-        public void AjouterMessage(string textmessage, int profilId, int conversationId)
+        public (int, List<Conversation>) ObtientLesConversations(int id, String motCle, Messagerie messagerie)
         {
+            List<Conversation> listeConversations = new List<Conversation>();
+            List<Conversation> listeConversationsRecherchees = new List<Conversation>();
+            List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation.Messages).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).ToList();
+            foreach (var listeMessagerieConversation in ListeMessagerieConversation)
+            {
+                listeConversations.Add(listeMessagerieConversation.Conversation);
+            }
+            foreach (var conversation in listeConversations)
+            {
+                if (conversation.Annonce.ProfilId == messagerie.ProfilId)
+                {
+                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    {
+                        listeConversationsRecherchees.Add(conversation);
+                    }
+                }
+                else
+                {
+                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    {
+                        listeConversationsRecherchees.Add(conversation);
+                    }
+                }
+            }
+            int id2 = listeConversationsRecherchees.First().Id;
+            //listeConversations.OrderBy(c => c.DateCreation).ToList();
+            return (id2, listeConversationsRecherchees);
+        }
 
+        public Messagerie ObtientLaMessagerie(int id)
+        {  
+            MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.Messagerie.ProfilId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
+            return messagerieConversation.Messagerie;
+        }
+
+        public Boolean VerificationMessagerieVide(int id)
+        {
+            MessagerieConversation messagerieconv = _context.MessagerieConversation.SingleOrDefault(x => x.Messagerie.ProfilId == id);
+                return messagerieconv == null;
+        }
+
+        public int ObtientPremiereConversation(List<Conversation> listeConversation)
+        {
+            int id=0;
+            id = listeConversation.First().Id;
+            return (id);
+        }
+
+        public List<MessagerieConversation> ObtientMessagerieConversation(int id)
+        {
+            List<MessagerieConversation> messagerieConversation = _context.MessagerieConversation.Where(r => r.ConversationId == id).Include(r => r.Conversation).Include(r => r.Messagerie).ToList();
+            return messagerieConversation;
+        }
+
+
+        public void AjouterMessage(string textmessage, int profilId, int conversationId, Boolean messageProposition)
+
+        {
             Message message = new Message
             {
                 message = textmessage,
                 Date = DateTime.Now,
                 ProfilId = profilId,
-                ConversationId = conversationId
+                ConversationId = conversationId,
+                MessageProposition = messageProposition
             };
             _context.Message.Add(message);
             _context.SaveChanges();
         }
+        public void RemplacerMessage(int messageId, Boolean messageProposition)
+        {
+            Message message = _context.Message.Include(c => c.Profil).Where(c => c.Id == messageId).FirstOrDefault();
+
+            if (message != null)
+            {
+                message.MessageProposition = messageProposition;
+            };
+        }
+
 
         public void Dispose()
         {
@@ -111,6 +183,15 @@ namespace Pojeet.Models
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
             return consumer.Id;
+        }
+        public void CreerMessagerie(int id)
+        {
+            Messagerie messagerie = new Messagerie()
+            {
+                ProfilId = id
+            };
+            _context.Messagerie.Add(messagerie);
+            _context.SaveChanges();
         }
 
         public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
@@ -181,11 +262,14 @@ namespace Pojeet.Models
                 noteGlobale = (noteGlobale + avis.note);
                 i++;
             }
-            noteGlobale = noteGlobale / i;
+            if (i != 0)
+            {
+                noteGlobale = noteGlobale / i;
+            }
+
             return noteGlobale;
 
         }
-
 
         public CompteConsumer ObtenirConsumer(string idStr)
         {
@@ -199,7 +283,7 @@ namespace Pojeet.Models
 
 
 
-        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, string documentIdentification, List<string> competence)
+        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, IFormFile photo, List<string> competence)
         {
 
             Rib rib = new Rib
@@ -212,12 +296,15 @@ namespace Pojeet.Models
             CompteProvider Provider = new CompteProvider
             {
                 CompteConsumerId = compteConsumer.Id,
-                DocumentIdentification = documentIdentification,
                 Rib = rib,
                 Etat = 0,
                 Competence = competence
             };
 
+            if (photo != null)
+            {
+                Provider.DocumentIdentification = photo.FileName;
+            }
 
             _context.CompteProvider.Add(Provider);
             _context.SaveChanges();
@@ -238,5 +325,66 @@ namespace Pojeet.Models
             return null;
 
         }
+        public void CreerTransaction(double montant, int annonceId, int profilId)
+        {
+
+            Transaction transaction = new Transaction
+            {
+                Date = DateTime.Now,
+                AnnonceId = annonceId,
+                Montant = montant,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 1
+
+            };
+            _context.Transactions.Add(transaction);
+            _context.SaveChanges();
+        }
+
+        public void CreerPaiement(int annonceId)
+        {
+            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault();
+            Paiement paiement = new Paiement
+            {
+                Date = DateTime.Now,
+                TransactionMontant = transaction.Montant,
+                TransactionReference = transaction.Reference,
+            };
+            _context.Paiement.Add(paiement);
+            _context.SaveChanges();
+        }
+
+        public void SupprimerTransaction(int annonceId)
+        {
+            _context.Transactions.RemoveRange(_context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault());
+            _context.SaveChanges();
+        }
+
+        public int CreerConversation(int id1, int id2)
+        { 
+            Conversation conversation = new Conversation
+            {
+                CompteConsumerId = _context.CompteConsumer.Where(r => r.ProfilId == id1).FirstOrDefault().Id,
+                AnnonceId = id2,
+                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
+            };
+            _context.Conversation.Add(conversation);
+            _context.SaveChanges();
+            _context.MessagerieConversation.AddRange(
+           new MessagerieConversation
+           {
+               MessagerieId = ObtientLaMessagerie(id1).Id,
+               ConversationId = conversation.Id
+           },
+            new MessagerieConversation
+            {
+                MessagerieId = conversation.Annonce.ProfilId,
+                ConversationId = conversation.Id
+            });
+            _context.SaveChanges();
+            return (conversation.Id);
+        }
     }
-}
+
+    }
+

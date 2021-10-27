@@ -1,4 +1,6 @@
-
+@{
+    var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+}
 
 @model Pojeet.ViewModels.ProfilViewModel
 <!DOCTYPE html>
@@ -62,9 +64,9 @@
                     </a>
                 </div>
                 @*<div class="search_header align-self-end">
-                    <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
-                    <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
-                </div>*@
+                        <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
+                        <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+                    </div>*@
                 <ul class="nav-menu-icon flex-row align-item-end justify-content-around mb-2 mr-4">
                     <li class="mr-3 ml-2 text-right">
                         @*@Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })*@
@@ -92,7 +94,7 @@
                         </ul>
                     </li>
                     <li class="mr-3 ml-2 text-right">
-                        <a href="~/Inbox/AfficherMessagerie">
+                        <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = Compte1.ProfilId })">
                             <i class="font-size-24 fa fa-envelope"></i>
                         </a>
                     </li>
@@ -112,8 +114,9 @@
             <div class="flex-col post_search text-center">
                 <img class="position-relative w-100" src="~/img/img-e/recherche.png" alt="">
 
-                @using (Html.BeginForm("RechercherAnnonce","Catalogue", FormMethod.Get))
+                @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
                 {
+
                      <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
                             <div class="post_search_text mt-3 mb-2">
                                 <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
@@ -122,43 +125,53 @@
 
                             <div class="type_post flex-row justify-content-center">
                                 <div class="flex-row">
+
                                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
                                     <label class="bold" for="typePost1">Offres</label>
+
                                 </div>
                                 <div class="flex-row ml-4">
+
                                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                                    <label class="bold" for="typePost2">Demandes</label>
+                                    <label class="bold" for="typePost2">Demandes</label> 
+
                                 </div>
 
 
+
+                        <div class="type_post flex-row justify-content-center">
+                            <div class="flex-row">
+                                @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
+                                <label class="bold" for="typePost1">Offres</label>
+                            </div>
+                            <div class="flex-row ml-4">
+                                @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
+                                <label class="bold" for="typePost2">Demandes</label>
                             </div>
 
-
-
                             <div class="flex-col flex-md-row justify-content-center">
-                                <!-- ICI LA FONCTION RECHERCHE A FAIRE -->
-
-
-
-
-
-
+                               
                                 <form id="search-form" action="index.html" method="post">
                                     <div class="flex-col flex-md-row">
 
-                                        @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
-
+                                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))))
                                         @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
                                         @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
 
-                                    </div>
 
-                                </form>
-                                <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
+                                    @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
+
+                                    @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
+                                    @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
+
+                                </div>
+
+                            </form>
+                            <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
 
 
-                            </div>
-                     </div>
+                        </div>
+                    </div>
                 }
 
             </div>
@@ -168,9 +181,7 @@
                 <div class="side_bar_inner">
                     <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
                         <li class="text-center">
-                            @{
-                                var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
-                            }
+
                             <img class="border-e mb-3" src="@Compte1.Profil.Photo" alt="">
 
                             <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
@@ -201,10 +212,10 @@
                         }
 
                         <li>
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
+                            <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
                         </li>
                         <li>
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                            <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
                         </li>
                     </ul>
                 </div>
@@ -216,7 +227,7 @@
                     <div class="flex-row justify-content-between align-items-center">
                         <div class="flex-row ml-3 mb-2">
                             <span>Annonces: </span>
-                            <span class="post_counter bold ml-2">140</span>
+                            <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
                         </div>
                         <div class="mr-4 mb-1">
                             <span>Trier par</span>
@@ -231,18 +242,18 @@
                     @foreach (var annonce in Model.Annonce)
                     {
                         <div class="post_content p-4 border-e flex-col white">
-                            
+
                             <div class="post_header flex-row align-items-center mb-2">
                                 <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
                                 <div class="post_header_info ml-4">
                                     <div class="post_author font-size-15">
-                                       <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+                                        <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
 
-                                </div>
-                                <div class="post_date font-size-11">
-                                    <span class="post_link">Date de parution : @annonce.DateParution</span>
-                                </div>
-                                <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
+                                    </div>
+                                    <div class="post_date font-size-11">
+                                        <span class="post_link">Date de parution : @annonce.DateParution</span>
+                                    </div>
+                                    <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
                                 </div>
                             </div>
                             <div class="wall_post flex-row">
@@ -251,17 +262,17 @@
                                 </div>
                                 <div class="post_info flex-col w-100 justify-content-between">
                                     <div class="post_info_text ml-1">
-                                        <span class="font-size-17 bold">@annonce.TitreAnnonce</span>
+                                        <span class="font-size-17 bold">@annonce.TitreAnnonce</span><br>
                                         <p class="text-justify">
                                             @annonce.Description
                                         </p>
                                     </div>
                                     <div class="post_price font-size-15 ml-1">
-                                        <span>Prix: @annonce.Prix</span>
+                                        <span>Prix: @annonce.Prix €</span>
                                     </div>
                                     <div class="btn-primary-e w-100 mt-2 btn_post">
 
-                                        <a href="@Url.Action("Annonce", "Catalogue", new { id = annonce.Id})">Voir l'annonce</a>
+                                        <a href="@Url.Action("Annonce", "Catalogue", new { id1 =Compte1.ProfilId ,id2=annonce.Id})">Voir l'annonce</a>
                                     </div>
                                 </div>
 

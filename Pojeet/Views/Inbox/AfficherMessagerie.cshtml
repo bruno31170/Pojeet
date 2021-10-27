@@ -1,407 +1,506 @@
-﻿@model Pojeet.Models.MyViewModel
-    @{
-        Layout = "_LayoutIdentifie";
-        ViewBag.Title = "Inbox";
-    }
+﻿@model Pojeet.Models.InboxViewModel
+@{
+    Layout = "_LayoutIdentifie";
+    ViewBag.Title = "Inbox";
+}
 
 
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-        <div class="container">
-            <div class="row clearfix">
-                <div class="col-lg-12">
-                    <div class="card chat-app">
-                        <div id="plist" class="people-list">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Rechercher...">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    @using (Html.BeginForm("RechercherConversation", "Inbox", FormMethod.Post))
+                    {
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
-                            <ul class="list-unstyled chat-list mt-2 mb-0">
-                                @foreach (var conversation in Model.Messagerie.Historique)
-                                {
-                                    <a href="@Url.Action( "AfficherMessagerie","Inbox", new { @id1 = conversation.MessagerieId, @id2 = conversation.Id })">
-
-
-                                    <li class="nav-item clearfix">
-                                        @*@Html.ActionLink("Afficher", "AfficherMessagerie", "Inbox", new { @id1 = conversation.MessagerieId, @id2 = conversation.Id }, null)*@
-                                        <img src=@Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Photo alt="avatar">
-                                        <div class="about">
-                                            <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
-                                            <div class="status">
-                                                @if (conversation.Auteur_Message.statut == 0)
-                                                {<i class="fa fa-circle online"></i>}
-                                                else
-                                                {<i class="fa fa-circle offline"></i>}
-                                                @conversation.Auteur_Message.statut
-                                            </div>
-                                        </div>
-                                    </li>                                 
-                                    </a>
-                                }
-                            </ul>
+                            <input type="text" id="MotCle" name="MotCle" class="form-control" placeholder="Rechercher..." value="">
+                            <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                            <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                         </div>
-                        <div class="chat">
-                            <div class="chat-header clearfix">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                            <img src=@Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Photo alt="avatar">
-                                        </a>
-                                        <div class="chat-about">
-                                            <h6 class="m-b-0"> @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Prenom  @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil.Nom </h6>
+                    }
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                        @foreach (var conversation in Model.List1)
+                        {
+                            @if (conversation.Annonce.ProfilId == Model.Messagerie.ProfilId)
+                            {
+                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id1 = Model.id1, @id2 = conversation.Id })">
+                                <li class="nav-item clearfix">
+                                    <img src=@conversation.Auteur_Message.Profil.Photo alt="avatar">
+                                    <div class="about">
+                                        <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
+                                        <div class="status">
+                                            @if (conversation.Auteur_Message.Profil.statut == 0)
+                                            {<i class="fa fa-circle online"></i>}
+                                            else
+                                            {<i class="fa fa-circle offline"></i>}
+                                            @conversation.Auteur_Message.Profil.statut
                                         </div>
                                     </div>
-                                    <div class="container">
-                                        @if (Model.List1.FirstOrDefault(c => c.Id == Model.id2).Auteur_Message.Profil != Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.profil)
-                                        {
-                                                <button type="submit" class="btn btn-info float-right">Proposez un prix</button>
-                                                }
-
-                                                <button type="button" class="btn btn-link float-right">Annonce N° @Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id</button>
+                                </li>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id1 = Model.Messagerie.ProfilId, @id2 = conversation.Id })">
+                                <li class="nav-item clearfix">
+                                    <img src=@conversation.Annonce.profil.Photo alt="avatar">
+                                    <div class="about">
+                                        <div class="name"> @conversation.Annonce.profil.Prenom @conversation.Annonce.profil.Nom</div>
+                                        <div class="status">
+                                            @if (conversation.Annonce.profil.statut == 0)
+                                            {<i class="fa fa-circle online"></i>}
+                                            else
+                                            {<i class="fa fa-circle offline"></i>}
+                                            @conversation.Annonce.profil.statut
                                         </div>
                                     </div>
-                                </div>
-                            <div class="chat-history">
-                                <ul class="m-b-0">
-
-                                    @foreach (var message in Model.List2)
-                                    {
-
-                                        @if (message.ProfilId == @Model.Messagerie.ProfilId)
-                                        {
-                                            <li class="clearfix">
-                                                <div class="message-data text-right">
-                                                    <span class="message-data-time">@message.Date</span>
-                                                    <img src=@message.Profil.Photo alt="avatar">
-                                                </div>
-                                                <div class="message other-message float-right">
-                                                    @message.message
-                                                </div>
-                                            </li>
-                                        }
-                                        else
-                                        {
-                                            <li class="clearfix">
-                                                <div class="message-data">
-                                                    <span class="message-data-time">@message.Date</span>
-                                                </div>
-                                                <div class="message my-message">
-                                                    @message.message
-                                                </div>
-                                            </li>
-                                        }
-                                    }
-                                </ul>
+                                </li>
+                                </a>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                @if (Model.Conversation.Annonce.ProfilId == Model.Messagerie.ProfilId)
+                                {
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src=@Model.Conversation.Auteur_Message.Profil.Photo alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0"> @Model.Conversation.Auteur_Message.Profil.Prenom  @Model.Conversation.Auteur_Message.Profil.Nom </h6>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src=@Model.Conversation.Annonce.profil.Photo alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0"> @Model.Conversation.Annonce.profil.Prenom  @Model.Conversation.Annonce.profil.Nom </h6>
+                                    </div>
+                                }
                             </div>
-                            @using (Html.BeginForm())
+                            <div class="container">
+                                @if (Model.Messagerie.ProfilId != Model.Conversation.Annonce.ProfilId)
+                                {
+                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                                    @using (Html.BeginForm("CreateTransaction", "Inbox", FormMethod.Post))
+                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                        <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
+                                        <form method="post" asp-action="CreateTransaction" asp-controller="Inbox">
+                                            <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Vous êtes intéressé par l'annonce? Proposez un prix!</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>Prix en euros:</label>
+                                                                <input type="text" id="NouvelleTransaction.Montant" name="NouvelleTransaction.Montant" class="form-control" value="">
+                                                                <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                                <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="@Model.Conversation.Auteur_Message.Profil.Prenom">
+                                                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn btn-info">Envoyer la proposition</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                }
+                                <a href="@Url.Action("Annonce", "Catalogue", new { id = @Model.Conversation.Annonce.Id})">
+                                    <button type="button" class="btn btn-link float-right">Annonce N° @Model.Conversation.Annonce.Id</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-history">
+                        <ul class="m-b-0">
+
+                            @foreach (var message in Model.List2)
                             {
 
-                                <div class="form-group chat-message clearfix">
-                                    <div class="input-group mb-0">
-                                        <div class="input-group-prepend">
-                                            <button type="submit" class="input-group-text">
-                                                <i class="fa fa-send"></i>
-                                            </button>
+                                @if (message.ProfilId == @Model.Messagerie.ProfilId)
+                                {
+                                    <li class="clearfix">
+                                        <div class="message-data text-right">
+                                            <span class="message-data-time">@message.Date</span>
+                                            <img src=@message.Profil.Photo alt="avatar">
                                         </div>
-                                        @*@Html.TextBoxFor(model => model.NouveauMessage.message, new { @classe = "form-control", @placeholder = "Tapez votre message..." })
-                                        @Html.HiddenFor(model => model.NouveauMessage.ProfilId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })
-                                        @Html.HiddenFor(model => model.NouveauMessage.ConversationId, new { @Value = Model.List1.FirstOrDefault(c => c.Id == Model.id2).Annonce.Id })*@
-                                        <input type="text" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="">
-                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="2">
-                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="1">
-                                    </div>
-                                </div>
+                                        <div class="message other-message float-right">
+                                            @message.message
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="clearfix">
+                                        <div class="message-data">
+                                            <span class="message-data-time">@message.Date</span>
+                                        </div>
+                                        <div class="message my-message">
+                                            @message.message
+
+                                            @if (message.MessageProposition == true)
+                                            {<div class="row">
+                                                    @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
+                                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                                        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+                                                        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                        <button type="submit" class="btn btn-info float-left button">J'accepte</button>
+                                                    }
+
+                                                    @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
+                                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
+                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                                        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+                                                        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                        <button type="submit" class="btn btn-info float-left button">
+                                                               Je refuse
+                                                        </button>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    </li>
+                                }
 
                             }
-                        </div>
-                            
+                        </ul>
                     </div>
+                    @using (Html.BeginForm("CreerMessage", "Inbox", FormMethod.Post))
+                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+
+                        <div class="form-group chat-message clearfix">
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="input-group-text">
+                                        <i class="fa fa-send"></i>
+                                    </button>
+                                </div>
+                                <input type="text" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="">
+                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Messagerie.ProfilId">
+                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                            </div>
+                        </div>
+
+                    }
                 </div>
+
             </div>
         </div>
+    </div>
+</div>
 
-        <style type="text/css">
-            body {
-                background-color: #f4f7f6;
-                margin-top: 20px;
-            }
-
-            .card {
-                background: #fff;
-                transition: .5s;
-                border: 0;
-                margin-bottom: 30px;
-                border-radius: .55rem;
-                position: relative;
-                width: 100%;
-                box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
-            }
-
-            .chat-app .people-list {
-                width: 280px;
-                position: absolute;
-                left: 0;
-                top: 0;
-                padding: 20px;
-                z-index: 7
-            }
-
-            .chat-app .chat {
-                margin-left: 280px;
-                border-left: 1px solid #eaeaea
-            }
-
-            .people-list {
-                -moz-transition: .5s;
-                -o-transition: .5s;
-                -webkit-transition: .5s;
-                transition: .5s
-            }
-
-                .people-list .chat-list li {
-                    padding: 10px 15px;
-                    list-style: none;
-                    border-radius: 3px
-                }
-
-                    .people-list .chat-list li:hover {
-                        background: #efefef;
-                        cursor: pointer
-                    }
-
-                    .people-list .chat-list li.active {
-                        background: #efefef
-                    }
-
-                    .people-list .chat-list li .name {
-                        font-size: 15px
-                    }
-
-                .people-list .chat-list img {
-                    width: 45px;
-                    border-radius: 50%
-                }
-
-                .people-list img {
-                    float: left;
-                    border-radius: 50%
-                }
-
-                .people-list .about {
-                    float: left;
-                    padding-left: 8px
-                }
-
-                .people-list .status {
-                    color: #999;
-                    font-size: 13px
-                }
-
-            .chat .chat-header {
-                padding: 15px 20px;
-                border-bottom: 2px solid #f4f7f6
-            }
-
-                .chat .chat-header img {
-                    float: left;
-                    border-radius: 40px;
-                    width: 40px
-                }
-
-                .chat .chat-header .chat-about {
-                    float: left;
-                    padding-left: 10px
-                }
-
-            .chat .chat-history {
-                padding: 20px;
-                border-bottom: 2px solid #fff
-            }
-
-                .chat .chat-history ul {
-                    padding: 0
-                }
-
-                    .chat .chat-history ul li {
-                        list-style: none;
-                        margin-bottom: 30px
-                    }
-
-                        .chat .chat-history ul li:last-child {
-                            margin-bottom: 0px
-                        }
-
-                .chat .chat-history .message-data {
-                    margin-bottom: 15px
-                }
-
-                    .chat .chat-history .message-data img {
-                        border-radius: 40px;
-                        width: 40px
-                    }
-
-                .chat .chat-history .message-data-time {
-                    color: #434651;
-                    padding-left: 6px
-                }
-
-                .chat .chat-history .message {
-                    color: #444;
-                    padding: 18px 20px;
-                    line-height: 26px;
-                    font-size: 16px;
-                    border-radius: 7px;
-                    display: inline-block;
-                    position: relative
-                }
-
-                    .chat .chat-history .message:after {
-                        bottom: 100%;
-                        left: 7%;
-                        border: solid transparent;
-                        content: " ";
-                        height: 0;
-                        width: 0;
-                        position: absolute;
-                        pointer-events: none;
-                        border-bottom-color: #fff;
-                        border-width: 10px;
-                        margin-left: -10px
-                    }
-
-                .chat .chat-history .my-message {
-                    background: #efefef
-                }
-
-                    .chat .chat-history .my-message:after {
-                        bottom: 100%;
-                        left: 30px;
-                        border: solid transparent;
-                        content: " ";
-                        height: 0;
-                        width: 0;
-                        position: absolute;
-                        pointer-events: none;
-                        border-bottom-color: #efefef;
-                        border-width: 10px;
-                        margin-left: -10px
-                    }
-
-            button {
-                margin: 7px;
-            }
-
-            .chat .chat-history .other-message {
-                background: #e8f1f3;
-                text-align: right
-            }
-
-                .chat .chat-history .other-message:after {
-                    border-bottom-color: #e8f1f3;
-                    left: 93%
-                }
-
-            .chat .chat-message {
-                padding: 20px
-            }
-
-            .online,
-            .offline,
-            .me {
-                margin-right: 2px;
-                font-size: 8px;
-                vertical-align: middle
-            }
-
-            .online {
-                color: #86c541
-            }
-
-            .offline {
-                color: #e47297
-            }
-
-            .me {
-                color: #1d8ecd
-            }
-
-            .float-right {
-                float: right
-            }
-
-            .clearfix:after {
-                visibility: hidden;
-                display: block;
-                font-size: 0;
-                content: " ";
-                clear: both;
-                height: 0
-            }
-
-            @@ media only screen and (max-width: 767px) {
-                .chat-app .people-list {
-                    height: 465px;
-                    width: 100%;
-                    overflow-x: auto;
-                    background: #fff;
-                    left: -400px;
-                    display: none
-                }
-
-                    .chat-app .people-list.open {
-                        left: 0
-                    }
-
-                .chat-app .chat {
-                    margin: 0
-                }
-
-                    .chat-app .chat .chat-header {
-                        border-radius: 0.55rem 0.55rem 0 0
-                    }
-
-                .chat-app .chat-history {
-                    height: 300px;
-                    overflow-x: auto
-                }
-            }
-
-            @@ media only screen and (min-width: 768px) and (max-width: 992px) {
-                .chat-app .chat-list {
-                    height: 650px;
-                    overflow-x: auto
-                }
-
-                .chat-app .chat-history {
-                    height: 600px;
-                    overflow-x: auto
-                }
-            }
-
-            @@ media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
-                .chat-app .chat-list {
-                    height: 480px;
-                    overflow-x: auto
-                }
-
-                .chat-app .chat-history {
-                    height: calc(100vh - 350px);
-                    overflow-x: auto
-                }
-            }
-        </style>
-
-        <script type="text/javascript">
-
-        </script>
- 
-
-
-
-    @section scripts {
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<style type="text/css">
+    body {
+        background-color: #f4f7f6;
+        margin-top: 20px;
     }
+
+    .card {
+        background: #fff;
+        transition: .5s;
+        border: 0;
+        margin-bottom: 30px;
+        border-radius: .55rem;
+        position: relative;
+        width: 100%;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+    }
+
+    .chat-app .people-list {
+        width: 280px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 20px;
+        z-index: 7
+    }
+
+    .chat-app .chat {
+        margin-left: 280px;
+        border-left: 1px solid #eaeaea
+    }
+
+    .people-list {
+        -moz-transition: .5s;
+        -o-transition: .5s;
+        -webkit-transition: .5s;
+        transition: .5s
+    }
+
+        .people-list .chat-list li {
+            padding: 10px 15px;
+            list-style: none;
+            border-radius: 3px
+        }
+
+            .people-list .chat-list li:hover {
+                background: #efefef;
+                cursor: pointer
+            }
+
+            .people-list .chat-list li.active {
+                background: #efefef
+            }
+
+            .people-list .chat-list li .name {
+                font-size: 15px
+            }
+
+        .people-list .chat-list img {
+            width: 45px;
+            border-radius: 50%
+        }
+
+        .people-list img {
+            float: left;
+            border-radius: 50%
+        }
+
+        .people-list .about {
+            float: left;
+            padding-left: 8px
+        }
+
+        .people-list .status {
+            color: #999;
+            font-size: 13px
+        }
+
+    .chat .chat-header {
+        padding: 15px 20px;
+        border-bottom: 2px solid #f4f7f6
+    }
+
+        .chat .chat-header img {
+            float: left;
+            border-radius: 40px;
+            width: 40px
+        }
+
+        .chat .chat-header .chat-about {
+            float: left;
+            padding-left: 10px
+        }
+
+    .chat .chat-history {
+        padding: 20px;
+        border-bottom: 2px solid #fff
+    }
+
+        .chat .chat-history ul {
+            padding: 0
+        }
+
+            .chat .chat-history ul li {
+                list-style: none;
+                margin-bottom: 30px
+            }
+
+                .chat .chat-history ul li:last-child {
+                    margin-bottom: 0px
+                }
+
+        .chat .chat-history .message-data {
+            margin-bottom: 15px
+        }
+
+            .chat .chat-history .message-data img {
+                border-radius: 40px;
+                width: 40px
+            }
+
+        .chat .chat-history .message-data-time {
+            color: #434651;
+            padding-left: 6px
+        }
+
+        .chat .chat-history .message {
+            color: #444;
+            padding: 18px 20px;
+            line-height: 26px;
+            font-size: 16px;
+            border-radius: 7px;
+            display: inline-block;
+            position: relative
+        }
+
+            .chat .chat-history .message:after {
+                bottom: 100%;
+                left: 7%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-bottom-color: #fff;
+                border-width: 10px;
+                margin-left: -10px
+            }
+
+        .chat .chat-history .my-message {
+            background: #efefef
+        }
+
+            .chat .chat-history .my-message:after {
+                bottom: 100%;
+                left: 30px;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-bottom-color: #efefef;
+                border-width: 10px;
+                margin-left: -10px
+            }
+
+    .button {
+        margin: 7px;
+    }
+
+    .chat .chat-history .other-message {
+        background: #e8f1f3;
+        text-align: right
+    }
+
+        .chat .chat-history .other-message:after {
+            border-bottom-color: #e8f1f3;
+            left: 93%
+        }
+
+    .chat .chat-message {
+        padding: 20px
+    }
+
+    .online,
+    .offline,
+    .me {
+        margin-right: 2px;
+        font-size: 8px;
+        vertical-align: middle
+    }
+
+    .online {
+        color: #86c541
+    }
+
+    .offline {
+        color: #e47297
+    }
+
+    .me {
+        color: #1d8ecd
+    }
+
+    .float-right {
+        float: right
+    }
+
+    .clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0
+    }
+
+    @@ media only screen and (max-width: 767px) {
+        .chat-app .people-list {
+            height: 465px;
+            width: 100%;
+            overflow-x: auto;
+            background: #fff;
+            left: -400px;
+            display: none
+        }
+
+            .chat-app .people-list.open {
+                left: 0
+            }
+
+        .chat-app .chat {
+            margin: 0
+        }
+
+            .chat-app .chat .chat-header {
+                border-radius: 0.55rem 0.55rem 0 0
+            }
+
+        .chat-app .chat-history {
+            height: 300px;
+            overflow-x: auto
+        }
+    }
+
+    @@ media only screen and (min-width: 768px) and (max-width: 992px) {
+        .chat-app .chat-list {
+            height: 650px;
+            overflow-x: auto
+        }
+
+        .chat-app .chat-history {
+            height: 600px;
+            overflow-x: auto
+        }
+    }
+
+    @@ media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+        .chat-app .chat-list {
+            height: 480px;
+            overflow-x: auto
+        }
+
+        .chat-app .chat-history {
+            height: calc(100vh - 350px);
+            overflow-x: auto
+        }
+    }
+</style>
+
+<script type="text/javascript">
+
+</script>
+
+
+
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+}

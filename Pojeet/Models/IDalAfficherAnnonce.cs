@@ -7,7 +7,7 @@ namespace Pojeet.Models
 {
     public interface IDalAfficherAnnonce
     {
-        CompteConsumer ObtientConsumer();
+        CompteConsumer ObtientConsumer(int id);
         Annonce ObtientAnnonce(int id);
         List<Avis> ObtientAvis(int id);
     }

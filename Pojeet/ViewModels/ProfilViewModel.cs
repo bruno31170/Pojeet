@@ -13,7 +13,22 @@ namespace Pojeet.ViewModels
         public CompteProvider CompteProvider { get; set; }
         public Annonce Anonce { get; set; }
         public Recherche Recherche { get; set; }
+        public NombreAnnonce NombreAnnonce { get; set; }
+        public CategorieRecherche CategorieDeRecherche { get; set; }
+        public CategorieAnnonce CategorieDeAnnonce { get; set; }
 
+
+    }
+    public enum CategorieRecherche
+    {
+        Réparation,
+        Pièce,
+        Location
+    }
+    public enum TypeAnnonce
+    {
+        Besoin,
+        Service
 
     }
 }

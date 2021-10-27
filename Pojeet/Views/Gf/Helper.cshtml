@@ -58,6 +58,7 @@
                     <tr class="border-bottom-grey">
                         <th scope="col">N°</th>
                         <th scope="col">Data</th>
+                        <th scope="col">Helper</th>
                         <th scope="col">Consumer</th>
                         <th scope="col">Article</th>
                         <th scope="col">Montant</th>
@@ -67,32 +68,38 @@
                 <tbody id="commande_helper">
                     @foreach (var transaction in Model.ListeTransaction)
                     {
-                        <tr>
-                            <th scope="row">@transaction.Reference</th>
-                            <td>@transaction.Date</td>
-                            @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
-                            {
-                                <td>@transaction.Annonce.profil.Nom @transaction.Annonce.profil.Prenom</td>
-                            }
+                    <tr>
+                        <th scope="row">@transaction.Reference</th>
+                        <td>@transaction.Date</td>
+                        @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+                        {
+                            <td>@transaction.Profil.Nom @transaction.Profil.Prenom</td>
+                        }
+                        else
+                        {
+                            <td>@transaction.Annonce.profil.Nom @transaction.Annonce.profil.Prenom</td>
+                        }
+                        @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+                        {
+                            <td>@transaction.Annonce.profil.Nom @transaction.Annonce.profil.Prenom</td>
+                        }
+                        else
+                        {
+                            <td>@transaction.Profil.Nom @transaction.Profil.Prenom</td>
+                        }
+                        <td>@transaction.Annonce.TitreAnnonce</td>
+                        <td>@transaction.Montant €</td>
+                        <td>
+                            @if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                            {<p>En_attente</p>}
+                            else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                            { <p>Valide</p>}
+                            else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
+                            { <p>Refuse</p>}
                             else
-                            {
-                                <td>@transaction.Profil.Nom @transaction.Profil.Prenom</td>
-                            }
-
-
-                            <td>@transaction.Annonce.TitreAnnonce</td>
-                            <td>@transaction.Montant €</td>
-                            <td>
-                                @if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                                {<p>En_attente</p>}
-                                else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
-                                { <p>Valide</p>}
-                                else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
-                                { <p>Refuse</p>}
-                                else
-                                { <p>Termine</p>}
-                            </td>
-                        </tr>
+                            { <p>Termine</p>}
+                        </td>
+                    </tr>
                     }
 
                     @*<tr>

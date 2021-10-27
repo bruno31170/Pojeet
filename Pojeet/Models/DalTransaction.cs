@@ -72,14 +72,12 @@ namespace Pojeet.Models
             NbTransaction = i;
             return NbTransaction;
         }
-        //public int ObtenirNbCommandeMois(DateTime date)
-        //{
-        //    List<Transaction> transactions = ObtientTransaction();
-        //    DateTime dt = DateTime.Now;
-        //    DateTime firstDayOfMonth = new DateTime(dt.Year, date.Month, 1);
-        //    DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
-           
-        //}
+
+        public Paiement ObtenirPaiement(int reference)
+        {
+            Paiement paiement = this._context.Paiement.Where(c => c.TransactionReference == reference).FirstOrDefault();
+            return paiement;
+        }
 
         public void Dispose()
         {

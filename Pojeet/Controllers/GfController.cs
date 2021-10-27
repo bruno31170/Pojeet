@@ -11,9 +11,11 @@ namespace Pojeet.Controllers
     public class GfController : Controller
     {
         public IDalTransaction dal;
+        public DalInbox dalinbox;
         public GfController()
         {
             this.dal = new DalTransaction();
+            this.dalinbox = new DalInbox();
         }
 
         public IActionResult AdminIndex()
@@ -132,7 +134,9 @@ namespace Pojeet.Controllers
             double MargeBrute = dal.ObtenirMargeBrute(transaction.Reference);
             double Reste = dal.ObtenirReste(transaction.Reference);
             int NbTransaction = dal.ObtenirNbTransaction(transaction.Profil.Id);
-            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction });
+            Paiement paiement = new Paiement();
+            paiement = dal.ObtenirPaiement(transaction.Reference);
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction, Paiement =paiement });
         }
     }
  }

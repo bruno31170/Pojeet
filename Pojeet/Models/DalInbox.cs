@@ -271,6 +271,7 @@ namespace Pojeet.Models
                 Date = DateTime.Now,
                 AnnonceId = annonceId,
                 Montant = montant,
+                MontantHelper = Math.Round(montant -(montant * 0.05) ,2),
                 EtatTransaction = EtatTransaction.En_attente,
                 ProfilId = 1
 
@@ -299,11 +300,14 @@ namespace Pojeet.Models
             {
                 Date = DateTime.Now,
                 TransactionMontant = transaction.Montant,
+                TransactionMontantHelper = transaction.MontantHelper,
                 TransactionReference = transaction.Reference,
                 StatutPaiement = StatutPaiement.Payé,
                 ProfilPayant=IdentifierPayant(transaction),
             };
+            
             _context.Paiement.Add(paiement);
+            //transaction.EtatTransaction = EtatTransaction.Valide;
             _context.SaveChanges();
         }
         public Profil IdentifierRecepteur(Transaction transaction)

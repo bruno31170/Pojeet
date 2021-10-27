@@ -20,5 +20,8 @@ namespace Pojeet.Models
         CompteConsumer ObtenirConsumer(string idStr);
         public void CreerMessagerie(int id);
 
+        public List<Transaction> ObtientTransaction(int id);
+
+
     }
 }

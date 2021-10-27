@@ -28,8 +28,10 @@ namespace Pojeet.Models
         {
 
 
+
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
 
         }
 

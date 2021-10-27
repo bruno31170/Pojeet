@@ -99,6 +99,13 @@ body {
     z-index: 9
 }
 
+
+.iconNav {
+    color: #2b6777;
+    font-size: 24px;
+    margin: 10px;
+}
+
 /* bouton burger */
 .navbar-light .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='%2313151b' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
@@ -284,3 +291,17 @@ nav-link-hover-green:hover {
         align-items: center;
     }
 }
+
+
+/* FOOTER */
+footer {
+    line-height: 1.8rem;
+    background-color: #2b6777;
+}
+
+
+    footer span {
+        font-size: 1rem;
+        border-bottom: 1px solid white;
+        text-transform: uppercase;
+    }

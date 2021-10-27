@@ -58,6 +58,23 @@ namespace Pojeet.Controllers
 
         }
 
+        public IActionResult ProfilVisiteur(int id)
+        {
+
+            UtilisateurViewModel viewModel = new UtilisateurViewModel();
+
+            viewModel.CompteConsumer = dal.ObtenirConsumer(id);
+            viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
+            viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
+
+            viewModel.NoteGlobale = dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
+
+            viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
+
+            return View(viewModel);
+
+        }
+
 
         public IActionResult ModifierConsumer()
         {

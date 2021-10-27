@@ -35,7 +35,7 @@ namespace Pojeet.Models
 
         public List<Transaction> ObtientTransaction(int id)
         {
-            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
+            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
             return listeTransaction;
         }
         public Transaction ObtientUneTransaction (int reference)
@@ -72,7 +72,14 @@ namespace Pojeet.Models
             NbTransaction = i;
             return NbTransaction;
         }
-
+        //public int ObtenirNbCommandeMois(DateTime date)
+        //{
+        //    List<Transaction> transactions = ObtientTransaction();
+        //    DateTime dt = DateTime.Now;
+        //    DateTime firstDayOfMonth = new DateTime(dt.Year, date.Month, 1);
+        //    DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+           
+        //}
 
         public void Dispose()
         {

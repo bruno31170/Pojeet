@@ -32,9 +32,7 @@
             @if (Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId)
             {
                 @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
-                {
-                    <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.CompteConsumer.ProfilId">
-                    <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.Annonce.Id">
+                {   <input type="hidden" id="id" name="id" class="form-control" value="@Model.Annonce.Id">
                     <button type="submit" class="btn-primary-e mb-1" >Contacter</button>
                 }
             }
@@ -47,8 +45,6 @@
             </div>
             <span><i class="fa fa-heart font-size-20"></i></span>
         </div>
-
-
 
         <!-- Carousel image l'annonce -->
 
@@ -154,7 +150,6 @@
 
                 </div>
                 <span class="mt-2 font-size-12">Commenté le @Avis.date</span>
-
                 <span class="mt-2 font-size-16">@Avis.commentaire </span>
             </div>
         }

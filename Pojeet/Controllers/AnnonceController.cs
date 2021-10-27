@@ -31,14 +31,14 @@ namespace Pojeet.Controllers
             return View();
         }
 
-        
+
 
         [HttpPost]
         public ActionResult PosterAnnonce(UtilisateurViewModel uvm)
         {
 
             //List<Annonce> annonce = dal1.ObtientAnnonce();
-           // Annonce derniereAnnonce = annonce.Last();
+            // Annonce derniereAnnonce = annonce.Last();
             //int id = derniereAnnonce.Id + 1;
 
             /*if (!ModelState.IsValid)   Je ne comprends pas pourquoi le modelState est InValide alors que toutes mes conditions dans annonces sont remplis (Bruno)
@@ -46,10 +46,10 @@ namespace Pojeet.Controllers
             dal.PosterAnnonce(uvm.Anonce.TypeDeAnnonce, uvm.Anonce.TitreAnnonce, uvm.Anonce.Description, uvm.Anonce.DateParution,
                    uvm.Anonce.Localisation, uvm.Anonce.DateButoir, uvm.Anonce.Prix, uvm.Anonce.CategorieDeAnnonce, uvm.Anonce.Photo, uvm.Anonce.EtatAnnonce);
 
-            
+
 
             //return View("Views/Profil/Index.cshtml");
-            return View("AnnonceCatalogue", "Catalogue", new { id = uvm.Anonce.Id });
+            return View();
 
 
         }

@@ -9,120 +9,131 @@ namespace Pojeet.Controllers
 {
     public class InboxController : Controller
     {
+        private IDalInbox dal;
 
-        public IActionResult AfficherMessagerie(int id1, int id2, String MotCle)
+        public InboxController()
         {
-            Conversation Conversationid2 = new Conversation();
-            List<Message> listeMessages = new List<Message>();
-            List<Conversation> listeConversation = new List<Conversation>();
-            Messagerie messagerie = new Messagerie();
-            List<MessagerieConversation> messagerieConversation = new List<MessagerieConversation>();
-            using (IDal dal = new Dal())
+            this.dal = new DalInbox();
+        }
+        public IActionResult AfficherMessagerie(int id2, String MotCle)
+        {
+            int id = 0;
+            Boolean authentifie = HttpContext.User.Identity.IsAuthenticated;
+            if (authentifie)
             {
-                Boolean verif = dal.VerificationMessagerieVide(id1);
-                if (verif == false)
+                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                id = compteConsumer.ProfilId;
+                Conversation Conversationid2 = new Conversation();
+                List<Message> listeMessages = new List<Message>();
+                List<Conversation> listeConversation = new List<Conversation>();
+                Messagerie messagerie = new Messagerie();
+                List<MessagerieConversation> messagerieConversation = new List<MessagerieConversation>();
+                using (IDalInbox dal = new DalInbox())
                 {
-                    messagerie = dal.ObtientLaMessagerie(id1);
-                    listeConversation = dal.ObtientLesConversations(messagerie.Id);
-                    if (MotCle != null)
+                    Boolean verif = dal.VerificationMessagerieVide(id);
+                    if (verif == false)
                     {
-                        (id2, listeConversation) = dal.ObtientLesConversations(id1, MotCle, messagerie);
+                        messagerie = dal.ObtientLaMessagerie(id);
+                        listeConversation = dal.ObtientLesConversations(messagerie.Id);
+                        if (MotCle != null)
+                        {
+                            (id2, listeConversation) = dal.ObtientLesConversations(id, MotCle, messagerie);
+                        }
+                        if (id2 == 0)
+                        {
+                            id2 = dal.ObtientPremiereConversation(listeConversation);
+                        }
+                        Conversationid2 = dal.ObtientLaConversation(id2);
+                        listeMessages = dal.ObtientTousLesMessages(id2);
+                        messagerieConversation = dal.ObtientMessagerieConversation(id2);
+                        return View(new InboxViewModel { Authentifie=authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation });
                     }
-                    if (id2 == 0)
+                    else
                     {
-                        id2 = dal.ObtientPremiereConversation(listeConversation);
+                        return RedirectToAction("MessagerieVide");
                     }
-                    Conversationid2 = dal.ObtientLaConversation(id2);
-                    listeMessages = dal.ObtientTousLesMessages(id2);
-                    messagerieConversation = dal.ObtientMessagerieConversation(id2);
-                    return View(new InboxViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation });
-                }
-            else
-                {
-                    return RedirectToAction("MessagerieVide");
                 }
             }
+            return View();
         }
         public IActionResult MessagerieVide()
         {
             return View();
         }
             [HttpPost]
-        public IActionResult RechercherConversation(int id1 ,int id2, String motCle)
+        public IActionResult RechercherConversation(int id2, String motCle)
         {
-            return RedirectToAction("AfficherMessagerie", new { id1 = id1, id2 = id2,MotCle=motCle });
+            return RedirectToAction("AfficherMessagerie", new {id2 = id2,MotCle=motCle });
         }
 
-
-
-
-
         [HttpPost]
-        public IActionResult CreerMessage(int id1, int id2, Message nouveaumessage)
+        public IActionResult CreerMessage(int id2, Message nouveaumessage)
         {
 
-            using (Dal ctx = new Dal())
+            using (DalInbox ctx = new DalInbox())
             {
                 ctx.AjouterMessage(nouveaumessage.message, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
-                return RedirectToAction("AfficherMessagerie", new { id1 = id1, id2 = id2 });
+                return RedirectToAction("AfficherMessagerie", new {id2 = id2 });
             }
-
         }
 
         [HttpPost]
-        public IActionResult CreateTransaction(int id1, int id2, Transaction nouvelleTransaction, Message nouveaumessage)
+        public IActionResult CreateTransaction(int id2, Transaction nouvelleTransaction, Message nouveaumessage)
         {
-            using (Dal ctx = new Dal())
+            using (DalInbox ctx = new DalInbox())
             {
                 String message1 = nouveaumessage.message + " Propose " + nouvelleTransaction.Montant + " euros";
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, true);
                 ctx.CreerTransaction(nouvelleTransaction.Montant, nouvelleTransaction.AnnonceId, nouvelleTransaction.ProfilId);
-                return RedirectToAction("AfficherMessagerie", new { id1 = id1, id2 = id2 });
+                return RedirectToAction("AfficherMessagerie", new {id2 = id2 });
 
 
             }
         }
 
         [HttpPost]
-        public IActionResult ActualiserTransaction(int id1, int id2, Transaction nouvelletransaction, Message nouveaumessage)
+        public IActionResult ActualiserTransaction(int id2, Transaction nouvelletransaction, Message nouveaumessage)
         {
 
-            using (Dal ctx = new Dal())
+            using (DalInbox ctx = new DalInbox())
             {
                 String message1 = nouveaumessage.message + " accepte la proposition.";
                 ctx.RemplacerMessage(nouveaumessage.Id, false);
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
                 ctx.CreerPaiement(nouvelletransaction.AnnonceId);
-                return RedirectToAction("AfficherMessagerie", new { id1 = id1, id2 = id2 });
+                ctx.CreerVirement(nouvelletransaction.AnnonceId);
+                return RedirectToAction("AfficherMessagerie", new {id2 = id2 });
             }
         }
 
         [HttpPost]
-        public IActionResult SupprimerTransaction(int id1, int id2, Transaction nouvelletransaction, Message nouveaumessage)
+        public IActionResult SupprimerTransaction(int id2, Transaction nouvelletransaction, Message nouveaumessage)
         {
 
-            using (Dal ctx = new Dal())
+            using (DalInbox ctx = new DalInbox())
             {
                 String message1 = nouveaumessage.message + " refuse la proposition.";
                 ctx.RemplacerMessage(nouveaumessage.Id, false);
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
                 ctx.SupprimerTransaction(nouvelletransaction.AnnonceId);
-                return RedirectToAction("AfficherMessagerie", new { id1 = id1, id2 = id2 });
+                return RedirectToAction("AfficherMessagerie", new {id2 = id2});
             }
 
         }
             [HttpPost]
-            public IActionResult CreerConversation(int id1,int id2)
+            public IActionResult CreerConversation(int id)
             {
             Messagerie messagerie = new Messagerie();
             int idConversation = 0;
-             using (Dal ctx = new Dal())
+             using (DalInbox ctx = new DalInbox())
             {
-             idConversation=ctx.CreerConversation(id1,id2);
-             messagerie = ctx.ObtientLaMessagerie(id1);
+                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                int id1 = compteConsumer.ProfilId;
+                idConversation =ctx.CreerConversation(id1,id);
+                messagerie = ctx.ObtientLaMessagerie(id1);
             }
 
-             return RedirectToAction("AfficherMessagerie", new { id1 = messagerie.Id, id2=idConversation});
+             return RedirectToAction("AfficherMessagerie", new {id2=idConversation});
                 
 
             }

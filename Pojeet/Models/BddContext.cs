@@ -23,9 +23,7 @@ namespace Pojeet.Models
         public DbSet<Paiement> Paiement { get; set; }
         public DbSet<Aide> Aide { get; set; }
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
-
-
-
+        public DbSet<Virement> Virement { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -131,7 +129,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 30,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                ProfilId = 1,
+                ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé
 
             },

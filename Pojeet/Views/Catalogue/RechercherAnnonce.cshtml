@@ -16,13 +16,13 @@
                 <div class="flex-row">
 
                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
-                    <label class="bold" for="typePost1">Offres</label>
+                    <label class="bold" for="typePost1">Besoin</label>
 
                 </div>
                 <div class="flex-row ml-4">
 
                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                    <label class="bold" for="typePost2">Demandes</label>
+                    <label class="bold" for="typePost2">Service</label>
 
                 </div>
             </div>
@@ -54,9 +54,11 @@
                     </div>
                     <div class="mr-4 mb-1">
                         <span>Trier par</span>
-
-                        @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
-
+                        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get)) 
+                        { 
+                        
+                            @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
+                        }
                     </div>
                 </div>
                 <!-- FOR EACH ICI CODE -->

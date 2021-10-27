@@ -22,6 +22,7 @@ namespace Pojeet.Models
         public int ProfilId { get; set; }
         //[Required]
         public virtual Profil Profil { get; set; }
+        
 
         public enum Statut
         {

@@ -206,7 +206,7 @@
                         </div>
 
 
-                        @if (Model.Annonce != null)
+                        @if (Model.Annonce.Count > 0)
                         {
                             @foreach (var annonce in Model.Annonce)
                             {
@@ -249,103 +249,126 @@
                             }
 
                         }
-
+                        @if (Model.Annonce.Count == 0)
+                        {
+                        <br><br><center><p>Vous n'avez pas publié d'annonce.</p></center>
+                        }
                     </div>
 
                     <!-- mes transactions  -->
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">
 
-                        <button type="button" class="collapsible mt-4 d-flex justify-content-between">
-                            <span>En cours</span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                     fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                </svg>
-                            </span>
-                        </button>
-                        @foreach (var item in @Model.ListeTransaction)
+                        @if (Model.ListeTransaction.Count > 0)
                         {
-                            if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                            {
+                            <button type="button" class="collapsible mt-4 d-flex justify-content-between">
+                                <span>En cours</span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                </span>
+                            </button>
 
-                                <div class="content mt-4">
-                                    <div class="d-flex flex-column">
-                                        <div class="transaction d-flex">
-                                            <div class="col-1">
-                                                <img src="assets/img/design_service.png" alt=""
-                                                     style="width:50px">
-                                            </div>
-                                            <div class="col-7">
-                                                <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                <span class="small text-muted">
-                                                    <span style="color:#52ab98">
-                                                        Demande de
-                                                        service  @item.Annonce.CategorieDeAnnonce
-                                                    </span> à <em>Bricolodusamedi</em>
-                                                </span>
-                                            </div>
-                                            <div class="col-2" style="color:#52ab98">@item.Montant€</div>
-                                            <div class="col-2">
-                                                <small>
-                                                    if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                                                    {<em>
-                                                        En cours
+
+
+                            @foreach (var item in @Model.ListeTransaction)
+                            {
+                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                                {
+
+                                    <div class="content mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div class="transaction d-flex">
+                                                <div class="col-1">
+                                                    <img src="assets/img/design_service.png" alt=""
+                                                         style="width:50px">
+                                                </div>
+                                                <div class="col-7">
+                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                    <span class="small text-muted">
+                                                        <span style="color:#52ab98">
+                                                            Demande de
+                                                            service  @item.Annonce.CategorieDeAnnonce
+                                                        </span> à <em>Bricolodusamedi</em>
+                                                    </span>
+                                                </div>
+                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
+                                                <div class="col-2">
+                                                    <small>
+                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                                                        {<em>
+                                                            En cours
+
+                                                        </em>
                                                         }
-                                                    </em>
-                                                </small>
+                                                    </small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             }
-                        }
 
 
 
-                        <button type="button" class="collapsible mt-4 d-flex justify-content-between">
-                            <span> Finalisé</span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                     fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                </svg>
-                            </span>
-                        </button>
-                        @foreach (var item in @Model.ListeTransaction)
-                        {
-                            if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+
+                            <button type="button" class="collapsible mt-4 d-flex justify-content-between">
+                                <span> Finalisé</span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                         fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                </span>
+                            </button>
+
+
+                            @foreach (var item in @Model.ListeTransaction)
                             {
-                                <div class="content mt-4">
-                                    <div class="d-flex flex-column">
-                                        <div class="transaction d-flex">
-                                            <div class="col-1">
-                                                <img src="assets/img/design_acheter.png" alt=""
-                                                     style="width:50px" />
-                                            </div>
-                                            <div class="col-7">
-                                                <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                <span class="small text-muted">
-                                                    <span style="color:#52ab98">Achat</span>
-                                                    à  / @item.Annonce.CategorieDeAnnonce
-                                                    <em>MrDurand89</em>
-                                                </span>
-                                            </div>
-                                            <div class="col-2" style="color:#52ab98">  @item.Montant€</div>
-                                            <div class="col-2">
-                                                <small>
-                                                    if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
-                                                    {<em>
-                                                        Finalisé
-                                                    </em>}
-                                                </small>
+                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+                                {
+                                    <div class="content mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div class="transaction d-flex">
+                                                <div class="col-1">
+                                                    <img src="assets/img/design_acheter.png" alt=""
+                                                         style="width:50px" />
+                                                </div>
+                                                <div class="col-7">
+                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                    <span class="small text-muted">
+                                                        <span style="color:#52ab98">Achat</span>
+                                                        à  / @item.Annonce.CategorieDeAnnonce
+                                                        <em>MrDurand89</em>
+                                                    </span>
+                                                </div>
+                                                <div class="col-2" style="color:#52ab98">  @item.Montant€</div>
+                                                <div class="col-2">
+                                                    <small>
+                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+                                                        {
+                                                        <em>
+                                                            Finalisé
+                                                        </em>
+                                                        }
+                                                    </small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
+
                             }
                         }
+                        @if (Model.ListeTransaction.Count == 0)
+                        {
+                            <center><p>Vous n'avez pas de transaction.</p></center>
+                        }
+
+                  
+
                     </div>
 
                     <!-- mes avis  -->

@@ -125,8 +125,10 @@ $(document).ready(function () {
     });
 
 
+
+
     // Prepare the preview for profile picture
-    $("#wizard-picture").change(function () {
+    $("#pictureFile").change(function () {
         readURL(this);
     });
 
@@ -153,8 +155,6 @@ $(document).ready(function () {
 });
 
 
-
-//Function to show image before upload
 
 function readURL(input) {
     if (input.files && input.files[0]) {

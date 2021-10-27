@@ -28,8 +28,10 @@ namespace Pojeet.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
         }
 
 
@@ -64,23 +66,23 @@ namespace Pojeet.Models
                 CodePostal = "45000",
                 Pays = 0,
                 Mail = "inesguissouma@gmail.com",
-                NumeroTelephone = 6875,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar3.png"
+                NumeroTelephone = 687555634,
+                Photo = null,
             },
             new Profil
             {
                 Id = 2,
-                Description = "Besoin",
+                Description = "Lorum ipsum",
                 Nom = "Le Pillouer",
                 Prenom = "Cécile",
-                DateDeNaissance = "12/12/2020",
+                DateDeNaissance = "12/12/1990",
                 Adresse = "Boulevard Rocheplatte",
                 Ville = "Paris",
                 CodePostal = "45000",
                 Pays = 0,
-                Mail = "CécileLepillouer@gmail.com",
-                NumeroTelephone = 6257,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
+                Mail = "cecileLepillouer@gmail.com",
+                NumeroTelephone = 687555652,
+                Photo = "avatar_exemple.png"
             },
             new Profil
             {
@@ -177,6 +179,7 @@ namespace Pojeet.Models
 
 
             },
+
              new Annonce
              {
                  Id = 6,
@@ -257,6 +260,8 @@ namespace Pojeet.Models
 
 
              });
+
+
 
             //CONSUMER
             this.CompteConsumer.AddRange(

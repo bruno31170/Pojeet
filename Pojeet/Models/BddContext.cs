@@ -81,7 +81,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar8.png"
+                Photo = "https://bootdey.com/img/Content/avatar/avatar1.png"
             });
 
             //ANNONCE
@@ -218,14 +218,7 @@ namespace Pojeet.Models
                 CompteConsumerId = 1,
                 AnnonceId = 1
 
-            },
-             new Conversation
-             {
-                 Id = 2,
-                 CompteConsumerId = 3,
-                 AnnonceId = 1
-
-             });
+            });
             this.Messagerie.AddRange(
             new Messagerie
             {
@@ -253,19 +246,8 @@ namespace Pojeet.Models
             {   Id=2,
                 MessagerieId = 2,
                 ConversationId = 1,
-            },
-            new MessagerieConversation
-            {
-                Id = 3,
-                MessagerieId = 2,
-                ConversationId = 2,
-            },
-             new MessagerieConversation
-             {
-                 Id = 4,
-                 MessagerieId = 3,
-                 ConversationId = 2,
-             });
+            }
+           );
 
 
             //TRANSACTION

@@ -92,7 +92,7 @@ namespace Pojeet.Controllers
                     FileStream stream3 = new FileStream(path3, FileMode.Create);
                     pictureFile.CopyTo(stream3);
                 }
-
+                dal.CreerMessagerie(compteConsumer.ProfilId);
                 var userClaims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Name, id.ToString()),

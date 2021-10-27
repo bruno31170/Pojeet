@@ -14,6 +14,5 @@ namespace Pojeet.ViewModels
         public Annonce Anonce { get; set; }
         public Recherche Recherche { get; set; }
 
-
     }
 }

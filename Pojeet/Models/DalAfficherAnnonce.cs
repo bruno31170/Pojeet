@@ -14,9 +14,9 @@ namespace Pojeet.Models
             _context = new BddContext();
         }
 
-        public CompteConsumer ObtientConsumer()
+        public CompteConsumer ObtientConsumer(int id)
         {
-            CompteConsumer consumer = this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault();
+            CompteConsumer consumer = this._context.CompteConsumer.Where(c => c.ProfilId==id).Include(c => c.Profil).FirstOrDefault();
             return consumer;
         }
 

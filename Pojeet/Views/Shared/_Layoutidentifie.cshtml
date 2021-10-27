@@ -1,4 +1,6 @@
-
+@{
+    var Compte = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+}
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -87,12 +89,12 @@
                             <li class="mt-2"><a href="~/Profil/Index">Mon profil</a></li>
                             <li><a href="/Profil/Index?tabId=profile2">Mes annonce</a></li>
                             <li><a href="/Profil/Index?tabId=contact2">Mes transactions</a></li>
-                            <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;"})</li>
-                           
+                            <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
+
                         </ul>
                     </li>
                     <li class="mr-3 ml-2 text-right">
-                        <a href="~/Inbox/AfficherMessagerie">
+                        <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                             <i class="font-size-24 fa fa-envelope"></i>
                             <span class="badge badge-danger navbar-badge">3</span>
                         </a>
@@ -155,6 +157,7 @@
                         }
 
                         <li>
+
                             <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
                         </li>
                         <li>
@@ -165,24 +168,6 @@
                 <!-- Fin menu utilisateur -->
 
                 <div class="post_item flex-col border-e w-100 pr-5 pl-5 pb-5 white mt-4">
-                    <div class="breadcrumb-wrapper">
-                        <div class="breadcrumb">
-                            <ul class="list-inline ml-4 font-size-13">
-                                <li>
-                                    <a href="#">Accueil</a>
-                                </li>
-                                <li>
-                                    <a href="index.html">Toutes les annonces</a>
-                                </li>
-                                <li>
-                                    <a href="#">Catégorie</a>
-                                </li>
-                                <li>
-                                    <span>Title l'annonce</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
                     @RenderBody()
                 </div>

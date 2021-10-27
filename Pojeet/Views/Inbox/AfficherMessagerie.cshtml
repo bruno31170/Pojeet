@@ -1,6 +1,6 @@
-﻿@model Pojeet.Models.MyViewModel
+﻿@model Pojeet.Models.InboxViewModel
 @{
-
+    Layout = "_LayoutIdentifie";
     ViewBag.Title = "Inbox";
 }
 
@@ -12,17 +12,17 @@
         <div class="col-lg-12">
             <div class="card chat-app">
                 <div id="plist" class="people-list">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        </div>
-                        @using (Html.BeginForm("RechercherConversation", "Inbox", FormMethod.Post))
-                        {
+                    @using (Html.BeginForm("RechercherConversation", "Inbox", FormMethod.Post))
+                    {
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
                             <input type="text" id="MotCle" name="MotCle" class="form-control" placeholder="Rechercher..." value="">
-                            <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
+                            <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
                             <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                        }
-                    </div>
+                        </div>
+                    }
                     <ul class="list-unstyled chat-list mt-2 mb-0">
                         @foreach (var conversation in Model.List1)
                         {
@@ -46,7 +46,7 @@
                             }
                             else
                             {
-                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id1 = Model.id1, @id2 = conversation.Id })">
+                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id1 = Model.Messagerie.ProfilId, @id2 = conversation.Id })">
                                 <li class="nav-item clearfix">
                                     <img src=@conversation.Annonce.profil.Photo alt="avatar">
                                     <div class="about">
@@ -95,7 +95,8 @@
                                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                     @using (Html.BeginForm("CreateTransaction", "Inbox", FormMethod.Post))
-                                    {
+                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                                         <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
                                         <form method="post" asp-action="CreateTransaction" asp-controller="Inbox">
                                             <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
@@ -128,8 +129,9 @@
                                         </form>
                                     }
                                 }
-
-                                <button type="button" class="btn btn-link float-right">Annonce N° @Model.Conversation.Annonce.Id</button>
+                                <a href="@Url.Action("Annonce", "Catalogue", new { id = @Model.Conversation.Annonce.Id})">
+                                    <button type="button" class="btn btn-link float-right">Annonce N° @Model.Conversation.Annonce.Id</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -163,23 +165,26 @@
                                             @if (message.MessageProposition == true)
                                             {<div class="row">
                                                     @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
-                                                    {
+                                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                                                         <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
                                                         <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
                                                         <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
                                                         <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
                                                         <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                        <button type="submit" class="btn btn-info float-left">J'accepte</button>
+                                                        <button type="submit" class="btn btn-info float-left button">J'accepte</button>
                                                     }
+
                                                     @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
-                                                    {
+                                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
+                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                                                         <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
                                                         <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
                                                         <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
                                                         <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
                                                         <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                        <button type="submit" class="btn btn-info float-left">
-                                                            Je refuse
+                                                        <button type="submit" class="btn btn-info float-left button">
+                                                               Je refuse
                                                         </button>
                                                     }
                                                 </div>
@@ -192,7 +197,8 @@
                         </ul>
                     </div>
                     @using (Html.BeginForm("CreerMessage", "Inbox", FormMethod.Post))
-                    {
+                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
 
                         <div class="form-group chat-message clearfix">
                             <div class="input-group mb-0">
@@ -382,7 +388,7 @@
                 margin-left: -10px
             }
 
-    button {
+    .button {
         margin: 7px;
     }
 

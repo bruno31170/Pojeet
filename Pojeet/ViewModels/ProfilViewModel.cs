@@ -17,6 +17,7 @@ namespace Pojeet.ViewModels
         public CategorieRecherche CategorieDeRecherche { get; set; }
         public CategorieAnnonce CategorieDeAnnonce { get; set; }
 
+
     }
     public enum CategorieRecherche
     {
@@ -28,5 +29,6 @@ namespace Pojeet.ViewModels
     {
         Besoin,
         Service
+
     }
 }

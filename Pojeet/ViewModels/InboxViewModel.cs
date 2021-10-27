@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace Pojeet.Models
 {
-    public class MyViewModel
+    public class InboxViewModel
     {
+        public bool Authentifie { get; set; }
         public Conversation Conversation { get; set; }
         public List<Message> List2 { get; set; }
         public List<Conversation> List1 { get; set; }

@@ -97,6 +97,8 @@ namespace Pojeet.Controllers
                         pictureFile.CopyTo(stream3);
                     }
                 }
+                dal.CreerMessagerie(compteConsumer.ProfilId);
+
 
 
                 var userClaims = new List<Claim>()

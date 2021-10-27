@@ -1,4 +1,5 @@
 ﻿
+@model Pojeet.ViewModels.AnnonceViewModel
 
 @{
     Layout = "_LayoutIdentifie";
@@ -16,7 +17,7 @@
             <div class="post_header flex-row align-items-center mb-2">
                 <a class="post_img" href="#"><img src="@Model.Annonce.profil.Photo" alt=""></a>
                 <div class="post_header_info ml-4">
-                    <div class="post_author font-size-17">                        
+                    <div class="post_author font-size-17">
                         <a href="#">@Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</a>
                     </div>
                     <span class="post_city font-size-15">@Model.Annonce.profil.Ville</span>
@@ -28,7 +29,15 @@
                     </div>
                 </div>
             </div>
-            <a class="btn-primary-e mb-1" href="#">Contacter</a>
+            @if (Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId)
+            {
+                @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
+                {
+                    <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.CompteConsumer.ProfilId">
+                    <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.Annonce.Id">
+                    <button type="submit" class="btn-primary-e mb-1" >Contacter</button>
+                }
+            }
         </div>
         <div class="post_info_item flex-row justify-content-between pt-4">
             <div class="flex-col">
@@ -83,50 +92,52 @@
         </div>
         <div class="post_info_item_description mt-1">
             <h2 class="bold">Description</h2>
-            <p class="text-justify">@Model.Annonce.Description
-                
-            </p>
+            <p class="text-justify">
+                @Model.Annonce.Description
+
+        </p>
+    </div>
+
+    <div class="post_info_item_location">
+        <h2 class="bold">Localisation</h2>
+        <!-- <div class="map-responsive"> -->
+        <address>@Model.Annonce.profil.Ville, @Model.Annonce.profil.Pays</address>
+        <!-- </div> -->
+    </div>
+    <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
+        <div class="flex-col service_info  text-center">
+            <div class="flex-row justify-content-center align-items-center">
+                <span class="number_service bold">1</span>
+                <i class="fas fa-search-location ml-2"></i>
+            </div>
+            <span class="bold">Trouvez votre Helper</span>
+            <span class="font-size-12">Des Helpers compétents et proches de chez vous vous proposent leurs services</span>
         </div>
 
-        <div class="post_info_item_location">
-            <h2 class="bold">Localisation</h2>
-            <!-- <div class="map-responsive"> -->
-            <address>@Model.Annonce.profil.Ville, @Model.Annonce.profil.Pays</address>
-            <!-- </div> -->
-        </div>
-        <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
-            <div class="flex-col service_info  text-center">
-                <div class="flex-row justify-content-center align-items-center">
-                    <span class="number_service bold">1</span>
-                    <i class="fas fa-search-location ml-2"></i>
-                </div>
-                <span class="bold">Trouvez votre Helper</span>
-                <span class="font-size-12">Des Helpers compétents et proches de chez vous vous proposent leurs services</span>
+        <div class="flex-col service_info text-center">
+            <div class="flex-row justify-content-center align-items-center">
+                <span class="number_service bold">2</span>
+                <i class="far fa-comments ml-2"></i>
             </div>
-
-            <div class="flex-col service_info text-center">
-                <div class="flex-row justify-content-center align-items-center">
-                    <span class="number_service bold">2</span>
-                    <i class="far fa-comments ml-2"></i>
-                </div>
-                <span class="bold">Demandez un service</span>
-                <span class="font-size-12">Échangez par messagerie sur le site pour convenir de la date et du prix</span>
-            </div>
-
-            <div class="flex-col service_info text-center">
-                <div class="flex-row justify-content-center align-items-center">
-                    <span class="number_service bold">3</span>
-                    <i class="far fa-calendar-check ml-2"></i>
-                </div>
-                <span class="bold">Souriez, c'est fait !</span>
-                <span class="font-size-12">Votre Helper vous rend service. il est payé après votre confirmation.</span>
-            </div>
+            <span class="bold">Demandez un service</span>
+            <span class="font-size-12">Échangez par messagerie sur le site pour convenir de la date et du prix</span>
         </div>
 
-        <div class="view_of_post mt-3">
-            <h2 class="bold">Les avis sur @Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</h2>
-            <!-- Avis 1 -->
-            @foreach (var Avis in Model.Avis) {
+        <div class="flex-col service_info text-center">
+            <div class="flex-row justify-content-center align-items-center">
+                <span class="number_service bold">3</span>
+                <i class="far fa-calendar-check ml-2"></i>
+            </div>
+            <span class="bold">Souriez, c'est fait !</span>
+            <span class="font-size-12">Votre Helper vous rend service. il est payé après votre confirmation.</span>
+        </div>
+    </div>
+
+    <div class="view_of_post mt-3">
+        <h2 class="bold">Les avis sur @Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</h2>
+        <!-- Avis 1 -->
+        @foreach (var Avis in Model.Avis)
+        {
             <div class="flex-col mb-3">
                 <div class="flex-row">
                     <a href="#"><img src=@Avis.CompteConsumer.Profil.Photo alt=""></a>
@@ -146,10 +157,10 @@
 
                 <span class="mt-2 font-size-16">@Avis.commentaire </span>
             </div>
-            }
-            <!-- End Avis 1 -->
-            
-        </div>
+        }
+        <!-- End Avis 1 -->
 
     </div>
+
+</div>
 </div>

@@ -67,6 +67,7 @@ namespace Pojeet.Models
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 687555634,
                 Photo = null,
+                NoteMoyenne = 2
             },
             new Profil
             {
@@ -81,7 +82,8 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "cecileLepillouer@gmail.com",
                 NumeroTelephone = 687555652,
-                Photo = "avatar_exemple.png"
+                Photo = "avatar_exemple.png",
+                NoteMoyenne = 4
             },
             new Profil
             {
@@ -96,6 +98,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
+                NoteMoyenne = 3,
 
                 Photo = "https://bootdey.com/img/Content/avatar/avatar6.png"
             },

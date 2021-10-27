@@ -18,5 +18,6 @@ namespace Pojeet.Models
         double ObtenirMargeBrute(int reference);
         double ObtenirReste(int reference);
         int ObtenirNbTransaction(int id);
+        Paiement ObtenirPaiement(int reference);
     }
 }

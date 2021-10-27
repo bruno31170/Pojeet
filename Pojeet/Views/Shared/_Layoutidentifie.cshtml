@@ -143,15 +143,16 @@
                         @{
                             var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
                         }
-                        @if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)
+                        @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
+                        @if(provider1 == null)
                         {
-                            <li style="display: none;">
+                            <li >
                                 <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                             </li>
                         }
                         else
                         {
-                            <li>
+                            <li style="display: none;">
                                 <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                             </li>
                         }

@@ -457,6 +457,17 @@ namespace Pojeet.Models
 
             });
 
+            this.Paiement.AddRange(
+           new Paiement
+           {
+               Id = 1,
+               Date = new DateTime(2004, 11, 20, 12, 1, 10),
+               TransactionMontant = 15,
+               TransactionReference = 130,
+               ProfilId = 3,
+               StatutPaiement = StatutPaiement.Payé
+           }); 
+
             this.Avis.AddRange(
            new Avis
            {

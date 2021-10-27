@@ -297,14 +297,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">925456</th>
-                            <td>12/09/2021</td>
-                            <td>150 €</td>
-                            <td>Valide</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        @if (Model.Paiement != null)
+                        {
+                            <tr>
+
+                                <th scope="row">@Model.Paiement.Id</th>
+                                <td>@Model.Paiement.Date</td>
+                                <td>@Model.Paiement.TransactionMontant €</td>
+                                <td>@Model.Paiement.StatutPaiement</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <th scope="row">N/A</th>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                </tr>
+                                }
+                        </tbody>
+                        </table>
             </div>
             <!-- End Information Paiement Consumer-->
             <!-- Information Transaction Helper-->

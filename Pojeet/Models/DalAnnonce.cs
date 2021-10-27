@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,31 +20,56 @@ namespace Pojeet.Models
         }
 
 
-        public void PosterAnnonce(TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, 
-            string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, string photo, EtatAnnonce etatAnnonce)
+        public void PosterAnnonce(int profilId, TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, 
+            string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, IFormFile photo, EtatAnnonce etatAnnonce)
         {
-            Annonce anonce = new Annonce
+            
+            if (photo != null)
             {
-                
-                TypeDeAnnonce = typeAnnonce,
-                TitreAnnonce = titreAnnonce,
-                Description = description,
-                DateParution = DateTime.Now,
-                Localisation = localisation,
-                DateButoir = dateButoir,
-                Prix = prix,
-                CategorieDeAnnonce = categorieAnnonce,
-                Photo = photo,
-                ProfilId = 2,
-                EtatAnnonce = etatAnnonce
+                Annonce anonce = new Annonce
+                {
 
+                    TypeDeAnnonce = typeAnnonce,
+                    TitreAnnonce = titreAnnonce,
+                    Description = description,
+                    DateParution = DateTime.Now,
+                    Localisation = localisation,
+                    DateButoir = dateButoir,
+                    Prix = prix,
+                    CategorieDeAnnonce = categorieAnnonce,
+                    Photo = photo.FileName,
+                    ProfilId = profilId,
+                    EtatAnnonce = etatAnnonce
 
-
-            };
-
+                };
+             
             _context.Annonce.Add(anonce);
             _context.SaveChanges();
-            
+            }
+
+            if (photo == null)
+            {
+                Annonce anonce = new Annonce
+                {
+
+                    TypeDeAnnonce = typeAnnonce,
+                    TitreAnnonce = titreAnnonce,
+                    Description = description,
+                    DateParution = DateTime.Now,
+                    Localisation = localisation,
+                    DateButoir = dateButoir,
+                    Prix = prix,
+                    CategorieDeAnnonce = categorieAnnonce,
+                    
+                    ProfilId = profilId,
+                    EtatAnnonce = etatAnnonce
+
+                };
+                
+                _context.Annonce.Add(anonce);
+                _context.SaveChanges();
+            }
+
         }
 
         public List<Annonce> ObtientAnnonce()

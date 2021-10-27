@@ -1,4 +1,6 @@
-
+@{
+    var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+}
 @model Pojeet.ViewModels.UtilisateurViewModel
 
 
@@ -15,8 +17,9 @@
 
     <div class="annonce">
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("PosterAnnonce", "Annonce", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+
 
             <!-- Etat de l'annonce -->
 
@@ -41,7 +44,8 @@
             <!-- Image -->
 
             <h3>Selectionner une image</h3>
-            <input type="file" /><br><br>
+            <input type="file" name="AnnoncePhoto"/><br><br>
+
 
             <!-- FAIRE AFFICHER LES IMAGES -->
 
@@ -52,7 +56,7 @@
             @Html.TextBoxFor(model => model.Anonce.TitreAnnonce, new { placeholder = "Titre" })<br><br>
             @Html.ValidationMessageFor(model => model.Anonce.TitreAnnonce)
 
-           
+
 
 
 

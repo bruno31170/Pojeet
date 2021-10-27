@@ -15,6 +15,10 @@ namespace Pojeet.Controllers
         {
             this.dal = new DalTransaction();
         }
+        public IActionResult AdminIndex()
+        {
+            return View();
+        }
         public IActionResult AdminCommandes()
         {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
@@ -39,7 +43,7 @@ namespace Pojeet.Controllers
             consumer = dal.ObtientCompteConsumer(id);
 
             List<Transaction> transactions = new List<Transaction>();
-            transactions = dal.ObtientTransaction(consumer.Id);
+            transactions = dal.ObtientTransaction(consumer.ProfilId);
             
             return View(new ConsumerViewModel
             {
@@ -54,7 +58,7 @@ namespace Pojeet.Controllers
             consumer = dal.ObtientCompteConsumer(id);
 
             List<Transaction> transactions = new List<Transaction>();
-            transactions = dal.ObtientTransaction(consumer.Id);
+            transactions = dal.ObtientTransaction(consumer.ProfilId);
 
             return View(new ConsumerViewModel
             {
@@ -70,7 +74,7 @@ namespace Pojeet.Controllers
             compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);
             double MargeBrute = dal.ObtenirMargeBrute(transaction.Reference);
             double Reste = dal.ObtenirReste(transaction.Reference);
-            int NbTransaction = dal.ObtenirNbTransaction(transaction.ProfilId);
+            int NbTransaction = dal.ObtenirNbTransaction(transaction.Profil.Id);
             return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction });
         }
     }

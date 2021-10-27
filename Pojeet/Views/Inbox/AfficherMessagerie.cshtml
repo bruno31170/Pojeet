@@ -19,7 +19,6 @@
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
                             <input type="text" id="MotCle" name="MotCle" class="form-control" placeholder="Rechercher..." value="">
-                            <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
                             <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                         </div>
                     }
@@ -28,7 +27,7 @@
                         {
                             @if (conversation.Annonce.ProfilId == Model.Messagerie.ProfilId)
                             {
-                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id1 = Model.id1, @id2 = conversation.Id })">
+                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
                                 <li class="nav-item clearfix">
                                     <img src=@conversation.Auteur_Message.Profil.Photo alt="avatar">
                                     <div class="about">
@@ -46,7 +45,7 @@
                             }
                             else
                             {
-                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id1 = Model.Messagerie.ProfilId, @id2 = conversation.Id })">
+                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
                                 <li class="nav-item clearfix">
                                     <img src=@conversation.Annonce.profil.Photo alt="avatar">
                                     <div class="about">
@@ -95,7 +94,7 @@
                                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                     @using (Html.BeginForm("CreateTransaction", "Inbox", FormMethod.Post))
-                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                                    {
                                         <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                                         <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
                                         <form method="post" asp-action="CreateTransaction" asp-controller="Inbox">
@@ -165,7 +164,7 @@
                                             @if (message.MessageProposition == true)
                                             {<div class="row">
                                                     @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
-                                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                                                    {
                                                         <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                                                         <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
                                                         <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
@@ -176,7 +175,7 @@
                                                     }
 
                                                     @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
-                                                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
+                                                    {
                                                         <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                                                         <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
                                                         <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">

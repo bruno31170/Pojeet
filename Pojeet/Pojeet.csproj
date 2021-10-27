@@ -41,7 +41,11 @@
 
 
 
-    <Folder Include="wwwroot\media\" />
+    <Folder Include="wwwroot\media\annonce\" />
+
+
+
+    <Folder Include="wwwroot\media\provider\" />
     <Folder Include="wwwroot\media\profil\" />
     <Folder Include="wwwroot\media\annonce\" />
     <Folder Include="wwwroot\media\provider\" />

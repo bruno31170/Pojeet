@@ -56,8 +56,9 @@ namespace Pojeet.Models
 
         public virtual List<Avis> ListeAvis { get; set; }
 
-    
-    public Statut statut { get; set; }
+        public int NoteMoyenne { get; set; }
+
+        public Statut statut { get; set; }
 
     }
 

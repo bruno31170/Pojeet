@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Pojeet.Models
 {
-    public class Dal : IDal
+    public class DalInbox : IDalInbox
     {
         private BddContext _context;
 
-        public Dal()
+        public DalInbox()
         {
             _context = new BddContext();
         }
@@ -28,7 +28,6 @@ namespace Pojeet.Models
         {
             return _context.CompteConsumer.Include(c => c.Profil).ToList();
         }
-
         public Conversation ObtientLaConversation(int id)
         {
             Conversation conv = _context.Conversation.Where(r => r.Id == id).Include(c => c.Messages).Include(c => c.Annonce).Include(c => c.Auteur_Message.Profil).FirstOrDefault();
@@ -64,14 +63,14 @@ namespace Pojeet.Models
             {
                 if (conversation.Annonce.ProfilId == messagerie.ProfilId)
                 {
-                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
                 }
                 else
                 {
-                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
@@ -83,20 +82,20 @@ namespace Pojeet.Models
         }
 
         public Messagerie ObtientLaMessagerie(int id)
-        {
+        {  
             MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.Messagerie.ProfilId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
             return messagerieConversation.Messagerie;
         }
 
         public Boolean VerificationMessagerieVide(int id)
         {
-            MessagerieConversation messagerieconv = _context.MessagerieConversation.SingleOrDefault(x => x.Messagerie.ProfilId == id);
-            return messagerieconv == null;
+           List<MessagerieConversation> messagerieconv = _context.MessagerieConversation.Where(x => x.Messagerie.ProfilId == id).ToList();
+                return messagerieconv.Count()==0;
         }
 
         public int ObtientPremiereConversation(List<Conversation> listeConversation)
         {
-            int id = 0;
+            int id=0;
             id = listeConversation.First().Id;
             return (id);
         }
@@ -131,7 +130,6 @@ namespace Pojeet.Models
                 message.MessageProposition = messageProposition;
             };
         }
-
 
 
         public void Dispose()
@@ -254,24 +252,6 @@ namespace Pojeet.Models
             Profil profil = ObtenirConsumer(id).Profil;
             return _context.Avis.Where(r => r.ProfilId == profil.Id).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();
         }
-        public int ObtenirNoteGlobale(int id)
-        {
-            List<Avis> listeAvis = ObtenirConsumer(id).Profil.ListeAvis;
-            int i = 0;
-            int noteGlobale = 0;
-            foreach (Avis avis in listeAvis)
-            {
-                noteGlobale = (noteGlobale + avis.note);
-                i++;
-            }
-            if (i != 0)
-            {
-                noteGlobale = noteGlobale / i;
-            }
-
-            return noteGlobale;
-
-        }
 
         public CompteConsumer ObtenirConsumer(string idStr)
         {
@@ -283,51 +263,34 @@ namespace Pojeet.Models
             return null;
         }
 
-
-
-        public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, IFormFile photo, List<string> competence)
+        public void CreerTransaction(double montant, int annonceId, int profilId)
         {
 
-            Rib rib = new Rib
+            Transaction transaction = new Transaction
             {
-                Iban = iban,
-                Bic = bic,
-                TitulaireCompte = titulaire
+                Date = DateTime.Now,
+                AnnonceId = annonceId,
+                Montant = montant,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 1
+
             };
-
-            CompteProvider Provider = new CompteProvider
-            {
-                CompteConsumerId = compteConsumer.Id,
-                Rib = rib,
-                Etat = 0,
-                Competence = competence
-            };
-
-            if (photo != null)
-            {
-                Provider.DocumentIdentification = photo.FileName;
-            }
-
-            _context.CompteProvider.Add(Provider);
+            _context.Transactions.Add(transaction);
             _context.SaveChanges();
-            return Provider.Id;
         }
-
-        public CompteProvider ObtenirHelper(int id)
-        {
-            return _context.CompteProvider.Where(c => c.CompteConsumerId == id).Include(c => c.Rib).FirstOrDefault();
-        }
-        public CompteProvider ObtenirHelper(string idStr)
-        {
-            int id;
-            if (int.TryParse(idStr, out id))
+        public Profil IdentifierPayant(Transaction transaction)
+        { 
+            Profil profil = new Profil();
+            if (_context.Annonce.Where(c=> c.Id==transaction.AnnonceId).FirstOrDefault().TypeDeAnnonce==TypeAnnonce.Besoin)
             {
-                return this.ObtenirHelper(id);
+                profil = transaction.Profil;
             }
-            return null;
-
+            else
+            {
+                profil = transaction.Annonce.profil;
+            }
+            return profil;
         }
-
 
         public void CreerPaiement(int annonceId)
         {
@@ -337,15 +300,36 @@ namespace Pojeet.Models
                 Date = DateTime.Now,
                 TransactionMontant = transaction.Montant,
                 TransactionReference = transaction.Reference,
+                StatutPaiement = StatutPaiement.Payé,
+                ProfilPayant=IdentifierPayant(transaction),
             };
             _context.Paiement.Add(paiement);
             _context.SaveChanges();
         }
-
-        public List<Transaction> ObtientTransaction(int id)
+        public Profil IdentifierRecepteur(Transaction transaction)
         {
-            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
-            return listeTransaction;
+            Profil profil = new Profil();
+            if (_context.Annonce.Where(c => c.Id == transaction.AnnonceId).FirstOrDefault().TypeDeAnnonce == TypeAnnonce.Besoin)
+            {
+                profil = transaction.Annonce.profil;
+            }
+            else
+            {
+                profil = transaction.Profil;
+            }
+            return profil;
+        }
+        public void CreerVirement(int annonceId)
+        {
+            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault();
+            Virement virement = new Virement
+            {
+                TransactionReference = transaction.Reference,
+                StatutVirement = StatutVirement.NonEnvoyé,
+                ProfilRecepteur = IdentifierRecepteur(transaction),
+            };
+            _context.Virement.Add(virement);
+            _context.SaveChanges();
         }
 
         public void SupprimerTransaction(int annonceId)
@@ -355,12 +339,12 @@ namespace Pojeet.Models
         }
 
         public int CreerConversation(int id1, int id2)
-        {
+        { 
             Conversation conversation = new Conversation
             {
                 CompteConsumerId = _context.CompteConsumer.Where(r => r.ProfilId == id1).FirstOrDefault().Id,
                 AnnonceId = id2,
-                Annonce = _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
+                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
             };
             _context.Conversation.Add(conversation);
             _context.SaveChanges();
@@ -378,8 +362,7 @@ namespace Pojeet.Models
             _context.SaveChanges();
             return (conversation.Id);
         }
-
     }
 
-}
+    }
 

@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -17,12 +20,20 @@ namespace Pojeet.Controllers
 
         private IDalAnnonce dal;
         private IDalCatalogue dal1;
+        private Dal dal2;
+        private DalProfil dalProfil;
+        private IWebHostEnvironment _env;
 
 
-        public AnnonceController()
+
+        public AnnonceController(IWebHostEnvironment env)
         {
             this.dal = new DalAnnonce();
             this.dal1 = new DalCatalogue();
+            this.dal2 = new Dal();
+            this.dalProfil = new DalProfil();
+            _env = env;
+
         }
 
 
@@ -34,24 +45,44 @@ namespace Pojeet.Controllers
 
 
         [HttpPost]
-        public ActionResult PosterAnnonce(UtilisateurViewModel uvm)
+        public ActionResult PosterAnnonce(UtilisateurViewModel uvm, IFormFile AnnoncePhoto)
         {
 
-            //List<Annonce> annonce = dal1.ObtientAnnonce();
-            // Annonce derniereAnnonce = annonce.Last();
-            //int id = derniereAnnonce.Id + 1;
 
-            /*if (!ModelState.IsValid)   Je ne comprends pas pourquoi le modelState est InValide alors que toutes mes conditions dans annonces sont remplis (Bruno)
-               return View("Error");*/
-            dal.PosterAnnonce(uvm.Anonce.TypeDeAnnonce, uvm.Anonce.TitreAnnonce, uvm.Anonce.Description, uvm.Anonce.DateParution,
-                   uvm.Anonce.Localisation, uvm.Anonce.DateButoir, uvm.Anonce.Prix, uvm.Anonce.CategorieDeAnnonce, uvm.Anonce.Photo, uvm.Anonce.EtatAnnonce);
+            
+            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                viewModel.CompteConsumer = dal2.ObtenirConsumer(HttpContext.User.Identity.Name);
 
 
-
-            //return View("Views/Profil/Index.cshtml");
-            return View();
+                viewModel.ListeAvis = dal2.ObtenirListeAvis(viewModel.CompteConsumer.Id);
 
 
+                viewModel.NoteGlobale = dal2.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
+
+                viewModel.CompteProvider = dal2.ObtenirHelper(viewModel.CompteConsumer.Id);
+
+
+                dal.PosterAnnonce(viewModel.CompteConsumer.Id, uvm.Anonce.TypeDeAnnonce, uvm.Anonce.TitreAnnonce, uvm.Anonce.Description, uvm.Anonce.DateParution,
+                   uvm.Anonce.Localisation, uvm.Anonce.DateButoir, uvm.Anonce.Prix, uvm.Anonce.CategorieDeAnnonce, AnnoncePhoto, uvm.Anonce.EtatAnnonce);
+
+                viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
+
+                if (AnnoncePhoto != null)
+                {
+                    if (AnnoncePhoto.Length > 0)
+                    {
+                        string path3 = _env.WebRootPath + "/media/annonce/" + AnnoncePhoto.FileName;
+                        FileStream stream3 = new FileStream(path3, FileMode.Create);
+                        AnnoncePhoto.CopyTo(stream3);
+
+                    }
+
+                }
+            }
+            
+            return View("Views/Profil/Index.cshtml", viewModel);
         }
 
 

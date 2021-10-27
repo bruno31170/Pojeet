@@ -23,15 +23,15 @@ namespace Pojeet.Models
         public DbSet<Paiement> Paiement { get; set; }
         public DbSet<Aide> Aide { get; set; }
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
-
-
-
+        public DbSet<Virement> Virement { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
 
         }
 
@@ -69,6 +69,7 @@ namespace Pojeet.Models
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 687555634,
                 Photo = null,
+                NoteMoyenne = 2
             },
             new Profil
             {
@@ -83,7 +84,8 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "cecileLepillouer@gmail.com",
                 NumeroTelephone = 687555652,
-                Photo = "avatar_exemple.png"
+                Photo = "avatar_exemple.png",
+                NoteMoyenne = 4
             },
             new Profil
             {
@@ -98,6 +100,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
+                NoteMoyenne = 3,
 
                 Photo = "https://bootdey.com/img/Content/avatar/avatar6.png"
             },
@@ -131,7 +134,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 30,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                ProfilId = 1,
+                ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé
 
             },
@@ -148,7 +151,8 @@ namespace Pojeet.Models
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "pose_longue_01.jpg"
             },
 
             new Annonce
@@ -415,16 +419,16 @@ namespace Pojeet.Models
             {
                 Reference = 125,
                 Date = new DateTime(2021, 11, 09, 12, 1, 10),
-                AnnonceId = 4,
+                AnnonceId = 1,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
+                ProfilId = 4
             },
             new Transaction
             {
                 Reference = 127,
                 Date = new DateTime(2021, 11, 09, 01, 1, 10),
-                AnnonceId = 5,
+                AnnonceId = 3,
                 Montant = 20.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 1

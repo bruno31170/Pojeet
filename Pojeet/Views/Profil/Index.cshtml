@@ -256,6 +256,10 @@
                     <div id="contact2" role="tabpanel" aria-labelledby="contact-tab"
                          class="tab-pane fade px-4 py-5">
 
+
+
+
+
                         <button type="button" class="collapsible mt-4 d-flex justify-content-between">
                             <span>En cours</span>
                             <span>
@@ -265,27 +269,44 @@
                                 </svg>
                             </span>
                         </button>
-                        <div class="content mt-4">
-                            <div class="d-flex flex-column">
-                                <div class="transaction d-flex">
-                                    <div class="col-1">
-                                        <img src="assets/img/design_service.png" alt=""
-                                             style="width:50px">
+                        @foreach (var item in @Model.ListeTransaction)
+                        {
+                            if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                            {
+
+                                <div class="content mt-4">
+                                    <div class="d-flex flex-column">
+                                        <div class="transaction d-flex">
+                                            <div class="col-1">
+                                                <img src="assets/img/design_service.png" alt=""
+                                                     style="width:50px">
+                                            </div>
+                                            <div class="col-7">
+                                                <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                <span class="small text-muted">
+                                                    <span style="color:#52ab98">
+                                                        Demande de
+                                                        service  @item.Annonce.CategorieDeAnnonce
+                                                    </span> à <em>Bricolodusamedi</em>
+                                                </span>
+                                            </div>
+                                            <div class="col-2" style="color:#52ab98">@item.Montant€</div>
+                                            <div class="col-2">
+                                                <small>
+                                                    if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                                                    {<em>
+                                                        En cours
+                                                        }
+                                                    </em>
+                                                </small>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-7">
-                                        <span><strong>Changement de batterie</strong></span><br>
-                                        <span class="small text-muted">
-                                            <span style="color:#52ab98">
-                                                Demande de
-                                                service
-                                            </span> à <em>Bricolodusamedi</em>
-                                        </span>
-                                    </div>
-                                    <div class="col-2" style="color:#52ab98">90€</div>
-                                    <div class="col-2"><small><em>En cours</em></small></div>
                                 </div>
-                            </div>
-                        </div>
+                            }
+                        }
+
+
 
                         <button type="button" class="collapsible mt-4 d-flex justify-content-between">
                             <span> Finalisé</span>
@@ -296,28 +317,41 @@
                                 </svg>
                             </span>
                         </button>
-                        <div class="content mt-4">
-                            <div class="d-flex flex-column">
-                                <div class="transaction d-flex">
-                                    <div class="col-1">
-                                        <img src="assets/img/design_acheter.png" alt=""
-                                             style="width:50px">
+                        @foreach (var item in @Model.ListeTransaction)
+                        {
+                            if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+                            {
+                                <div class="content mt-4">
+                                    <div class="d-flex flex-column">
+                                        <div class="transaction d-flex">
+                                            <div class="col-1">
+                                                <img src="assets/img/design_acheter.png" alt=""
+                                                     style="width:50px"
+                                            </div>
+                                            <div class="col-7">
+                                                <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                <span class="small text-muted">
+                                                    <span style="color:#52ab98">Achat</span>
+                                                    à  / @item.Annonce.CategorieDeAnnonce
+                                                    <em>MrDurand89</em>
+                                                </span>
+                                            </div>
+                                            <div class="col-2" style="color:#52ab98">  @item.Montant€</div>
+                                            <div class="col-2">
+                                                <small>
+                                                    if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+                                                    {<em>
+                                                        Finalisé
+                                                    </em>}
+                                                </small>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-7">
-                                        <span><strong>Roue de secours Peugeot 208</strong></span><br>
-                                        <span class="small text-muted">
-                                            <span style="color:#52ab98">Achat</span>
-                                            à
-                                            <em>MrDurand89</em>
-                                        </span>
-                                    </div>
-                                    <div class="col-2" style="color:#52ab98">50€</div>
-                                    <div class="col-2"><small><em>Finalisé</em></small></div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
+                            }
+                        }
+                    </div>
                     <!-- mes avis  -->
 
                     <div id="avis2" role="tabpanel" aria-labelledby="home-tab"
@@ -365,8 +399,10 @@
                                             }
                                             @if (Model.NoteGlobale == 0)
 
-                                            {                                               
-                                                    <div style="text-align:center"> Vous n'avez pas encore d'avis.</div>                                        
+                                            {
+                                                <div style="text-align:center"> Vous n'avez pas encore d'avis.</div>
+
+
 
                                             }
 

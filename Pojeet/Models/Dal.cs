@@ -63,14 +63,14 @@ namespace Pojeet.Models
             {
                 if (conversation.Annonce.ProfilId == messagerie.ProfilId)
                 {
-                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
                 }
                 else
                 {
-                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
@@ -82,7 +82,7 @@ namespace Pojeet.Models
         }
 
         public Messagerie ObtientLaMessagerie(int id)
-        {  
+        {
             MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.Messagerie.ProfilId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
             return messagerieConversation.Messagerie;
         }
@@ -90,12 +90,12 @@ namespace Pojeet.Models
         public Boolean VerificationMessagerieVide(int id)
         {
             MessagerieConversation messagerieconv = _context.MessagerieConversation.SingleOrDefault(x => x.Messagerie.ProfilId == id);
-                return messagerieconv == null;
+            return messagerieconv == null;
         }
 
         public int ObtientPremiereConversation(List<Conversation> listeConversation)
         {
-            int id=0;
+            int id = 0;
             id = listeConversation.First().Id;
             return (id);
         }
@@ -354,6 +354,12 @@ namespace Pojeet.Models
             _context.SaveChanges();
         }
 
+        public List<Transaction> ObtientTransaction(int id)
+        {
+            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
+            return listeTransaction;
+        }
+
         public void SupprimerTransaction(int annonceId)
         {
             _context.Transactions.RemoveRange(_context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault());
@@ -361,12 +367,12 @@ namespace Pojeet.Models
         }
 
         public int CreerConversation(int id1, int id2)
-        { 
+        {
             Conversation conversation = new Conversation
             {
                 CompteConsumerId = _context.CompteConsumer.Where(r => r.ProfilId == id1).FirstOrDefault().Id,
                 AnnonceId = id2,
-                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
+                Annonce = _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
             };
             _context.Conversation.Add(conversation);
             _context.SaveChanges();
@@ -386,5 +392,5 @@ namespace Pojeet.Models
         }
     }
 
-    }
+}
 

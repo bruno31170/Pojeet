@@ -29,7 +29,7 @@ namespace Pojeet.Models
         (int, List<Conversation>) ObtientLesConversations(int id1, String motCle, Messagerie messagerie);
         List<MessagerieConversation> ObtientMessagerieConversation(int id);
         public void CreerMessagerie(int id);
-
+        public List<Transaction> ObtientTransaction(int id);
 
     }
 }

@@ -33,10 +33,18 @@ namespace Pojeet.Controllers
         public IActionResult Index(string tabId)
         {
             ViewBag.tabId = "#" + tabId;
+
+
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             if (viewModel.Authentifie)
             {
                 viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+
+                List<Transaction> transactions = new List<Transaction>();
+                transactions = dal.ObtientTransaction(viewModel.CompteConsumer.Id);
+
+
+                viewModel.ListeTransaction = transactions;
                 viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
                 viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
 

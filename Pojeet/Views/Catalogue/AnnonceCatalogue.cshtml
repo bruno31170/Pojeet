@@ -116,11 +116,28 @@
 
                 @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
                 {
-                    <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
-                        <div class="post_search_text mt-3 mb-2">
-                            <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
-                            <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
-                        </div>
+
+                     <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
+                            <div class="post_search_text mt-3 mb-2">
+                                <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
+                                <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+                             </div>
+
+                            <div class="type_post flex-row justify-content-center">
+                                <div class="flex-row">
+
+                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
+                                    <label class="bold" for="typePost1">Offres</label>
+
+                                </div>
+                                <div class="flex-row ml-4">
+
+                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
+                                    <label class="bold" for="typePost2">Demandes</label> 
+
+                                </div>
+
+
 
                         <div class="type_post flex-row justify-content-center">
                             <div class="flex-row">
@@ -132,21 +149,15 @@
                                 <label class="bold" for="typePost2">Demandes</label>
                             </div>
 
+                            <div class="flex-col flex-md-row justify-content-center">
+                               
+                                <form id="search-form" action="index.html" method="post">
+                                    <div class="flex-col flex-md-row">
 
-                        </div>
+                                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))))
+                                        @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
+                                        @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
 
-
-
-                        <div class="flex-col flex-md-row justify-content-center">
-                            <!-- ICI LA FONCTION RECHERCHE A FAIRE -->
-
-
-
-
-
-
-                            <form id="search-form" action="index.html" method="post">
-                                <div class="flex-col flex-md-row">
 
                                     @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
 
@@ -201,10 +212,10 @@
                         }
 
                         <li>
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
+                            <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
                         </li>
                         <li>
-                            <a href="#"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                            <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
                         </li>
                     </ul>
                 </div>
@@ -216,7 +227,7 @@
                     <div class="flex-row justify-content-between align-items-center">
                         <div class="flex-row ml-3 mb-2">
                             <span>Annonces: </span>
-                            <span class="post_counter bold ml-2">140</span>
+                            <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
                         </div>
                         <div class="mr-4 mb-1">
                             <span>Trier par</span>
@@ -251,13 +262,13 @@
                                 </div>
                                 <div class="post_info flex-col w-100 justify-content-between">
                                     <div class="post_info_text ml-1">
-                                        <span class="font-size-17 bold">@annonce.TitreAnnonce</span>
+                                        <span class="font-size-17 bold">@annonce.TitreAnnonce</span><br>
                                         <p class="text-justify">
                                             @annonce.Description
                                         </p>
                                     </div>
                                     <div class="post_price font-size-15 ml-1">
-                                        <span>Prix: @annonce.Prix</span>
+                                        <span>Prix: @annonce.Prix €</span>
                                     </div>
                                     <div class="btn-primary-e w-100 mt-2 btn_post">
 

@@ -68,14 +68,13 @@
 
                             <div class="tab-content d-flex justify-content-center">
 
-                                <div class="tab-pane mt-4" id="location">
+                                <div class="tab-pane mt-4 mb-4" id="location">
                                     <div class="row justify-content-center">
 
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Pseudo, new { @class = "" })<small> (requis)</small>
                                                 @Html.TextBoxFor(m => Model.Pseudo, new { @class = "form-control", @id = "pseudo" })
-                                                @*@Html.ValidationMessageFor(m => Model.Pseudo)*@
                                             </div>
                                         </div>
 
@@ -84,7 +83,6 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Mail)<small> (requis)</small>
                                                 @Html.TextBoxFor(m => Model.Profil.Mail, new { @Name = "email", @class = "form-control", @id = "email" })
-                                                @*@Html.ValidationMessageFor(m => Model.Profil.Mail)*@
                                             </div>
                                         </div>
 
@@ -93,10 +91,6 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.MotDePasse, new { @class = "" })<small> (requis)</small>
                                                 @Html.TextBoxFor(m => Model.MotDePasse, new { @class = "form-control", @id = "password", @type = "password" })
-                                                @*@Html.ValidationMessageFor(m => Model.MotDePasse)*@
-                                                @*<label>Mot de passe <small> (requis)</small></label>
-                                                    <input name="password" type="password" class="form-control"
-                                                           placeholder="" id="password">*@
                                             </div>
                                         </div>
 
@@ -116,7 +110,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane mt-4" id="type">
+                                <div class="tab-pane mt-4 mb-4" id="type">
                                     <div class="row d-flex justify-content-center">
                                         @*<div class="col-sm-10 col-sm-offset-1">
                                                 <div class="form-group">
@@ -157,22 +151,19 @@
 
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
-                                                @*<input id="dateNaissance" type="date" value="" class="form-control">*@
                                                 @Html.LabelFor(m => Model.Profil.DateDeNaissance)<small> (requis)</small>
                                                 @Html.TextBoxFor(m => Model.Profil.DateDeNaissance, new { @type = "date", @class = "form-control" })
-                                                @*@Html.ValidationMessageFor(m => Model.Profil.DateDeNaissance)*@
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane mt-4" id="facilities">
+                                <div class="tab-pane mt-4 mb-4" id="facilities">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Adresse)<small> (requis)</small>
                                                 @Html.TextBoxFor(m => Model.Profil.Adresse, new { @class = "form-control" })
-                                                @*@Html.ValidationMessageFor(m => Model.Profil.Adresse)*@
                                             </div>
                                         </div>
 
@@ -199,28 +190,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane mt-4" id="description">
+                                <div class="tab-pane mt-4 mb-4" id="description">
                                     <div class="row d-flex justify-content-around">
                                         <div class="col-sm-5 m-3 col-sm-offset-1 ">
                                             <div class="picture-container">
+                                                <label>
+                                                    Photo de Profil<small> (optionnel)</small>
+                                                </label>
                                                 <div class="picture">
-                                                    <img src="~/img/avatar_exemple.png" class="picture-src"
-                                                         id="wizardPicturePreview" title="" />
-                                                    <input type="file" id="pictureFile" name="pictureFile" />
+                                                    <img src="" class="picture-src"
+                                                         id="output" title="" />
+                                                    <input type="file" id="pictureFile" name="pictureFile" onchange="loadFile(event)" />
                                                 </div>
-                                                <h6>
-                                                    Choisissez une photo de Profil<small> (optionnel)</small>
-                                                </h6>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-5 m-3">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Description)<small> (optionnel)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.Description, new { @class = "form-control w-100", @row = "9" })
-                                                @Html.ValidationMessageFor(m => Model.Profil.Description)
-                                                @*<textarea class="form-control" placeholder=""
-                                                    rows="9"></textarea>*@
+                                                <textarea class="form-control" placeholder="" name="Profil.Description"
+                                                          rows="9"></textarea>
                                             </div>
                                         </div>
 
@@ -241,7 +230,6 @@
                                     <input type='submit' class='btn btn-finish btn-fill btn-danger btn-wd'
                                            name='finish' value="S'inscrire" />
                                 </div>
-
                                 <div class="clearfix"></div>
                             </div>
                         }
@@ -254,6 +242,14 @@
 
 
 
+<script>console.log("image ready")
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src)
+        }
+    };</script>
 
 @section scripts {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"

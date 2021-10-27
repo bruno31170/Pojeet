@@ -10,11 +10,18 @@ namespace Pojeet.Models
         public string Rechercher { get; set; }
         public string Localisation { get; set; }
         public TypeRecherche TypeDeRecherche { get; set; }
+        public CategorieRecherche CategorieDeRecherche { get; set; }
     }
 
     public enum TypeRecherche
     {
         Besoin,
         Service
+    }
+    public enum CategorieRecherche
+    {
+        Réparation,
+        Pièce,
+        Location
     }
 }

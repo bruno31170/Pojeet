@@ -13,5 +13,10 @@ namespace Pojeet.Models
         CompteConsumer ObtientCompteConsumer(int id);
 
         List<Transaction> ObtientTransaction(int id);
+
+        Transaction ObtientUneTransaction(int reference);
+        double ObtenirMargeBrute(int reference);
+        double ObtenirReste(int reference);
+        int ObtenirNbTransaction(int id);
     }
 }

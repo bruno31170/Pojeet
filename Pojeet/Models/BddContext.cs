@@ -29,6 +29,7 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
@@ -97,7 +98,24 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar1.png"
+
+                Photo = "https://bootdey.com/img/Content/avatar/avatar6.png"
+            },
+            new Profil
+            {
+                Id = 4,
+                Description = "",
+                Nom = "Boulet",
+                Prenom = "Bruno",
+                DateDeNaissance = "12/12/1995",
+                Adresse = "30 Rue du Dr Charco",
+                Ville = "Nanterre",
+                CodePostal = "92000",
+                Pays = 0,
+                Mail = "bruno@gmail.com",
+                NumeroTelephone = 62574402,
+                Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
+
             });
 
             //ANNONCE
@@ -179,6 +197,7 @@ namespace Pojeet.Models
 
 
             },
+
 
              new Annonce
              {
@@ -263,6 +282,7 @@ namespace Pojeet.Models
 
 
 
+
             //CONSUMER
             this.CompteConsumer.AddRange(
             new CompteConsumer
@@ -286,6 +306,13 @@ namespace Pojeet.Models
                  Pseudo = "Evgeniia",
                  MotDePasse = Dal.EncodeMD5("123456"),
                  ProfilId = 3
+             },
+             new CompteConsumer
+             {
+                 Id = 4,
+                 Pseudo = "Bruno",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 4
              }
             );
 
@@ -391,6 +418,42 @@ namespace Pojeet.Models
                 AnnonceId = 4,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 1
+            },
+            new Transaction
+            {
+                Reference = 127,
+                Date = new DateTime(2021, 11, 09, 01, 1, 10),
+                AnnonceId = 5,
+                Montant = 20.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 1
+            },
+            new Transaction
+            {
+                Reference = 128,
+                Date = new DateTime(2021, 08, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 129,
+                Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 130,
+                Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                AnnonceId = 3,
+                Montant = 15,
+                EtatTransaction = EtatTransaction.En_attente,
                 ProfilId = 1
 
             });

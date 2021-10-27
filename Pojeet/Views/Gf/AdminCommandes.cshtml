@@ -4,7 +4,7 @@
     Layout = "_LayoutAdmin";
     ViewBag.Title = "Les commandes";
 }
-<div class="content-wrapper commande">
+<div class="content-wrapper h-100 commande">
     <!-- Content Header (Page header) -->
     <div class="content-header pl-3">
         <h1 class="pt-4 pl-4 mb-2 font-size-16">Commandes</h1>
@@ -93,26 +93,26 @@
                 {
                 <tr>
 
-                    <th scope="row"><a href="commande.html">@transaction.Reference</a></th>
+                    <th scope="row"><a href="@Url.Action("Commande", "Gf", new { reference = transaction.Reference})">@transaction.Reference</a></th>
                     <td>@transaction.Date</td>
                     @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
                     {
 
-                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        <td><a href="@Url.Action("Helper", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
                     }
                     else
                     {
-                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        <td><a href="@Url.Action("Helper", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
                     }
                     @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
                     {
 
 
-                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        <td><a href="@Url.Action("Consumer", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
                     }
                     else
                     {
-                        <td><a class="popup-open" href="@Url.Action("AfficherHelper", "Gf", new { id = transaction.ProfilId})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        <td><a href="@Url.Action("Consumer", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
                     }
 
                     <td>@transaction.Montant</td>
@@ -132,120 +132,5 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Modal fenetre utilisateur -->
-    <div class="popup-fade">
-        <div class="popup">
-            <a class="popup-close" href="#"><i class="far fa-times-circle font-size-18"></i></a>
-
-            <!-- info_helper -->
-            <div class="w-100 mb-3 user_contact message-box border-e">
-                <div class="flex-row align-items-center pl-4 mb-2">
-                    <img class="user_img mr-3" src="img/avatar5.png" alt="">
-                    <a class="font-size-16 bold" href="">@*@Model.consumer.Profil.Nom @Model.consumer.Profil.Preno*@m</a>
-                </div>
-                <div class="flex-row pl-2">
-                    <div class="flex-col col">
-
-                        <div class="flex-col">
-                            <div class="flex-row">
-                                <span>Pseudo</span>
-                                <h5>@*@Model.consumer.Pseudo*@</h5>
-                            </div>
-                            <div class="flex-row">
-                                <span>Email</span>
-                                <h5>@*@Model.consumer.Profil.Mail*@</h5>
-                            </div>
-                            <div class="flex-row">
-                                <span>Telephone</span>
-                                <h5>+33 @*@Model.consumer.Profil.NumeroTelephone*@</h5>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="flex-col col">
-                        <span class="mb-1">Adresse</span>
-                        <h5>3000 route de Greasque</h5>
-                        <div class="flex-row">
-                            <h5 class="mr-3">Gardanne</h5>
-                            <h5>13120</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End info_helper -->
-            <!-- Liste de toutes les commandes du Helper -->
-
-            <input class="form-control mb-3" id="myInput_helper" type="text" placeholder="Recherche">
-            <div class="w-100 table_commande_helper">
-
-                <table class="table table-hover m-0 w-100 border-e-1 text-center">
-                    <thead>
-                        <tr class="border-bottom-grey">
-                            <th scope="col">N°</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Consumer</th>
-                            <th scope="col">Article</th>
-                            <th scope="col">Montant</th>
-                            <th scope="col">Statut</th>
-                        </tr>
-                    </thead>
-                    <tbody id="commande_helper">
-                        <tr>
-                            <th scope="row">100</th>
-                            <td>12/09/2021</td>
-                            <td>Christophe Brasseur</td>
-                            <td>Dépannage  Transport</td>
-                            <td>150 €</td>
-                            <td>Valide</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">121</th>
-                            <td>05/08/2021</td>
-                            <td>Nicola Poirier</td>
-                            <td>Dépannage  Transport</td>
-                            <td>150 €</td>
-                            <td>Termine</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">148</th>
-                            <td>06/08/2021</td>
-                            <td>Carole Vasseur</td>
-                            <td>Réparation Entretien</td>
-                            <td>45 €</td>
-                            <td>Termine</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">100</th>
-                            <td>12/09/2021</td>
-                            <td>Christophe Brasseur</td>
-                            <td>Dépannage  Transport</td>
-                            <td>150 €</td>
-                            <td>Valide</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">121</th>
-                            <td>05/08/2021</td>
-                            <td>Nicola Poirier</td>
-                            <td>Dépannage  Transport</td>
-                            <td>150 €</td>
-                            <td>Termine</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">148</th>
-                            <td>06/08/2021</td>
-                            <td>Carole Vasseur</td>
-                            <td>Réparation Entretien</td>
-                            <td>45 €</td>
-                            <td>Termine</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- End Liste de toutes les commandes du Helper -->
-        </div>
-    </div>
-    <!-- End Modal fenetre d'utilisateur -->
-
 
 </div>

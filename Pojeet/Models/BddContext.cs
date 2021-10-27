@@ -27,9 +27,11 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
+
 
         }
 
@@ -67,6 +69,7 @@ namespace Pojeet.Models
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 687555634,
                 Photo = null,
+                NoteMoyenne = 2
             },
             new Profil
             {
@@ -81,7 +84,8 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "cecileLepillouer@gmail.com",
                 NumeroTelephone = 687555652,
-                Photo = "avatar_exemple.png"
+                Photo = "avatar_exemple.png",
+                NoteMoyenne = 4
             },
             new Profil
             {
@@ -96,6 +100,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
+                NoteMoyenne = 3,
 
                 Photo = "https://bootdey.com/img/Content/avatar/avatar6.png"
             },
@@ -413,16 +418,17 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 125,
-                Date = new DateTime(2021, 11, 09, 12, 1, 10),
+                Date = new DateTime(2021, 10, 27, 12, 1, 10),
                 AnnonceId = 1,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
+                ProfilId = 2
+
             },
             new Transaction
             {
                 Reference = 127,
-                Date = new DateTime(2021, 11, 09, 01, 1, 10),
+                Date = new DateTime(2021, 10, 27, 01, 1, 10),
                 AnnonceId = 3,
                 Montant = 20.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -431,7 +437,7 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 128,
-                Date = new DateTime(2021, 08, 09, 12, 1, 10),
+                Date = new DateTime(2021, 10, 09, 12, 1, 10),
                 AnnonceId = 5,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -440,7 +446,7 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 129,
-                Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                Date = new DateTime(2021,10 , 10, 12, 1, 10),
                 AnnonceId = 2,
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,

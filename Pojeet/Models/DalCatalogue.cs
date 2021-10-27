@@ -50,14 +50,14 @@ namespace Pojeet.Models
             string TypeRecherche = uvm.Recherche.TypeDeRecherche.ToString();
             string CategorieRecherche = uvm.Recherche.CategorieDeRecherche.ToString();
             string TriRecherche = uvm.Recherche.Tri.ToString();
-            
+
 
 
             foreach (var item in annonce)
             {
                 string TypeAnnonce = item.TypeDeAnnonce.ToString();
                 string CategorieAnnonce = item.CategorieDeAnnonce.ToString();
-                
+
 
                 if (CategorieAnnonce == CategorieRecherche)
                 {
@@ -107,19 +107,16 @@ namespace Pojeet.Models
                 }
 
             }
-            foreach (var item in annonce)
-            {
-                if (TriRecherche.Equals("Notes"))
-                {
-                    rechercheAnnonce = rechercheAnnonce.OrderBy(x => x.Note).ToList();
-                }
 
-                if (TriRecherche.Equals("Dates"))
-                {
-                    rechercheAnnonce = rechercheAnnonce.OrderBy(x => x.DateParution).ToList();
-                }
+            if (TriRecherche.Equals("Notes"))
+            {
+                rechercheAnnonce = rechercheAnnonce.OrderByDescending(x => x.profil.NoteMoyenne).ToList();
             }
 
+            if (TriRecherche.Equals("Dates"))
+            {
+                rechercheAnnonce = rechercheAnnonce.OrderByDescending(x => x.DateParution).ToList();
+            }
             return rechercheAnnonce;
         }
     }

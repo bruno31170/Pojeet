@@ -103,9 +103,9 @@
 <div class="mt-3" style="min-height:50vh;background-color:#f2f2f2;">
     <h4 class="text-center pt-3">De quoi avez-vous besoin ?</h4>
 
-    <div class="d-flex justify-content-center mt-3" style="min-height:45vh;">
+    <div class="d-flex justify-content-center flex-wrap mt-3" style="min-height:45vh;">
 
-        <div class="col-3 mx-4 d-flex flex-column justify-content-around">
+        <div class="col-lg-3 col-md-10 col-10 mx-4 d-flex flex-column justify-content-around">
             <a href="Catalogue/RechercherAnnonce?Recherche.TypeDeRecherche=Service&Recherche.CategorieDeRecherche=Réparation&Recherche.Rechercher=&Recherche.Localisation=">
                 <img src="~/img/design_service.png" class="px-5 mt-2 imgHover"
                      style="border-radius:99%; width:100%; object-fit:cover">
@@ -113,7 +113,7 @@
             <a href="Catalogue/RechercherAnnonce?Recherche.TypeDeRecherche=Service&Recherche.CategorieDeRecherche=Réparation&Recherche.Rechercher=&Recherche.Localisation=" class="text-center" style="text-decoration:none; color:inherit">Effectuer une réparation</a>
         </div>
 
-        <div class="col-3 mx-4 d-flex flex-column justify-content-around">
+        <div class="col-lg-3 col-md-10 col-10 mx-4 d-flex flex-column justify-content-around">
             <a href="Catalogue/RechercherAnnonce?Recherche.TypeDeRecherche=Service&Recherche.CategorieDeRecherche=Pièce&Recherche.Rechercher=&Recherche.Localisation=">
                 <img src="~/img/design_acheter.png" class="px-5 mt-2 imgHover"
                      style="border-radius:99%; width:100%; object-fit:cover">
@@ -121,7 +121,7 @@
             <a href="Catalogue/RechercherAnnonce?Recherche.TypeDeRecherche=Service&Recherche.CategorieDeRecherche=Pièce&Recherche.Rechercher=&Recherche.Localisation=" class="text-center" style="text-decoration:none; color:inherit">Acheter une pièce</a>
         </div>
 
-        <div class="col-3 mx-4 d-flex flex-column justify-content-around">
+        <div class="col-lg-3 col-md-10 col-10 mx-4 d-flex flex-column justify-content-around">
             <a href="Catalogue/RechercherAnnonce?Recherche.TypeDeRecherche=Service&Recherche.CategorieDeRecherche=Location&Recherche.Rechercher=&Recherche.Localisation=">
                 <img src="~/img/design_louer.png" class="px-5 mt-2 imgHover"
                      style="border-radius:99%; width:100%; object-fit:cover">
@@ -137,9 +137,9 @@
 <!-- SOYEZRASSURES -->
 <div class="mt-3">
     <h4 class="pt-3 mb-4 mx-5">Soyez rassurés</h4>
-    <div class="d-flex justify-content-center mx-3 col-12">
+    <div class="d-flex justify-content-center flex-wrap mx-3 col-12">
 
-        <div class="col-2 mx-5">
+        <div class="col-lg-2 col-12 mx-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                  class="bi bi-person-check-fill" viewBox="0 0 16 16" style="color:#2b6777">
                 <path fill-rule="evenodd"
@@ -150,7 +150,7 @@
             <p>Tous les Helpers sont vérfiés et évalués par les clients après chaque service.</p>
         </div>
 
-        <div class="col-2 mx-5">
+        <div class="col-lg-2 col-12 mx-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                  class="bi bi-piggy-bank-fill" viewBox="0 0 16 16" style="color:#2b6777">
                 <path fill-rule="evenodd"
@@ -160,7 +160,7 @@
             <p>Faites des économies en profitant de tarifs avantageux en passant par des particuliers</p>
         </div>
 
-        <div class="col-2 mx-5">
+        <div class="col-lg-2 col-12 mx-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-safe-fill"
                  viewBox="0 0 16 16" style="color:#2b6777">
                 <path d="M9.778 9.414A2 2 0 1 1 6.95 6.586a2 2 0 0 1 2.828 2.828z" />
@@ -173,7 +173,7 @@
             </p>
         </div>
 
-        <div class="col-2 mx-5">
+        <div class="col-lg-2 col-12 mx-5">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                  class="bi bi-info-circle-fill" viewBox="0 0 16 16" style="color:#2b6777">
                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
@@ -220,16 +220,12 @@
                             </span>
                         </div>
                         <div class="d-flex justify-content-center mt-5">
-                            @Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new
+                            @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new
                             {
                                       @class = "d-flex justify-content-center btn my-lg-0 rounded askService px-2 px-3 btnGreen mx-auto",
                                       @style = "background-color: #52ab98!important; color: white!important; width:50%!important; text-align:center!important"
                                   })
 
-                            @*<button class="d-flex btn my-2 my-lg-0 rounded askService px-2 px-3"
-                                        style="background-color: #52ab98; color: white; width:50%; text-align:center;  border-radius:999px">
-                                    <span class="m-auto" style="margin:auto">Devener Helper</span>
-                                </button>*@
                         </div>
                     </div>
                 </h2>

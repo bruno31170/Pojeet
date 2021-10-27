@@ -32,6 +32,7 @@ namespace Pojeet.Models
 
         [Required(ErrorMessage = "La catégorie de l'annonce doit être renseigné.")]
         public CategorieAnnonce CategorieDeAnnonce { get; set; }
+        public int Note { get; set; }
 
         public string Photo { get; set; }
 

@@ -11,6 +11,12 @@ namespace Pojeet.Models
         public string Localisation { get; set; }
         public TypeRecherche TypeDeRecherche { get; set; }
         public CategorieRecherche CategorieDeRecherche { get; set; }
+        public Tri Tri { get; set; }
+    }
+    public enum Tri
+    {
+        Dates,
+        Notes
     }
 
     public enum TypeRecherche

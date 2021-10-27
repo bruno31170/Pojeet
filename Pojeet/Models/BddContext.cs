@@ -148,7 +148,8 @@ namespace Pojeet.Models
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "pose_longue_01.jpg"
             },
 
             new Annonce

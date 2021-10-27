@@ -54,11 +54,9 @@
                     </div>
                     <div class="mr-4 mb-1">
                         <span>Trier par</span>
-                        <select class="type_post">
-                            <option value="partinence">Partinence</option>
-                            <option value="note">Notes</option>
-                            <option value="nouveaute">Nouveautés</option>
-                        </select>
+
+                        @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
+
                     </div>
                 </div>
                 <!-- FOR EACH ICI CODE -->
@@ -80,7 +78,7 @@
                         </div>
                         <div class="wall_post flex-row">
                             <div class="wall_post_img">
-                                <img src="img/anonce.jpg" alt="">
+                                <img src="~/media/annonce/@annonce.Photo" alt="">
                             </div>
                             <div class="post_info flex-col justify-content-between">
                                 <div class="post_info_text ml-1">

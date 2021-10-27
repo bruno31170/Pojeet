@@ -117,67 +117,59 @@
 
 
 
-                        <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
-                            <div class="post_search_text mt-3 mb-2">
-                                <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
-                                <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+                     <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
+                    <div class="post_search_text mt-3 mb-2">
+                        <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
+                        <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+                    </div>
+
+
+
+
+                    @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+                    {
+                        <div class="type_post flex-row justify-content-center">
+
+                            <div class="flex-row">
+
+                                @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
+                                <label class="bold" for="typePost1">Besoin</label>
+
                             </div>
+                            <div class="flex-row ml-4">
+
+                                @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
+                                <label class="bold" for="typePost2">Service</label>
+
+                            </div>
+                        </div>
+                        <div class="flex-col flex-md-row justify-content-center">
 
 
+                            <form id="search-form" action="index.html" method="post">
+                                <div class="flex-col flex-md-row">
+                                    <div class="search_category select-wrap mb-1" id="search">
 
-
-                        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
-                        {
-                            <div class="type_post flex-row justify-content-center">
-
-                                <div class="flex-row">
-
-                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
-                                    <label class="bold" for="typePost1">Besoin</label>
+                                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), new { @class = "search_select_form text-center js-select" })
+                                    </div>
+                                    @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
+                                    @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
 
                                 </div>
-                                <div class="flex-row ml-4">
 
-                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                                    <label class="bold" for="typePost2">Service</label>
-
-                                </div>
-                            </div>
-                            <div class="flex-col flex-md-row justify-content-center">
+                            </form>
+                            <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
 
 
-                                <form id="search-form" action="index.html" method="post">
-                                    <div class="flex-col flex-md-row">
-                                        <div class="search_category select-wrap mb-1" id="search">
-
-                                            @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), new { @class = "search_select_form text-center js-select"})
-                                            </div>
-                                            @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
-                                            @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
-
-
-
-                                            @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
-
-
-                                            @*@Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
-            @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })*@
-
-                                        </div>
-
-</form>
-                                <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
-
-
-
-                            </div>
-
-
-
-                        }
 
                         </div>
-                    </div>
+
+
+
+                    }
+                </div>
+                    }
+                </div>
                         <!-- Fin Rechercher -->
                         <div class="page_container toutes_post p-3 pb-5 flex-row">
                             <!-- Menu utilisateur à geuche -->
@@ -202,7 +194,7 @@
                                         var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
                                     }
                                     @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
-                                    @if(provider1 ==null)
+                                    @if (provider1 == null)
                                     {
                                         <li>
                                             <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
@@ -214,7 +206,7 @@
                                             <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
 
                                         </li>
-                                        
+                                    }
 
                                         <li>
                                             <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
@@ -223,7 +215,7 @@
                                             <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
                                         </li>
                                     </ul>
-                                </div>
+                             </div>
 
                                 <!-- Fin menu utilisateur -->
                                 <!-- List anonce -->
@@ -237,10 +229,7 @@
                                         <div class="mr-4 mb-1">
                                             <span>Trier par</span>
 
-
-
                                             @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
-
 
 
                                         </div>
@@ -364,8 +353,8 @@
                                     </div>
                                 </div>
                                 <!-- Fin top anonce -->
-                            </div>
                         </div>
+            </div>
 
          </main>
             <footer>

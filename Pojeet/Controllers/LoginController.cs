@@ -166,7 +166,7 @@ namespace Pojeet.Controllers
                 }
 
 
-                return Redirect("../Profil/SuccessInscritpion");
+                return Redirect("SuccessInscritpion");
             }
             return View(compteConsumer);
         }

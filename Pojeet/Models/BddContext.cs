@@ -246,7 +246,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 40,
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
-                 ProfilId = 2,
+                 ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
 
 

@@ -182,6 +182,27 @@
                                         </div>
                                     </div>
                                     <hr>
+
+
+                                    @if (@Model.CompteProvider != null && @Model.CompteProvider.CompteConsumerId == @Model.CompteConsumer.Id)
+                                    {
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Compétences</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary d-flex">
+                                                @foreach (var item in @Model.CompteProvider.Competence.Split(',').ToList())
+                                                {
+                                                    <div class="m-1 text-center col-3" style="background-color: rgba(0,0,0,0.1)!important; border-radius:25px">@item</div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    }
+
+
+
                                     <div class="row">
                                         <div class="col-sm-12 d-flex justify-content-center">
                                             @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new
@@ -251,7 +272,7 @@
                         }
                         @if (Model.Annonce.Count == 0)
                         {
-                        <br><br><center><p>Vous n'avez pas publié d'annonce.</p></center>
+                            <br><br><center><p>Vous n'avez pas publié d'annonce.</p></center>
                         }
                     </div>
 
@@ -299,9 +320,9 @@
                                                     <small>
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
                                                         {<em>
-                                                            En cours
+                                                                En cours
 
-                                                        </em>
+                                                            </em>
                                                         }
                                                     </small>
                                                 </div>
@@ -349,9 +370,9 @@
                                                     <small>
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
                                                         {
-                                                        <em>
-                                                            Finalisé
-                                                        </em>
+                                                            <em>
+                                                                Finalisé
+                                                            </em>
                                                         }
                                                     </small>
                                                 </div>
@@ -367,7 +388,7 @@
                             <center><p>Vous n'avez pas de transaction.</p></center>
                         }
 
-                  
+
 
                     </div>
 

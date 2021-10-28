@@ -42,15 +42,13 @@
     <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/js/js-e/jquery.formstyler.min.js"></script>
-    <script>
-        (function ($) {
+    <script>(function ($) {
             $(function () {
                 $('select, option, input').styler({
                     selectSearch: true,
                 });
             });
-        })(jQuery);
-    </script>
+        })(jQuery);</script>
 
 </head>
 
@@ -143,15 +141,16 @@
                         @{
                             var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
                         }
-                        @if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)
+                        @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
+                        @if(provider1 == null)
                         {
-                            <li style="display: none;">
+                            <li >
                                 <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                             </li>
                         }
                         else
                         {
-                            <li>
+                            <li style="display: none;">
                                 <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                             </li>
                         }
@@ -202,11 +201,9 @@
     <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
 
     <script src="~/js/js-e/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript">
-        function switchTab(tabId) {
+    <script type="text/javascript">function switchTab(tabId) {
             $(tabId).addClass("active").siblings().removeClass("active");
-        }
-    </script>
+        }</script>
 
     @RenderSection("scripts", required: false)
 

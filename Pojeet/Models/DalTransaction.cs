@@ -35,7 +35,7 @@ namespace Pojeet.Models
 
         public List<Transaction> ObtientTransaction(int id)
         {
-            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
+            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
             return listeTransaction;
         }
         public Transaction ObtientUneTransaction (int reference)
@@ -73,6 +73,11 @@ namespace Pojeet.Models
             return NbTransaction;
         }
 
+        public Paiement ObtenirPaiement(int reference)
+        {
+            Paiement paiement = this._context.Paiement.Where(c => c.TransactionReference == reference).FirstOrDefault();
+            return paiement;
+        }
 
         public void Dispose()
         {

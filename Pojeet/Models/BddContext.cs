@@ -27,9 +27,9 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
 
 
         }
@@ -245,7 +245,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 40,
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
-                 ProfilId = 2,
+                 ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
 
 
@@ -465,6 +465,17 @@ namespace Pojeet.Models
                 ProfilId = 1
 
             });
+
+            this.Paiement.AddRange(
+           new Paiement
+           {
+               Id = 1,
+               Date = new DateTime(2004, 11, 20, 12, 1, 10),
+               TransactionMontant = 15,
+               TransactionReference = 130,
+               ProfilId = 3,
+               StatutPaiement = StatutPaiement.Payé
+           }); 
 
             this.Avis.AddRange(
            new Avis

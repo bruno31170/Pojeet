@@ -1,4 +1,4 @@
-﻿@model Pojeet.ViewModels.CommandeViewModel
+@model Pojeet.ViewModels.CommandeViewModel
 @{
     Layout = "_LayoutAdmin";
     ViewBag.Title = "Admin";
@@ -18,7 +18,9 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
+
                             <h3>@Model.Listetransaction.Count</h3>
+
 
                             <p>Nombre de commandes</p>
                         </div>
@@ -33,7 +35,9 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
+
                             <h3>@Model.Argent.ChiffreDaffaire € <sup style="font-size: 18px">TTC</sup></h3>
+
 
                             <p>Chiffre d'affaire</p>
                         </div>
@@ -63,7 +67,9 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
+
                             <h3>@Model.Argent.MargeBrut €</h3>
+
 
                             <p>Marge brut</p>
                         </div>

@@ -14,6 +14,7 @@ namespace Pojeet.Models
         public int AnnonceId { get; set; }
         public virtual Annonce Annonce { get; set; }
         public double Montant { get; set; }
+        public double MontantHelper { get; set; }
         public int ProfilId { get; set; }
         public virtual Profil Profil { get; set; }
         
@@ -23,6 +24,7 @@ namespace Pojeet.Models
     public enum EtatTransaction
     {
         En_attente,
+        Paye,
         Valide,
         Refuse,
         Termine

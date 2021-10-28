@@ -49,7 +49,7 @@ namespace Pojeet.Controllers
            
 
         }
-
+        
         public ActionResult Annonce(int Id1, int Id2)
         {
             CompteConsumer consumer = dal1.ObtientConsumer(Id1);

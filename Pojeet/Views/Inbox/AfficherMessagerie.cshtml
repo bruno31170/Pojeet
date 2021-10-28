@@ -128,7 +128,7 @@
                                         </form>
                                     }
                                 }
-                                <a href="@Url.Action("Annonce", "Catalogue", new { id = @Model.Conversation.Annonce.Id})">
+                                <a href="@Url.Action("Annonce", "Catalogue", new {id1=Model.CompteConsumer.Id, id2 = @Model.Conversation.Annonce.Id})">
                                     <button type="button" class="btn btn-link float-right">Annonce N° @Model.Conversation.Annonce.Id</button>
                                 </a>
                             </div>

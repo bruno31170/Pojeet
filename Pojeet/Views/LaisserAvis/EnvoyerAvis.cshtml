@@ -1,0 +1,51 @@
+﻿@model Pojeet.ViewModels.AvisViewModel
+    @{
+        Layout = "_LayoutIdentifie";
+        ViewBag.Title = "EnvoyerAvis";
+    }
+
+    <br />
+    <p style="text-align:center">
+        Aidez nous à favoriser la confiance entre les utilisateurs de HelpMyCar. <br>
+        Merci pour votre participation!
+    </p>
+
+    <h2 style="text-align:center">Laissez un avis à @Model.Prenom</h2>
+
+
+    @using (Html.BeginForm("EnregistrerAvis", "LaisserAvis", FormMethod.Post))
+            {
+    <br>
+    <h3><br>Votre note : </h3>
+
+        <input type="checkbox" id="Avis.note" name="Avis.note" value="1">
+        <label for="Avis.note">1</label>
+        <input type="checkbox" id="Avis.note" name="Avis.note" value="2">
+        <label for="Avis.note">2</label>
+        <input type="checkbox" id="Avis.note" name="Avis.note" value="3">
+        <label for="Avis.note">3</label>
+        <input type="checkbox" id="Avis.note" name="Avis.note" value="4">
+        <label for="Avis.note">4</label>
+        <input type="checkbox" id="Avis.note" name="Avis.note" value="5">
+        <label for="Avis.note">5</label>
+
+    <br>
+
+    <br>
+    <h3><br>Votre commentaire : </h3>
+    <br>
+
+    @Html.TextAreaFor(model => model.Avis.commentaire, new { @class = "form-control", placeholder = "Laissez votre commentaire ici...", style="rows:10;cols:50;width: 500px" })
+    <br>
+    <input type="hidden" id="Avis.ProfilId" name="Avis.ProfilId" class="form-control" value="1">
+    <input type="hidden" id="Avis.CompteConsumerId" name="Avis.CompteConsumerId" class="form-control" value="2">
+    <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
+    }
+
+    <style type="text/css">
+        form {
+            width: 300px;
+        }
+
+
+    </style>

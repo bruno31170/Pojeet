@@ -20,5 +20,6 @@ namespace Pojeet.Models
         public List<MessagerieConversation> MessagerieConversation { get; set; }
 
         public string MotCle { get; set; }
+        public CompteConsumer CompteConsumer { get; set; }
     }
 }

@@ -43,10 +43,10 @@ namespace Pojeet.Controllers
                         {
                             id2 = dal.ObtientPremiereConversation(listeConversation);
                         }
-                        Conversationid2 = dal.ObtientLaConversation(id2);
+                        Conversationid2 = dal.ObtientLaConversation(id2);                        
                         listeMessages = dal.ObtientTousLesMessages(id2);
                         messagerieConversation = dal.ObtientMessagerieConversation(id2);
-                        return View(new InboxViewModel { Authentifie=authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation });
+                        return View(new InboxViewModel { Authentifie=authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer= compteConsumer });
                     }
                     else
                     {
@@ -100,8 +100,8 @@ namespace Pojeet.Controllers
                 String message1 = nouveaumessage.message + " accepte la proposition.";
                 ctx.RemplacerMessage(nouveaumessage.Id, false);
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
-                ctx.CreerPaiement(nouvelletransaction.AnnonceId);
-                ctx.CreerVirement(nouvelletransaction.AnnonceId);
+                ctx.CreerPaiement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
+                ctx.CreerVirement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
                 return RedirectToAction("AfficherMessagerie", new {id2 = id2 });
             }
         }

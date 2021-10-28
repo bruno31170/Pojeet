@@ -128,6 +128,7 @@
 
                                 <div class="flex-row">
 
+<<<<<<< Updated upstream
                                     @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
                                     <label class="bold" for="typePost1">Besoin</label>
 
@@ -143,13 +144,29 @@
 
                                     <form id="search-form" action="index.html" method="post">
                                         <div class="flex-col flex-md-row">
+=======
+                    @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+                    {
+                        <div class="flex-col flex-md-row justify-content-center">
+>>>>>>> Stashed changes
 
                                             @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))))
                                             @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
                                             @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
 
+<<<<<<< Updated upstream
 
                                             @*@Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_category select-wrap mb-1" })*@
+=======
+                            <form id="search-form" action="index.html" method="post">
+                                <div class="flex-col flex-md-row">
+                                    <div class="search_category select-wrap mb-1" id="search">
+                                        @Html.DropDownListFor(m => Model.Recherche.TypeDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.TypeRecherche))), new { @class = "search_select_form text-center js-select" })
+                                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), new { @class = "search_select_form text-center js-select" })
+                                    </div>
+                                    @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
+                                    @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
+>>>>>>> Stashed changes
 
                                             @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
                                             @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })

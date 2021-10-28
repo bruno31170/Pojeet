@@ -19,10 +19,21 @@ namespace Pojeet.Controllers
 =======
         public IActionResult AdminIndex()
         {
-            
+            List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
+            listeConsumer = dal.ObtientConsumer();
 
             List<Transaction> listeTransaction = new List<Transaction>();
             listeTransaction = dal.ObtientTransaction();
+
+            //Nombre Consumer du jour
+            List<CompteConsumer> listeConsumerJour = new List<CompteConsumer>();
+            foreach (var item in listeConsumer)
+            {
+                if (item.DateCreationCompte.Day == DateTime.Now.Day)
+                {
+                    listeConsumerJour.Add(item);
+                }
+            }
 
             //Liste transaction du jour
             List<Transaction> listeTransactionJour = new List<Transaction>();
@@ -47,7 +58,7 @@ namespace Pojeet.Controllers
             argent.MargeBrut = Convert.ToInt32(argent.MargeBrut);
             return View(new CommandeViewModel
             {
-                
+                listConsumer = listeConsumerJour,
                 Listetransaction = listeTransactionJour,
                 Argent = argent
             });
@@ -61,11 +72,20 @@ namespace Pojeet.Controllers
         public IActionResult AdminCommandes()
         {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
-
             listeConsumer = dal.ObtientConsumer();
 
             List<Transaction> listeTransaction = new List<Transaction>();
             listeTransaction = dal.ObtientTransaction();
+
+            //Nombre Consumer du mois
+            List<CompteConsumer> listeConsumerMois = new List<CompteConsumer>();
+            foreach (var item in listeConsumer)
+            {
+                if (item.DateCreationCompte.Month == DateTime.Now.Month)
+                {
+                    listeConsumerMois.Add(item);
+                }
+            }
 
             //Liste transaction dans le mois
             List<Transaction> listeTransactionMois = new List<Transaction>();
@@ -90,7 +110,7 @@ namespace Pojeet.Controllers
             argent.MargeBrut = Convert.ToInt32(argent.MargeBrut);
             return View(new TransactionViewModel
             {
-                listConsumer = listeConsumer,
+                listConsumer = listeConsumerMois,
                 Transaction = listeTransactionMois,
                 Argent = argent
             });

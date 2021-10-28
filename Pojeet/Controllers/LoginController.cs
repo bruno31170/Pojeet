@@ -164,7 +164,7 @@ namespace Pojeet.Controllers
                 }
 
 
-                return Redirect("../Profil/Index");
+                return Redirect("../Profil/SuccessInscritpion");
             }
             return View(compteConsumer);
         }
@@ -218,6 +218,18 @@ namespace Pojeet.Controllers
                 {
                     viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
                 }
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+
+        // PAGE DE CONNEXION
+        public IActionResult SuccessInscritpion()
+        {
+            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
                 return View(viewModel);
             }
             return View(viewModel);

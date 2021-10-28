@@ -20,6 +20,7 @@ namespace Pojeet.Models
         List<Conversation> ObtientLesConversations(int id1);
         (int, List<Conversation>) ObtientLesConversations(int id1, String motCle, Messagerie messagerie);
         List<MessagerieConversation> ObtientMessagerieConversation(int id);
+        Conversation ObtenirConversationTransaction(int id, int profilId);
 
 
 

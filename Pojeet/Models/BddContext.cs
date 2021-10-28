@@ -24,6 +24,7 @@ namespace Pojeet.Models
         public DbSet<Aide> Aide { get; set; }
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
         public DbSet<Virement> Virement { get; set; }
+        public DbSet<Notification> Notification { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -124,7 +125,7 @@ namespace Pojeet.Models
             new Annonce
             {
                 Id = 1,
-                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TypeDeAnnonce = TypeAnnonce.Service,
                 TitreAnnonce = "Changement d'une batterie",
                 Description = "Voiture modèle Ford Fusion",
                 DateParution = DateTime.Now,
@@ -724,7 +725,7 @@ namespace Pojeet.Models
 
             //TRANSACTION
 
-            this.Transactions.AddRange(
+            /*this.Transactions.AddRange(
                 new Transaction
                 {
                     Reference = 123,
@@ -965,9 +966,8 @@ namespace Pojeet.Models
                TransactionReference = 130,
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
-           });
 
-            
+           }); */
 
             this.Avis.AddRange(
            new Avis

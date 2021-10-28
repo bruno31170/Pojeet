@@ -323,6 +323,11 @@
                                                         {<em>
                                                                 En cours
 
+                                                                <a href="@Url.Action("RedirigerVersConversationAnnonce", "Inbox", new {reference=@item.Reference, profilId=@Model.CompteConsumer.ProfilId})">
+                                                                    <button type="button" class="btn btn-link float-right">Voir la proposition</button>
+                                                                </a>
+
+
                                                             </em>
                                                         }
                                                     </small>
@@ -333,7 +338,126 @@
                                 }
                             }
 
+                            @foreach (var item in @Model.ListeTransaction)
+                            {
+                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Paye)
+                                {
+                                    <div class="content mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div class="transaction d-flex">
+                                                <div class="col-1">
+                                                    <img src="assets/img/design_service.png" alt=""
+                                                         style="width:50px">
+                                                </div>
+                                                <div class="col-7">
+                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                    <span class="small text-muted">
+                                                        <span style="color:#52ab98">
+                                                            Demande de
+                                                            service  @item.Annonce.CategorieDeAnnonce
+                                                        </span> à <em>Bricolodusamedi</em>
+                                                    </span>
+                                                </div>
+                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
+                                                <div class="col-2">
+                                                    <small>
+                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Paye)
+                                                        {<em>
+                                                                Payée
+                                                                @if (((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.ProfilId)) || (
+                                                                             (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
+                                                                {
+                                                                    <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new {reference=@item.Reference, etat=@Pojeet.Models.EtatTransaction.Effectue})">
+                                                                        <button type="button" class="btn btn-link float-right">Service Effectué?</button>
+                                                                    </a>
+                                                                }
+                                                            </em>
+                                                        }
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            @foreach (var item in @Model.ListeTransaction)
+                            {
+                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Effectue)
+                                {
+                                    <div class="content mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div class="transaction d-flex">
+                                                <div class="col-1">
+                                                    <img src="assets/img/design_service.png" alt=""
+                                                         style="width:50px">
+                                                </div>
+                                                <div class="col-7">
+                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                    <span class="small text-muted">
+                                                        <span style="color:#52ab98">
+                                                            Demande de
+                                                            service  @item.Annonce.CategorieDeAnnonce
+                                                        </span> à <em>Bricolodusamedi</em>
+                                                    </span>
+                                                </div>
+                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
+                                                <div class="col-2">
+                                                    <small>
+                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Effectue)
+                                                        {<em>
+                                                                Service effectué
+                                                                @if (((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.ProfilId)) || (
+                                                                             (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
+                                                                {
+                                                                    <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new {reference=@item.Reference, etat=Pojeet.Models.EtatTransaction.Valide})">
+                                                                        <button type="button" class="btn btn-link float-right">Validez La réception du service</button>
+                                                                    </a>
+                                                                }
+                                                            </em>
+                                                        }
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
 
+                            @foreach (var item in @Model.ListeTransaction)
+                            {
+                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                                {
+                                    <div class="content mt-4">
+                                        <div class="d-flex flex-column">
+                                            <div class="transaction d-flex">
+                                                <div class="col-1">
+                                                    <img src="assets/img/design_service.png" alt=""
+                                                         style="width:50px">
+                                                </div>
+                                                <div class="col-7">
+                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
+                                                    <span class="small text-muted">
+                                                        <span style="color:#52ab98">
+                                                            Demande de
+                                                            service  @item.Annonce.CategorieDeAnnonce
+                                                        </span> à <em>Bricolodusamedi</em>
+                                                    </span>
+                                                </div>
+                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
+                                                <div class="col-2">
+                                                    <small>
+                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                                                        {<em>
+                                                                Service Validé des deux parties
+                                                         </em>
+                                                        }
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
 
 
                             <button type="button" class="collapsible mt-4 d-flex justify-content-between">

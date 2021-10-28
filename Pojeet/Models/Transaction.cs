@@ -24,6 +24,7 @@ namespace Pojeet.Models
     public enum EtatTransaction
     {
         En_attente,
+        Paye,
         Valide,
         Refuse,
         Termine

@@ -58,54 +58,103 @@ namespace Pojeet.Models
                 string TypeAnnonce = item.TypeDeAnnonce.ToString();
                 string CategorieAnnonce = item.CategorieDeAnnonce.ToString();
 
-
-                if (CategorieAnnonce == CategorieRecherche)
+                if (TypeRecherche.Equals("Type")) 
+                { 
+                    if (CategorieAnnonce == CategorieRecherche)
                 {
-                    if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement != null)
                     {
                         if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement == null)
                     {
                         if (item.TitreAnnonce.Contains(MotRechercher))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement != null)
                     {
                         if (item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement == null)
                     {
                         if (TypeAnnonce == TypeRecherche)
                             rechercheAnnonce.Add(item);
                     }
                 }
-                if (CategorieRecherche == null)
+                    if (CategorieRecherche.Equals("Catégorie"))
                 {
-                    if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement != null)
                     {
                         if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement == null)
                     {
                         if (item.TitreAnnonce.Contains(MotRechercher))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement != null)
                     {
                         if (item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement == null)
                     {
-                        if (TypeAnnonce == TypeRecherche)
-                            rechercheAnnonce.Add(item);
+                        rechercheAnnonce.Add(item);
                     }
                 }
-
+                }
+                else
+                {
+                    if (CategorieAnnonce == CategorieRecherche)
+                    {
+                        if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.TitreAnnonce.Contains(MotRechercher))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (TypeAnnonce == TypeRecherche)
+                                rechercheAnnonce.Add(item);
+                        }
+                    }
+                    if (CategorieRecherche.Equals("Catégorie"))
+                    {
+                        if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.TitreAnnonce.Contains(MotRechercher))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (TypeAnnonce == TypeRecherche)
+                                rechercheAnnonce.Add(item);
+                        }
+                    }
+                }
             }
 
             if (TriRecherche.Equals("Notes"))

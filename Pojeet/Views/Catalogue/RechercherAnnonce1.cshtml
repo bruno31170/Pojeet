@@ -1,0 +1,127 @@
+@model Pojeet.ViewModels.ProfilViewModel
+@{
+    Layout = "_LayoutIdentifie";
+    ViewBag.Title = "RechercherAnnonce";
+}
+<div class="page_layout">
+    <!-- Recherche -->
+    <div class="flex-col post_search text-center text-white justify-content-around">
+        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+        {
+            <div class="post_search_text">
+                <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
+                <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+            </div>
+            <div class="type_post flex-row justify-content-center">
+                <div class="flex-row">
+
+                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
+                    <label class="bold" for="typePost1">Besoin</label>
+
+                </div>
+                <div class="flex-row ml-4">
+
+                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
+                    <label class="bold" for="typePost2">Service</label>
+
+                </div>
+            </div>
+            <div class="flex-col flex-md-row justify-content-center">
+                <form id="search-form" action="index.html" method="post">
+                    <div class="flex-col flex-md-row">
+
+                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), "Catégorie")
+                        @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
+                        @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
+
+                    </div>
+                </form>
+                <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
+                <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Annuler recherche" class="btn-primary-e align-self-center font-size-14 btn-search mb-1"></a>
+
+            </div>
+        }
+    </div>
+    <!-- Fin Recherche -->
+    <div class="page_container p-3 flex-row" style="max-width: 1200px;">
+        <!-- List anonce -->
+        <div>
+            <div class="post_list flex-col">
+                <div class="flex-row justify-content-between align-items-center">
+                    <div class="flex-row ml-3 mb-2">
+                        <span>Annonces: </span>
+                        <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
+                    </div>
+                    <div class="mr-4 mb-1">
+                        <span>Trier par</span>
+                        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get)) 
+                        { 
+                        
+                            @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
+                        }
+                    </div>
+                </div>
+                <!-- FOR EACH ICI CODE -->
+                @foreach (var annonce in Model.Annonce)
+                        {
+                    <div class="post_content p-4 border-e flex-col white">
+                        
+                        <div class="post_header flex-row align-items-center mb-2">
+                            <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
+                            <div class="post_header_info ml-4">
+                                <div class="post_author font-size-15">
+                                    <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+                                </div>
+                                <div class="post_date font-size-11">
+                                    <span class="post_link">Date de parution : @annonce.DateParution</span>
+                                </div>
+                                <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
+                            </div>
+                        </div>
+                        <div class="wall_post flex-row">
+                            <div class="wall_post_img">
+                                <img src="~/media/annonce/@annonce.Photo" alt="">
+                            </div>
+                            <div class="post_info flex-col justify-content-between">
+                                <div class="post_info_text ml-1">
+                                    <span class="font-size-17 bold">@annonce.TitreAnnonce</span><br>
+                                    <p class="text-justify">
+                                        @annonce.Description
+                                    </p>
+                                </div>
+                                <div class="post_price font-size-15 ml-1">
+                                    <span>Prix : @annonce.Prix €</span>
+                                </div>
+                                <div class="btn-primary-e w-100 mt-2 btn_post">
+                                    <a href="annonce.html">Voir l'annonce</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="like_post mt-3">
+                            <div class="like_cont flex-row justify-content-end">
+                                <div class="mb-2 flex-row" style="flex-basis: 70%;">
+                                    <div class="post_view flex-row font-size-20" style="width: 96px;">
+                                        <small class="fa fa-star" aria-hidden="true"></small>
+                                        <small class="fa fa-star" aria-hidden="true"></small>
+                                        <small class="fa fa-star" aria-hidden="true"></small>
+                                        <small class="fa fa-star" aria-hidden="true"></small>
+                                        <small class="fa fa-star text-muted" aria-hidden="true"></small>
+                                    </div>
+                                    <span class="ml-4">(152)</span>
+                                </div>
+                                <div class="post_comments btn_like flex-row mr-5">
+                                    <i class="fa fa-comment" onclick="Clk();return false;"></i>
+                                    <span class="align-self-center ml-2">12</span>
+                                </div>
+                                <div class="post_save btn_like flex-row">
+                                    <i class="fa fa-heart"></i>
+                                    <span class="align-self-center ml-2">68</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

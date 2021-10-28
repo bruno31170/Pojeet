@@ -23,7 +23,6 @@ namespace Pojeet.Controllers
             {
                 CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
                 id = compteConsumer.ProfilId;
-                CompteConsumer compteConsumer1 = new CompteConsumer();
                 Conversation Conversationid2 = new Conversation();
                 List<Message> listeMessages = new List<Message>();
                 List<Conversation> listeConversation = new List<Conversation>();
@@ -44,11 +43,10 @@ namespace Pojeet.Controllers
                         {
                             id2 = dal.ObtientPremiereConversation(listeConversation);
                         }
-                        Conversationid2 = dal.ObtientLaConversation(id2);
-                        compteConsumer1 = dal.ObtientTousConsumer().Where(c => c.ProfilId == Conversationid2.CompteConsumerId).FirstOrDefault();
+                        Conversationid2 = dal.ObtientLaConversation(id2);                        
                         listeMessages = dal.ObtientTousLesMessages(id2);
                         messagerieConversation = dal.ObtientMessagerieConversation(id2);
-                        return View(new InboxViewModel { Authentifie=authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer=compteConsumer1 });
+                        return View(new InboxViewModel { Authentifie=authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer= compteConsumer });
                     }
                     else
                     {
@@ -102,8 +100,8 @@ namespace Pojeet.Controllers
                 String message1 = nouveaumessage.message + " accepte la proposition.";
                 ctx.RemplacerMessage(nouveaumessage.Id, false);
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
-                ctx.CreerPaiement(nouvelletransaction.AnnonceId);
-                ctx.CreerVirement(nouvelletransaction.AnnonceId);
+                ctx.CreerPaiement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
+                ctx.CreerVirement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
                 return RedirectToAction("AfficherMessagerie", new {id2 = id2 });
             }
         }

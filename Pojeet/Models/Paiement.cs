@@ -11,7 +11,6 @@ namespace Pojeet.Models
         public DateTime Date { get; set; }
         public double TransactionMontant { get; set; }
         public int TransactionReference { get; set; }
-        public double TransactionMontantHelper { get; set; }
         public virtual Transaction Transaction { get; set; }
         public int ProfilId {get; set; }
         public virtual Profil ProfilPayant { get; set; }

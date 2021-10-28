@@ -27,8 +27,9 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
         }
 
@@ -243,7 +244,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 40,
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
-                 ProfilId = 2,
+                 ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
 
 
@@ -292,6 +293,7 @@ namespace Pojeet.Models
                 Pseudo = "Toto",
                 MotDePasse = Dal.EncodeMD5("lolilol"),
                 ProfilId = 1,
+                DateCreationCompte = new DateTime(2021, 10, 04, 12, 1, 10)
 
             },
              new CompteConsumer
@@ -300,20 +302,23 @@ namespace Pojeet.Models
                  Pseudo = "tata",
                  MotDePasse = Dal.EncodeMD5("tatata"),
                  ProfilId = 2,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
              },
              new CompteConsumer
              {
                  Id = 3,
                  Pseudo = "Evgeniia",
                  MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 3
+                 ProfilId = 3,
+                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
              },
              new CompteConsumer
              {
                  Id = 4,
                  Pseudo = "Bruno",
                  MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 4
+                 ProfilId = 4,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
              }
             );
 

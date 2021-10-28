@@ -24,7 +24,7 @@ namespace Pojeet.Models
         //[Required]
         public virtual Profil Profil { get; set; }
 
-
+        public DateTime DateCreationCompte { set; get; }
 
         public enum Statut
         {

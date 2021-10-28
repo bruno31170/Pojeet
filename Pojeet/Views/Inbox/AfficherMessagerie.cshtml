@@ -163,30 +163,31 @@
 
                                             @if (message.MessageProposition == true)
                                             {<div class="row">
-                                                    @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
-                                                    {
-                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
-                                                        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
-                                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
-                                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                        <button type="submit" class="btn btn-info float-left button">J'accepte</button>
-                                                    }
+    @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
+    {
+        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+        <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+        <button type="submit" class="btn btn-info float-left button">J'accepte</button>
+    }
 
-                                                    @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
-                                                    {
-                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
-                                                        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
-                                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
-                                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                        <button type="submit" class="btn btn-info float-left button">
-                                                               Je refuse
-                                                        </button>
-                                                    }
-                                                </div>
+    @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
+    {
+        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+        <button type="submit" class="btn btn-info float-left button">
+            Je refuse
+        </button>
+    }
+</div>
                                             }
                                         </div>
                                     </li>

@@ -64,7 +64,7 @@ namespace Pojeet.Controllers
                 Argent = argent
             });
 
-            
+
         }
 
 
@@ -89,7 +89,7 @@ namespace Pojeet.Controllers
             //Liste transaction dans le mois
             List<Transaction> listeTransactionMois = new List<Transaction>();
             foreach (var item in listeTransaction)
-            {   
+            {
                 if (item.Date.Month == DateTime.Now.Month)
                 {
                     listeTransactionMois.Add(item);
@@ -99,10 +99,10 @@ namespace Pojeet.Controllers
             //Chiffre d'affaire et marge brut du mois
             Argent argent = new Argent();
             argent.ChiffreDaffaire = 0;
-            
+
             foreach (var item in listeTransactionMois)
             {
-                
+
                 argent.ChiffreDaffaire = argent.ChiffreDaffaire + item.Montant;
             }
             argent.MargeBrut = argent.ChiffreDaffaire * 0.05;
@@ -117,6 +117,20 @@ namespace Pojeet.Controllers
 
         }
 
+        public ActionResult DemandeDevenirHelper()
+        {
+            List<CompteProvider> list = new List<CompteProvider>();
+            list = dal.ObtientTousHelpers();
+            List<CompteConsumer> listConsum = new List<CompteConsumer>();
+            listConsum = dal.ObtientTousConsumer();
+
+            return View(new DemandeHelperViewModel
+            {
+                listProvider = list,
+                ListConsumer = listConsum,
+            });
+        }
+
         public ActionResult Consumer(int id)
         {
             CompteConsumer consumer = new CompteConsumer();
@@ -124,7 +138,7 @@ namespace Pojeet.Controllers
 
             List<Transaction> transactions = new List<Transaction>();
             transactions = dal.ObtientTransaction(consumer.ProfilId);
-            
+
             return View(new ConsumerViewModel
             {
                 Consumer = consumer,
@@ -157,7 +171,7 @@ namespace Pojeet.Controllers
             int NbTransaction = dal.ObtenirNbTransaction(transaction.Profil.Id);
             Paiement paiement = new Paiement();
             paiement = dal.ObtenirPaiement(transaction.Reference);
-            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction, Paiement =paiement });
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute = MargeBrute, Reste = Reste, NbTransaction = NbTransaction, Paiement = paiement });
         }
     }
- }
+}

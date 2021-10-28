@@ -116,6 +116,23 @@ namespace Pojeet.Controllers
         }
 
 
+        public IActionResult ModifierEtatProviderValide(int id)
+        {
+            if (id != 0)
+            {
+                using (Dal ctx = new Dal())
+                {
+                    ctx.ModifierEtatProviderValide(id);
+                    return RedirectToAction("DemandeDevenirHelper", "Gf");
+                }
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+
+
         public IActionResult SupprimerConsumer()
         {
 

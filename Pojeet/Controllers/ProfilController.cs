@@ -159,6 +159,14 @@ namespace Pojeet.Controllers
             return View("");
         }
 
+        public IActionResult ActualiserEtatTransaction(int reference, EtatTransaction etat)
+        {
+            using (Dal ctx = new Dal())
+            {
+                ctx.ActualiserEtatTransaction(reference,etat);
+            }
 
+            return RedirectToAction("Index");
+        }
     }
 }

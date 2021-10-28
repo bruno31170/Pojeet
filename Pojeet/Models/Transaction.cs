@@ -25,6 +25,7 @@ namespace Pojeet.Models
     {
         En_attente,
         Paye,
+        Effectue,
         Valide,
         Refuse,
         Termine

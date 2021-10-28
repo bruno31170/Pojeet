@@ -28,11 +28,9 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
-
-
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
         }
 
@@ -146,7 +144,7 @@ namespace Pojeet.Models
                 TypeDeAnnonce = TypeAnnonce.Besoin,
                 TitreAnnonce = "recherche visseuse dernier cri",
                 Description = "Modèle à batterie",
-                DateParution = DateTime.Now,
+                DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                 Localisation = "32000",
                 DateButoir = DateTime.Today,
                 Prix = 10,
@@ -162,7 +160,7 @@ namespace Pojeet.Models
                 TypeDeAnnonce = TypeAnnonce.Besoin,
                 TitreAnnonce = "Achète 4 pneu de 4x4",
                 Description = "Pneu en très bonne état",
-                DateParution = DateTime.Now,
+                DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
                 Localisation = "33000",
                 DateButoir = DateTime.Today,
                 Prix = 100,
@@ -176,7 +174,7 @@ namespace Pojeet.Models
                 TypeDeAnnonce = TypeAnnonce.Besoin,
                 TitreAnnonce = "Changement radiateur",
                 Description = "Radiateur trop vieux",
-                DateParution = DateTime.Now,
+                DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
                 Prix = 50,
@@ -192,7 +190,7 @@ namespace Pojeet.Models
                 TypeDeAnnonce = TypeAnnonce.Besoin,
                 TitreAnnonce = "Recherche krik",
                 Description = "Un krik simple pour changer ma roue",
-                DateParution = DateTime.Now,
+                DateParution = new DateTime(2021, 09, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
                 Prix = 10,
@@ -210,7 +208,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Propose changement essuis glace",
                  Description = "Loue remorque pour voiture",
-                 DateParution = DateTime.Now,
+                 DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 10,
@@ -226,7 +224,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Location de roue de secours",
                  Description = "Pour voiture commune",
-                 DateParution = DateTime.Now,
+                 DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 20,
@@ -242,7 +240,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Vend pare-brise Fiat picasso",
                  Description = "Pare brise neuf",
-                 DateParution = DateTime.Now,
+                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 40,
@@ -258,7 +256,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Réparation/changement de pot d'echappement",
                  Description = "Tout type de véhicule",
-                 DateParution = DateTime.Now,
+                 DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 35,
@@ -274,7 +272,327 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Loue test anti-pollution",
                  Description = "Loue remorque pour voiture",
-                 DateParution = DateTime.Now,
+                 DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 20,
+                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 ProfilId = 1,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 11,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
+                 TitreAnnonce = "Changement d'une batterie",
+                 Description = "Voiture modèle Ford Fusion",
+                 DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
+                 Localisation = "31000",
+                 DateButoir = DateTime.Today,
+                 Prix = 30,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 2,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+             },
+
+            new Annonce
+            {
+                Id = 12,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "recherche visseuse dernier cri",
+                Description = "Modèle à batterie",
+                DateParution = new DateTime(2021, 06, 20, 12, 1, 10),
+                Localisation = "32000",
+                DateButoir = DateTime.Today,
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 2,
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "pose_longue_01.jpg"
+            },
+
+            new Annonce
+            {
+                Id = 13,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Achète 4 pneu de 4x4",
+                Description = "Pneu en très bonne état",
+                DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
+                Localisation = "33000",
+                DateButoir = DateTime.Today,
+                Prix = 100,
+                CategorieDeAnnonce = CategorieAnnonce.Pièce,
+                ProfilId = 3,
+                EtatAnnonce = EtatAnnonce.Validé
+            },
+            new Annonce
+            {
+                Id = 14,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Changement radiateur",
+                Description = "Radiateur trop vieux",
+                DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
+                Localisation = "13000",
+                DateButoir = DateTime.Today,
+                Prix = 50,
+                CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                ProfilId = 1,
+                EtatAnnonce = EtatAnnonce.Validé
+
+
+            },
+            new Annonce
+            {
+                Id = 15,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Recherche krik",
+                Description = "Un krik simple pour changer ma roue",
+                DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
+                Localisation = "13000",
+                DateButoir = DateTime.Today,
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 2,
+                EtatAnnonce = EtatAnnonce.Validé
+
+
+            },
+
+
+             new Annonce
+             {
+                 Id = 16,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Propose changement essuis glace",
+                 Description = "Loue remorque pour voiture",
+                 DateParution = new DateTime(2021, 10, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 10,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 17,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Location de roue de secours",
+                 Description = "Pour voiture commune",
+                 DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 20,
+                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 ProfilId = 1,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 18,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Vend pare-brise Fiat picasso",
+                 Description = "Pare brise neuf",
+                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 40,
+                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
+                 ProfilId = 4,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 19,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Réparation/changement de pot d'echappement",
+                 Description = "Tout type de véhicule",
+                 DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 35,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 20,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Loue test anti-pollution",
+                 Description = "Loue remorque pour voiture",
+                 DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 20,
+                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 ProfilId = 1,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 21,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
+                 TitreAnnonce = "Changement d'une batterie",
+                 Description = "Voiture modèle Ford Fusion",
+                 DateParution = new DateTime(2021, 03, 20, 12, 1, 10),
+                 Localisation = "31000",
+                 DateButoir = DateTime.Today,
+                 Prix = 30,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 2,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+             },
+
+            new Annonce
+            {
+                Id = 22,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "recherche visseuse dernier cri",
+                Description = "Modèle à batterie",
+                DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
+                Localisation = "32000",
+                DateButoir = DateTime.Today,
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 2,
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "pose_longue_01.jpg"
+            },
+
+            new Annonce
+            {
+                Id = 23,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Achète 4 pneu de 4x4",
+                Description = "Pneu en très bonne état",
+                DateParution = new DateTime(2021, 05, 20, 12, 1, 10),
+                Localisation = "33000",
+                DateButoir = DateTime.Today,
+                Prix = 100,
+                CategorieDeAnnonce = CategorieAnnonce.Pièce,
+                ProfilId = 3,
+                EtatAnnonce = EtatAnnonce.Validé
+            },
+            new Annonce
+            {
+                Id = 24,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Changement radiateur",
+                Description = "Radiateur trop vieux",
+                DateParution = new DateTime(2021, 06, 20, 12, 1, 10),
+                Localisation = "13000",
+                DateButoir = DateTime.Today,
+                Prix = 50,
+                CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                ProfilId = 1,
+                EtatAnnonce = EtatAnnonce.Validé
+
+
+            },
+            new Annonce
+            {
+                Id = 25,
+                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TitreAnnonce = "Recherche krik",
+                Description = "Un krik simple pour changer ma roue",
+                DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
+                Localisation = "13000",
+                DateButoir = DateTime.Today,
+                Prix = 10,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 2,
+                EtatAnnonce = EtatAnnonce.Validé
+
+
+            },
+
+
+             new Annonce
+             {
+                 Id = 26,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Propose changement essuis glace",
+                 Description = "Loue remorque pour voiture",
+                 DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 10,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 27,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Location de roue de secours",
+                 Description = "Pour voiture commune",
+                 DateParution = new DateTime(2021, 09, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 20,
+                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 ProfilId = 1,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 28,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Vend pare-brise Fiat picasso",
+                 Description = "Pare brise neuf",
+                 DateParution = new DateTime(2021, 10, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 40,
+                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
+                 ProfilId = 4,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 29,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Réparation/changement de pot d'echappement",
+                 Description = "Tout type de véhicule",
+                 DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
+                 Localisation = "13000",
+                 DateButoir = DateTime.Today,
+                 Prix = 35,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé
+
+
+             },
+             new Annonce
+             {
+                 Id = 30,
+                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TitreAnnonce = "Loue test anti-pollution",
+                 Description = "Loue remorque pour voiture",
+                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 20,
@@ -296,6 +614,7 @@ namespace Pojeet.Models
                 Pseudo = "Toto",
                 MotDePasse = Dal.EncodeMD5("lolilol"),
                 ProfilId = 1,
+                DateCreationCompte = new DateTime(2021, 10, 04, 12, 1, 10)
 
             },
              new CompteConsumer
@@ -304,20 +623,23 @@ namespace Pojeet.Models
                  Pseudo = "tata",
                  MotDePasse = Dal.EncodeMD5("tatata"),
                  ProfilId = 2,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
              },
              new CompteConsumer
              {
                  Id = 3,
                  Pseudo = "Evgeniia",
                  MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 3
+                 ProfilId = 3,
+                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
              },
              new CompteConsumer
              {
                  Id = 4,
                  Pseudo = "Bruno",
                  MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 4
+                 ProfilId = 4,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
              }
             );
 
@@ -407,21 +729,19 @@ namespace Pojeet.Models
                 new Transaction
                 {
                     Reference = 123,
-                    Date = new DateTime(2021, 11, 20, 12, 1, 10),
+                    Date = new DateTime(2021, 01, 20, 12, 1, 10),
                     AnnonceId = 4,
                     Montant = 20.15,
                     EtatTransaction = EtatTransaction.Valide,
                     ProfilId = 3
 
-
-
                 },
             new Transaction
             {
                 Reference = 125,
-                Date = new DateTime(2021, 10, 27, 12, 1, 10),
+                Date = new DateTime(2021, 02, 27, 12, 1, 10),
                 AnnonceId = 1,
-                Montant = 40.5,
+                Montant = 5.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 2
 
@@ -429,16 +749,16 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 127,
-                Date = new DateTime(2021, 10, 27, 01, 1, 10),
+                Date = new DateTime(2021, 03, 27, 01, 1, 10),
                 AnnonceId = 3,
-                Montant = 20.5,
+                Montant = 10.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 1
             },
             new Transaction
             {
                 Reference = 128,
-                Date = new DateTime(2021, 10, 09, 12, 1, 10),
+                Date = new DateTime(2021, 04, 09, 12, 1, 10),
                 AnnonceId = 5,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -447,7 +767,9 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 129,
+
                 Date = new DateTime(2021,10 , 10, 12, 1, 10),
+
                 AnnonceId = 2,
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -456,9 +778,180 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 130,
-                Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                Date = new DateTime(2021, 06, 10, 12, 1, 10),
                 AnnonceId = 3,
-                Montant = 15,
+                Montant = 155,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 1
+
+            },
+            new Transaction
+            {
+                Reference = 54,
+                Date = new DateTime(2021, 07, 20, 12, 1, 10),
+                AnnonceId = 4,
+                Montant = 100.15,
+                EtatTransaction = EtatTransaction.Valide,
+                ProfilId = 3
+
+            },
+            new Transaction
+            {
+                Reference = 57,
+                Date = new DateTime(2021, 08, 27, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 2
+
+            },
+            new Transaction
+            {
+                Reference = 58,
+                Date = new DateTime(2021, 09, 27, 01, 1, 10),
+                AnnonceId = 3,
+                Montant = 200.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 1
+            },
+            new Transaction
+            {
+                Reference = 75,
+                Date = new DateTime(2021, 10, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 74,
+                Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 72,
+                Date = new DateTime(2021, 12, 10, 12, 1, 10),
+                AnnonceId = 3,
+                Montant = 150,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 1
+
+            },
+            new Transaction
+            {
+                Reference = 402,
+                Date = new DateTime(2021, 01, 20, 12, 1, 10),
+                AnnonceId = 4,
+                Montant = 20.15,
+                EtatTransaction = EtatTransaction.Valide,
+                ProfilId = 3
+
+            },
+            new Transaction
+            {
+                Reference = 555,
+                Date = new DateTime(2021, 02, 27, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 5.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 2
+
+            },
+            new Transaction
+            {
+                Reference = 999,
+                Date = new DateTime(2021, 01, 27, 01, 1, 10),
+                AnnonceId = 3,
+                Montant = 10.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 1
+            },
+            new Transaction
+            {
+                Reference = 444,
+                Date = new DateTime(2021, 01, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 111,
+                Date = new DateTime(2021, 03, 10, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 1130,
+                Date = new DateTime(2021, 06, 10, 12, 1, 10),
+                AnnonceId = 3,
+                Montant = 155,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 1
+
+            },
+            new Transaction
+            {
+                Reference = 254,
+                Date = new DateTime(2021, 07, 20, 12, 1, 10),
+                AnnonceId = 4,
+                Montant = 100.15,
+                EtatTransaction = EtatTransaction.Valide,
+                ProfilId = 3
+
+            },
+            new Transaction
+            {
+                Reference = 587,
+                Date = new DateTime(2021, 07, 27, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 2
+
+            },
+            new Transaction
+            {
+                Reference = 598,
+                Date = new DateTime(2021, 09, 27, 01, 1, 10),
+                AnnonceId = 3,
+                Montant = 200.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 1
+            },
+            new Transaction
+            {
+                Reference = 745,
+                Date = new DateTime(2021, 10, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 764,
+                Date = new DateTime(2021, 01, 10, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 772,
+                Date = new DateTime(2021, 01, 10, 12, 1, 10),
+                AnnonceId = 3,
+                Montant = 150,
                 EtatTransaction = EtatTransaction.En_attente,
                 ProfilId = 1
 
@@ -473,6 +966,7 @@ namespace Pojeet.Models
                TransactionReference = 130,
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
+
            }); */
 
             this.Avis.AddRange(
@@ -523,6 +1017,7 @@ namespace Pojeet.Models
                     DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
                     RibId = 1,
                     Etat = 0,
+                    Competence = "Moteur,Pneu",
                 });
 
             this.SaveChanges();

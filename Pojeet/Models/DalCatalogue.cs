@@ -44,8 +44,15 @@ namespace Pojeet.Models
         {
             List<Annonce> rechercheAnnonce = new List<Annonce>();
             List<Annonce> annonce = ObtientAnnonce();
-
-            string MotRechercher = uvm.Recherche.Rechercher;
+            string MotRechercher = "";
+            if (uvm.Recherche.Rechercher != null)
+            {
+                MotRechercher = uvm.Recherche.Rechercher.ToLower();
+            }
+            else
+            {
+                MotRechercher = uvm.Recherche.Rechercher;
+            }
             string Departement = uvm.Recherche.Localisation;
             string TypeRecherche = uvm.Recherche.TypeDeRecherche.ToString();
             string CategorieRecherche = uvm.Recherche.CategorieDeRecherche.ToString();
@@ -57,55 +64,105 @@ namespace Pojeet.Models
             {
                 string TypeAnnonce = item.TypeDeAnnonce.ToString();
                 string CategorieAnnonce = item.CategorieDeAnnonce.ToString();
+                string TitreAnnonce = item.TitreAnnonce.ToString().ToLower();
 
-
-                if (CategorieAnnonce == CategorieRecherche)
+                if (TypeRecherche.Equals("Type")) 
+                { 
+                    if (CategorieAnnonce == CategorieRecherche)
                 {
-                    if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement != null)
                     {
-                        if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                        if (TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement == null)
                     {
-                        if (item.TitreAnnonce.Contains(MotRechercher))
+                        if (TitreAnnonce.Contains(MotRechercher))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement != null)
                     {
                         if (item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement == null)
                     {
                         if (TypeAnnonce == TypeRecherche)
                             rechercheAnnonce.Add(item);
                     }
                 }
-                if (CategorieRecherche == null)
+                    if (CategorieRecherche.Equals("Catégorie"))
                 {
-                    if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement != null)
                     {
-                        if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                        if (TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher != null && Departement == null)
                     {
-                        if (item.TitreAnnonce.Contains(MotRechercher))
+                        if (TitreAnnonce.Contains(MotRechercher))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement != null)
                     {
                         if (item.Localisation.Contains(Departement))
                             rechercheAnnonce.Add(item);
                     }
-                    if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                    if (MotRechercher == null && Departement == null)
                     {
-                        if (TypeAnnonce == TypeRecherche)
-                            rechercheAnnonce.Add(item);
+                        rechercheAnnonce.Add(item);
                     }
                 }
-
+                }
+                else
+                {
+                    if (CategorieAnnonce == CategorieRecherche)
+                    {
+                        if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (TitreAnnonce.Contains(MotRechercher))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (TypeAnnonce == TypeRecherche)
+                                rechercheAnnonce.Add(item);
+                        }
+                    }
+                    if (CategorieRecherche.Equals("Catégorie"))
+                    {
+                        if (MotRechercher != null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.TitreAnnonce.Contains(MotRechercher) && item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher != null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.TitreAnnonce.Contains(MotRechercher))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement != null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (item.Localisation.Contains(Departement))
+                                rechercheAnnonce.Add(item);
+                        }
+                        if (MotRechercher == null && Departement == null && TypeAnnonce == TypeRecherche)
+                        {
+                            if (TypeAnnonce == TypeRecherche)
+                                rechercheAnnonce.Add(item);
+                        }
+                    }
+                }
             }
 
             if (TriRecherche.Equals("Notes"))

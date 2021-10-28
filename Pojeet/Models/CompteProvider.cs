@@ -23,8 +23,8 @@ namespace Pojeet.Models
 
         public Etat Etat { get; set; }
 
-        [NotMapped]
-        public List<String> Competence { get; set; }
+        //[NotMapped]
+        public string Competence { get; set; }
     }
     public enum Etat
     {

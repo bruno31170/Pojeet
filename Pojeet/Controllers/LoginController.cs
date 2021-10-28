@@ -12,7 +12,7 @@ using Pojeet.Models;
 using Pojeet.ViewModels;
 using System.Net;
 using System.Net.Mail;
-
+using HtmlAgilityPack;
 
 namespace Pojeet.Controllers
 {
@@ -111,7 +111,6 @@ namespace Pojeet.Controllers
                 var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
                 HttpContext.SignInAsync(userPrincipal);
 
-
                 //var fromAddress = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
                 //var toAddress = new MailAddress(compteConsumer.Profil.Mail, compteConsumer.Profil.Nom + " " + compteConsumer.Profil.Prenom);
                 //const string fromPassword = "helpmycar2021";
@@ -148,7 +147,10 @@ namespace Pojeet.Controllers
                 message.To.Add(compteConsumer.Profil.Mail);
                 message.Subject = "Inscription";
                 message.IsBodyHtml = true;
-                message.Body = "<p>Bienvenu!!</p></br>";
+                var doc = new HtmlDocument();
+                FileStream cheminHtml = new FileStream(_env.WebRootPath + "/html/Bienvenue.html", FileMode.Open);
+                doc.Load(cheminHtml);
+                message.Body = doc.DocumentNode.OuterHtml;
 
                 var smtp = new SmtpClient
                 {
@@ -164,7 +166,7 @@ namespace Pojeet.Controllers
                 }
 
 
-                return Redirect("../Profil/Index");
+                return Redirect("SuccessInscritpion");
             }
             return View(compteConsumer);
         }
@@ -182,14 +184,14 @@ namespace Pojeet.Controllers
 
         //CREATIN DU COMPTE HELPER 
         [HttpPost]
-        public IActionResult CreerHelper(CompteProvider compteProvider, IFormFile pictureFile)
+        public IActionResult CreerHelper(CompteProvider compteProvider, IFormFile pictureFile, List<string> competences)
         {
             ProviderViewModel viewModel = new ProviderViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
             CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
 
             using (Dal ctx = new Dal())
             {
-                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, pictureFile, compteProvider.Competence);
+                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, pictureFile, competences);
 
                 if (pictureFile != null)
                 {
@@ -218,6 +220,17 @@ namespace Pojeet.Controllers
                 {
                     viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
                 }
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+
+        public IActionResult SuccessInscritpion()
+        {
+            UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                viewModel.CompteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
                 return View(viewModel);
             }
             return View(viewModel);

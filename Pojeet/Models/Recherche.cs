@@ -21,11 +21,13 @@ namespace Pojeet.Models
 
     public enum TypeRecherche
     {
+        Type,
         Besoin,
         Service
     }
     public enum CategorieRecherche
-    {
+    {   
+        Catégorie,
         Réparation,
         Pièce,
         Location

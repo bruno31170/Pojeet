@@ -1,127 +1,403 @@
-@model Pojeet.ViewModels.ProfilViewModel
-@{
-    Layout = "_LayoutIdentifie";
-    ViewBag.Title = "RechercherAnnonce";
+﻿@{
+    var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
 }
-<div class="page_layout">
-    <!-- Recherche -->
-    <div class="flex-col post_search text-center text-white justify-content-around">
-        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
-        {
-            <div class="post_search_text">
-                <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
-                <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
-            </div>
-            <div class="type_post flex-row justify-content-center">
-                <div class="flex-row">
 
-                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
-                    <label class="bold" for="typePost1">Besoin</label>
+@model Pojeet.ViewModels.ProfilViewModel
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rechercher l'Annonce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/bootstrap.min.css">
+    <!-- Fonts -->
+
+    <link rel="stylesheet" href="~/css/css-e/fontawesome-all.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Rubik|Dancing+Script" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital@1&family=Montserrat:wght@300;500;800;900&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/style1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/typography1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/colors1.css">
+
+    <!-- Responsive -->
+
+
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/responsive.css">
+
+
+    <!-- STYLE JS -->
+    <link href="~/js/js-e/jquery.formstyler.css" rel="stylesheet" />
+    <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/js/js-e/jquery.formstyler.min.js"></script>
+    <script>
+(function ($) {
+            $(function () {
+                $('select, option, input').styler({
+                    selectSearch: true,
+                });
+            });
+        })(jQuery);</script>
+
+</head>
+
+<body>
+    <header>
+        <div class="nav-menu-block">
+            <div class="flex-row w-100 justify-content-between">
+                <div class="nav-logo">
+                    <a class="navbar-brand" href="~/Home/">
+                        <img src="~/img/img-e/logo1.png" alt="HelpMyCar" />
+                    </a>
                 </div>
-                <div class="flex-row ml-4">
+                @*<div class="search_header align-self-end">
+                        <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
+                        <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+                    </div>*@
+                <ul class="nav-menu-icon flex-row align-item-end justify-content-around mb-2 mr-4">
+                    <li class="mr-3 ml-2 text-right">
+                        @*@Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })*@
 
-                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                    <label class="bold" for="typePost2">Service</label>
+                        <a href="~/Catalogue/AnnonceCatalogue">
+                            <i class="font-size-24 fas fa-search btn-search-all_post_icon"></i>
+                        </a>
+                    </li>
+                    <li class="btn-search-all_post">
+                        @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "btn-primary-e align-items-center" })
+                    </li>
+                    <li class="mr-3 text-right">
 
-                </div>
+                        <a href="#">
+                            <i class="font-size-24 fa fa-user"></i>
+                        </a>
+
+
+                        <ul>
+                            <div class="triangle"> </div>
+                            <li class="mt-2"><a href="~/Profil/Index">Mon profil</a></li>
+                            <li><a href="/Profil/Index?tabId=profile2">Mes annonce</a></li>
+                            <li><a href="/Profil/Index?tabId=contact2">Mes transactions</a></li>
+                            <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
+                        </ul>
+                    </li>
+                    <li class="mr-3 ml-2 text-right">
+                        <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = Compte1.ProfilId })">
+                            <i class="font-size-24 fa fa-envelope"></i>
+                        </a>
+                    </li>
+                    <li class="ml-2 text-right">
+                        <a href="#">
+                            <i class="font-size-24 fa fa-bell"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="flex-col flex-md-row justify-content-center">
-                <form id="search-form" action="index.html" method="post">
-                    <div class="flex-col flex-md-row">
 
-                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), "Catégorie")
-                        @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
-                        @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
+        </div>
+    </header>
+    <main>
+        <div class="page_layout">
+            <!-- Recherche -->
+            <div class="flex-col post_search text-center">
+                <img class="position-relative w-100" src="~/img/img-e/recherche.png" alt="">
 
-                    </div>
-                </form>
-                <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
-                <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Annuler recherche" class="btn-primary-e align-self-center font-size-14 btn-search mb-1"></a>
+                @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+                {
 
-            </div>
-        }
-    </div>
-    <!-- Fin Recherche -->
-    <div class="page_container p-3 flex-row" style="max-width: 1200px;">
-        <!-- List anonce -->
-        <div>
-            <div class="post_list flex-col">
-                <div class="flex-row justify-content-between align-items-center">
-                    <div class="flex-row ml-3 mb-2">
-                        <span>Annonces: </span>
-                        <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
-                    </div>
-                    <div class="mr-4 mb-1">
-                        <span>Trier par</span>
-                        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get)) 
-                        { 
-                        
-                            @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
-                        }
-                    </div>
-                </div>
-                <!-- FOR EACH ICI CODE -->
-                @foreach (var annonce in Model.Annonce)
+
+
+                    <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
+                        <div class="post_search_text mt-3 mb-2">
+                            <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
+                            <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+                        </div>
+
+
+
+
+                        @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+
                         {
-                    <div class="post_content p-4 border-e flex-col white">
-                        
-                        <div class="post_header flex-row align-items-center mb-2">
-                            <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
-                            <div class="post_header_info ml-4">
-                                <div class="post_author font-size-15">
-                                    <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
-                                </div>
-                                <div class="post_date font-size-11">
-                                    <span class="post_link">Date de parution : @annonce.DateParution</span>
-                                </div>
-                                <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
-                            </div>
-                        </div>
-                        <div class="wall_post flex-row">
-                            <div class="wall_post_img">
-                                <img src="~/media/annonce/@annonce.Photo" alt="">
-                            </div>
-                            <div class="post_info flex-col justify-content-between">
-                                <div class="post_info_text ml-1">
-                                    <span class="font-size-17 bold">@annonce.TitreAnnonce</span><br>
-                                    <p class="text-justify">
-                                        @annonce.Description
-                                    </p>
-                                </div>
-                                <div class="post_price font-size-15 ml-1">
-                                    <span>Prix : @annonce.Prix €</span>
-                                </div>
-                                <div class="btn-primary-e w-100 mt-2 btn_post">
-                                    <a href="annonce.html">Voir l'annonce</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="like_post mt-3">
-                            <div class="like_cont flex-row justify-content-end">
-                                <div class="mb-2 flex-row" style="flex-basis: 70%;">
-                                    <div class="post_view flex-row font-size-20" style="width: 96px;">
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star" aria-hidden="true"></small>
-                                        <small class="fa fa-star text-muted" aria-hidden="true"></small>
+                            <div class="flex-col flex-md-row justify-content-center">
+
+                                <form id="search-form" action="index.html" method="post">
+                                    <div class="flex-col flex-md-row">
+                                        <div class="search_category select-wrap mb-1" id="search">
+                                            @Html.DropDownListFor(m => Model.Recherche.TypeDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.TypeRecherche))), new { @class = "search_select_form text-center js-select" })
+                                            @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), new { @class = "search_select_form text-center js-select" })
+                                        </div>
+                                        @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
+                                        @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
+
                                     </div>
-                                    <span class="ml-4">(152)</span>
-                                </div>
-                                <div class="post_comments btn_like flex-row mr-5">
-                                    <i class="fa fa-comment" onclick="Clk();return false;"></i>
-                                    <span class="align-self-center ml-2">12</span>
-                                </div>
-                                <div class="post_save btn_like flex-row">
-                                    <i class="fa fa-heart"></i>
-                                    <span class="align-self-center ml-2">68</span>
-                                </div>
+
+                                </form>
                             </div>
-                        </div>
+                            <div class="flex-row mt-1">
+                                <input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search-1 mb-1 mr-1">
+                                <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Annuler recherche" class="btn-primary-e ml-1 align-self-center font-size-14 btn-search-1 mb-1"></a>
+                            </div>
+                        }
                     </div>
                 }
             </div>
+            <!-- Fin Rechercher -->
+            <div class="page_container toutes_post p-3 pb-5 flex-row">
+                <!-- Menu utilisateur à geuche -->
+                <div class="side_bar_inner">
+                    <ul class="side_bar_nav flex-col p-3 font-size-14 sticky text-left">
+                        <li class="text-center">
+
+                            <img class="border-e mb-3" src="@Compte1.Profil.Photo" alt="">
+
+                            <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
+                        </li>
+                        <li>
+                            <a href="~/Profil/Index"> <i class="font-size-25 fa fa-home mr-2"></i> Mon profil</a>
+                        </li>
+                        <li id="">
+                            <a href="/Profil/Index?tabId=profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
+                        </li>
+                        <li>
+                            <a href="/Profil/Index?tabId=contact2"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+                        </li>
+                        @{
+                            var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
+                        }
+                        @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
+                        @if (provider1 == null)
+                        {
+                            <li>
+                                <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="display: none;">
+                                <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+
+                            </li>
+                        }
+
+                        <li>
+                            <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
+                        </li>
+                        <li>
+                            <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fin menu utilisateur -->
+                <!-- List anonce -->
+
+                <div class="post_list flex-col">
+                    <div class="flex-row justify-content-between align-items-center">
+                        <div class="flex-row ml-3 mb-2">
+                            <span>Annonces: </span>
+                            <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
+                        </div>
+                        <div class="mr-4 mb-1">
+                            <span>Trier par</span>
+
+                            @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
+
+
+                        </div>
+                    </div>
+                    <!-- FOR EACH ICI CODE -->
+                    @foreach (var annonce in Model.Annonce)
+                    {
+                        <div class="post_content p-4 border-e flex-col white">
+
+                            <div class="post_header flex-row align-items-center mb-2">
+                                <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
+                                <div class="post_header_info ml-4">
+                                    <div class="post_author font-size-15">
+                                        <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+
+                                    </div>
+                                    <div class="post_date font-size-11">
+                                        <span class="post_link">Date de parution : @annonce.DateParution</span>
+                                    </div>
+                                    <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
+                                </div>
+                            </div>
+                            <div class="wall_post flex-row">
+                                <div class="wall_post_img">
+                                    <img src="~/media/annonce/@annonce.Photo" alt="">
+                                </div>
+                                <div class="post_info flex-col w-100 justify-content-between">
+                                    <div class="post_info_text ml-1">
+                                        <span class="font-size-17 bold">@annonce.TitreAnnonce</span><br>
+                                        <p class="text-justify">
+                                            @annonce.Description
+                                        </p>
+                                    </div>
+                                    <div class="post_price font-size-15 ml-1">
+                                        <span>Prix: @annonce.Prix €</span>
+                                    </div>
+                                    <div class="btn-primary-e w-100 mt-2 btn_post">
+
+                                        <a href="@Url.Action("Annonce", "Catalogue", new { id1 = Compte1.ProfilId, id2 = annonce.Id })">Voir l'annonce</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="like_post mt-3">
+                                <div class="like_cont flex-row justify-content-end">
+                                    <div class="mb-2 flex-row" style="flex-basis: 70%;">
+                                        <div class="post_view flex-row font-size-20" style="width: 96px;">
+                                            <small class="fa fa-star" aria-hidden="true"></small>
+                                            <small class="fa fa-star" aria-hidden="true"></small>
+                                            <small class="fa fa-star" aria-hidden="true"></small>
+                                            <small class="fa fa-star" aria-hidden="true"></small>
+                                            <small class="fa fa-star text-muted" aria-hidden="true"></small>
+                                        </div>
+                                        <span class="ml-4">(152)</span>
+                                    </div>
+                                    <div class="post_comments btn_like flex-row mr-5">
+                                        <i class="fa fa-comment" onclick="Clk();return false;"></i>
+                                        <span class="align-self-center ml-2">12</span>
+                                    </div>
+                                    <div class="post_save btn_like flex-row">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="align-self-center ml-2">68</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+                </div>
+                <!-- Top anonce -->
+                <div class="top_post flex-col pl-4 text-center">
+                    <span class="text-capitalize mb-2">Meilleures notes</span>
+                    <div class="top_post_list">
+                        <div class="top_post_content border-e mb-3">
+                            <div class="top_post_item flex-col align-items-center p-2">
+                                <a href="#"><img src="img/user3.jpg" alt=""></a>
+                                <span>Victor Martin</span>
+                                <span class="font-size-11">Categorie Paris</span>
+                                <div class="top_view flex-row align-items-center">
+                                    <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
+                                    <span class="font-size-12 bold">4.8</span>
+                                    <span class="font-size-11 ml-1">(145 avis)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Example2 -->
+                        <div class="top_post_content border-e mb-3">
+                            <div class="top_post_item flex-col align-items-center p-2">
+                                <div class="top_post_img">
+                                    <a href="#"><img src="img/user4.jpg" alt=""></a>
+
+                                </div>
+                                <span>Patric Fernande</span>
+                                <span class="font-size-11">Categorie Paris</span>
+                                <div class="top_view flex-row align-items-center">
+                                    <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
+                                    <span class="font-size-12 bold">4.6</span>
+                                    <span class="font-size-11 ml-1">(130 avis)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Example2-->
+                        <!-- Example3 -->
+                        <div class="top_post_content border-e mb-3">
+                            <div class="top_post_item flex-col align-items-center p-2">
+                                <div class="top_post_img">
+                                    <a href="#"><img src="img/user5.jpeg" alt=""></a>
+                                </div>
+                                <span>Lise Stavtseva</span>
+                                <span class="font-size-11">Categorie Paris</span>
+                                <div class="top_view flex-row align-items-center">
+                                    <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
+                                    <span class="font-size-12 bold">5.0</span>
+                                    <span class="font-size-11 ml-1">(250 avis)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Example3 -->
+
+                    </div>
+                </div>
+                <!-- Fin top anonce -->
+
+            </div>
         </div>
-    </div>
-</div>
+
+    </main>
+    <footer>
+        <div class="flex-row p-4 justify-content-around" style="border-bottom: 1px solid white;">
+            <div class="flex-col">
+                <span class="bold ">A propos</span>
+                <a href="#">Qui sommes-nous</a>
+                <a href="#">Demander un service</a>
+                <a href="#">Devenir Helper</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Informations légales</span>
+                <a href="#">Conditions générales client</a>
+                <a href="#">Conditions générales Helper</a>
+                <a href="#">Confiance et sécurité</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Assistance</span>
+                <a href="#">Centre d'aide</a>
+                <a href="#">Contact</a>
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="flex-row p-4 justify-content-around" style="border-bottom: 1px solid white;">
+            <div class="flex-col">
+                <span class="bold ">A propos</span>
+                <a href="#">Qui sommes-nous</a>
+                <a href="#">Demander un service</a>
+                <a href="#">Devenir Helper</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Informations légales</span>
+                <a href="#">Conditions générales client</a>
+                <a href="#">Conditions générales Helper</a>
+                <a href="#">Confiance et sécurité</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Assistance</span>
+                <a href="#">Centre d'aide</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+
+        <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
+    </footer>
+    <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
+</body>
+
+</html>
+

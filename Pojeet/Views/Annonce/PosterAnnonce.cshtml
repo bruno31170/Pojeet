@@ -15,7 +15,7 @@
 
     <!-- Annonce -->
 
-    <div class="annonce">
+    <div class="annonce" id="poste_annonce">
 
         @using (Html.BeginForm("PosterAnnonce", "Annonce", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -38,13 +38,15 @@
             <!-- Catégorie --><br>
 
             <h3>Selectionner la catégorie*</h3>
-            @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie")<br><br>
+
+            @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), new { @class = "search_select_form js-select", @style= "width=200px;" })<br><br>
+
             @Html.ValidationMessageFor(model => model.Anonce.CategorieDeAnnonce)
 
             <!-- Image -->
 
             <h3>Selectionner une image</h3>
-            <input type="file" name="AnnoncePhoto"/><br><br>
+            <input  class = "js-select" type="file" name="AnnoncePhoto" data-placeholder ="Choisir une fichier" data-browse ="Parcourir"/><br><br>
 
 
             <!-- FAIRE AFFICHER LES IMAGES -->
@@ -53,7 +55,7 @@
 
             <h3>Titre de l'annonce*</h3>
 
-            @Html.TextBoxFor(model => model.Anonce.TitreAnnonce, new { placeholder = "Titre" })<br><br>
+            @Html.TextBoxFor(model => model.Anonce.TitreAnnonce, new { placeholder = "Titre", @class = "search_select_form  js-select" })<br><br>
             @Html.ValidationMessageFor(model => model.Anonce.TitreAnnonce)
 
 
@@ -63,7 +65,7 @@
             <!-- Description -->
 
             <h3>Description*</h3>
-            @Html.TextAreaFor(model => model.Anonce.Description, new { @class = "form-control", placeholder = "Description" })<br><br>
+            @Html.TextAreaFor(model => model.Anonce.Description, new { @class = "form-control border-e-1", placeholder = "Description" })<br><br>
 
             @Html.ValidationMessageFor(model => model.Anonce.Description)
 
@@ -72,7 +74,7 @@
 
 
             <h3>Date butoir*</h3>
-            @Html.TextBoxFor(model => model.Anonce.DateButoir, new { @type = "date" })<br><br>
+            @Html.TextBoxFor(model => model.Anonce.DateButoir, new { @type = "date", @class = "search_select_form  js-select"})<br><br>
 
             @Html.ValidationMessageFor(model => model.Anonce.DateButoir)
 
@@ -80,7 +82,7 @@
             <!-- Département -->
 
             <h3>Département*</h3>
-            @Html.TextBoxFor(model => model.Anonce.Localisation, new { placeholder = "Localisation" })<br><br>
+            @Html.TextBoxFor(model => model.Anonce.Localisation, new { placeholder = "Localisation", @class = "search_select_form  js-select" })<br><br>
 
             @Html.ValidationMessageFor(model => model.Anonce.Localisation)
 
@@ -88,7 +90,7 @@
             <!-- Prix -->
 
             <h3>Prix</h3>
-            @Html.TextBoxFor(model => model.Anonce.Prix, new { placeholder = "Prix" })<br><br>
+            @Html.TextBoxFor(model => model.Anonce.Prix, new { placeholder = "Prix", @class = "search_select_form  js-select" })<br><br>
 
 
 

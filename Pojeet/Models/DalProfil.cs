@@ -40,6 +40,7 @@ namespace Pojeet.Models
             List<Annonce> listeAnnonce = this._context.Annonce.ToList();
             return listeAnnonce;
         }
+
         public void Dispose()
         {
             _context.Dispose();

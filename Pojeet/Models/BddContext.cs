@@ -27,10 +27,9 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
-
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
         }
 
@@ -767,11 +766,9 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 129,
-<<<<<<< Updated upstream
+
                 Date = new DateTime(2021,10 , 10, 12, 1, 10),
-=======
-                Date = new DateTime(2021, 05, 10, 12, 1, 10),
->>>>>>> Stashed changes
+
                 AnnonceId = 2,
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -968,7 +965,7 @@ namespace Pojeet.Models
                TransactionReference = 130,
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
-           }); 
+           });
 
             
 
@@ -1020,6 +1017,7 @@ namespace Pojeet.Models
                     DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
                     RibId = 1,
                     Etat = 0,
+                    Competence = "Moteur,Pneu",
                 });
 
             this.SaveChanges();

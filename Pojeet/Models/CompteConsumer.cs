@@ -14,6 +14,7 @@ namespace Pojeet.Models
         [Display(Name = "Pseudo")]
         public string Pseudo { get; set; }
 
+        public DateTime DateInscription { get; set; }
 
         [Required(ErrorMessage = "Le mot de passe doit être rempli.")]
         [Display(Name = "Mot de passe")]
@@ -22,7 +23,8 @@ namespace Pojeet.Models
         public int ProfilId { get; set; }
         //[Required]
         public virtual Profil Profil { get; set; }
-        
+
+
 
         public enum Statut
         {

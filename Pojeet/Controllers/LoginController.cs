@@ -191,7 +191,7 @@ namespace Pojeet.Controllers
 
             using (Dal ctx = new Dal())
             {
-                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, pictureFile, compteProvider.Competence);
+                ctx.AjouterProvider(compteConsumer, compteProvider.Rib.Iban, compteProvider.Rib.Bic, compteProvider.Rib.TitulaireCompte, pictureFile, competences);
 
                 if (pictureFile != null)
                 {

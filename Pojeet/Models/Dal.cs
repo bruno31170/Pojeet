@@ -180,7 +180,7 @@ namespace Pojeet.Models
                 profil.Photo = photo.FileName;
             }
 
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
+            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil, DateInscription = DateTime.Now };
 
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();
@@ -288,6 +288,8 @@ namespace Pojeet.Models
         public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, IFormFile photo, List<string> competence)
         {
 
+            string StringCompetence = string.Join(",", competence);
+
             Rib rib = new Rib
             {
                 Iban = iban,
@@ -300,7 +302,7 @@ namespace Pojeet.Models
                 CompteConsumerId = compteConsumer.Id,
                 Rib = rib,
                 Etat = 0,
-                Competence = competence
+                Competence = StringCompetence
             };
 
             if (photo != null)

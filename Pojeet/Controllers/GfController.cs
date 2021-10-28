@@ -15,8 +15,7 @@ namespace Pojeet.Controllers
         {
             this.dal = new DalTransaction();
         }
-<<<<<<< Updated upstream
-=======
+
         public IActionResult AdminIndex()
         {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
@@ -68,7 +67,7 @@ namespace Pojeet.Controllers
             
     
     
->>>>>>> Stashed changes
+
         public IActionResult AdminCommandes()
         {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();

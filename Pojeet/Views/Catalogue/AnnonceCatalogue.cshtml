@@ -150,7 +150,7 @@
                         <div class="flex-col flex-md-row justify-content-center">
 >>>>>>> Stashed changes
 
-                                            @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))))
+                                            @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Categorie")
                                             @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { placeholder = "Que recherchez-vous" })
                                             @Html.TextBoxFor(m => Model.Recherche.Localisation, new { placeholder = "Départements" })
 

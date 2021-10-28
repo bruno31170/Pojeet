@@ -30,10 +30,7 @@ namespace Pojeet.Models
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 
         }
 
@@ -424,30 +421,18 @@ namespace Pojeet.Models
             new Transaction
             {
                 Reference = 125,
-<<<<<<< Updated upstream
-                Date = new DateTime(2021, 11, 09, 12, 1, 10),
-                AnnonceId = 4,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
-=======
                 Date = new DateTime(2021, 10, 27, 12, 1, 10),
                 AnnonceId = 1,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 2
->>>>>>> Stashed changes
+
             },
             new Transaction
             {
                 Reference = 127,
-<<<<<<< Updated upstream
-                Date = new DateTime(2021, 11, 09, 01, 1, 10),
-                AnnonceId = 5,
-=======
                 Date = new DateTime(2021, 10, 27, 01, 1, 10),
                 AnnonceId = 3,
->>>>>>> Stashed changes
                 Montant = 20.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 1

@@ -27,7 +27,10 @@ namespace Pojeet.Models
     }
     public enum CategorieRecherche
     {   
+<<<<<<< Updated upstream
         Catégorie,
+=======
+>>>>>>> Stashed changes
         Réparation,
         Pièce,
         Location

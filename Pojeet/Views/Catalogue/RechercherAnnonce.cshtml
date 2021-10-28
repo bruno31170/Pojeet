@@ -1,4 +1,4 @@
-﻿@{
+@{
     var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
 }
 
@@ -35,8 +35,6 @@
     <!-- Responsive -->
 
     <link rel="stylesheet" type="text/css" href="~/css/css-e/responsive.css">
-
-
     <!-- STYLE JS -->
     <link href="~/js/js-e/jquery.formstyler.css" rel="stylesheet" />
     <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
@@ -83,6 +81,7 @@
                             <i class="font-size-24 fa fa-user"></i>
                         </a>
 
+
                         <ul>
                             <div class="triangle"> </div>
                             <li class="mt-2"><a href="~/Profil/Index">Mon profil</a></li>
@@ -128,30 +127,16 @@
 
 
                         @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+
+
                         {
-                            <div class="type_post flex-row justify-content-center">
-
-                                <div class="flex-row">
-
-                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Besoin, "Besoin")
-                                    <label class="bold" for="typePost1">Besoin</label>
-
-                                </div>
-                                <div class="flex-row ml-4">
-
-                                    @Html.RadioButtonFor(m => m.Recherche.TypeDeRecherche, Pojeet.Models.TypeRecherche.Service, "Service")
-                                    <label class="bold" for="typePost2">Service</label>
-
-                                </div>
-                            </div>
                             <div class="flex-col flex-md-row justify-content-center">
-
 
                                 <form id="search-form" action="index.html" method="post">
                                     <div class="flex-col flex-md-row">
                                         <div class="search_category select-wrap mb-1" id="search">
-
-                                            @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), "Catégorie", new { @class = "search_select_form text-center js-select" })
+                                            @Html.DropDownListFor(m => Model.Recherche.TypeDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.TypeRecherche))), new { @class = "search_select_form text-center js-select" })
+                                            @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), new { @class = "search_select_form text-center js-select" })
                                         </div>
                                         @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
                                         @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
@@ -330,6 +315,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- End Example2-->
                         <!-- Example3 -->
                         <div class="top_post_content border-e mb-3">
@@ -351,6 +337,7 @@
                     </div>
                 </div>
                 <!-- Fin top anonce -->
+
             </div>
         </div>
 
@@ -375,9 +362,38 @@
                 <span class="bold">Assistance</span>
                 <a href="#">Centre d'aide</a>
                 <a href="#">Contact</a>
+
+
             </div>
 
         </div>
+
+
+
+
+        <div class="flex-row p-4 justify-content-around" style="border-bottom: 1px solid white;">
+            <div class="flex-col">
+                <span class="bold ">A propos</span>
+                <a href="#">Qui sommes-nous</a>
+                <a href="#">Demander un service</a>
+                <a href="#">Devenir Helper</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Informations légales</span>
+                <a href="#">Conditions générales client</a>
+                <a href="#">Conditions générales Helper</a>
+                <a href="#">Confiance et sécurité</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Assistance</span>
+                <a href="#">Centre d'aide</a>
+                <a href="#">Contact</a>
+            </div>
+
+        </div>
+
         <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
     </footer>
     <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>

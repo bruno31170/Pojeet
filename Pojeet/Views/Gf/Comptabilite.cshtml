@@ -1,0 +1,191 @@
+﻿@model Pojeet.ViewModels.TransactionViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Admin";
+}
+<div class="content-wrapper commande" id="comptabilite">
+    <!-- Content Header (Page header) -->
+    <div class="content-header pl-3">
+        <h1 class="pt-4 pl-4 mb-2 font-size-16">Comptabilité</h1>
+    </div>
+    <!-- /.content-header -->
+    <!-- Small boxes (Stat box) -->
+    <div class="flex-row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>@Model.Transaction.Count</h3>
+
+                    <p>Nombre de commandes</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <a href="#" class="small-box-footer">Mois en cours</a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>@Model.Argent.ChiffreDaffaire € <sup style="font-size: 18px">TTC</sup></h3>
+
+                    <p>Chiffre d'affaire</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <a href="#" class="small-box-footer">Mois en cours</a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>@Model.listConsumer.Count</h3>
+
+                    <p>Nouveaux Consumer</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <a href="#" class="small-box-footer">Mois en cours</a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>@Model.Argent.MargeBrut €</h3>
+
+                    <p>Marge brut</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a href="#" class="small-box-footer">Mois en cours</a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <!-- End Small boxes (Stat box) -->
+
+
+    <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+    <br>
+    <table class="table table-hover w-80 border-e pb-4 mb-0">
+        <thead>
+            <tr>
+                <th scope="col">Anne</th>
+                <th scope="col">Mois</th>
+                <th scope="col">Nombre de commandes </th>
+                <th scope="col">Chiffre d'affaire</th>
+                <th scope="col">Marge brut</th>
+            </tr>
+        </thead>
+        <tbody id="year-2021" class="rows_year">
+            <tr>
+                <td><i class="clickable fa fa-plus mr-2" data-toggle="collapse" data-target="#group-of-rows-1" aria-expanded="false" aria-controls="group-of-rows-1" aria-hidden="true"></i>2021</td>
+                <td> </td>
+                <td>@Model.TransactionTotale.Count</td>
+                <td>@Model.ArgentAnnee.ChiffreDaffaire €</td>
+                <td>@Model.ArgentAnnee.MargeBrut €</td>
+            </tr>
+        </tbody>
+        <tbody class="collapse" id="group-of-rows-1">
+            <tr>
+                <th scope="row"> </th>
+                <td>Janvier</td>
+                <td>@Model.TransactionJanvier.Count</td>
+                <td>@Model.ArgentJanvier.ChiffreDaffaire €</td>
+                <td>@Model.ArgentJanvier.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Février</td>
+                <td>@Model.TransactionFevrier.Count</td>
+                <td>@Model.ArgentFevrier.ChiffreDaffaire €</td>
+                <td>@Model.ArgentFevrier.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Mars</td>
+                <td>@Model.TransactionMars.Count</td>
+                <td>@Model.ArgentMars.ChiffreDaffaire €</td>
+                <td>@Model.ArgentMars.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Avril</td>
+                <td>@Model.TransactionAvril.Count</td>
+                <td>@Model.ArgentAvril.ChiffreDaffaire €</td>
+                <td>@Model.ArgentAvril.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Mai</td>
+                <td>@Model.TransactionMai.Count</td>
+                <td>@Model.ArgentMai.ChiffreDaffaire €</td>
+                <td>@Model.ArgentMai.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Juin</td>
+                <td>@Model.TransactionJuin.Count</td>
+                <td>@Model.ArgentJuin.ChiffreDaffaire €</td>
+                <td>@Model.ArgentJuin.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Juillet</td>
+                <td>@Model.TransactionJuillet.Count</td>
+                <td>@Model.ArgentJuillet.ChiffreDaffaire €</td>
+                <td>@Model.ArgentJuillet.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Août</td>
+                <td>@Model.TransactionAout.Count</td>
+                <td>@Model.ArgentAout.ChiffreDaffaire €</td>
+                <td>@Model.ArgentAout.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Septembre</td>
+                <td>@Model.TransactionSeptembre.Count</td>
+                <td>@Model.ArgentSeptembre.ChiffreDaffaire €</td>
+                <td>@Model.ArgentSeptembre.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Octobre</td>
+                <td>@Model.TransactionOctobre.Count</td>
+                <td>@Model.ArgentOctobre.ChiffreDaffaire €</td>
+                <td>@Model.ArgentOctobre.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Novembre</td>
+                <td>@Model.TransactionNovembre.Count</td>
+                <td>@Model.ArgentNovembre.ChiffreDaffaire €</td>
+                <td>@Model.ArgentNovembre.MargeBrut €</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>Décembre</td>
+                <td>@Model.TransactionDecembre.Count</td>
+                <td>@Model.ArgentDecembre.ChiffreDaffaire €</td>
+                <td>@Model.ArgentDecembre.MargeBrut €</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+</div>
+
+
+

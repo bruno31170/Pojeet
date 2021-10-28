@@ -13,6 +13,8 @@
     <Content Remove="wwwroot\media\profil\" />
     <Content Remove="wwwroot\media\annonce\" />
     <Content Remove="wwwroot\media\provider\" />
+    <None Remove="HtmlAgilityPack" />
+    <Content Remove="wwwroot\html\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +25,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.5" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.37" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +52,7 @@
     <Folder Include="wwwroot\media\profil\" />
     <Folder Include="wwwroot\media\annonce\" />
     <Folder Include="wwwroot\media\provider\" />
+    <Folder Include="wwwroot\html\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Home\" />

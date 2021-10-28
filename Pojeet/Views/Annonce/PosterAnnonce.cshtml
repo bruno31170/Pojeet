@@ -11,7 +11,7 @@
 
 
 
-<div class="annonce_form">
+<div class="annonce_form mt-5 mb-5">
 
     <!-- Annonce -->
 
@@ -27,9 +27,9 @@
 
             <!-- Type d'annonce -->
 
-            <h3>Selectionner le type d'annonce*</h3>
-            <span>Besoin : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Besoin, "Besoin")
-            <span> | Service : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Service, "Service")<br>
+            <h4>Selectionner le type d'annonce*</h4>
+            <span class="font-size-18">Besoin : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Besoin, "Besoin")
+            <span class="font-size-18"> | Service : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Service, "Service")<br>
             @Html.ValidationMessageFor(model => model.Anonce.TypeDeAnnonce)
 
 

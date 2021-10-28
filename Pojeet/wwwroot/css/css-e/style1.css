@@ -329,6 +329,13 @@ header {
 
 .btn-search {
     border-color: transparent;
+    width: 195px;
+    height: 3rem;
+    padding-top: 0.8rem;
+}
+
+.btn-search-1 {
+    border-color: transparent;
     width: 7rem;
     height: 3rem;
     padding-top: 0.8rem;

@@ -94,6 +94,11 @@ namespace Pojeet.Models
             return _context.CompteProvider.Include(c => c.Rib).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();
         }
 
+        public List<CompteProvider> ObtientTousHelpersAValider()
+        {
+            return _context.CompteProvider.Where(c => c.Etat == Etat.DemandeEnCours).ToList();
+        }
+
 
     }
 }

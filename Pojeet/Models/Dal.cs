@@ -284,7 +284,6 @@ namespace Pojeet.Models
         }
 
 
-
         public int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, IFormFile photo, List<string> competence)
         {
 

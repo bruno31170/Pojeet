@@ -519,6 +519,7 @@ namespace Pojeet.Models
                     DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
                     RibId = 1,
                     Etat = 0,
+                    Competence = "moteur,pneus",
                 });
 
             this.SaveChanges();

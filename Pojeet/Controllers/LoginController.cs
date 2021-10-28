@@ -223,7 +223,6 @@ namespace Pojeet.Controllers
             return View(viewModel);
         }
 
-        // PAGE DE CONNEXION
         public IActionResult SuccessInscritpion()
         {
             UtilisateurViewModel viewModel = new UtilisateurViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };

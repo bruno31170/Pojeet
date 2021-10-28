@@ -10,14 +10,6 @@
     box-sizing: border-box;
 }
 
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-white);
-}
-
 .star {
     position: absolute;
     animation: grow 3s infinite;

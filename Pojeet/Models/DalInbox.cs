@@ -273,8 +273,9 @@ namespace Pojeet.Models
                 Montant = montant,
                 MontantHelper = Math.Round(montant -(montant * 0.05) ,2),
                 EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
-
+                ProfilId = profilId,
+                Profil= _context.Profil.Where(c => c.Id ==profilId).FirstOrDefault(),
+            
             };
             _context.Transactions.Add(transaction);
             _context.SaveChanges();
@@ -293,44 +294,45 @@ namespace Pojeet.Models
             return profil;
         }
 
-        public void CreerPaiement(int annonceId)
+        public void CreerPaiement(int annonceId, int profilId)
         {
-            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault();
+            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId && r.ProfilId == profilId).Include(r => r.Annonce).FirstOrDefault();
             Paiement paiement = new Paiement
             {
                 Date = DateTime.Now,
                 TransactionMontant = transaction.Montant,
-                TransactionMontantHelper = transaction.MontantHelper,
                 TransactionReference = transaction.Reference,
                 StatutPaiement = StatutPaiement.Payé,
-                ProfilPayant=IdentifierPayant(transaction),
+                ProfilId=IdentifierPayant(transaction).Id,
             };
             
             _context.Paiement.Add(paiement);
-            //transaction.EtatTransaction = EtatTransaction.Valide;
+            transaction.EtatTransaction = EtatTransaction.Paye;
             _context.SaveChanges();
         }
-        public Profil IdentifierRecepteur(Transaction transaction)
+        public int IdentifierRecepteur(Transaction transaction)
         {
-            Profil profil = new Profil();
-            if (_context.Annonce.Where(c => c.Id == transaction.AnnonceId).FirstOrDefault().TypeDeAnnonce == TypeAnnonce.Besoin)
+            Annonce annonce = _context.Annonce.Where(c => c.Id == transaction.Annonce.Id).FirstOrDefault();
+            int profilId = 0;
+            if (annonce.TypeDeAnnonce == TypeAnnonce.Besoin)
             {
-                profil = transaction.Annonce.profil;
+                profilId = transaction.Annonce.ProfilId;
             }
             else
             {
-                profil = transaction.Profil;
+                profilId = transaction.ProfilId;
             }
-            return profil;
+            return profilId;
         }
-        public void CreerVirement(int annonceId)
+        public void CreerVirement(int annonceId, int profilId)
         {
-            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId).FirstOrDefault();
+            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId && r.ProfilId == profilId).Include(r => r.Annonce).FirstOrDefault();
             Virement virement = new Virement
             {
                 TransactionReference = transaction.Reference,
                 StatutVirement = StatutVirement.NonEnvoyé,
-                ProfilRecepteur = IdentifierRecepteur(transaction),
+                ProfilId = IdentifierRecepteur(transaction),
+                VirementMontant=transaction.MontantHelper,
             };
             _context.Virement.Add(virement);
             _context.SaveChanges();

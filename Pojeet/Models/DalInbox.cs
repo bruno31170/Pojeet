@@ -307,7 +307,9 @@ namespace Pojeet.Models
             };
             
             _context.Paiement.Add(paiement);
+
             transaction.EtatTransaction = EtatTransaction.Paye;
+
             _context.SaveChanges();
         }
         public int IdentifierRecepteur(Transaction transaction)

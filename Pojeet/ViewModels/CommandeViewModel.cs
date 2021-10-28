@@ -11,6 +11,7 @@ namespace Pojeet.ViewModels
         public CompteConsumer CompteConsumer { get; set; }
         public Transaction Transaction { get; set; }
         public Paiement Paiement { get; set; }
+        public Virement Virement { get; set; }
         public double MargeBrute { get; set; }
         public double Reste { get; set; }
         public int NbTransaction { get; set; }

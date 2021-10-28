@@ -193,7 +193,7 @@ namespace Pojeet.Models
                 ProfilId = id
             };
             _context.Messagerie.Add(messagerie);
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,

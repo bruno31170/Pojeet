@@ -300,14 +300,13 @@ namespace Pojeet.Models
             {
                 Date = DateTime.Now,
                 TransactionMontant = transaction.Montant,
-                TransactionMontantHelper = transaction.MontantHelper,
                 TransactionReference = transaction.Reference,
                 StatutPaiement = StatutPaiement.Payé,
                 ProfilPayant=IdentifierPayant(transaction),
             };
             
             _context.Paiement.Add(paiement);
-            //transaction.EtatTransaction = EtatTransaction.Valide;
+            transaction.EtatTransaction = EtatTransaction.Valide;
             _context.SaveChanges();
         }
         public Profil IdentifierRecepteur(Transaction transaction)

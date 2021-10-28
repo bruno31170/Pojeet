@@ -21,11 +21,16 @@ namespace Pojeet.Models
 
     public enum TypeRecherche
     {
+        Type,
         Besoin,
         Service
     }
     public enum CategorieRecherche
-    {
+    {   
+<<<<<<< Updated upstream
+        Catégorie,
+=======
+>>>>>>> Stashed changes
         Réparation,
         Pièce,
         Location

@@ -38,7 +38,9 @@
             <!-- Catégorie --><br>
 
             <h3>Selectionner la catégorie*</h3>
-            @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), "Catégorie", new { @class = "search_select_form js-select", @style= "width=200px;" })<br><br>
+
+            @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), new { @class = "search_select_form js-select", @style= "width=200px;" })<br><br>
+
             @Html.ValidationMessageFor(model => model.Anonce.CategorieDeAnnonce)
 
             <!-- Image -->

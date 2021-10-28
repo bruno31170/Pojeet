@@ -55,7 +55,7 @@ namespace Pojeet.Models
     }
 
     public enum CategorieAnnonce
-    {
+    {   
         Réparation,
         Pièce,
         Location

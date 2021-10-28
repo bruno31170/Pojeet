@@ -180,7 +180,7 @@ namespace Pojeet.Models
                 profil.Photo = photo.FileName;
             }
 
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil, DateInscription = DateTime.Now };
+            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil, DateCreationCompte = DateTime.Now };
 
             _context.CompteConsumer.Add(consumer);
             _context.SaveChanges();

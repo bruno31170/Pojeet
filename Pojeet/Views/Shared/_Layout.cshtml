@@ -102,13 +102,17 @@
                             </li>
                             <li class="nav-item border-right ml-3 mr-1"></li>
                             <li class="nav-item d-flex align-items-center">
-                                @Html.ActionLink("Devenez Helper", "CreerHelper", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
+                                <a href="@Url.Action("Index", "Profil")"><i class="font-size-24 iconNav fa fa-user" style="color: #2b6777; font-size: 24px; margin: 0 15px ;"> </i></a>
                             </li>
                             <li class="nav-item d-flex align-items-center">
-                                @Html.ActionLink("Profil", "Index", "Profil", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
+                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
+                                    <i class="font-size-24 iconNav fa fa-envelope" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
+                                </a>
                             </li>
                             <li class="nav-item d-flex align-items-center">
-                                @Html.ActionLink("Deconnexion", "Deconnexion", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
+                                <a href="#">
+                                    <i class="font-size-24 iconNav fa fa-bell" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>

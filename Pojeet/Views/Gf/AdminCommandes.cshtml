@@ -98,11 +98,11 @@
                     @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
                     {
 
-                        <td><a href="@Url.Action("Helper", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        <td><a href="@Url.Action("Consumer", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
                     }
                     else
                     {
-                        <td><a href="@Url.Action("Helper", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        <td><a href="@Url.Action("Consumer", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
                     }
                     @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
                     {

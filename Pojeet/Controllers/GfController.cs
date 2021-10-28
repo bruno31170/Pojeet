@@ -117,6 +117,20 @@ namespace Pojeet.Controllers
 
         }
 
+        public ActionResult DemandeDevenirHelper()
+        {
+            List<CompteProvider> list = new List<CompteProvider>();
+            list = dal.ObtientTousHelpers();
+            List<CompteConsumer> listConsum = new List<CompteConsumer>();
+            listConsum = dal.ObtientTousConsumer();
+
+            return View(new DemandeHelperViewModel
+            {
+                listProvider = list,
+                ListConsumer = listConsum,
+            });
+        }
+
         public ActionResult Consumer(int id)
         {
             CompteConsumer consumer = new CompteConsumer();
@@ -158,6 +172,7 @@ namespace Pojeet.Controllers
             Paiement paiement = new Paiement();
             paiement = dal.ObtenirPaiement(transaction.Reference);
             return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute = MargeBrute, Reste = Reste, NbTransaction = NbTransaction, Paiement = paiement });
+
         }
 
         public ActionResult Comptabilite()
@@ -386,6 +401,7 @@ namespace Pojeet.Controllers
                 ArgentNovembre = argentNovembre,
                 ArgentDecembre = argentDecembre,
             });
+
 
         }
     }

@@ -17,7 +17,7 @@ namespace Pojeet.Models
 
         public List<Transaction> ObtientTransaction()
         {
-            List<Transaction> listeTransaction = this._context.Transactions.Include(t=> t.Profil).Include(t=> t.Annonce).ToList();
+            List<Transaction> listeTransaction = this._context.Transactions.Include(t => t.Profil).Include(t => t.Annonce).ToList();
             return listeTransaction;
         }
 
@@ -38,7 +38,7 @@ namespace Pojeet.Models
             List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
             return listeTransaction;
         }
-        public Transaction ObtientUneTransaction (int reference)
+        public Transaction ObtientUneTransaction(int reference)
         {
             Transaction transaction = this._context.Transactions.Where(c => c.Reference == reference).Include(c => c.Profil).Include(c => c.Annonce.profil).FirstOrDefault();
             return transaction;
@@ -55,8 +55,8 @@ namespace Pojeet.Models
         public double ObtenirReste(int reference)
         {
             Transaction transaction = ObtientUneTransaction(reference);
-            double Reste = Math.Round(transaction.Montant - (transaction.Montant * 0.05), 2); 
-            
+            double Reste = Math.Round(transaction.Montant - (transaction.Montant * 0.05), 2);
+
             return Reste;
         }
 
@@ -82,6 +82,21 @@ namespace Pojeet.Models
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public List<CompteConsumer> ObtientTousConsumer()
+        {
+            return _context.CompteConsumer.Include(c => c.Profil).ToList();
+        }
+
+        public List<CompteProvider> ObtientTousHelpers()
+        {
+            return _context.CompteProvider.Include(c => c.Rib).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).ToList();
+        }
+
+        public List<CompteProvider> ObtientTousHelpersAValider()
+        {
+            return _context.CompteProvider.Where(c => c.Etat == Etat.DemandeEnCours).ToList();
         }
 
 

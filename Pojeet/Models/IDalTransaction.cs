@@ -13,11 +13,14 @@ namespace Pojeet.Models
         CompteConsumer ObtientCompteConsumer(int id);
 
         List<Transaction> ObtientTransaction(int id);
+        List<CompteConsumer> ObtientTousConsumer();
+        List<CompteProvider> ObtientTousHelpers();
 
         Transaction ObtientUneTransaction(int reference);
         double ObtenirMargeBrute(int reference);
         double ObtenirReste(int reference);
         int ObtenirNbTransaction(int id);
         Paiement ObtenirPaiement(int reference);
+        List<CompteProvider> ObtientTousHelpersAValider();
     }
 }

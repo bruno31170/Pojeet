@@ -1,0 +1,150 @@
+﻿@model Pojeet.ViewModels.DemandeHelperViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Admin";
+}
+
+
+<div class="content-wrapper h-100 commande">
+    <!-- Content Header (Page header) -->
+    <div class="content-header pl-3">
+        <h1 class="pt-4 pl-4 mb-2 font-size-16">Profil</h1>
+    </div>
+    <!-- /.content-header -->
+
+    <div class="border-e mr-3 ml-3 p-4">
+        <!-- info_helper -->
+        @*<div class="w-100 mb-3 user_contact message-box border-e">
+                <div class="flex-row align-items-center pl-4 mb-2">
+                    <img class="user_img mr-3" src="@Model.CompteConsumer.   .Consumer.Profil.Photo" alt="">
+                    <a class="font-size-16 bold" href="">@Model.Consumer.Profil.Nom @Model.Consumer.Profil.Prenom</a>
+                </div>
+                <div class="flex-row pl-2">
+                    <div class="flex-col col">
+
+                        <div class="flex-col">
+                            <div class="flex-row">
+                                <span>Pseudo</span>
+                                <h5>@Model.Consumer.Pseudo</h5>
+                            </div>
+                            <div class="flex-row">
+                                <span>Email</span>
+                                <h5>@Model.Consumer.Profil.Mail</h5>
+                            </div>
+                            <div class="flex-row">
+                                <span>Telephone</span>
+                                <h5>+33 @Model.Consumer.Profil.NumeroTelephone</h5>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="flex-col col">
+                        <span class="mb-1">Adresse</span>
+                        <h5>@Model.Consumer.Profil.Adresse</h5>
+                        <div class="flex-row">
+                            <h5 class="mr-3">@Model.Consumer.Profil.Ville</h5>
+                            <h5>@Model.Consumer.Profil.CodePostal</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <!-- End info_helper -->
+        <!-- Liste de toutes les commandes du Helper -->
+
+        <input class="form-control mb-3" id="myInput_helper" type="text" placeholder="Recherche">
+        <div class="w-100 table_commande_helper">
+
+            <table class="table table-hover m-0 w-100 border-e-1 text-center">
+                <thead>
+                    <tr class="border-bottom-grey">
+                        <th scope="col">N°</th>
+                        <th scope="col">Nom </th>
+                        <th scope="col">Pièce identité</th>
+                        <th scope="col">RIB</th>
+                        <th scope="col">Date de la demande</th>
+                        <th scope="col">Etat</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="commande_helper">
+                    @foreach (var provider in Model.listProvider)
+                    {
+                        @if (provider.Etat == Pojeet.Models.Etat.DemandeEnCours)
+                        {
+                            <tr>
+                                <th scope="row">@provider.Id</th>
+                                <td>@provider.CompteConsumer.Profil.Prenom @provider.CompteConsumer.Profil.Nom</td>
+
+                                <td>
+                                    <a href="~/media/provider/@provider.DocumentIdentification" data-lightbox="photoCNI" title="photoCNI" target="_blank">
+                                        <img src="~/media/provider/@provider.DocumentIdentification " alt="" style="width:100px" />
+                                    </a>
+                                </td>
+
+                                <td>
+                                    Titulaire du compte : @provider.Rib.TitulaireCompte<br>
+                                    IBAN : @provider.Rib.Iban<br>
+                                    BIC : @provider.Rib.Bic
+                                </td>
+                                <td>@provider.DateCreationCompte  </td>
+                                <td>En attente de validation</td>
+                                <td>
+                                    <a href="@Url.Action("ModifierEtatProviderValide", "Profil", new {id=provider.Id})">Valider</a><br />
+                                    <a href="@Url.Action("", "", new { id = provider.Id })">Refuser</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+
+            <!-- Link collapse -->
+            <a class="btn btn-link" href="#" data-toggle="collapse" data-target="#target1">
+                Historique demande
+            </a>
+            <div id="target1" class="collapse">
+                <table class="table table-hover m-0 w-100 border-e-1 text-center">
+                    <thead>
+                        <tr class="border-bottom-grey">
+                            <th scope="col">N°</th>
+                            <th scope="col">Nom </th>
+                            <th scope="col">Pièce identité</th>
+                            <th scope="col">RIB</th>
+                            <th scope="col">Date de la demande</th>
+                            <th scope="col">Etat</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="commande_helper">
+                        @foreach (var provider in Model.listProvider)
+                        {
+                            @if (provider.Etat == Pojeet.Models.Etat.Valide)
+                            {
+                                <tr>
+                                    <th scope="row">@provider.Id</th>
+                                    <td>@provider.CompteConsumer.Profil.Prenom @provider.CompteConsumer.Profil.Nom</td>
+                                    <td><a href="~/media/provider/@provider.DocumentIdentification" data-lightbox="photoCNI" title="photoCNI" target="_blank"> <img src="~/media/provider/@provider.DocumentIdentification " alt="" style="width:100px" /></a></td>
+
+                                    <td>
+                                        Titulaire du compte : @provider.Rib.TitulaireCompte<br>
+                                        IBAN : @provider.Rib.Iban<br>
+                                        BIC : @provider.Rib.Bic
+                                    </td>
+                                    <td>@provider.DateCreationCompte  </td>
+                                    <td>Validé</td>
+                                    <td>
+                                        <a href="@Url.Action("ModifierEtatProviderValide", "Profil", new {id=provider.Id})">Valider</a><br />
+                                        <a href="@Url.Action("", "", new { id = provider.Id })">Refuser</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>

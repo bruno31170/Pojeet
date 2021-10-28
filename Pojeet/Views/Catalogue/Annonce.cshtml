@@ -52,7 +52,7 @@
 
             <div class="slide">
                 <div class="numbertext">1 / 4</div>
-                <img src="~/img/img-e/img1.jpg">
+                <img src="~/media/annonce/@Model.Annonce.Photo">
             </div>
 
             <div class="slide">
@@ -97,7 +97,7 @@
     <div class="post_info_item_location">
         <h2 class="bold">Localisation</h2>
         <!-- <div class="map-responsive"> -->
-        <address>@Model.Annonce.profil.Ville, @Model.Annonce.profil.Pays</address>
+        <address>@Model.Annonce.Localisation, @Model.Annonce.profil.Pays</address>
         <!-- </div> -->
     </div>
     <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">

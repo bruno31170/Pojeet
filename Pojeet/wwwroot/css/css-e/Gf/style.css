@@ -177,17 +177,20 @@ ul {
 
 /*End  Nevbar */
 
+.admin_connect input {
+    border: 1px solid #52ab984d;
+}
 /* Menu administrateur */
 .main-sidebar {
-  background-color: #2b6777;
-  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
-  display: block;
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    background-color: #2b6777;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%) !important;
+    display: block;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
 .main-sidebar span,
@@ -429,7 +432,10 @@ ul {
   padding: 1rem;
 }
 
-
+.table_commandes {
+    max-height: 530px;
+    overflow-y: scroll;
+}
 
 .table thead th{
   font-weight: 700;
@@ -498,7 +504,7 @@ th, td{
 }
 
 .table_commande_helper{
-  max-height: 400px;
+  max-height: 460px;
   overflow-y: scroll;
 
 }

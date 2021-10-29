@@ -41,6 +41,16 @@ namespace Pojeet.Models
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
             //AIDE
+
+            this.GestionnairePlateforme.AddRange(
+                new GestionnairePlateforme
+                {
+                    Id = 1,
+                    Nom ="Bruno",
+                    Prenom ="Boulet",
+                    Pseudo ="Bruno",
+                    MotDePasse = Dal.EncodeMD5("123456")
+                });
             this.Aide.AddRange(
                 new Aide
                 {
@@ -259,9 +269,9 @@ namespace Pojeet.Models
                  DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 35,
+                 Prix = 500,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 3,
+                 ProfilId = 2,
                  EtatAnnonce = EtatAnnonce.Validé
 
 
@@ -723,9 +733,9 @@ namespace Pojeet.Models
            );
 
 
-            //TRANSACTION
+           /* TRANSACTION*/
 
-            /*this.Transactions.AddRange(
+            this.Transactions.AddRange(
                 new Transaction
                 {
                     Reference = 123,
@@ -967,7 +977,7 @@ namespace Pojeet.Models
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
 
-           }); */
+           }); 
 
             this.Avis.AddRange(
            new Avis

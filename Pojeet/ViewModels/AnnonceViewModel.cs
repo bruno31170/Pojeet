@@ -11,6 +11,7 @@ namespace Pojeet.ViewModels
         public CompteConsumer CompteConsumer { get; set; }
         public Annonce Annonce { get; set; }
         public List<Avis> Avis { get; set; }
+        public Conversation Conversation { get; set; }
         //public ProviderViewModel ProviderViewModel{ get; set; }
         //public UtilisateurViewModel UtilisateurViewModel { get; set; }
     }

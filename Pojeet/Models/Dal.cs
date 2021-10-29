@@ -391,6 +391,14 @@ namespace Pojeet.Models
                 _context.Add(notificationTransaction);
                 _context.SaveChanges();
                 }
+
+            if (etat == EtatTransaction.Valide)
+            {
+                Paiement paiement = _context.Paiement.Where(c => c.TransactionReference == transaction.Reference).Include(c => c.ProfilPayant).FirstOrDefault();
+                Notification notificationTransaction = _context.Notification.Where(c => c.ProfilId == paiement.Id && c.transaction == transaction).FirstOrDefault();
+                _context.RemoveRange(notificationTransaction);
+                _context.SaveChanges();
+            }
         }
 
         public void ActualiserEtatTransaction(int reference, EtatTransaction etat)

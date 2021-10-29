@@ -15,7 +15,7 @@
 
         <div class="flex-col flex-sm-row justify-content-between align-items-center">
             <div class="post_header flex-row align-items-center mb-2">
-                <a class="post_img" href="#"><img src="@Model.Annonce.profil.Photo" alt=""></a>
+                <a class="post_img" href="#"><img src="~/media/profil/@Model.Annonce.profil.Photo" alt=""></a>
                 <div class="post_header_info ml-4">
                     <div class="post_author font-size-17">
                         <a href="#">@Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</a>
@@ -29,133 +29,137 @@
                     </div>
                 </div>
             </div>
-            @if (Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId)
+            @if ((Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId))
             {
-                @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
-                {   <input type="hidden" id="id" name="id" class="form-control" value="@Model.Annonce.Id">
-                    <button type="submit" class="btn-primary-e mb-1" >Contacter</button>
+                @if (Model.Conversation == null)
+                { 
+                    @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
+                    {<input type="hidden" id="id" name="id" class="form-control" value="@Model.Annonce.Id">
+                        <button type="submit" class="btn-primary-e mb-1">Contacter</button>
+                    }
                 }
-            }
-        </div>
-        <div class="post_info_item flex-row justify-content-between pt-4">
-            <div class="flex-col">
-                <h1 class="font-size-22">@Model.Annonce.TitreAnnonce</h1>
-                <span>Date de publication: <b>@Model.Annonce.DateParution</b> </span>
-                <span class="font-size-18">Prix: <b>@Model.Annonce.Prix €</b> </span>
+             }
+
             </div>
-            <span><i class="fa fa-heart font-size-20"></i></span>
-        </div>
-
-        <!-- Carousel image l'annonce -->
-
-        <div class="slideshow-container">
-
-            <div class="slide">
-                <div class="numbertext">1 / 4</div>
-                <img src="~/media/annonce/@Model.Annonce.Photo">
-            </div>
-
-            <div class="slide">
-                <div class="numbertext">2 / 4</div>
-                <img src="~/img/img-e/img2.jpg">
-            </div>
-
-            <div class="slide">
-                <div class="numbertext">3 / 4</div>
-                <img src="~/img/img-e/img3.jpg">
-            </div>
-            <div class="slide">
-                <div class="numbertext">4 / 4</div>
-                <img src="~/img/img-e/img4.jpg">
-            </div>
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-
-        </div>
-        <br>
-
-        <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-        </div>
-        <!-- End Carousel image l'annonce -->
-        <div class="bar_icons flex-row justify-content-between border-top-e border-bottom-e">
-            <a href="#"><i class="fas fa-shield-alt pr-2"></i>Prestations assurées</a>
-            <a href="#"><i class="far fa-handshake pr-2"></i>Budget respecté</a>
-            <a href="#"><i class="fas fa-phone pr-2"></i>Service encadré</a>
-        </div>
-        <div class="post_info_item_description mt-1">
-            <h2 class="bold">Description</h2>
-            <p class="text-justify">
-                @Model.Annonce.Description
-
-        </p>
-    </div>
-
-    <div class="post_info_item_location">
-        <h2 class="bold">Localisation</h2>
-        <!-- <div class="map-responsive"> -->
-        <address>@Model.Annonce.Localisation, @Model.Annonce.profil.Pays</address>
-        <!-- </div> -->
-    </div>
-    <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
-        <div class="flex-col service_info  text-center">
-            <div class="flex-row justify-content-center align-items-center">
-                <span class="number_service bold">1</span>
-                <i class="fas fa-search-location ml-2"></i>
-            </div>
-            <span class="bold">Trouvez votre Helper</span>
-            <span class="font-size-12">Des Helpers compétents et proches de chez vous vous proposent leurs services</span>
-        </div>
-
-        <div class="flex-col service_info text-center">
-            <div class="flex-row justify-content-center align-items-center">
-                <span class="number_service bold">2</span>
-                <i class="far fa-comments ml-2"></i>
-            </div>
-            <span class="bold">Demandez un service</span>
-            <span class="font-size-12">Échangez par messagerie sur le site pour convenir de la date et du prix</span>
-        </div>
-
-        <div class="flex-col service_info text-center">
-            <div class="flex-row justify-content-center align-items-center">
-                <span class="number_service bold">3</span>
-                <i class="far fa-calendar-check ml-2"></i>
-            </div>
-            <span class="bold">Souriez, c'est fait !</span>
-            <span class="font-size-12">Votre Helper vous rend service. il est payé après votre confirmation.</span>
-        </div>
-    </div>
-
-    <div class="view_of_post mt-3">
-        <h2 class="bold">Les avis sur @Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</h2>
-        <!-- Avis 1 -->
-        @foreach (var Avis in Model.Avis)
-        {
-            <div class="flex-col mb-3">
-                <div class="flex-row">
-                    <a href="#"><img src=@Avis.CompteConsumer.Profil.Photo alt=""></a>
-                    <div class="flex-col ml-3">
-                        <span class="font-size-16">@Avis.CompteConsumer.Profil.Nom  @Avis.CompteConsumer.Profil.Prenom</span>
-                        <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star" aria-hidden="true"></small>
-                            <small class="fa fa-star text-muted" aria-hidden="true"></small>
-                        </div>
-                    </div>
-
+            <div class="post_info_item flex-row justify-content-between pt-4">
+                <div class="flex-col">
+                    <h1 class="font-size-22">@Model.Annonce.TitreAnnonce</h1>
+                    <span>Date de publication: <b>@Model.Annonce.DateParution</b> </span>
+                    <span class="font-size-18">Prix: <b>@Model.Annonce.Prix €</b> </span>
                 </div>
-                <span class="mt-2 font-size-12">Commenté le @Avis.date</span>
-                <span class="mt-2 font-size-16">@Avis.commentaire </span>
+                <span><i class="fa fa-heart font-size-20"></i></span>
             </div>
-        }
-        <!-- End Avis 1 -->
 
-    </div>
+            <!-- Carousel image l'annonce -->
 
-</div>
+            <div class="slideshow-container">
+
+                <div class="slide">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="~/media/annonce/@Model.Annonce.Photo">
+                </div>
+
+                <div class="slide">
+                    <div class="numbertext">2 / 4</div>
+                    <img src="~/img/img-e/img2.jpg">
+                </div>
+
+                <div class="slide">
+                    <div class="numbertext">3 / 4</div>
+                    <img src="~/img/img-e/img3.jpg">
+                </div>
+                <div class="slide">
+                    <div class="numbertext">4 / 4</div>
+                    <img src="~/img/img-e/img4.jpg">
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+            <!-- End Carousel image l'annonce -->
+            <div class="bar_icons flex-row justify-content-between border-top-e border-bottom-e">
+                <a href="#"><i class="fas fa-shield-alt pr-2"></i>Prestations assurées</a>
+                <a href="#"><i class="far fa-handshake pr-2"></i>Budget respecté</a>
+                <a href="#"><i class="fas fa-phone pr-2"></i>Service encadré</a>
+            </div>
+            <div class="post_info_item_description mt-1">
+                <h2 class="bold">Description</h2>
+                <p class="text-justify">
+                    @Model.Annonce.Description
+
+                </p>
+            </div>
+
+            <div class="post_info_item_location">
+                <h2 class="bold">Localisation</h2>
+                <!-- <div class="map-responsive"> -->
+                <address>@Model.Annonce.Localisation, @Model.Annonce.profil.Pays</address>
+                <!-- </div> -->
+            </div>
+            <div class="block_service flex-row border-top-e border-bottom-e justify-content-around">
+                <div class="flex-col service_info  text-center">
+                    <div class="flex-row justify-content-center align-items-center">
+                        <span class="number_service bold">1</span>
+                        <i class="fas fa-search-location ml-2"></i>
+                    </div>
+                    <span class="bold">Trouvez votre Helper</span>
+                    <span class="font-size-12">Des Helpers compétents et proches de chez vous vous proposent leurs services</span>
+                </div>
+
+                <div class="flex-col service_info text-center">
+                    <div class="flex-row justify-content-center align-items-center">
+                        <span class="number_service bold">2</span>
+                        <i class="far fa-comments ml-2"></i>
+                    </div>
+                    <span class="bold">Demandez un service</span>
+                    <span class="font-size-12">Échangez par messagerie sur le site pour convenir de la date et du prix</span>
+                </div>
+
+                <div class="flex-col service_info text-center">
+                    <div class="flex-row justify-content-center align-items-center">
+                        <span class="number_service bold">3</span>
+                        <i class="far fa-calendar-check ml-2"></i>
+                    </div>
+                    <span class="bold">Souriez, c'est fait !</span>
+                    <span class="font-size-12">Votre Helper vous rend service. il est payé après votre confirmation.</span>
+                </div>
+            </div>
+
+            <div class="view_of_post mt-3">
+                <h2 class="bold">Les avis sur @Model.Annonce.profil.Nom  @Model.Annonce.profil.Prenom</h2>
+                <!-- Avis 1 -->
+                @foreach (var Avis in Model.Avis)
+                {
+                    <div class="flex-col mb-3">
+                        <div class="flex-row">
+                            <a href="#"><img src=@Avis.CompteConsumer.Profil.Photo alt=""></a>
+                            <div class="flex-col ml-3">
+                                <span class="font-size-16">@Avis.CompteConsumer.Profil.Nom  @Avis.CompteConsumer.Profil.Prenom</span>
+                                <div class="post_view flex-row font-size-20 mb-3 mt-2" style="width: 96px;">
+                                    <small class="fa fa-star" aria-hidden="true"></small>
+                                    <small class="fa fa-star" aria-hidden="true"></small>
+                                    <small class="fa fa-star" aria-hidden="true"></small>
+                                    <small class="fa fa-star" aria-hidden="true"></small>
+                                    <small class="fa fa-star text-muted" aria-hidden="true"></small>
+                                </div>
+                            </div>
+
+                        </div>
+                        <span class="mt-2 font-size-12">Commenté le @Avis.date</span>
+                        <span class="mt-2 font-size-16">@Avis.commentaire </span>
+                    </div>
+                }
+                <!-- End Avis 1 -->
+
+            </div>
+
+        </div>
 </div>

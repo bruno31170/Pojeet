@@ -116,15 +116,11 @@
 
                 @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
                 {
-
-
-
                     <div class="position-absolute" style="width: 80%; margin-left: 10%; height: 300px; top: 90px;">
                         <div class="post_search_text mt-3 mb-2">
-                            <h1>Proposez & trouvez <br> les milliers de microservices près de chez vous</h1>
-                            <span class="font-size-18 bold">- 262770 annonces en ligne -</span>
+                            <h1>Proposez & trouvez <br> plusieurs microservices près de chez vous</h1>
+                            <span class="font-size-18 bold">- @Model.Annonce.Count annonces en ligne-</span>
                         </div>
-
 
 
 
@@ -161,7 +157,7 @@
                     <ul class="side_bar_nav flex-col p-3 font-size-14 sticky text-left">
                         <li class="text-center">
 
-                            <img class="border-e mb-3" src="@Compte1.Profil.Photo" alt="">
+                            <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
 
                             <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
                         </li>
@@ -224,7 +220,7 @@
                         <div class="post_content p-4 border-e flex-col white">
 
                             <div class="post_header flex-row align-items-center mb-2">
-                                <a class="post_img" href="#"><img src="img/user.jpg" alt=""></a>
+                                <a class="post_img" href="#"><img src="~/media/profil/@annonce.profil.Photo" alt=""></a>
                                 <div class="post_header_info ml-4">
                                     <div class="post_author font-size-15">
                                         <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>

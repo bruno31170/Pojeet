@@ -59,7 +59,7 @@ namespace Pojeet.Models
         public int NoteMoyenne { get; set; }
 
         public Statut statut { get; set; }
-        public List<Notification> notifications { get; set; }
+        public List<NotificationTransaction> notifications { get; set; }
         public List<NotificationMessagerie> notificationsMessagerie { get; set; }
 
     }

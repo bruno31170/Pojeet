@@ -24,7 +24,7 @@ namespace Pojeet.Models
         public DbSet<Aide> Aide { get; set; }
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
         public DbSet<Virement> Virement { get; set; }
-        public DbSet<Notification> Notification { get; set; }
+        public DbSet<NotificationTransaction> Notification { get; set; }
         public DbSet<NotificationMessagerie> NotificationMessagerie { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 

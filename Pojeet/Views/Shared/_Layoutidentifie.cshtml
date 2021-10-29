@@ -86,9 +86,15 @@
 
                         <ul>
                             <div class="triangle"> </div>
-                            <li class="mt-2"><a href="~/Profil/Index">Mon profil</a></li>
-                            <li><a href="/Profil/Index?tabId=profile2">Mes annonce</a></li>
-                            <li><a href="/Profil/Index?tabId=contact2">Mes transactions</a></li>
+                            <li class="mt-2">
+                                <a href="~/Profil/Index">Mon profil</a>
+                            </li>
+                            <li>
+                                <a href="/Profil/Index?tabId=profile2">Mes annonce</a>
+                            </li>
+                            <li>
+                                <a href="/Profil/Index?tabId=contact2">Mes transactions</a>
+                            </li>
                             <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
 
                         </ul>
@@ -98,10 +104,10 @@
                             <i class="font-size-24 fa fa-envelope"></i>
                             @if (@Compte.Profil.notificationsMessagerie != null)
                             {
-                                
-                        <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
+
+                                <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
                             }
-                            </a>
+                        </a>
                     </li>
                     <li class="ml-2 text-right">
                         <a href="#">
@@ -116,10 +122,45 @@
                         {
                             @foreach (var notification in @Compte.Profil.notifications)
                             {
+<<<<<<< Updated upstream
                                 <ul>
                                     <div class="triangle"> </div>
                                     <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
                                 </ul>
+=======
+                                @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Transaction_a_valider)
+                                {
+                                    <ul>
+                                        <div class="triangle"> </div>
+                                        <li>
+                                            <a href="/Profil/Index?tabId=contact2">Valider la transaction N° @notification.TransactionId</a>
+                                        </li>
+                                    </ul>
+                                }
+                                @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Laisser_un_avis)
+                                {
+                                    @if (notification.transaction.ProfilId == @Compte.Profil.Id)
+                                    {
+                                        <ul>
+                                            <div class="triangle"> </div>
+                                            <li>
+                                                <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Annonce.profil.Prenom</a>
+                                            </li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <ul>
+                                            <div class="triangle"> </div>
+                                            <li>
+                                                <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Profil.Prenom</a>
+                                            </li>
+                                        </ul>
+
+                                    }
+                                }
+
+>>>>>>> Stashed changes
                             }
                         }
                     </li>
@@ -213,16 +254,20 @@
             <div class="flex-col">
                 <span class="bold">Assistance</span>
                 <a href="#">Centre d'aide</a>
-                <a href="#">Contact</a>
+                <a href="@Url.Action("Aide", "Aide")" $+Contact</a>
             </div>
 
         </div>
-        <div class="mb-md-0  text-center">© <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved</div>
+        <div class="mb-md-0  text-center">
+            ©
+            <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved
+        </div>
     </footer>
     <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
 
     <script src="~/js/js-e/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript">function switchTab(tabId) {
+    <script type="text/javascript">
+    function switchTab(tabId) {
             $(tabId).addClass("active").siblings().removeClass("active");
         }</script>
 

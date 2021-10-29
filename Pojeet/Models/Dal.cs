@@ -421,26 +421,62 @@ namespace Pojeet.Models
 
         public void CreerNotificationTransaction(Transaction transaction, EtatTransaction etat)
         {
+<<<<<<< Updated upstream
             if (etat == EtatTransaction.Effectue)
             {
                 Paiement paiement = _context.Paiement.Where(c => c.TransactionReference == transaction.Reference).Include(c => c.ProfilPayant).FirstOrDefault();
                 Notification notificationTransaction = new Notification
                 {
                     ProfilId = paiement.Id,
+=======
+            Paiement paiement = _context.Paiement.Where(c => c.TransactionReference == transaction.Reference).Include(c => c.ProfilPayant).FirstOrDefault();
+            Virement virement = _context.Virement.Where(c => c.TransactionReference == transaction.Reference).Include(c => c.ProfilId).FirstOrDefault();
+
+            if (etat == EtatTransaction.Paye)
+            {
+                NotificationTransaction notificationTransaction = new NotificationTransaction
+                {
+                    ProfilId = virement.Id,
+>>>>>>> Stashed changes
                     transaction = transaction,
+                    TypeNotification = TypeNotification.Transaction_a_valider,
                 };
                 _context.Add(notificationTransaction);
                 _context.SaveChanges();
+<<<<<<< Updated upstream
 
+=======
+            }
+            if (etat == EtatTransaction.Effectue)
+                {
+                NotificationTransaction notificationTransaction1 = new NotificationTransaction
+                {   ProfilId=paiement.Id,
+                    transaction = transaction,
+                    TypeNotification = TypeNotification.Transaction_a_valider,
+                };
+              
+                _context.Add(notificationTransaction1);
+                NotificationTransaction notificationTransaction2 = _context.Notification.Where(c => c.ProfilId == virement.Id && c.transaction == transaction).FirstOrDefault();
+                notificationTransaction2.TypeNotification = TypeNotification.Laisser_un_avis;
+                _context.SaveChanges();
+>>>>>>> Stashed changes
                 }
 
             if (etat == EtatTransaction.Valide)
             {
-                Paiement paiement = _context.Paiement.Where(c => c.TransactionReference == transaction.Reference).Include(c => c.ProfilPayant).FirstOrDefault();
-                Notification notificationTransaction = _context.Notification.Where(c => c.ProfilId == paiement.Id && c.transaction == transaction).FirstOrDefault();
+                NotificationTransaction notificationTransaction = _context.Notification.Where(c => c.ProfilId == paiement.Id && c.transaction == transaction).FirstOrDefault();
                 _context.RemoveRange(notificationTransaction);
                 _context.SaveChanges();
+<<<<<<< Updated upstream
 
+=======
+                NotificationTransaction notificationTransaction1 = new NotificationTransaction
+                {
+                    ProfilId = paiement.Id,
+                    transaction = transaction,
+                    TypeNotification = TypeNotification.Laisser_un_avis,
+                };
+>>>>>>> Stashed changes
             }
         }
 

@@ -5,8 +5,12 @@ using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
+
 using System.Threading.Tasks;
 
 namespace Pojeet.Controllers
@@ -176,6 +180,7 @@ namespace Pojeet.Controllers
                 listProvider = list,
                 ListConsumer = listConsum,
             });
+
         }
 
         public ActionResult Consumer(int id)
@@ -208,17 +213,15 @@ namespace Pojeet.Controllers
             });
         }
         public ActionResult Commande(int reference)
-        {   
-            
+        {
             Transaction transaction = dal.ObtientUneTransaction(reference);
             CompteConsumer compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);            
             double MargeBrute = dal.ObtenirMargeBrute(transaction.Reference);
             double Reste = dal.ObtenirReste(transaction.Reference);
             int NbTransaction = dal.ObtenirNbTransaction(transaction.ProfilId);
             Paiement paiement = dal.ObtenirPaiement(transaction.Reference);
-            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction, Paiement =paiement });
-
-           }
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute = MargeBrute, Reste = Reste, NbTransaction = NbTransaction, Paiement = paiement });
+        }
 
         //[HttpPost]
         //public IActionResult CreateVirement(int annonceId, int profilId, Virement newVirement)
@@ -427,12 +430,13 @@ namespace Pojeet.Controllers
 
             }
 
-            return View(new TransactionViewModel { 
-                listConsumer = listeConsumerMois, 
-                Transaction = listeTransactionMois, 
-                Argent = argent, 
-                ArgentAnnee = argentAnnee, 
-                TransactionTotale = listeTransactionAnnee, 
+            return View(new TransactionViewModel
+            {
+                listConsumer = listeConsumerMois,
+                Transaction = listeTransactionMois,
+                Argent = argent,
+                ArgentAnnee = argentAnnee,
+                TransactionTotale = listeTransactionAnnee,
                 TransactionJanvier = listeTransactionJanvier,
                 TransactionFevrier = listeTransactionFevrier,
                 TransactionMars = listeTransactionMars,

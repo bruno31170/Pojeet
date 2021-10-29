@@ -3,7 +3,7 @@ transparent = true;
 
 $(document).ready(function () {
 
-    console.log("validate OK")
+    console.log("validate Helper OK")
 
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
@@ -11,52 +11,18 @@ $(document).ready(function () {
     // Code for the Validator
     var $validator = $('.wizard-card form').validate({
         rules: {
-            'Profil.Prenom': {
-                required: true,
-                minlength: 3,
-                maxlength: 100,
-            },
-            'Profil.Nom': {
-                required: true,
-                minlength: 3,
-                maxlength: 100,
-            },
-            'Profil.Mail': {
-                email: true,
-                required: true
-            },
-            Pseudo: {
-                required: true,
-                minlength: 3,
-                maxlength: 50,
-            },
-            MotDePasse: {
-                required: true,
-                minlength: 6
-            },
-            password_confirm: {
-                required: true,
-                minlength: 6,
-                equalTo: "#password"
-            },
-            'Profil.NumeroTelephone': {
+            'pictureFile': {
                 required: true,
             },
-            'Profil.DateDeNaissance': {
+            'CompteProvider.Rib.Iban': {
                 required: true,
             },
-            'Profil.Adresse': {
+            'CompteProvider.Rib.Bic': {
                 required: true,
             },
-            'Profil.Ville': {
+            'CompteProvider.Rib.TitulaireCompte': {
                 required: true,
             },
-            'Profil.CodePostal': {
-                required: true,
-            },
-            pays: {
-                required: true,
-            }
         },
     });
 

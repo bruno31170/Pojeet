@@ -26,28 +26,123 @@ namespace Pojeet.Models
         public DbSet<Virement> Virement { get; set; }
         public DbSet<Notification> Notification { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
         {
-
-
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-
-
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-
-
             optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
-
-
         }
-
 
         public void InitializeDb()
         {
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            //AIDE
 
+
+            //CONSUMER
+            this.CompteConsumer.AddRange(
+            new CompteConsumer
+            {
+                Id = 1,
+                Pseudo = "Toto",
+                MotDePasse = Dal.EncodeMD5("lolilol"),
+                ProfilId = 1,
+                DateCreationCompte = new DateTime(2021, 07, 04, 12, 1, 10)
+
+            },
+             new CompteConsumer
+             {
+                 Id = 2,
+                 Pseudo = "tata",
+                 MotDePasse = Dal.EncodeMD5("tatata"),
+                 ProfilId = 2,
+                 DateCreationCompte = new DateTime(2021, 09, 28, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 3,
+                 Pseudo = "Evgeniia",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 3,
+                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 4,
+                 Pseudo = "Bruno",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 4,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 5,
+                 Pseudo = "BricoloDuDimanche",
+                 MotDePasse = Dal.EncodeMD5("bricolo"),
+                 ProfilId = 5,
+                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 6,
+                 Pseudo = "CocoLaBricole",
+                 MotDePasse = Dal.EncodeMD5("cococo"),
+                 ProfilId = 6,
+                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 7,
+                 Pseudo = "EricDu11",
+                 MotDePasse = Dal.EncodeMD5("eric11"),
+                 ProfilId = 7,
+                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+             },
+              new CompteConsumer
+              {
+                  Id = 8,
+                  Pseudo = "TomTom",
+                  MotDePasse = Dal.EncodeMD5("tomtom"),
+                  ProfilId = 8,
+                  DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+              },
+               new CompteConsumer
+               {
+                   Id = 9,
+                   Pseudo = "MaeMae",
+                   MotDePasse = Dal.EncodeMD5("maemae"),
+                   ProfilId = 9,
+                   DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+               },
+                new CompteConsumer
+                {
+                    Id = 10,
+                    Pseudo = "Paulo",
+                    MotDePasse = Dal.EncodeMD5("paulopaulo"),
+                    ProfilId = 9,
+                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                },
+                new CompteConsumer
+                {
+                    Id = 11,
+                    Pseudo = "stephbreton",
+                    MotDePasse = Dal.EncodeMD5("stephbreton"),
+                    ProfilId = 9,
+                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                },
+                 new CompteConsumer
+                 {
+                     Id = 12,
+                     Pseudo = "sylvie",
+                     MotDePasse = Dal.EncodeMD5("sylvie"),
+                     ProfilId = 9,
+                     DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 }
+            );
+            
+            
+          //GESTIONNAIRE 
             this.GestionnairePlateforme.AddRange(
                 new GestionnairePlateforme
                 {
@@ -57,16 +152,8 @@ namespace Pojeet.Models
                     Pseudo ="Bruno",
                     MotDePasse = Dal.EncodeMD5("123456")
                 });
-            this.Aide.AddRange(
-                new Aide
-                {
-                    Id = 1,
-                    Nom = "Bruno",
-                    Mail = "bruno.gmail",
-                    Objet = "Litige avec un Helper",
-                    Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
-                    ProfilId = 1
-                });
+               
+
 
             //PROFIL
             this.Profil.AddRange(
@@ -99,7 +186,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "cecileLepillouer@gmail.com",
                 NumeroTelephone = 687555652,
-                Photo = "avatar_exemple.png",
+                Photo = "",
                 NoteMoyenne = 4
             },
             new Profil
@@ -133,7 +220,206 @@ namespace Pojeet.Models
                 NumeroTelephone = 62574402,
                 Photo = "Avatar-Bruno.jpg"
 
-            });
+            },
+             new Profil
+             {
+                 Id = 5,
+                 Description = "Passioné par le bricolage et l'automobile. Recemment retraité j'ai du temps pour vous aider dans vos réparation !",
+                 Nom = "Danner",
+                 Prenom = "Jean-Paul",
+                 DateDeNaissance = "12/09/1949",
+                 Adresse = "51 Rue Frédéric Chopin",
+                 Ville = "Vesoul",
+                 CodePostal = "70000",
+                 Pays = 0,
+                 Mail = "jpBricolo@orange.fr",
+                 NumeroTelephone = 625744022,
+                 Photo = "jeanpaul.png"
+             },
+              new Profil
+              {
+                  Id = 6,
+                  Description = "Garagiste de profession, vous pouvez avoir confiance en moi !",
+                  Nom = "Dumas",
+                  Prenom = "Corinne",
+                  DateDeNaissance = "12/12/1969",
+                  Adresse = "93 Place du Jeu de Paume",
+                  Ville = "VILLEFRANCHE-SUR-SAÔNE",
+                  CodePostal = "69400",
+                  Pays = 0,
+                  Mail = "coco@gmail.fr",
+                  NumeroTelephone = 625767431,
+                  Photo = "Corinne.png"
+              },
+              new Profil
+              {
+                  Id = 7,
+                  Description = "",
+                  Nom = "Lessard",
+                  Prenom = "Eric",
+                  DateDeNaissance = "12/01/1982",
+                  Adresse = "54 Rue Marie De Médicis",
+                  Ville = "Carcassonne",
+                  CodePostal = "11000",
+                  Pays = 0,
+                  Mail = "erci.lessard@yahoo.fr",
+                  NumeroTelephone = 625766598,
+                  Photo = "Eric.png"
+              },
+               new Profil
+               {
+                   Id = 8,
+                   Description = "Recemment diplômé d'un CAP mécanique je suis à votre disposition pour tout type de service",
+                   Nom = "Ouellet",
+                   Prenom = "Thomas",
+                   DateDeNaissance = "12/01/1995",
+                   Adresse = "42 Place Charles de Gaulle",
+                   Ville = "VILLENAVE-D'ORNON",
+                   CodePostal = "33140",
+                   Pays = 0,
+                   Mail = "thomas.mecanic@yahoo.fr",
+                   NumeroTelephone = 625766565,
+                   Photo = "Thomas.png"
+               },
+                new Profil
+                {
+                    Id = 9,
+                    Description = "",
+                    Nom = "Dufresnes",
+                    Prenom = "Maëlys",
+                    DateDeNaissance = "12/01/1999",
+                    Adresse = "	65 rue Beauvau",
+                    Ville = "Marseille",
+                    CodePostal = "13002",
+                    Pays = 0,
+                    Mail = "maemae13@yahoo.fr",
+                    NumeroTelephone = 625766576,
+                    Photo = "Maëlys.png"
+                },
+                new Profil
+                {
+                    Id = 10,
+                    Description = "",
+                    Nom = "Martin",
+                    Prenom = "Paul",
+                    DateDeNaissance = "12/01/1990",
+                    Adresse = "19 rue de la Hulotais",
+                    Ville = "Saint-Quentin",
+                    CodePostal = "02100",
+                    Pays = 0,
+                    Mail = "paulo@yahoo.fr",
+                    NumeroTelephone = 625766554,
+                    Photo = "Paul.png"
+                },
+                 new Profil
+                 {
+                     Id = 11,
+                     Description = "",
+                     Nom = "Breton",
+                     Prenom = "Stéphanie",
+                     DateDeNaissance = "12/01/1978",
+                     Adresse = "66 rue des Coudriers",
+                     Ville = "Muret",
+                     CodePostal = "31600",
+                     Pays = 0,
+                     Mail = "bretonstephanie@yahoo.fr",
+                     NumeroTelephone = 125766523,
+                     Photo = "stephanie.png"
+                 },
+                 new Profil
+                 {
+                     Id = 12,
+                     Description = "",
+                     Nom = "Riquier",
+                     Prenom = "Sylvie",
+                     DateDeNaissance = "12/07/1974",
+                     Adresse = "107 rue Goya",
+                     Ville = "LE PERREUX-SUR-MARNE",
+                     CodePostal = "94170",
+                     Pays = 0,
+                     Mail = "riquier@yahoo.fr",
+                     NumeroTelephone = 125766523,
+                     Photo = "Sylvie.png"
+                 }
+                );
+
+            //CompteHelper
+            this.CompteProvider.AddRange(
+                new CompteProvider
+                {
+                    Id = 1,
+                    CompteConsumerId = 2,
+                    DocumentIdentification = "cniTEst.png",
+                    RibId = 1,
+                    Etat = Etat.Valide,
+                    Competence = "Moteur,Pneu",
+                    DateCreationCompte = new DateTime(2021, 09, 23, 12, 1, 10),
+                },
+                new CompteProvider
+                {
+                    Id = 2,
+                    CompteConsumerId = 5,
+                    DocumentIdentification = "cniTEst.png",
+                    RibId = 2,
+                    Etat = Etat.Valide,
+                    Competence = "Habitacle,Pneu",
+                    DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10),
+                },
+                 new CompteProvider
+                 {
+                     Id = 3,
+                     CompteConsumerId = 7,
+                     DocumentIdentification = "cniTEst.png",
+                     RibId = 3,
+                     Etat = Etat.DemandeEnCours,
+                     Competence = "Moteur,Pneu, Nettoyage, Habitacle",
+                     DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10),
+                 },
+                  new CompteProvider
+                  {
+                      Id = 4,
+                      CompteConsumerId = 6,
+                      DocumentIdentification = "cniTEst.png",
+                      RibId = 4,
+                      Etat = Etat.DemandeEnCours,
+                      Competence = "Moteur,Pneu,Habitacle",
+                      DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10),
+                  }
+             );
+
+            //RIB
+            this.Rib.AddRange(
+                new Rib
+                {
+                    Id = 1,
+                    TitulaireCompte = "Le Pillouer",
+                    Iban = "FR56789899878766567878998",
+                    Bic = "VDHDBHBD66567",
+                },
+                 new Rib
+                 {
+                     Id = 2,
+                     TitulaireCompte = "Durand",
+                     Iban = "FR56789899878766567878998",
+                     Bic = "VDHDBHBD66567",
+                 },
+                 new Rib
+                 {
+                     Id = 3,
+                     TitulaireCompte = "Dumas",
+                     Iban = "FR567898998787665678878789",
+                     Bic = "VDHDBHHHG6567",
+                 },
+                  new Rib
+                  {
+                      Id = 4,
+                      TitulaireCompte = "Lessard",
+                      Iban = "FR56789899878766567888745",
+                      Bic = "GHYFHVHHG6567",
+                  }
+                );
+
+
 
             //ANNONCE
             this.Annonce.AddRange(
@@ -212,11 +498,7 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé
-
-
             },
-
-
              new Annonce
              {
                  Id = 6,
@@ -230,8 +512,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -246,8 +526,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -262,8 +540,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -278,8 +554,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 2,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -294,8 +568,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -310,9 +582,7 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 2,
                  EtatAnnonce = EtatAnnonce.Validé
-
              },
-
             new Annonce
             {
                 Id = 12,
@@ -328,7 +598,6 @@ namespace Pojeet.Models
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "pose_longue_01.jpg"
             },
-
             new Annonce
             {
                 Id = 13,
@@ -356,8 +625,6 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                 ProfilId = 1,
                 EtatAnnonce = EtatAnnonce.Validé
-
-
             },
             new Annonce
             {
@@ -372,11 +639,7 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé
-
-
             },
-
-
              new Annonce
              {
                  Id = 16,
@@ -390,8 +653,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -406,8 +667,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -422,8 +681,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -438,8 +695,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -619,45 +874,6 @@ namespace Pojeet.Models
              });
 
 
-
-
-            //CONSUMER
-            this.CompteConsumer.AddRange(
-            new CompteConsumer
-            {
-                Id = 1,
-                Pseudo = "Toto",
-                MotDePasse = Dal.EncodeMD5("lolilol"),
-                ProfilId = 1,
-                DateCreationCompte = new DateTime(2021, 10, 04, 12, 1, 10)
-
-            },
-             new CompteConsumer
-             {
-                 Id = 2,
-                 Pseudo = "tata",
-                 MotDePasse = Dal.EncodeMD5("tatata"),
-                 ProfilId = 2,
-                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
-             },
-             new CompteConsumer
-             {
-                 Id = 3,
-                 Pseudo = "Evgeniia",
-                 MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 3,
-                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
-             },
-             new CompteConsumer
-             {
-                 Id = 4,
-                 Pseudo = "Bruno",
-                 MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 4,
-                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
-             }
-            );
-
             //MESSAGE
             this.Message.AddRange(
             new Message
@@ -737,252 +953,266 @@ namespace Pojeet.Models
             }
            );
 
-
-           /* TRANSACTION*/
-
-            this.Transactions.AddRange(
-                new Transaction
+            //AIDE
+            this.Aide.AddRange(
+                new Aide
                 {
-                    Reference = 123,
-                    Date = new DateTime(2021, 01, 20, 12, 1, 10),
-                    AnnonceId = 4,
-                    Montant = 20.15,
-                    EtatTransaction = EtatTransaction.Valide,
-                    ProfilId = 3
+                    Id = 1,
+                    Nom = "Bruno",
+                    Mail = "bruno.gmail",
+                    Objet = "Litige avec un Helper",
+                    Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
+                    ProfilId = 1
+                });
 
-                },
-            new Transaction
-            {
-                Reference = 125,
-                Date = new DateTime(2021, 02, 27, 12, 1, 10),
-                AnnonceId = 1,
-                Montant = 5.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
 
-            },
-            new Transaction
-            {
-                Reference = 127,
-                Date = new DateTime(2021, 03, 27, 01, 1, 10),
-                AnnonceId = 3,
-                Montant = 10.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
-            },
-            new Transaction
-            {
-                Reference = 128,
-                Date = new DateTime(2021, 04, 09, 12, 1, 10),
-                AnnonceId = 5,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
-            },
-            new Transaction
-            {
-                Reference = 129,
 
-                Date = new DateTime(2021,10 , 10, 12, 1, 10),
+            //TRANSACTION
 
-                AnnonceId = 2,
-                Montant = 39.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
-            },
-            new Transaction
-            {
-                Reference = 130,
-                Date = new DateTime(2021, 06, 10, 12, 1, 10),
-                AnnonceId = 3,
-                Montant = 155,
-                EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+            // this.Transactions.AddRange(
+            //     new Transaction
+            //     {
+            //         Reference = 123,
+            //         Date = new DateTime(2021, 01, 20, 12, 1, 10),
+            //         AnnonceId = 4,
+            //         Montant = 20.15,
+            //         EtatTransaction = EtatTransaction.Valide,
+            //         ProfilId = 3
 
-            },
-            new Transaction
-            {
-                Reference = 54,
-                Date = new DateTime(2021, 07, 20, 12, 1, 10),
-                AnnonceId = 4,
-                Montant = 100.15,
-                EtatTransaction = EtatTransaction.Valide,
-                ProfilId = 3
+            //     },
+            // new Transaction
+            // {
+            //     Reference = 125,
+            //     Date = new DateTime(2021, 02, 27, 12, 1, 10),
+            //     AnnonceId = 1,
+            //     Montant = 5.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 4
 
-            },
-            new Transaction
-            {
-                Reference = 57,
-                Date = new DateTime(2021, 08, 27, 12, 1, 10),
-                AnnonceId = 1,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+            // },
+            // new Transaction
+            // {
+            //     Reference = 127,
+            //     Date = new DateTime(2021, 03, 27, 01, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 10.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 1
+            // },
+            // new Transaction
+            // {
+            //     Reference = 128,
+            //     Date = new DateTime(2021, 04, 09, 12, 1, 10),
+            //     AnnonceId = 5,
+            //     Montant = 40.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 3
+            // },
+            // new Transaction
+            // {
+            //     Reference = 129,
 
-            },
-            new Transaction
-            {
-                Reference = 58,
-                Date = new DateTime(2021, 09, 27, 01, 1, 10),
-                AnnonceId = 3,
-                Montant = 200.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
-            },
-            new Transaction
-            {
-                Reference = 75,
-                Date = new DateTime(2021, 10, 09, 12, 1, 10),
-                AnnonceId = 5,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
-            },
-            new Transaction
-            {
-                Reference = 74,
-                Date = new DateTime(2021, 11, 10, 12, 1, 10),
-                AnnonceId = 2,
-                Montant = 39.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
-            },
-            new Transaction
-            {
-                Reference = 72,
-                Date = new DateTime(2021, 12, 10, 12, 1, 10),
-                AnnonceId = 3,
-                Montant = 150,
-                EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+            //     Date = new DateTime(2021, 10, 10, 12, 1, 10),
 
-            },
-            new Transaction
-            {
-                Reference = 402,
-                Date = new DateTime(2021, 01, 20, 12, 1, 10),
-                AnnonceId = 4,
-                Montant = 20.15,
-                EtatTransaction = EtatTransaction.Valide,
-                ProfilId = 3
+            //     AnnonceId = 2,
+            //     Montant = 39.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 4
+            // },
+            // new Transaction
+            // {
+            //     Reference = 130,
+            //     Date = new DateTime(2021, 06, 10, 12, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 155,
+            //     EtatTransaction = EtatTransaction.En_attente,
+            //     ProfilId = 1
 
-            },
-            new Transaction
-            {
-                Reference = 555,
-                Date = new DateTime(2021, 02, 27, 12, 1, 10),
-                AnnonceId = 1,
-                Montant = 5.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+            // },
+            // new Transaction
+            // {
+            //     Reference = 54,
+            //     Date = new DateTime(2021, 07, 20, 12, 1, 10),
+            //     AnnonceId = 4,
+            //     Montant = 100.15,
+            //     EtatTransaction = EtatTransaction.Valide,
+            //     ProfilId = 3
 
-            },
-            new Transaction
-            {
-                Reference = 999,
-                Date = new DateTime(2021, 01, 27, 01, 1, 10),
-                AnnonceId = 3,
-                Montant = 10.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
-            },
-            new Transaction
-            {
-                Reference = 444,
-                Date = new DateTime(2021, 01, 09, 12, 1, 10),
-                AnnonceId = 5,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
-            },
-            new Transaction
-            {
-                Reference = 111,
-                Date = new DateTime(2021, 03, 10, 12, 1, 10),
-                AnnonceId = 2,
-                Montant = 39.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
-            },
-            new Transaction
-            {
-                Reference = 1130,
-                Date = new DateTime(2021, 06, 10, 12, 1, 10),
-                AnnonceId = 3,
-                Montant = 155,
-                EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+            // },
+            // new Transaction
+            // {
+            //     Reference = 57,
+            //     Date = new DateTime(2021, 08, 27, 12, 1, 10),
+            //     AnnonceId = 1,
+            //     Montant = 40.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 2
 
-            },
-            new Transaction
-            {
-                Reference = 254,
-                Date = new DateTime(2021, 07, 20, 12, 1, 10),
-                AnnonceId = 4,
-                Montant = 100.15,
-                EtatTransaction = EtatTransaction.Valide,
-                ProfilId = 3
+            // },
+            // new Transaction
+            // {
+            //     Reference = 58,
+            //     Date = new DateTime(2021, 09, 27, 01, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 200.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 1
+            // },
+            // new Transaction
+            // {
+            //     Reference = 75,
+            //     Date = new DateTime(2021, 10, 09, 12, 1, 10),
+            //     AnnonceId = 5,
+            //     Montant = 40.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 3
+            // },
+            // new Transaction
+            // {
+            //     Reference = 74,
+            //     Date = new DateTime(2021, 11, 10, 12, 1, 10),
+            //     AnnonceId = 2,
+            //     Montant = 39.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 4
+            // },
+            // new Transaction
+            // {
+            //     Reference = 72,
+            //     Date = new DateTime(2021, 12, 10, 12, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 150,
+            //     EtatTransaction = EtatTransaction.En_attente,
+            //     ProfilId = 1
 
-            },
-            new Transaction
-            {
-                Reference = 587,
-                Date = new DateTime(2021, 07, 27, 12, 1, 10),
-                AnnonceId = 1,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+            // },
+            // new Transaction
+            // {
+            //     Reference = 402,
+            //     Date = new DateTime(2021, 01, 20, 12, 1, 10),
+            //     AnnonceId = 4,
+            //     Montant = 20.15,
+            //     EtatTransaction = EtatTransaction.Valide,
+            //     ProfilId = 3
 
-            },
-            new Transaction
-            {
-                Reference = 598,
-                Date = new DateTime(2021, 09, 27, 01, 1, 10),
-                AnnonceId = 3,
-                Montant = 200.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
-            },
-            new Transaction
-            {
-                Reference = 745,
-                Date = new DateTime(2021, 10, 09, 12, 1, 10),
-                AnnonceId = 5,
-                Montant = 40.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
-            },
-            new Transaction
-            {
-                Reference = 764,
-                Date = new DateTime(2021, 01, 10, 12, 1, 10),
-                AnnonceId = 2,
-                Montant = 39.5,
-                EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
-            },
-            new Transaction
-            {
-                Reference = 772,
-                Date = new DateTime(2021, 01, 10, 12, 1, 10),
-                AnnonceId = 3,
-                Montant = 150,
-                EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+            // },
+            // new Transaction
+            // {
+            //     Reference = 555,
+            //     Date = new DateTime(2021, 02, 27, 12, 1, 10),
+            //     AnnonceId = 1,
+            //     Montant = 5.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 2
 
-            });
+            // },
+            // new Transaction
+            // {
+            //     Reference = 999,
+            //     Date = new DateTime(2021, 01, 27, 01, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 10.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 1
+            // },
+            // new Transaction
+            // {
+            //     Reference = 444,
+            //     Date = new DateTime(2021, 01, 09, 12, 1, 10),
+            //     AnnonceId = 5,
+            //     Montant = 40.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 3
+            // },
+            // new Transaction
+            // {
+            //     Reference = 111,
+            //     Date = new DateTime(2021, 03, 10, 12, 1, 10),
+            //     AnnonceId = 2,
+            //     Montant = 39.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 4
+            // },
+            // new Transaction
+            // {
+            //     Reference = 1130,
+            //     Date = new DateTime(2021, 06, 10, 12, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 155,
+            //     EtatTransaction = EtatTransaction.En_attente,
+            //     ProfilId = 1
 
-            this.Paiement.AddRange(
-           new Paiement
-           {
-               Id = 1,
-               Date = new DateTime(2004, 11, 20, 12, 1, 10),
-               TransactionMontant = 15,
-               TransactionReference = 130,
-               ProfilId = 3,
-               StatutPaiement = StatutPaiement.Payé
+            // },
+            // new Transaction
+            // {
+            //     Reference = 254,
+            //     Date = new DateTime(2021, 07, 20, 12, 1, 10),
+            //     AnnonceId = 4,
+            //     Montant = 100.15,
+            //     EtatTransaction = EtatTransaction.Valide,
+            //     ProfilId = 3
 
-           }); 
+            // },
+            // new Transaction
+            // {
+            //     Reference = 587,
+            //     Date = new DateTime(2021, 07, 27, 12, 1, 10),
+            //     AnnonceId = 1,
+            //     Montant = 40.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 2
+
+            // },
+            // new Transaction
+            // {
+            //     Reference = 598,
+            //     Date = new DateTime(2021, 09, 27, 01, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 200.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 1
+            // },
+            // new Transaction
+            // {
+            //     Reference = 745,
+            //     Date = new DateTime(2021, 10, 09, 12, 1, 10),
+            //     AnnonceId = 5,
+            //     Montant = 40.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 3
+            // },
+            // new Transaction
+            // {
+            //     Reference = 764,
+            //     Date = new DateTime(2021, 01, 10, 12, 1, 10),
+            //     AnnonceId = 2,
+            //     Montant = 39.5,
+            //     EtatTransaction = EtatTransaction.Termine,
+            //     ProfilId = 4
+            // },
+            // new Transaction
+            // {
+            //     Reference = 772,
+            //     Date = new DateTime(2021, 01, 10, 12, 1, 10),
+            //     AnnonceId = 3,
+            //     Montant = 150,
+            //     EtatTransaction = EtatTransaction.En_attente,
+            //     ProfilId = 1
+
+            // });
+
+            // this.Paiement.AddRange(
+            //new Paiement
+            //{
+            //    Id = 1,
+            //    Date = new DateTime(2004, 11, 20, 12, 1, 10),
+            //    TransactionMontant = 15,
+            //    TransactionReference = 130,
+            //    ProfilId = 3,
+            //    StatutPaiement = StatutPaiement.Payé
+
+            //});
+
 
             this.Avis.AddRange(
            new Avis
@@ -1013,46 +1243,7 @@ namespace Pojeet.Models
                 ProfilId = 2
             });
 
-            //RIB
-            this.Rib.AddRange(
-                new Rib
-                {
-                    Id = 1,
-                    TitulaireCompte = "Le Pillouer",
-                    Iban = "FR56789899878766567878998",
-                    Bic = "VDHDBHBD66567",
-                },
-                 new Rib
-                 {
-                     Id = 2,
-                     TitulaireCompte = "Durand",
-                     Iban = "FR56789899878766567878998",
-                     Bic = "VDHDBHBD66567",
-                 }
-                );
 
-            //CompteHelper
-            this.CompteProvider.AddRange(
-                new CompteProvider
-                {
-                    Id = 1,
-                    CompteConsumerId = 2,
-                    DocumentIdentification = "cniTEst.png",
-                    RibId = 1,
-                    Etat = 0,
-                    Competence = "Moteur,Pneu",
-                    DateCreationCompte = DateTime.Now,
-                },
-                new CompteProvider
-                {
-                    Id = 2,
-                    CompteConsumerId = 4,
-                    DocumentIdentification = "cniTEst.png",
-                    RibId = 2,
-                    Etat = 0,
-                    Competence = "Habitacle,Pneu",
-                    DateCreationCompte = DateTime.Now,
-                });
 
             this.SaveChanges();
         }

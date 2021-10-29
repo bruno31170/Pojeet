@@ -21,6 +21,7 @@ namespace Pojeet.Models
         double ObtenirReste(int reference);
         int ObtenirNbTransaction(int id);
         Paiement ObtenirPaiement(int reference);
+        Virement ObtenirVirement(int reference);
         List<CompteProvider> ObtientTousHelpersAValider();
     }
 }

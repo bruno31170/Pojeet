@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/img/logo.ico" />
 
 
 
@@ -120,8 +121,8 @@
                                     <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
                                 </ul>
                             }
-                            }
-                        </li>
+                        }
+                    </li>
                 </ul>
             </div>
         </div>
@@ -162,9 +163,9 @@
                             var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
                         }
                         @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
-                        @if(provider1 == null)
+                        @if (provider1 == null)
                         {
-                            <li >
+                            <li>
                                 <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                             </li>
                         }

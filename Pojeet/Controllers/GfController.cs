@@ -1,9 +1,16 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Claims;
+
 using System.Threading.Tasks;
 
 namespace Pojeet.Controllers
@@ -12,14 +19,60 @@ namespace Pojeet.Controllers
     {
         public IDalTransaction dal;
         public DalInbox dalinbox;
-        public GfController()
+        public Dal dal1;
+        private IWebHostEnvironment _env;
+        public GfController(IWebHostEnvironment env)
         {
             this.dal = new DalTransaction();
             this.dalinbox = new DalInbox();
+            this.dal1 = new Dal();
+
+        }
+
+        public IActionResult Index()
+        {
+            GPViewModel viewModel = new GPViewModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (viewModel.Authentifie)
+            {
+                viewModel.gestionnairePlatforme = dal1.ObtenirGP(HttpContext.User.Identity.Name);
+                return View(viewModel);
+            }
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult Index(GPViewModel viewModel, string returnUrl)
+        {
+            if (viewModel.gestionnairePlatforme.MotDePasse != null && viewModel.gestionnairePlatforme.Pseudo != null)
+            {
+                GestionnairePlateforme gestionnairePlatforme = dal1.AuthentifierGP(viewModel.gestionnairePlatforme.Pseudo, viewModel.gestionnairePlatforme.MotDePasse);
+                if (gestionnairePlatforme != null)
+                {
+                    var userClaims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.Name, gestionnairePlatforme.Id.ToString()),
+                    };
+
+                    var ClaimIdentity = new ClaimsIdentity(userClaims, "User Identity");
+
+                    var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
+                    HttpContext.SignInAsync(userPrincipal);
+
+                    if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        return Redirect(returnUrl);
+
+                    return Redirect("AdminIndex");
+                }
+                //ModelState.AddModelError("Utilisateur.Pseudo", "Pseudo et/ou mot de passe incorrect(s)");
+                viewModel.ErrorMessage = "Pseudo et/ou mot de passe incorrect(s)";
+                return View(viewModel);
+            }
+            return View(viewModel);
         }
 
         public IActionResult AdminIndex()
         {
+            
+
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
@@ -60,7 +113,7 @@ namespace Pojeet.Controllers
             return View(new CommandeViewModel
             {
                 listConsumer = listeConsumerJour,
-                Listetransaction = listeTransactionJour,
+                ListetransactionJour = listeTransactionJour,
                 Argent = argent
             });
 
@@ -70,7 +123,9 @@ namespace Pojeet.Controllers
 
         public IActionResult AdminCommandes()
         {
-            List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
+            TransactionViewModel tvm = GetComptat();
+            return View(tvm);
+            /*List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
             List<Transaction> listeTransaction = new List<Transaction>();
@@ -110,9 +165,9 @@ namespace Pojeet.Controllers
             return View(new TransactionViewModel
             {
                 listConsumer = listeConsumer,
-                Transaction = listeTransaction,
+                Transaction = listeTransactionMois,
                 Argent = argent
-            });
+            });*/
 
 
         }
@@ -129,6 +184,7 @@ namespace Pojeet.Controllers
                 listProvider = list,
                 ListConsumer = listConsum,
             });
+
         }
 
         public ActionResult Consumer(int id)
@@ -146,36 +202,68 @@ namespace Pojeet.Controllers
             });
         }
 
-        //public ActionResult Helper(int id)
-        //{
-        //    CompteConsumer consumer = new CompteConsumer();
-        //    consumer = dal.ObtientCompteConsumer(id);
+        public ActionResult Helper(int id)
+        {
+            CompteConsumer consumer = new CompteConsumer();
+            consumer = dal.ObtientCompteConsumer(id);
 
-        //    List<Transaction> transactions = new List<Transaction>();
-        //    transactions = dal.ObtientTransaction(consumer.ProfilId);
+            List<Transaction> transactions = new List<Transaction>();
+            transactions = dal.ObtientTransaction(consumer.ProfilId);
 
-        //    return View(new ConsumerViewModel
-        //    {
-        //        Consumer = consumer,
-        //        ListeTransaction = transactions
-        //    });
-        //}
+            return View(new ConsumerViewModel
+            {
+                Consumer = consumer,
+                ListeTransaction = transactions
+            });
+        }
         public ActionResult Commande(int reference)
         {
-            
             Transaction transaction = dal.ObtientUneTransaction(reference);
-            CompteConsumer compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);
+            CompteConsumer compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);            
             double MargeBrute = dal.ObtenirMargeBrute(transaction.Reference);
             double Reste = dal.ObtenirReste(transaction.Reference);
-            int NbTransaction = dal.ObtenirNbTransaction(transaction.Profil.Id);
+            int NbTransaction = dal.ObtenirNbTransaction(transaction.ProfilId);
             Paiement paiement = dal.ObtenirPaiement(transaction.Reference);
-            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction, Paiement =paiement });
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute = MargeBrute, Reste = Reste, NbTransaction = NbTransaction, Paiement = paiement });
+        }
 
-           }
+        //[HttpPost]
+        //public IActionResult CreateVirement(int annonceId, int profilId, Virement newVirement)
+        //{
+        //    using (DalInbox ctx = new DalInbox())
+        //    {
+        //        ctx.CreerVirement(newVirement.VirementMontant, newVirement.TransactionReference, newVirement.ProfilId);
+        //        return RedirectToAction("Commande");
+
+
+        //    }
+        //} 
+
 
         public ActionResult Comptabilite()
         {
 
+            TransactionViewModel tvm = GetComptat();
+            return View(tvm);
+
+        }
+        [Produces("application/json")]
+        public ActionResult GetTransaction()
+        {
+            try
+            {
+                
+
+                return Ok(GetComptat());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
+        public TransactionViewModel GetComptat()
+        {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
@@ -277,6 +365,98 @@ namespace Pojeet.Controllers
             argentNovembre.ChiffreDaffaire = 0;
             argentDecembre.ChiffreDaffaire = 0;
 
+            //Liste creation compte consumer
+            List<CompteConsumer> listeConsumerJanvier = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerFevrier = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerMars = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerAvril = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerMai = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerJuin = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerJuillet = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerAout = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerSeptembre = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerOctobre = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerNovembre = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerDecembre = new List<CompteConsumer>();
+
+            //Liste compte consumer de l'année
+            List<CompteConsumer> listeConsumerAnnee = new List<CompteConsumer>();
+            foreach (var item in listeConsumer)
+            {
+                if (item.DateCreationCompte.Year == DateTime.Now.Year)
+                {
+                    listeConsumerAnnee.Add(item);
+                }
+            }
+            //FOREACH COMPTE CONSUMER
+            foreach (var item in listeConsumerAnnee)
+            {
+                int dateMoi = Convert.ToInt32(item.DateCreationCompte.Month);
+
+                if (dateMoi == 1)
+                {
+                    listeConsumerJanvier.Add(item);
+
+                }
+                if (dateMoi == 2)
+                {
+                    listeConsumerFevrier.Add(item);
+
+                }
+                if (dateMoi == 3)
+                {
+                    listeConsumerMars.Add(item);
+                    ;
+                }
+                if (dateMoi == 4)
+                {
+                    listeConsumerAvril.Add(item);
+
+                }
+                if (dateMoi == 5)
+                {
+                    listeConsumerMai.Add(item);
+
+                }
+                if (dateMoi == 6)
+                {
+                    listeConsumerJuin.Add(item);
+
+                }
+                if (dateMoi == 7)
+                {
+                    listeConsumerJuillet.Add(item);
+
+                }
+                if (dateMoi == 8)
+                {
+                    listeConsumerAout.Add(item);
+
+                }
+                if (dateMoi == 9)
+                {
+                    listeConsumerSeptembre.Add(item);
+
+                }
+                if (dateMoi == 10)
+                {
+                    listeConsumerOctobre.Add(item);
+
+                }
+                if (dateMoi == 11)
+                {
+                    listeConsumerNovembre.Add(item);
+
+                }
+                if (dateMoi == 12)
+                {
+                    listeConsumerDecembre.Add(item);
+
+                }
+
+            }
+
+            // FOREACH TRANSACTION ET ARGENT
             foreach (var item in listeTransactionAnnee)
             {
                 int dateMoi = Convert.ToInt32(item.Date.Month);
@@ -368,12 +548,21 @@ namespace Pojeet.Controllers
 
             }
 
-            return View(new TransactionViewModel { 
-                listConsumer = listeConsumerMois, 
-                Transaction = listeTransactionMois, 
-                Argent = argent, 
-                ArgentAnnee = argentAnnee, 
-                TransactionTotale = listeTransactionAnnee, 
+
+            List<CompteProvider> listeProvider = new List<CompteProvider>();
+            listeProvider = dal.ObtientTousHelpers();
+
+
+            return (new TransactionViewModel
+
+            {   
+                CompteConsumerTotal = listeConsumer,
+                CompteProviderTotal = listeProvider,
+                listConsumer = listeConsumerMois,
+                Transaction = listeTransactionMois,
+                Argent = argent,
+                ArgentAnnee = argentAnnee,
+                TransactionTotale = listeTransactionAnnee,
                 TransactionJanvier = listeTransactionJanvier,
                 TransactionFevrier = listeTransactionFevrier,
                 TransactionMars = listeTransactionMars,
@@ -398,7 +587,23 @@ namespace Pojeet.Controllers
                 ArgentOctobre = argentOctobre,
                 ArgentNovembre = argentNovembre,
                 ArgentDecembre = argentDecembre,
+                CompteConsumerJanvier = listeConsumerJanvier,
+                CompteConsumerFevrier = listeConsumerFevrier,
+                CompteConsumerMars = listeConsumerMars,
+                CompteConsumerAvril = listeConsumerAvril,
+                CompteConsumerMai = listeConsumerMai,
+                CompteConsumerJuin = listeConsumerJuin,
+                CompteConsumerJuillet = listeConsumerJuillet,
+                CompteConsumerAout = listeConsumerAout,
+                CompteConsumerSeptembre = listeConsumerSeptembre,
+                CompteConsumerOctobre = listeConsumerOctobre,
+                CompteConsumerNovembre = listeConsumerNovembre,
+                CompteConsumerDecembre = listeConsumerDecembre,
             });
+        
+            
+
+
         }
     }
 }

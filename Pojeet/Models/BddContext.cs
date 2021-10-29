@@ -28,8 +28,9 @@ namespace Pojeet.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
         }
 
         public void InitializeDb()
@@ -37,6 +38,7 @@ namespace Pojeet.Models
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
+
 
             //CONSUMER
             this.CompteConsumer.AddRange(
@@ -138,6 +140,19 @@ namespace Pojeet.Models
                      DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
                  }
             );
+            
+            
+          //GESTIONNAIRE 
+            this.GestionnairePlateforme.AddRange(
+                new GestionnairePlateforme
+                {
+                    Id = 1,
+                    Nom ="Bruno",
+                    Prenom ="Boulet",
+                    Pseudo ="Bruno",
+                    MotDePasse = Dal.EncodeMD5("123456")
+                });
+               
 
 
             //PROFIL
@@ -155,7 +170,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 687555634,
-                Photo = null,
+                Photo = "Avatar-Ines.png",
                 NoteMoyenne = 2
             },
             new Profil
@@ -188,8 +203,7 @@ namespace Pojeet.Models
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
                 NoteMoyenne = 3,
-
-                Photo = "https://bootdey.com/img/Content/avatar/avatar6.png"
+                Photo="avatar-femme.jpg"
             },
             new Profil
             {
@@ -204,7 +218,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "bruno@gmail.com",
                 NumeroTelephone = 62574402,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
+                Photo = "Avatar-Bruno.jpg"
 
             },
              new Profil
@@ -536,9 +550,9 @@ namespace Pojeet.Models
                  DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 35,
+                 Prix = 500,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 3,
+                 ProfilId = 2,
                  EtatAnnonce = EtatAnnonce.Validé
              },
              new Annonce

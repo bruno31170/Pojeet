@@ -245,8 +245,10 @@
                                         <p>@annonce.DateParution.ToString("dd MMM yyyy")</p>
                                     </div>
                                     <div class=" row flex-row">
+
                                         <div class="wall_post_img col-12 col-md-6">
                                             <img src="~/media/annonce/@annonce.Photo" alt="">
+
                                         </div>
                                         <div class="post_info col-12 col-md-6 flex-col justify-content-between">
                                             <div class="post_info_text ml-1">
@@ -542,7 +544,7 @@
                                                 @foreach (var avis in Model.ListeAvis)
                                                 {
                                                     <li class="clearfix mt-3 bg-white" style="border-radius:25px">
-                                                        <img src=@avis.CompteConsumer.Profil.Photo class="avatar" alt="">
+                                                        <img src="~/media/profil/@avis.CompteConsumer.Profil.Photo" class="avatar" alt="">
                                                         <div class="post-comments">
                                                             <p>
                                                                 <span>
@@ -582,9 +584,6 @@
 
                                             {
                                                 <div style="text-align:center"> Vous n'avez pas encore d'avis.</div>
-
-
-
                                             }
 
                                         </ul>

@@ -378,6 +378,12 @@ namespace Pojeet.Models
             Conversation conversation = _context.Conversation.Where(c => c.Annonce.Id == transaction.Annonce.Id && (c.Auteur_Message.ProfilId==profilId || c.Annonce.ProfilId== profilId)).FirstOrDefault();
             return conversation;
         }
+
+        public Transaction ObtenirTransaction(int id1, int id2)
+        {
+            Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == id1 && r.ProfilId==id2).Include(r => r.Annonce).FirstOrDefault();
+            return transaction;
+        }
     }
 
     }

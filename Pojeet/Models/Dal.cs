@@ -154,6 +154,30 @@ namespace Pojeet.Models
             return user;
         }
 
+        public GestionnairePlateforme AuthentifierGP(string pseudo, string password)
+        {
+            string motDePasse = EncodeMD5(password);
+            GestionnairePlateforme user = this._context.GestionnairePlateforme.Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
+            return user;
+        }
+
+        public GestionnairePlateforme ObtenirGP(int id)
+        {
+            return _context.GestionnairePlateforme.Where(c => c.Id == id).FirstOrDefault();
+
+        }
+
+        public GestionnairePlateforme ObtenirGP(string idStr)
+        {
+            int id;
+            if (int.TryParse(idStr, out id))
+            {
+                return this.ObtenirGP(id);
+            }
+            return null;
+        }
+
+
 
         public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
            string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
@@ -405,6 +429,16 @@ namespace Pojeet.Models
                 };
                 _context.Add(notificationTransaction);
                 _context.SaveChanges();
+
+                }
+
+            if (etat == EtatTransaction.Valide)
+            {
+                Paiement paiement = _context.Paiement.Where(c => c.TransactionReference == transaction.Reference).Include(c => c.ProfilPayant).FirstOrDefault();
+                Notification notificationTransaction = _context.Notification.Where(c => c.ProfilId == paiement.Id && c.transaction == transaction).FirstOrDefault();
+                _context.RemoveRange(notificationTransaction);
+                _context.SaveChanges();
+
             }
         }
 

@@ -32,6 +32,10 @@
                                     <h5>02/01/2021</h5>
                                 </div>
                             </div>
+                            <div class="ml-auto mr-4" style="color: white;">
+                                <a class="btn-primary-e align-items-center" style="color: white" href="mailto:@Model.Transaction.Profil.Mail">Contacter</a>
+
+                            </div>
 
                         </div>
 
@@ -63,7 +67,7 @@
                         <div class="flex-row">
                             <span>Transaction(s)</span>
                             <div class="ml-2 count_commande popup-open">
-                                <span>@Model.NbTransaction</span>
+                                <span>8</span>
                             </div>
                         </div>
                     </div>
@@ -85,7 +89,10 @@
                                     <h5>29/08/2021</h5>
                                 </div>
                             </div>
+                            <div class="ml-auto mr-4" style="color: white;">
+                                <a class="btn-primary-e align-items-center" style="color: white" href="mailto:@Model.Transaction.Annonce.profil.Mail">Contacter</a>
 
+                            </div>
                         </div>
 
                         <div class="flex-row border-bottom-e-1">
@@ -334,16 +341,47 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">N/A</th>
-                            <td>N/A</td>
-                            <td>141 €</td>
-                            <td>Valide</td>
-                            <td> <a class="p-1 bold" style="color: coral;" href="">Transferer</a></td>
+                        @if (Model.Transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+                        {
 
-                        </tr>
+
+                            <tr>
+                                <th scope="row">@Model.Virement.Id</th>
+                                <td>@Model.Virement.Date</td>
+                                <td>@Model.Transaction.MontantHelper</td>
+                                <td>@Model.Virement.StatutVirement</td>
+                                <td> Virement effectué</td>
+
+                            </tr>
+                        }
+                        @if (Model.Transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                        {
+                            @using (Html.BeginForm("CreateVirement", "Gf", FormMethod.Post))
+                            {
+                                <tr>
+                                    <th scope="row">N/A</th>
+                                    <td>N/A</td>
+                                    <td>@Model.Transaction.MontantHelper</td>
+                                    <td>N/A</td>
+                                    <td> <button type="submit" class="btn-primary-e">Transferer</button></td>
+
+                                </tr>
+                                    }                         
+                        }
+                        else
+                        {
+
+                            <tr>
+                                <th scope="row">N/A</th>
+                                <td>N/A</td>
+                                <td>@Model.Transaction.MontantHelper</td>
+                                <td>N/A</td>
+                                <td>En attente</td>
+
+                            </tr>
+                        }
                     </tbody>
-                </table>
+                    </table>
             </div>
             <!-- Information Transaction Helper-->
         </div>

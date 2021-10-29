@@ -20,10 +20,10 @@ namespace Pojeet.Models
         }
 
 
-        public void PosterAnnonce(int profilId, TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution, 
+        public void PosterAnnonce(int profilId, TypeAnnonce typeAnnonce, string titreAnnonce, string description, DateTime dateParution,
             string localisation, DateTime dateButoir, int prix, CategorieAnnonce categorieAnnonce, IFormFile photo, EtatAnnonce etatAnnonce)
         {
-            
+
             if (photo != null)
             {
                 Annonce anonce = new Annonce
@@ -42,9 +42,9 @@ namespace Pojeet.Models
                     EtatAnnonce = etatAnnonce
 
                 };
-             
-            _context.Annonce.Add(anonce);
-            _context.SaveChanges();
+
+                _context.Annonce.Add(anonce);
+                _context.SaveChanges();
             }
 
             if (photo == null)
@@ -60,12 +60,12 @@ namespace Pojeet.Models
                     DateButoir = dateButoir,
                     Prix = prix,
                     CategorieDeAnnonce = categorieAnnonce,
-                    
+
                     ProfilId = profilId,
                     EtatAnnonce = etatAnnonce
 
                 };
-                
+
                 _context.Annonce.Add(anonce);
                 _context.SaveChanges();
             }
@@ -87,5 +87,8 @@ namespace Pojeet.Models
                 _context.SaveChanges();
             }
         }
+
+
+    
     }
 }

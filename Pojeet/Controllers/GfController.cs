@@ -71,6 +71,8 @@ namespace Pojeet.Controllers
 
         public IActionResult AdminIndex()
         {
+            
+
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
@@ -111,7 +113,7 @@ namespace Pojeet.Controllers
             return View(new CommandeViewModel
             {
                 listConsumer = listeConsumerJour,
-                Listetransaction = listeTransactionJour,
+                ListetransactionJour = listeTransactionJour,
                 Argent = argent
             });
 
@@ -121,7 +123,9 @@ namespace Pojeet.Controllers
 
         public IActionResult AdminCommandes()
         {
-            List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
+            TransactionViewModel tvm = GetComptat();
+            return View(tvm);
+            /*List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
             List<Transaction> listeTransaction = new List<Transaction>();
@@ -161,9 +165,9 @@ namespace Pojeet.Controllers
             return View(new TransactionViewModel
             {
                 listConsumer = listeConsumer,
-                Transaction = listeTransaction,
+                Transaction = listeTransactionMois,
                 Argent = argent
-            });
+            });*/
 
 
         }
@@ -546,12 +550,14 @@ namespace Pojeet.Controllers
 
 
             List<CompteProvider> listeProvider = new List<CompteProvider>();
-            //listeConsumer = dal.ObtientProvider();
+            listeProvider = dal.ObtientTousHelpers();
 
 
-            return View(new TransactionViewModel
+            return (new TransactionViewModel
 
-            {
+            {   
+                CompteConsumerTotal = listeConsumer,
+                CompteProviderTotal = listeProvider,
                 listConsumer = listeConsumerMois,
                 Transaction = listeTransactionMois,
                 Argent = argent,
@@ -581,7 +587,6 @@ namespace Pojeet.Controllers
                 ArgentOctobre = argentOctobre,
                 ArgentNovembre = argentNovembre,
                 ArgentDecembre = argentDecembre,
-
                 CompteConsumerJanvier = listeConsumerJanvier,
                 CompteConsumerFevrier = listeConsumerFevrier,
                 CompteConsumerMars = listeConsumerMars,
@@ -594,7 +599,8 @@ namespace Pojeet.Controllers
                 CompteConsumerOctobre = listeConsumerOctobre,
                 CompteConsumerNovembre = listeConsumerNovembre,
                 CompteConsumerDecembre = listeConsumerDecembre,
-            };
+            });
+        
             
 
 

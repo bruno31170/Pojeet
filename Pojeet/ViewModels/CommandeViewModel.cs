@@ -17,6 +17,8 @@ namespace Pojeet.ViewModels
         public int NbTransaction { get; set; }
         public int id1 { get; set; }
         public int id2 { get; set; }
+        public List<Transaction> ListetransactionMois { get; set; }
+        public List<Transaction> ListetransactionJour { get; set; }
         public List<Transaction> Listetransaction { get; set; }
         public Argent Argent { get; set; }
         public List<CompteConsumer> listConsumer { get; set; }

@@ -94,14 +94,28 @@
                     <li class="mr-3 ml-2 text-right">
                         <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                             <i class="font-size-24 fa fa-envelope"></i>
-                            <span class="badge badge-danger navbar-badge">3</span>
+                            <span class="badge badge-danger navbar-badge"></span>
                         </a>
                     </li>
                     <li class="ml-2 text-right">
                         <a href="#">
                             <i class="font-size-24 fa fa-bell"></i>
+                            @if (@Compte.Profil.notifications != null)
+                            {
+                                <span class="badge badge-danger navbar-badge">@Compte.Profil.notifications.Count()</span>
+                            }
                         </a>
-                    </li>
+                        @if (@Compte.Profil.notifications != null)
+                        {
+                            @foreach (var notification in @Compte.Profil.notifications)
+                            {
+                                <ul>
+                                    <div class="triangle"> </div>
+                                    <li><a href="/Profil/Index?tabId=contact2">Vous avez une nouvelle notification sur la transaction de référence @notification.TransactionId</a></li>
+                                </ul>
+                            }
+                            }
+                        </li>
                 </ul>
             </div>
         </div>

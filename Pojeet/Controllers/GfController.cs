@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
 using Pojeet.ViewModels;
 using System;
@@ -109,12 +109,26 @@ namespace Pojeet.Controllers
             argent.MargeBrut = Convert.ToInt32(argent.MargeBrut);
             return View(new TransactionViewModel
             {
-                listConsumer = listeConsumerMois,
-                Transaction = listeTransactionMois,
+                listConsumer = listeConsumer,
+                Transaction = listeTransaction,
                 Argent = argent
             });
 
 
+        }
+
+        public ActionResult DemandeDevenirHelper()
+        {
+            List<CompteProvider> list = new List<CompteProvider>();
+            list = dal.ObtientTousHelpers();
+            List<CompteConsumer> listConsum = new List<CompteConsumer>();
+            listConsum = dal.ObtientTousConsumer();
+
+            return View(new DemandeHelperViewModel
+            {
+                listProvider = list,
+                ListConsumer = listConsum,
+            });
         }
 
         public ActionResult Consumer(int id)
@@ -132,33 +146,32 @@ namespace Pojeet.Controllers
             });
         }
 
-        public ActionResult Helper(int id)
-        {
-            CompteConsumer consumer = new CompteConsumer();
-            consumer = dal.ObtientCompteConsumer(id);
+        //public ActionResult Helper(int id)
+        //{
+        //    CompteConsumer consumer = new CompteConsumer();
+        //    consumer = dal.ObtientCompteConsumer(id);
 
-            List<Transaction> transactions = new List<Transaction>();
-            transactions = dal.ObtientTransaction(consumer.ProfilId);
+        //    List<Transaction> transactions = new List<Transaction>();
+        //    transactions = dal.ObtientTransaction(consumer.ProfilId);
 
-            return View(new ConsumerViewModel
-            {
-                Consumer = consumer,
-                ListeTransaction = transactions
-            });
-        }
+        //    return View(new ConsumerViewModel
+        //    {
+        //        Consumer = consumer,
+        //        ListeTransaction = transactions
+        //    });
+        //}
         public ActionResult Commande(int reference)
         {
-            Transaction transaction = new Transaction();
-            transaction = dal.ObtientUneTransaction(reference);
-            CompteConsumer compteConsumer = new CompteConsumer();
-            compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);
+            
+            Transaction transaction = dal.ObtientUneTransaction(reference);
+            CompteConsumer compteConsumer = dal.ObtientCompteConsumer(transaction.ProfilId);
             double MargeBrute = dal.ObtenirMargeBrute(transaction.Reference);
             double Reste = dal.ObtenirReste(transaction.Reference);
             int NbTransaction = dal.ObtenirNbTransaction(transaction.Profil.Id);
-            Paiement paiement = new Paiement();
-            paiement = dal.ObtenirPaiement(transaction.Reference);
-            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute = MargeBrute, Reste = Reste, NbTransaction = NbTransaction, Paiement = paiement });
-        }
+            Paiement paiement = dal.ObtenirPaiement(transaction.Reference);
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction, Paiement =paiement });
+
+           }
 
         public ActionResult Comptabilite()
         {
@@ -386,7 +399,6 @@ namespace Pojeet.Controllers
                 ArgentNovembre = argentNovembre,
                 ArgentDecembre = argentDecembre,
             });
-
         }
     }
 }

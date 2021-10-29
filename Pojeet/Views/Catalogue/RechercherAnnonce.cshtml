@@ -1,4 +1,4 @@
-﻿@{
+@{
     var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
 }
 
@@ -34,17 +34,14 @@
 
     <!-- Responsive -->
 
-
     <link rel="stylesheet" type="text/css" href="~/css/css-e/responsive.css">
-
-
     <!-- STYLE JS -->
     <link href="~/js/js-e/jquery.formstyler.css" rel="stylesheet" />
     <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/js/js-e/jquery.formstyler.min.js"></script>
     <script>
-(function ($) {
+        (function ($) {
             $(function () {
                 $('select, option, input').styler({
                     selectSearch: true,
@@ -91,6 +88,7 @@
                             <li><a href="/Profil/Index?tabId=profile2">Mes annonce</a></li>
                             <li><a href="/Profil/Index?tabId=contact2">Mes transactions</a></li>
                             <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
+
                         </ul>
                     </li>
                     <li class="mr-3 ml-2 text-right">
@@ -129,6 +127,7 @@
 
 
                         @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
+
 
                         {
                             <div class="flex-col flex-md-row justify-content-center">
@@ -364,6 +363,7 @@
                 <a href="#">Centre d'aide</a>
                 <a href="#">Contact</a>
 
+
             </div>
 
         </div>
@@ -400,4 +400,6 @@
 </body>
 
 </html>
+
+
 

@@ -23,6 +23,7 @@ namespace Pojeet.Controllers
         private Dal dal2;
         private DalProfil dalProfil;
         private IWebHostEnvironment _env;
+        private DalTransaction dal3;
 
 
 
@@ -33,6 +34,7 @@ namespace Pojeet.Controllers
             this.dal2 = new Dal();
             this.dalProfil = new DalProfil();
             _env = env;
+            this.dal3 = new DalTransaction();
 
         }
 
@@ -58,6 +60,7 @@ namespace Pojeet.Controllers
 
                 viewModel.ListeAvis = dal2.ObtenirListeAvis(viewModel.CompteConsumer.Id);
 
+                viewModel.ListeTransaction = dal3.ObtientTransaction(viewModel.CompteConsumer.Id);
 
                 viewModel.NoteGlobale = dal2.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
 

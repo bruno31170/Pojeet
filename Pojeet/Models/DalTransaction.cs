@@ -62,14 +62,11 @@ namespace Pojeet.Models
 
         public int ObtenirNbTransaction(int id)
         {
+            Profil profil = ObtientCompteConsumer(id).Profil;
             List<Transaction> listeTransaction = ObtientTransaction(id);
-            int i = 0;
-            int NbTransaction = 0;
-            foreach (Transaction transaction in listeTransaction)
-            {
-                i++;
-            }
-            NbTransaction = i;
+            int NbTransaction = listeTransaction.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Count();
+
+
             return NbTransaction;
         }
 
@@ -77,6 +74,12 @@ namespace Pojeet.Models
         {
             Paiement paiement = this._context.Paiement.Where(c => c.TransactionReference == reference).FirstOrDefault();
             return paiement;
+        }
+
+        public Virement ObtenirVirement(int reference)
+        {
+            Virement virement = this._context.Virement.Where(c => c.TransactionReference == reference).Include(c=> c.Transaction).Include(c =>c.Transaction.Annonce).Include(c => c.ProfilId).Include(c => c.Transaction.Annonce.profil).FirstOrDefault();
+            return virement;
         }
 
         public void Dispose()

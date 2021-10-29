@@ -1,0 +1,87 @@
+﻿@model Pojeet.ViewModels.GPViewModel
+@{
+    ViewBag.Title = "Connexion";
+}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/Gf/bootstrap.min.css">
+
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="~/css/css-e/fontawesome-free/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Rubik|Dancing+Script" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/Gf/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/Gf/typography1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/Gf/colors.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/Gf/responsive.css">
+
+    <!-- STYLE JS -->
+    <link href="js/jquery.formstyler.css" rel="stylesheet" />
+    <link href="js/jquery.formstyler.theme.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/js/js-e/jquery.formstyler.min.js"></script>
+
+</head>
+<body>
+    <div class="position-absolute h-100 w-100 admin_connect" style="background-color: #c8d8e4;">
+        <div class="flex-col justify-content-center position-absolute" style="top: calc(50% - 350px); left: calc(50% - 250px);">
+
+            <div class="row justify-content-center">
+                <img src="~/img/logoHelpMyCar.png" style="width: 235px; height: 200px;" alt="">
+            </div>
+
+                <div style="width:500px; height:400px;">
+
+                    <div class="card mt-5 mb-5" data-color="red" id="wizard" style="box-shadow: 0 20px 16px -15px rgba(0, 0, 0, 0.57); border-radius: 16px;">
+                        <div class="tab-content d-flex flex-column justify-content-center">
+                            <h3 class="text-center mt-3">Connexion</h3>
+                            @using (Html.BeginForm())
+                            {
+                                <div class="row justify-content-center mt-3">
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                        @Html.LabelFor(model => model.gestionnairePlatforme.Pseudo)
+                                        @Html.TextBoxFor(model => model.gestionnairePlatforme.Pseudo, new { @class = "form-control", placeholder = "Pseudo" })
+                                        @Html.ValidationMessageFor(model => model.gestionnairePlatforme.Pseudo, "", new { @style = "color:red" })
+                                    </div>
+
+                                    <div class="col-sm-10 col-sm-offset-1 mt-3 mb-1">
+                                        @Html.LabelFor(model => model.gestionnairePlatforme.MotDePasse)
+                                        @Html.TextBoxFor(model => model.gestionnairePlatforme.MotDePasse, new { @type = "password", @class = "form-control", placeholder = "Mot de passe" })
+                                        @Html.ValidationMessageFor(model => model.gestionnairePlatforme.MotDePasse, "", new { @style = "color:red" })
+                                    </div>
+                                    <p class="text-center" style="color:red">@Model.ErrorMessage</p>
+                                    <div class="col-12 d-flex justify-content-center mt-5">
+                                        <!-- Submit Button-->
+                                        <button class="btn-primary-e align-items-center" type="submit">Se Connecter</button>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</body>
+</html>

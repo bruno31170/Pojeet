@@ -73,7 +73,10 @@
                         {
                             <tr>
                                 <th scope="row">@provider.Id</th>
-                                <td>@provider.CompteConsumer.Profil.Prenom @provider.CompteConsumer.Profil.Nom</td>
+                                <td>
+                                    @provider.CompteConsumer.Profil.Prenom <br>
+                                    @provider.CompteConsumer.Profil.Nom
+                                </td>
 
                                 <td>
                                     <a href="~/media/provider/@provider.DocumentIdentification" data-lightbox="photoCNI" title="photoCNI" target="_blank">

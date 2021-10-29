@@ -26,12 +26,10 @@ namespace Pojeet.Models
         public DbSet<Virement> Virement { get; set; }
         public DbSet<Notification> Notification { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
         {
-
-
             optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
-
         }
 
         public void InitializeDb()
@@ -106,7 +104,39 @@ namespace Pojeet.Models
                   MotDePasse = Dal.EncodeMD5("tomtom"),
                   ProfilId = 8,
                   DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
-              }
+              },
+               new CompteConsumer
+               {
+                   Id = 9,
+                   Pseudo = "MaeMae",
+                   MotDePasse = Dal.EncodeMD5("maemae"),
+                   ProfilId = 9,
+                   DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+               },
+                new CompteConsumer
+                {
+                    Id = 10,
+                    Pseudo = "Paulo",
+                    MotDePasse = Dal.EncodeMD5("paulopaulo"),
+                    ProfilId = 9,
+                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                },
+                new CompteConsumer
+                {
+                    Id = 11,
+                    Pseudo = "stephbreton",
+                    MotDePasse = Dal.EncodeMD5("stephbreton"),
+                    ProfilId = 9,
+                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                },
+                 new CompteConsumer
+                 {
+                     Id = 12,
+                     Pseudo = "sylvie",
+                     MotDePasse = Dal.EncodeMD5("sylvie"),
+                     ProfilId = 9,
+                     DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 }
             );
 
 
@@ -236,7 +266,68 @@ namespace Pojeet.Models
                    Mail = "thomas.mecanic@yahoo.fr",
                    NumeroTelephone = 625766565,
                    Photo = "Thomas.png"
-               });
+               },
+                new Profil
+                {
+                    Id = 9,
+                    Description = "",
+                    Nom = "Dufresnes",
+                    Prenom = "Maëlys",
+                    DateDeNaissance = "12/01/1999",
+                    Adresse = "	65 rue Beauvau",
+                    Ville = "Marseille",
+                    CodePostal = "13002",
+                    Pays = 0,
+                    Mail = "maemae13@yahoo.fr",
+                    NumeroTelephone = 625766576,
+                    Photo = "Maëlys.png"
+                },
+                new Profil
+                {
+                    Id = 10,
+                    Description = "",
+                    Nom = "Martin",
+                    Prenom = "Paul",
+                    DateDeNaissance = "12/01/1990",
+                    Adresse = "19 rue de la Hulotais",
+                    Ville = "Saint-Quentin",
+                    CodePostal = "02100",
+                    Pays = 0,
+                    Mail = "paulo@yahoo.fr",
+                    NumeroTelephone = 625766554,
+                    Photo = "Paul.png"
+                },
+                 new Profil
+                 {
+                     Id = 11,
+                     Description = "",
+                     Nom = "Breton",
+                     Prenom = "Stéphanie",
+                     DateDeNaissance = "12/01/1978",
+                     Adresse = "66 rue des Coudriers",
+                     Ville = "Muret",
+                     CodePostal = "31600",
+                     Pays = 0,
+                     Mail = "bretonstephanie@yahoo.fr",
+                     NumeroTelephone = 125766523,
+                     Photo = "stephanie.png"
+                 },
+                 new Profil
+                 {
+                     Id = 12,
+                     Description = "",
+                     Nom = "Riquier",
+                     Prenom = "Sylvie",
+                     DateDeNaissance = "12/07/1974",
+                     Adresse = "107 rue Goya",
+                     Ville = "LE PERREUX-SUR-MARNE",
+                     CodePostal = "94170",
+                     Pays = 0,
+                     Mail = "riquier@yahoo.fr",
+                     NumeroTelephone = 125766523,
+                     Photo = "Sylvie.png"
+                 }
+                );
 
             //CompteHelper
             this.CompteProvider.AddRange(
@@ -864,7 +955,7 @@ namespace Pojeet.Models
 
             //TRANSACTION
 
-            /*this.Transactions.AddRange(
+            this.Transactions.AddRange(
                 new Transaction
                 {
                     Reference = 123,
@@ -907,7 +998,7 @@ namespace Pojeet.Models
             {
                 Reference = 129,
 
-                Date = new DateTime(2021,10 , 10, 12, 1, 10),
+                Date = new DateTime(2021, 10, 10, 12, 1, 10),
 
                 AnnonceId = 2,
                 Montant = 39.5,
@@ -1106,7 +1197,8 @@ namespace Pojeet.Models
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
 
-           }); */
+           });
+
 
             this.Avis.AddRange(
            new Avis

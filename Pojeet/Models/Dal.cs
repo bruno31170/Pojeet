@@ -256,7 +256,7 @@ namespace Pojeet.Models
         {
             //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
             //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
-            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).Include(c=>c.Profil.notifications).FirstOrDefault();
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).Include(c=>c.Profil.notifications).Include(c => c.Profil.notificationsMessagerie).FirstOrDefault();
 
         }
 
@@ -419,6 +419,15 @@ namespace Pojeet.Models
             transaction.EtatTransaction = etat;
             CreerNotificationTransaction(transaction,etat);
             _context.SaveChanges();
+        }
+
+        public int countNotificationsMessagerie(List<NotificationMessagerie>notificationsMessagerie)
+        { int count = 0;
+            foreach(NotificationMessagerie notificationMessagerie in notificationsMessagerie)
+            {
+                count = count + notificationMessagerie.MessagesNonLus;
+            }
+            return count;
         }
 
     }

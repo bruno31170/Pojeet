@@ -48,6 +48,7 @@ namespace Pojeet.Controllers
                         Conversationid2 = dal.ObtientLaConversation(id2);
                         listeMessages = dal.ObtientTousLesMessages(id2);
                         messagerieConversation = dal.ObtientMessagerieConversation(id2);
+                        dal.SupprimerNotification(id,id2);
                         transaction = dal.ObtenirTransaction(Conversationid2.AnnonceId, Conversationid2.Auteur_Message.Id);
                         return View(new InboxViewModel { Authentifie = authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer = compteConsumer, NouvelleTransaction=transaction });
                     }
@@ -70,12 +71,13 @@ namespace Pojeet.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreerMessage(int id2, Message nouveaumessage)
+        public IActionResult CreerMessage(int id1, int id2, Message nouveaumessage)
         {
 
             using (DalInbox ctx = new DalInbox())
-            {
+            { 
                 ctx.AjouterMessage(nouveaumessage.message, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
+                ctx.ActualiserNotificationMessagerie(id1,id2);
                 return RedirectToAction("AfficherMessagerie", new { id2 = id2 });
             }
         }
@@ -132,8 +134,9 @@ namespace Pojeet.Controllers
                 int id1 = compteConsumer.ProfilId;
                 idConversation = ctx.CreerConversation(id1, id);
                 messagerie = ctx.ObtientLaMessagerie(id1);
+                ctx.AjouterNotificationMessagerie(id1, idConversation);
             }
-
+           
             return RedirectToAction("AfficherMessagerie", new { id2 = idConversation });
 
 

@@ -15,5 +15,6 @@ namespace Pojeet.Models
         public int CompteConsumerId { get; set; }
         public virtual CompteConsumer Auteur_Message{ get; set; }
         public virtual List<Message> Messages { get; set; }
+
     }
 }

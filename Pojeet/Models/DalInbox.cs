@@ -63,14 +63,14 @@ namespace Pojeet.Models
             {
                 if (conversation.Annonce.ProfilId == messagerie.ProfilId)
                 {
-                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
                 }
                 else
                 {
-                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
@@ -82,20 +82,20 @@ namespace Pojeet.Models
         }
 
         public Messagerie ObtientLaMessagerie(int id)
-        {  
+        {
             MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.Messagerie.ProfilId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
             return messagerieConversation.Messagerie;
         }
 
         public Boolean VerificationMessagerieVide(int id)
         {
-           List<MessagerieConversation> messagerieconv = _context.MessagerieConversation.Where(x => x.Messagerie.ProfilId == id).ToList();
-                return messagerieconv.Count()==0;
+            List<MessagerieConversation> messagerieconv = _context.MessagerieConversation.Where(x => x.Messagerie.ProfilId == id).ToList();
+            return messagerieconv.Count() == 0;
         }
 
         public int ObtientPremiereConversation(List<Conversation> listeConversation)
         {
-            int id=0;
+            int id = 0;
             id = listeConversation.First().Id;
             return (id);
         }
@@ -121,6 +121,58 @@ namespace Pojeet.Models
             _context.Message.Add(message);
             _context.SaveChanges();
         }
+
+        public void AjouterNotificationMessagerie(int id1, int id2)
+        {
+            Conversation conversation = _context.Conversation.Where(c => c.Id == id2).Include(c => c.Annonce.profil).Include(c=>c.Auteur_Message).FirstOrDefault();
+            NotificationMessagerie notificationMessagerie1 = new NotificationMessagerie
+            {
+                ConversationId = id2,
+                ProfilId = conversation.Annonce.ProfilId,
+                MessagesNonLus = 0,
+                Profil=conversation.Annonce.profil,
+
+            };
+
+             NotificationMessagerie notificationMessagerie2 = new NotificationMessagerie
+             {
+                 ConversationId = id2,
+                 ProfilId = conversation.Auteur_Message.ProfilId,
+                 MessagesNonLus = 0,
+                 Profil = conversation.Auteur_Message.Profil,
+
+             };
+        _context.NotificationMessagerie.Add(notificationMessagerie1);
+        _context.NotificationMessagerie.Add(notificationMessagerie2);
+         _context.SaveChanges();
+        }
+
+        public void ActualiserNotificationMessagerie(int id1, int id2)
+        {
+            Profil profil = _context.Messagerie.Where(c => c.ProfilId==id1).Include(c=> c.Profil).FirstOrDefault().Profil;
+            Conversation conversation = _context.Conversation.Where(c => c.Id == id2).Include(c => c.Annonce.profil).Include(c=>c.Auteur_Message.Profil).FirstOrDefault();
+            NotificationMessagerie notificationMessagerie = null;
+            if (profil.Id == conversation.Auteur_Message.ProfilId)
+            {
+              notificationMessagerie = _context.NotificationMessagerie.Where(c => c.ProfilId == conversation.Annonce.ProfilId && c.ConversationId == id2).FirstOrDefault();
+            }
+            else
+            {
+               notificationMessagerie = _context.NotificationMessagerie.Where(c => c.ProfilId == conversation.Auteur_Message.ProfilId && c.ConversationId == id2).FirstOrDefault();
+            }
+            notificationMessagerie.MessagesNonLus = notificationMessagerie.MessagesNonLus + 1;
+            _context.SaveChanges();
+        }
+
+        public void SupprimerNotification(int id1, int id2)
+        {
+            NotificationMessagerie notificationMessagerie = _context.NotificationMessagerie.Where(c => c.ProfilId == id1 && c.ConversationId == id2).FirstOrDefault();
+            notificationMessagerie.MessagesNonLus = 0;
+            _context.SaveChanges();
+
+        }
+
+
         public void RemplacerMessage(int messageId, Boolean messageProposition)
         {
             Message message = _context.Message.Include(c => c.Profil).Where(c => c.Id == messageId).FirstOrDefault();
@@ -243,7 +295,7 @@ namespace Pojeet.Models
         {
             //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
             //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
-            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).FirstOrDefault();
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).Include(c=>c.Profil.notificationsMessagerie).FirstOrDefault();
 
         }
 
@@ -352,7 +404,7 @@ namespace Pojeet.Models
             {
                 CompteConsumerId = _context.CompteConsumer.Where(r => r.ProfilId == id1).FirstOrDefault().Id,
                 AnnonceId = id2,
-                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
+                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault(),
             };
             _context.Conversation.Add(conversation);
             _context.SaveChanges();

@@ -25,6 +25,7 @@ namespace Pojeet.Models
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
         public DbSet<Virement> Virement { get; set; }
         public DbSet<Notification> Notification { get; set; }
+        public DbSet<NotificationMessagerie> NotificationMessagerie { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -32,10 +33,10 @@ namespace Pojeet.Models
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
 
 
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
 
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
 
         }
@@ -57,6 +58,22 @@ namespace Pojeet.Models
                     Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
                     ProfilId = 1
                 });
+            //NotificationmESSAGERIE
+            this.NotificationMessagerie.AddRange(
+            new NotificationMessagerie
+            {
+                Id = 1,
+                ConversationId = 1,
+                ProfilId = 1,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 2,
+                ConversationId = 1,
+                ProfilId = 2,
+                MessagesNonLus = 0,
+            });
 
             //PROFIL
             this.Profil.AddRange(
@@ -608,9 +625,6 @@ namespace Pojeet.Models
 
              });
 
-
-
-
             //CONSUMER
             this.CompteConsumer.AddRange(
             new CompteConsumer
@@ -695,6 +709,8 @@ namespace Pojeet.Models
                 AnnonceId = 1
 
             });
+
+            
             this.Messagerie.AddRange(
             new Messagerie
             {

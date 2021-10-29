@@ -28,39 +28,79 @@
                             @if (conversation.Annonce.ProfilId == Model.Messagerie.ProfilId)
                             {
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
-                                <li class="nav-item clearfix">
-                                    <img src="~/media/profil/@conversation.Auteur_Message.Profil.Photo" alt="avatar">
-                                    <div class="about">
-                                        <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
-                                        <div class="status">
-                                            @if (conversation.Auteur_Message.Profil.statut == 0)
-                                            {<i class="fa fa-circle online"></i>}
-                                            else
-                                            {<i class="fa fa-circle offline"></i>}
-                                            @conversation.Auteur_Message.Profil.statut
+                                    @if (Model.CompteConsumer.Profil.notificationsMessagerie.Where(c => c.ConversationId == conversation.Id).FirstOrDefault().MessagesNonLus != 0)
+                                    {
+                                    <li class="nav-item clearfix" style="background-color:lightblue">
+                                        <img src="~/media/profil/@conversation.Auteur_Message.Profil.Photo" alt="avatar">
+                                        <div class="about">
+                                            <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
+                                            <div class="status">
+                                                @if (conversation.Auteur_Message.Profil.statut == 0)
+                                                {<i class="fa fa-circle online"></i>}
+                                                else
+                                                {<i class="fa fa-circle offline"></i>}
+                                                @conversation.Auteur_Message.Profil.statut
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                </a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
-                                <li class="nav-item clearfix">
-                                    <img src="~/media/profil/@conversation.Annonce.profil.Photo" alt="avatar">
-                                    <div class="about">
-                                        <div class="name"> @conversation.Annonce.profil.Prenom @conversation.Annonce.profil.Nom</div>
-                                        <div class="status">
-                                            @if (conversation.Annonce.profil.statut == 0)
-                                            {<i class="fa fa-circle online"></i>}
-                                            else
-                                            {<i class="fa fa-circle offline"></i>}
-                                            @conversation.Annonce.profil.statut
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item clearfix">
+                                        <img src="~/media/profil/@conversation.Auteur_Message.Profil.Photo" alt="avatar">
+                                        <div class="about">
+                                            <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
+                                            <div class="status">
+                                                @if (conversation.Auteur_Message.Profil.statut == 0)
+                                                {<i class="fa fa-circle online"></i>}
+                                                else
+                                                {<i class="fa fa-circle offline"></i>}
+                                                @conversation.Auteur_Message.Profil.statut
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                </a>
-                            }
+                                    </li>
+                                }
+                                    </a>
+                                }
+                                else
+
+                                {
+                                    <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
+                                        @if (Model.CompteConsumer.Profil.notificationsMessagerie.Where(c => c.ConversationId == conversation.Id).FirstOrDefault().MessagesNonLus != 0)
+                                        {
+
+                                        <li class="nav-item clearfix" style="background-color:lightblue">
+                                            <img src="~/media/profil/@conversation.Annonce.profil.Photo" alt="avatar">
+                                            <div class="about">
+                                                <div class="name"> @conversation.Annonce.profil.Prenom @conversation.Annonce.profil.Nom</div>
+                                                <div class="status">
+                                                    @if (conversation.Annonce.profil.statut == 0)
+                                                    {<i class="fa fa-circle online"></i>}
+                                                    else
+                                                    {<i class="fa fa-circle offline"></i>}
+                                                    @conversation.Annonce.profil.statut
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item clearfix">
+                                            <img src="~/media/profil/@conversation.Annonce.profil.Photo" alt="avatar">
+                                            <div class="about">
+                                                <div class="name"> @conversation.Annonce.profil.Prenom @conversation.Annonce.profil.Nom</div>
+                                                <div class="status">
+                                                    @if (conversation.Annonce.profil.statut == 0)
+                                                    {<i class="fa fa-circle online"></i>}
+                                                    else
+                                                    {<i class="fa fa-circle offline"></i>}
+                                                    @conversation.Annonce.profil.statut
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                        </a>
+                                    }
                         }
                     </ul>
                 </div>
@@ -79,9 +119,9 @@
                                 }
                                 else
                                 {
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                <img src="~/media/profil/@Model.Conversation.Annonce.profil.Photo" alt="avatar">
-                            </a>
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src="~/media/profil/@Model.Conversation.Annonce.profil.Photo" alt="avatar">
+                                    </a>
                                     <div class="chat-about">
                                         <h6 class="m-b-0"> @Model.Conversation.Annonce.profil.Prenom  @Model.Conversation.Annonce.profil.Nom </h6>
                                     </div>
@@ -130,83 +170,94 @@
                                             </form>
                                         }
                                     }
-                                        @if (Model.NouvelleTransaction != null)
-                                        {
-                                             <button type="button" disabled="disabled" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
-                                        }
+                                    @if (Model.NouvelleTransaction != null)
+                                    {
+                                        <button type="button" disabled="disabled" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
                                     }
-                                    <a href="@Url.Action("Annonce", "Catalogue", new {id1=Model.CompteConsumer.Id, id2 = @Model.Conversation.Annonce.Id})">
-                                        <button type="button" class="btn btn-link float-right ">Annonce N° @Model.Conversation.Annonce.Id</button>
-                                    </a>
-                                </div>
+                                }
+                                <a href="@Url.Action("Annonce", "Catalogue", new {id1=Model.CompteConsumer.Id, id2 = @Model.Conversation.Annonce.Id})">
+                                    <button type="button" class="btn btn-link float-right ">Annonce N° @Model.Conversation.Annonce.Id</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="chat-history">
-                        <ul class="m-b-0">
 
-                            @foreach (var message in Model.List2)
-                            {
+                    <div style="height:600px;overflow-y:scroll">
+                        <table>
 
-                                @if (message.ProfilId == @Model.Messagerie.ProfilId)
-                                {
-                                    <li class="clearfix">
-                                        <div class="message-data text-right">
-                                            <span class="message-data-time">@message.Date</span>
-                                            <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
-                                        </div>
-                                        <div class="message other-message float-right">
-                                            @message.message
-                                        </div>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li class="clearfix">
-                                        <div class="message-data">
-                                            <span class="message-data-time">@message.Date</span>
-                                        </div>
-                                        <div class="message my-message">
-                                            @message.message
+                            <div class="chat-history">
+                                <ul class="m-b-0">
 
-                                            @if (message.MessageProposition == true)
-                                            {<div class="row">
-                                                    @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
-                                                    {
-                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
-                                                        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
-                                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
-                                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                        <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
-                                                        <button type="submit" class="btn btn-info float-left button">J'accepte</button>
-                                                    }
+                                    @foreach (var message in Model.List2)
+                                    {
 
-                                                    @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
-                                                    {
-                                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
-                                                        <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
-                                                        <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
-                                                        <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                                                        <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                        <button type="submit" class="btn btn-info float-left button">
-                                                            Je refuse
-                                                        </button>
+                                        @if (message.ProfilId == @Model.Messagerie.ProfilId)
+                                        {
+                                            <li class="clearfix">
+                                                <div class="message-data text-right">
+                                                    <span class="message-data-time">@message.Date</span>
+                                                    <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
+                                                </div>
+                                                <div class="message other-message float-right">
+                                                    @message.message
+                                                </div>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="clearfix">
+                                                <div class="message-data">
+                                                    <span class="message-data-time">@message.Date</span>
+                                                </div>
+                                                <div class="message my-message">
+                                                    @message.message
+
+                                                    @if (message.MessageProposition == true)
+                                                    {<div class="row">
+                                                            @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
+                                                            {
+                                                                <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+                                                                <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                                <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                <button type="submit" class="btn btn-info float-left button">J'accepte</button>
+                                                            }
+
+                                                            @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
+                                                            {
+                                                                <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+                                                                <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                                <button type="submit" class="btn btn-info float-left button">
+                                                                    Je refuse
+                                                                </button>
+                                                            }
+                                                        </div>
                                                     }
                                                 </div>
-                                            }
-                                        </div>
-                                    </li>
-                                }
+                                            </li>
+                                        }
 
-                            }
-                        </ul>
+                                    }
+                                </ul>
+                            </div>
+                        </table>
                     </div>
-                    @using (Html.BeginForm("CreerMessage", "Inbox", FormMethod.Post))
-                    {<input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
-                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
 
+
+
+
+                    @using (Html.BeginForm("CreerMessage", "Inbox", FormMethod.Post))
+                    {
+                        <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                        <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
+                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
                         <div class="form-group chat-message clearfix">
                             <div class="input-group mb-0">
                                 <div class="input-group-prepend">
@@ -223,7 +274,7 @@
                     }
                 </div>
 
-            </div>
+                </div>
         </div>
     </div>
 </div>
@@ -232,7 +283,9 @@
     body {
         background-color: #f4f7f6;
         margin-top: 20px;
+
     }
+
 
     .card {
         background: #fff;

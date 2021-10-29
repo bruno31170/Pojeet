@@ -231,6 +231,17 @@ namespace Pojeet.Models
 
         }
 
+        public void ModifierEtatProviderValide(int id)
+        {
+            CompteProvider compteProvider = _context.CompteProvider.Where(c => c.Id == id).FirstOrDefault();
+
+            if (compteProvider != null)
+            {
+                compteProvider.Etat = Etat.Valide;
+                _context.SaveChanges();
+            }
+        }
+
         public void SuppressionConsumer(int id)
         {
             CompteConsumer consumer = _context.CompteConsumer.Find(id);
@@ -245,7 +256,7 @@ namespace Pojeet.Models
         {
             //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
             //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
-            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).FirstOrDefault();
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).Include(c=>c.Profil.notifications).FirstOrDefault();
 
         }
 
@@ -301,7 +312,8 @@ namespace Pojeet.Models
                 CompteConsumerId = compteConsumer.Id,
                 Rib = rib,
                 Etat = 0,
-                Competence = StringCompetence
+                Competence = StringCompetence,
+                DateCreationCompte = DateTime.Now,
             };
 
             if (photo != null)
@@ -345,7 +357,7 @@ namespace Pojeet.Models
 
         public List<Transaction> ObtientTransaction(int id)
         {
-            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
+            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id||c.Annonce.ProfilId==id).Include(c => c.Profil).Include(c => c.Annonce.profil).ToList();
             return listeTransaction;
         }
 
@@ -378,6 +390,27 @@ namespace Pojeet.Models
             });
             _context.SaveChanges();
             return (conversation.Id);
+        }
+
+        public void CreerNotificationTransaction(Transaction transaction, EtatTransaction etat)
+        { if (etat == EtatTransaction.Effectue)
+                {
+                Paiement paiement = _context.Paiement.Where(c => c.TransactionReference == transaction.Reference).Include(c=>c.ProfilPayant).FirstOrDefault();
+                Notification notificationTransaction = new Notification
+                {   ProfilId=paiement.Id,
+                    transaction = transaction,
+                };
+                _context.Add(notificationTransaction);
+                _context.SaveChanges();
+                }
+        }
+
+        public void ActualiserEtatTransaction(int reference, EtatTransaction etat)
+        {
+            Transaction transaction = this._context.Transactions.Where(c => c.Reference == reference).FirstOrDefault();
+            transaction.EtatTransaction = etat;
+            CreerNotificationTransaction(transaction,etat);
+            _context.SaveChanges();
         }
 
     }

@@ -285,11 +285,11 @@ namespace Pojeet.Models
             Profil profil = new Profil();
             if (_context.Annonce.Where(c=> c.Id==transaction.AnnonceId).FirstOrDefault().TypeDeAnnonce==TypeAnnonce.Besoin)
             {
-                profil = transaction.Profil;
+                profil = transaction.Annonce.profil;
             }
             else
             {
-                profil = transaction.Annonce.profil;
+                profil = transaction.Profil;
             }
             return profil;
         }
@@ -318,11 +318,11 @@ namespace Pojeet.Models
             int profilId = 0;
             if (annonce.TypeDeAnnonce == TypeAnnonce.Besoin)
             {
-                profilId = transaction.Annonce.ProfilId;
+                profilId = transaction.ProfilId;
             }
             else
             {
-                profilId = transaction.ProfilId;
+                profilId = transaction.Annonce.ProfilId;
             }
             return profilId;
         }
@@ -369,6 +369,14 @@ namespace Pojeet.Models
             });
             _context.SaveChanges();
             return (conversation.Id);
+        }
+
+        public Conversation ObtenirConversationTransaction(int reference, int profilId)
+        {
+            Transaction transaction = _context.Transactions.Where(r => r.Reference == reference).FirstOrDefault();
+            Annonce annonce= _context.Annonce.Where(r => r.Id == transaction.AnnonceId).FirstOrDefault();
+            Conversation conversation = _context.Conversation.Where(c => c.Annonce.Id == transaction.Annonce.Id && (c.Auteur_Message.ProfilId==profilId || c.Annonce.ProfilId== profilId)).FirstOrDefault();
+            return conversation;
         }
     }
 

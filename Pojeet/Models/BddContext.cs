@@ -24,12 +24,17 @@ namespace Pojeet.Models
         public DbSet<Aide> Aide { get; set; }
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
         public DbSet<Virement> Virement { get; set; }
+        public DbSet<Notification> Notification { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
 
         }
 
@@ -124,7 +129,7 @@ namespace Pojeet.Models
             new Annonce
             {
                 Id = 1,
-                TypeDeAnnonce = TypeAnnonce.Besoin,
+                TypeDeAnnonce = TypeAnnonce.Service,
                 TitreAnnonce = "Changement d'une batterie",
                 Description = "Voiture modèle Ford Fusion",
                 DateParution = DateTime.Now,
@@ -753,7 +758,7 @@ namespace Pojeet.Models
 
             //TRANSACTION
 
-            this.Transactions.AddRange(
+            /*this.Transactions.AddRange(
                 new Transaction
                 {
                     Reference = 123,
@@ -771,7 +776,7 @@ namespace Pojeet.Models
                 AnnonceId = 1,
                 Montant = 5.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 4
 
             },
             new Transaction
@@ -994,9 +999,8 @@ namespace Pojeet.Models
                TransactionReference = 130,
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
-           });
 
-            
+           }); */
 
             this.Avis.AddRange(
            new Avis
@@ -1035,7 +1039,15 @@ namespace Pojeet.Models
                     TitulaireCompte = "Le Pillouer",
                     Iban = "FR56789899878766567878998",
                     Bic = "VDHDBHBD66567",
-                });
+                },
+                 new Rib
+                 {
+                     Id = 2,
+                     TitulaireCompte = "Durand",
+                     Iban = "FR56789899878766567878998",
+                     Bic = "VDHDBHBD66567",
+                 }
+                );
 
             //CompteHelper
             this.CompteProvider.AddRange(
@@ -1043,10 +1055,21 @@ namespace Pojeet.Models
                 {
                     Id = 1,
                     CompteConsumerId = 2,
-                    DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
+                    DocumentIdentification = "cniTEst.png",
                     RibId = 1,
                     Etat = 0,
                     Competence = "Moteur,Pneu",
+                    DateCreationCompte = DateTime.Now,
+                },
+                new CompteProvider
+                {
+                    Id = 2,
+                    CompteConsumerId = 4,
+                    DocumentIdentification = "cniTEst.png",
+                    RibId = 2,
+                    Etat = 0,
+                    Competence = "Habitacle,Pneu",
+                    DateCreationCompte = DateTime.Now,
                 });
 
             this.SaveChanges();

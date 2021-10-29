@@ -28,6 +28,7 @@ namespace Pojeet.Controllers
                 List<Conversation> listeConversation = new List<Conversation>();
                 Messagerie messagerie = new Messagerie();
                 List<MessagerieConversation> messagerieConversation = new List<MessagerieConversation>();
+                Transaction transaction = new Transaction();
                 using (IDalInbox dal = new DalInbox())
                 {
                     Boolean verif = dal.VerificationMessagerieVide(id);
@@ -43,10 +44,12 @@ namespace Pojeet.Controllers
                         {
                             id2 = dal.ObtientPremiereConversation(listeConversation);
                         }
+                        listeConversation.Reverse();
                         Conversationid2 = dal.ObtientLaConversation(id2);
                         listeMessages = dal.ObtientTousLesMessages(id2);
                         messagerieConversation = dal.ObtientMessagerieConversation(id2);
-                        return View(new InboxViewModel { Authentifie = authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer = compteConsumer });
+                        transaction = dal.ObtenirTransaction(Conversationid2.AnnonceId, Conversationid2.Auteur_Message.Id);
+                        return View(new InboxViewModel { Authentifie = authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer = compteConsumer, NouvelleTransaction=transaction });
                     }
                     else
                     {
@@ -85,10 +88,8 @@ namespace Pojeet.Controllers
                 String message1 = nouveaumessage.message + " Propose " + nouvelleTransaction.Montant + " euros";
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, true);
                 ctx.CreerTransaction(nouvelleTransaction.Montant, nouvelleTransaction.AnnonceId, nouvelleTransaction.ProfilId);
-                return RedirectToAction("AfficherMessagerie", new { id2 = id2 });
-
-
             }
+            return RedirectToAction("AfficherMessagerie", new { id2 = id2});
         }
 
         [HttpPost]
@@ -101,9 +102,9 @@ namespace Pojeet.Controllers
                 ctx.RemplacerMessage(nouveaumessage.Id, false);
                 ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
                 ctx.CreerPaiement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
-                ctx.CreerVirement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
-                return RedirectToAction("AfficherMessagerie", new { id2 = id2 });
+                ctx.CreerVirement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId); 
             }
+            return RedirectToAction("AfficherMessagerie", new { id2 = id2});
         }
 
         [HttpPost]

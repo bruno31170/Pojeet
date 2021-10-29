@@ -31,7 +31,9 @@ namespace Pojeet.Models
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
 
+
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
 
             optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
@@ -71,7 +73,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 687555634,
-                Photo = null,
+                Photo = "Avatar-Ines.png",
                 NoteMoyenne = 2
             },
             new Profil
@@ -104,8 +106,7 @@ namespace Pojeet.Models
                 Mail = "evgeniya@mail.ru",
                 NumeroTelephone = 625785402,
                 NoteMoyenne = 3,
-
-                Photo = "https://bootdey.com/img/Content/avatar/avatar6.png"
+                Photo="avatar-femme.jpg"
             },
             new Profil
             {
@@ -120,7 +121,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "bruno@gmail.com",
                 NumeroTelephone = 62574402,
-                Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
+                Photo = "Avatar-Bruno.jpg"
 
             });
 

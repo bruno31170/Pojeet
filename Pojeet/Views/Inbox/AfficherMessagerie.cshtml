@@ -29,7 +29,7 @@
                             {
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
                                 <li class="nav-item clearfix">
-                                    <img src=@conversation.Auteur_Message.Profil.Photo alt="avatar">
+                                    <img src="~/media/profil/@conversation.Auteur_Message.Profil.Photo" alt="avatar">
                                     <div class="about">
                                         <div class="name"> @conversation.Auteur_Message.Profil.Prenom @conversation.Auteur_Message.Profil.Nom</div>
                                         <div class="status">
@@ -47,7 +47,7 @@
                             {
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { @id2 = conversation.Id })">
                                 <li class="nav-item clearfix">
-                                    <img src=@conversation.Annonce.profil.Photo alt="avatar">
+                                    <img src="~/media/profil/@conversation.Annonce.profil.Photo" alt="avatar">
                                     <div class="about">
                                         <div class="name"> @conversation.Annonce.profil.Prenom @conversation.Annonce.profil.Nom</div>
                                         <div class="status">
@@ -71,7 +71,7 @@
                                 @if (Model.Conversation.Annonce.ProfilId == Model.Messagerie.ProfilId)
                                 {
                                     <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                        <img src=@Model.Conversation.Auteur_Message.Profil.Photo alt="avatar">
+                                        <img src="~/media/profil/@Model.Conversation.Auteur_Message.Profil.Photo" alt="avatar">
                                     </a>
                                     <div class="chat-about">
                                         <h6 class="m-b-0"> @Model.Conversation.Auteur_Message.Profil.Prenom  @Model.Conversation.Auteur_Message.Profil.Nom </h6>
@@ -79,9 +79,9 @@
                                 }
                                 else
                                 {
-                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                        <img src=@Model.Conversation.Annonce.profil.Photo alt="avatar">
-                                    </a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                <img src="~/media/profil/@Model.Conversation.Annonce.profil.Photo" alt="avatar">
+                            </a>
                                     <div class="chat-about">
                                         <h6 class="m-b-0"> @Model.Conversation.Annonce.profil.Prenom  @Model.Conversation.Annonce.profil.Nom </h6>
                                     </div>
@@ -93,45 +93,52 @@
                                     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
                                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-                                    @using (Html.BeginForm("CreateTransaction", "Inbox", FormMethod.Post))
+                                    @if (Model.NouvelleTransaction == null)
                                     {
-                                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                        <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
-                                        <form method="post" asp-action="CreateTransaction" asp-controller="Inbox">
-                                            <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Vous êtes intéressé par l'annonce? Proposez un prix!</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label>Prix en euros:</label>
-                                                                <input type="text" id="NouvelleTransaction.Montant" name="NouvelleTransaction.Montant" class="form-control" value="">
-                                                                <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                                <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
-                                                                <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="@Model.Conversation.Auteur_Message.Profil.Prenom">
-                                                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
-                                                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                        @using (Html.BeginForm("CreateTransaction", "Inbox", FormMethod.Post))
+                                        {
+                                            <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
+                                            <form method="post" asp-action="CreateTransaction" asp-controller="Inbox">
+                                                <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Vous êtes intéressé par l'annonce? Proposez un prix!</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <button type="submit" class="btn btn btn-info">Envoyer la proposition</button>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label>Prix en euros:</label>
+                                                                    <input type="text" id="NouvelleTransaction.Montant" name="NouvelleTransaction.Montant" class="form-control" value="">
+                                                                    <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                                    <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                    <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="@Model.Conversation.Auteur_Message.Profil.Prenom">
+                                                                    <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                    <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn btn-info">Envoyer la proposition</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        }
                                     }
-                                }
-                                <a href="@Url.Action("Annonce", "Catalogue", new {id1=Model.CompteConsumer.Id, id2 = @Model.Conversation.Annonce.Id})">
-                                    <button type="button" class="btn btn-link float-right">Annonce N° @Model.Conversation.Annonce.Id</button>
-                                </a>
-                            </div>
+                                        @if (Model.NouvelleTransaction != null)
+                                        {
+                                             <button type="button" disabled="disabled" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">Proposez un prix</button>
+                                        }
+                                    }
+                                    <a href="@Url.Action("Annonce", "Catalogue", new {id1=Model.CompteConsumer.Id, id2 = @Model.Conversation.Annonce.Id})">
+                                        <button type="button" class="btn btn-link float-right ">Annonce N° @Model.Conversation.Annonce.Id</button>
+                                    </a>
+                                </div>
                         </div>
                     </div>
                     <div class="chat-history">
@@ -145,7 +152,7 @@
                                     <li class="clearfix">
                                         <div class="message-data text-right">
                                             <span class="message-data-time">@message.Date</span>
-                                            <img src=@message.Profil.Photo alt="avatar">
+                                            <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
                                         </div>
                                         <div class="message other-message float-right">
                                             @message.message

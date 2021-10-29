@@ -111,7 +111,7 @@
                             {
                                 <ul>
                                     <div class="triangle"> </div>
-                                    <li><a href="/Profil/Index?tabId=contact2">Vous avez une nouvelle notification sur la transaction de référence @notification.TransactionId</a></li>
+                                    <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
                                 </ul>
                             }
                             }
@@ -133,7 +133,7 @@
                             @{
                                 var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
                             }
-                            <img class="border-e mb-3" src="@Compte1.Profil.Photo" alt="">
+                            <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
 
                             <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
                         </li>

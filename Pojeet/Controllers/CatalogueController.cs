@@ -55,8 +55,9 @@ namespace Pojeet.Controllers
             CompteConsumer consumer = dal1.ObtientConsumer(Id1);
             Annonce annonce1 = dal1.ObtientAnnonce(Id2);
             List<Avis> listeAvis = dal1.ObtientAvis(annonce1.ProfilId);
+            Conversation conversation = dal.Contact(Id1, Id2);
             // List<Avis> listeAvis = dal2.ObtenirListeAvis(Id);
-            return View(new AnnonceViewModel { Annonce = annonce1, CompteConsumer = consumer, Avis = listeAvis });
+            return View(new AnnonceViewModel { Annonce = annonce1, CompteConsumer = consumer, Avis = listeAvis, Conversation= conversation});
 
         }
 

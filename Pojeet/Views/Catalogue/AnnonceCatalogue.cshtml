@@ -136,15 +136,27 @@
                             <form id="search-form" action="index.html" method="post">
                                 <div class="flex-col flex-md-row">
                                     <div class="search_category select-wrap mb-1" id="search">
-                                        @Html.DropDownListFor(m => Model.Recherche.TypeDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.TypeRecherche))), new { @class = "search_select_form text-center js-select" })
-                                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), new { @class = "search_select_form text-center js-select" })
+                                        @Html.DropDownListFor(m => Model.Recherche.TypeDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.TypeRecherche))), new { @class = "search_select_form text-center js-select", id = "type" })
+                                        @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), new { @class = "search_select_form text-center js-select", id = "categorie" })
                                     </div>
-                                    @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
-                                    @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
+                                    @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center", id = "recherche" })
+                                    @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center", id = "localisation" })
 
 
                                 </div>
                             </form>
+
+                        </div>
+                        <div class="flex-col flex-md-row justify-content-center">
+
+
+
+                            <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search mb-1">
+                            <input id="button" type="button" value="Démo"
+                                   onclick="
+                            document.getElementById('localisation').value = 31000;
+                            document.getElementById('recherche').value = 'Réparation carrosserie'" />
+
 
                         </div>
 

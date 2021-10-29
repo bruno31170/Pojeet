@@ -235,9 +235,31 @@ namespace Pojeet.Controllers
         //    }
         //} 
 
+
         public ActionResult Comptabilite()
         {
 
+            TransactionViewModel tvm = GetComptat();
+            return View(tvm);
+
+        }
+        [Produces("application/json")]
+        public ActionResult GetTransaction()
+        {
+            try
+            {
+                
+
+                return Ok(GetComptat());
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+        }
+        public TransactionViewModel GetComptat()
+        {
             List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
@@ -339,6 +361,98 @@ namespace Pojeet.Controllers
             argentNovembre.ChiffreDaffaire = 0;
             argentDecembre.ChiffreDaffaire = 0;
 
+            //Liste creation compte consumer
+            List<CompteConsumer> listeConsumerJanvier = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerFevrier = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerMars = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerAvril = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerMai = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerJuin = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerJuillet = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerAout = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerSeptembre = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerOctobre = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerNovembre = new List<CompteConsumer>();
+            List<CompteConsumer> listeConsumerDecembre = new List<CompteConsumer>();
+
+            //Liste compte consumer de l'année
+            List<CompteConsumer> listeConsumerAnnee = new List<CompteConsumer>();
+            foreach (var item in listeConsumer)
+            {
+                if (item.DateCreationCompte.Year == DateTime.Now.Year)
+                {
+                    listeConsumerAnnee.Add(item);
+                }
+            }
+            //FOREACH COMPTE CONSUMER
+            foreach (var item in listeConsumerAnnee)
+            {
+                int dateMoi = Convert.ToInt32(item.DateCreationCompte.Month);
+
+                if (dateMoi == 1)
+                {
+                    listeConsumerJanvier.Add(item);
+
+                }
+                if (dateMoi == 2)
+                {
+                    listeConsumerFevrier.Add(item);
+
+                }
+                if (dateMoi == 3)
+                {
+                    listeConsumerMars.Add(item);
+                    ;
+                }
+                if (dateMoi == 4)
+                {
+                    listeConsumerAvril.Add(item);
+
+                }
+                if (dateMoi == 5)
+                {
+                    listeConsumerMai.Add(item);
+
+                }
+                if (dateMoi == 6)
+                {
+                    listeConsumerJuin.Add(item);
+
+                }
+                if (dateMoi == 7)
+                {
+                    listeConsumerJuillet.Add(item);
+
+                }
+                if (dateMoi == 8)
+                {
+                    listeConsumerAout.Add(item);
+
+                }
+                if (dateMoi == 9)
+                {
+                    listeConsumerSeptembre.Add(item);
+
+                }
+                if (dateMoi == 10)
+                {
+                    listeConsumerOctobre.Add(item);
+
+                }
+                if (dateMoi == 11)
+                {
+                    listeConsumerNovembre.Add(item);
+
+                }
+                if (dateMoi == 12)
+                {
+                    listeConsumerDecembre.Add(item);
+
+                }
+
+            }
+
+            // FOREACH TRANSACTION ET ARGENT
             foreach (var item in listeTransactionAnnee)
             {
                 int dateMoi = Convert.ToInt32(item.Date.Month);
@@ -430,7 +544,13 @@ namespace Pojeet.Controllers
 
             }
 
+
+            List<CompteProvider> listeProvider = new List<CompteProvider>();
+            //listeConsumer = dal.ObtientProvider();
+
+
             return View(new TransactionViewModel
+
             {
                 listConsumer = listeConsumerMois,
                 Transaction = listeTransactionMois,
@@ -461,7 +581,23 @@ namespace Pojeet.Controllers
                 ArgentOctobre = argentOctobre,
                 ArgentNovembre = argentNovembre,
                 ArgentDecembre = argentDecembre,
-            });
+
+                CompteConsumerJanvier = listeConsumerJanvier,
+                CompteConsumerFevrier = listeConsumerFevrier,
+                CompteConsumerMars = listeConsumerMars,
+                CompteConsumerAvril = listeConsumerAvril,
+                CompteConsumerMai = listeConsumerMai,
+                CompteConsumerJuin = listeConsumerJuin,
+                CompteConsumerJuillet = listeConsumerJuillet,
+                CompteConsumerAout = listeConsumerAout,
+                CompteConsumerSeptembre = listeConsumerSeptembre,
+                CompteConsumerOctobre = listeConsumerOctobre,
+                CompteConsumerNovembre = listeConsumerNovembre,
+                CompteConsumerDecembre = listeConsumerDecembre,
+            };
+            
+
+
         }
     }
 }

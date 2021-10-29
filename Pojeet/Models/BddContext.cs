@@ -435,7 +435,8 @@ namespace Pojeet.Models
                 Prix = 30,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                 ProfilId = 2,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "batterie.jpg"
 
             },
 
@@ -452,7 +453,7 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé,
-                Photo = "pose_longue_01.jpg"
+                Photo = "visseuz.jpg"
             },
 
             new Annonce
@@ -467,7 +468,8 @@ namespace Pojeet.Models
                 Prix = 100,
                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
                 ProfilId = 3,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "visseuse.jpg"
             },
             new Annonce
             {
@@ -481,7 +483,8 @@ namespace Pojeet.Models
                 Prix = 50,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                 ProfilId = 1,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "radiateur.jpg"
 
 
             },
@@ -497,7 +500,11 @@ namespace Pojeet.Models
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
-                EtatAnnonce = EtatAnnonce.Validé
+
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "krik.jpg"
+
+
             },
              new Annonce
              {
@@ -511,7 +518,10 @@ namespace Pojeet.Models
                  Prix = 10,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "essuisGlace.jpg"
+
              },
              new Annonce
              {
@@ -525,7 +535,10 @@ namespace Pojeet.Models
                  Prix = 20,
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "roueSecour.jpg"
+
              },
              new Annonce
              {
@@ -539,7 +552,10 @@ namespace Pojeet.Models
                  Prix = 40,
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "parebrise.jpg"
+
              },
              new Annonce
              {
@@ -552,8 +568,11 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 500,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 2,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 ProfilId = 3,
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "pot.jpg"
+
              },
              new Annonce
              {
@@ -567,27 +586,33 @@ namespace Pojeet.Models
                  Prix = 20,
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "test.jpg"
+
              },
              new Annonce
              {
                  Id = 11,
                  TypeDeAnnonce = TypeAnnonce.Besoin,
-                 TitreAnnonce = "Changement d'une batterie",
-                 Description = "Voiture modèle Ford Fusion",
+                 TitreAnnonce = "Changement poignée porte",
+                 Description = "Voiture modèle Clio 3",
                  DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
                  Localisation = "31000",
                  DateButoir = DateTime.Today,
                  Prix = 30,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 2,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "poignee.jpg"
+
              },
             new Annonce
             {
                 Id = 12,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "recherche visseuse dernier cri",
+                TitreAnnonce = "recherche croix démonte pneu",
                 Description = "Modèle à batterie",
                 DateParution = new DateTime(2021, 06, 20, 12, 1, 10),
                 Localisation = "32000",
@@ -596,97 +621,115 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé,
-                Photo = "pose_longue_01.jpg"
+                Photo = "croix.jpg"
+
             },
             new Annonce
             {
                 Id = 13,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Achète 4 pneu de 4x4",
-                Description = "Pneu en très bonne état",
+                TitreAnnonce = "Achète Auto radio",
+                Description = "Etat : Fonctionnel",
                 DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
                 Localisation = "33000",
                 DateButoir = DateTime.Today,
                 Prix = 100,
                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
                 ProfilId = 3,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "autoradio.jpg"
             },
             new Annonce
             {
                 Id = 14,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Changement radiateur",
-                Description = "Radiateur trop vieux",
+                TitreAnnonce = "Changement ceinture conducteur",
+                Description = "Elle a était abimé au fil des ans",
                 DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
                 Prix = 50,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                 ProfilId = 1,
-                EtatAnnonce = EtatAnnonce.Validé
+
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "ceinture.jpg"
+
             },
             new Annonce
             {
                 Id = 15,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Recherche krik",
-                Description = "Un krik simple pour changer ma roue",
+                TitreAnnonce = "Recherche boule remorque",
+                Description = "Pour transporter une caravane",
                 DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
-                Prix = 10,
+                Prix = 20,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
-                EtatAnnonce = EtatAnnonce.Validé
+
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "boule.png"
+
             },
              new Annonce
              {
                  Id = 16,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Propose changement essuis glace",
-                 Description = "Loue remorque pour voiture",
+                 TitreAnnonce = "Propose vidange",
+                 Description = "Tout type de véhicule",
                  DateParution = new DateTime(2021, 10, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 10,
+                 Prix = 30,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "vidange.jpg"
+
              },
              new Annonce
              {
                  Id = 17,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Location de roue de secours",
-                 Description = "Pour voiture commune",
+                 TitreAnnonce = "Location de voiture",
+                 Description = "Pas plus de 2 jours",
                  DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 20,
+                 Prix = 100,
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "location.jpg"
+
              },
              new Annonce
              {
                  Id = 18,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Vend pare-brise Fiat picasso",
-                 Description = "Pare brise neuf",
+                 TitreAnnonce = "Vend capo Fiat panda",
+                 Description = "Capo neuf",
                  DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 40,
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "capotfiatpanda.jpg"
+
+
              },
              new Annonce
              {
                  Id = 19,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Réparation/changement de pot d'echappement",
+                 TitreAnnonce = "Réparation/changement pare-brise arriere",
                  Description = "Tout type de véhicule",
                  DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                  Localisation = "13000",
@@ -694,21 +737,25 @@ namespace Pojeet.Models
                  Prix = 35,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
-                 EtatAnnonce = EtatAnnonce.Validé
+
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "changementParebriseArriere.jpg"
+
              },
              new Annonce
              {
                  Id = 20,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Loue test anti-pollution",
-                 Description = "Loue remorque pour voiture",
+                 TitreAnnonce = "Loue desosseur de voiture",
+                 Description = "Pour démonter une voiture",
                  DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 20,
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "pince.jpg"
 
 
              },
@@ -716,15 +763,16 @@ namespace Pojeet.Models
              {
                  Id = 21,
                  TypeDeAnnonce = TypeAnnonce.Besoin,
-                 TitreAnnonce = "Changement d'une batterie",
-                 Description = "Voiture modèle Ford Fusion",
+                 TitreAnnonce = "Changement du volant",
+                 Description = "Voiture modèle Renault espace",
                  DateParution = new DateTime(2021, 03, 20, 12, 1, 10),
                  Localisation = "31000",
                  DateButoir = DateTime.Today,
                  Prix = 30,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 2,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "volant.jpg"
 
              },
 
@@ -732,8 +780,8 @@ namespace Pojeet.Models
             {
                 Id = 22,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "recherche visseuse dernier cri",
-                Description = "Modèle à batterie",
+                TitreAnnonce = "Recherche fauteuil arrière",
+                Description = "Modèle clio 4",
                 DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
                 Localisation = "32000",
                 DateButoir = DateTime.Today,
@@ -741,14 +789,15 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé,
-                Photo = "pose_longue_01.jpg"
+                Photo = "siege.jpg"
+
             },
 
             new Annonce
             {
                 Id = 23,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Achète 4 pneu de 4x4",
+                TitreAnnonce = "Achète une roue de camionette",
                 Description = "Pneu en très bonne état",
                 DateParution = new DateTime(2021, 05, 20, 12, 1, 10),
                 Localisation = "33000",
@@ -756,21 +805,23 @@ namespace Pojeet.Models
                 Prix = 100,
                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
                 ProfilId = 3,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "roueCamionette.jpg"
             },
             new Annonce
             {
                 Id = 24,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Changement radiateur",
-                Description = "Radiateur trop vieux",
+                TitreAnnonce = "Changement reservoir lave glace",
+                Description = "Modèle renault 5",
                 DateParution = new DateTime(2021, 06, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
                 Prix = 50,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                 ProfilId = 1,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "laveglace.jpg"
 
 
             },
@@ -778,15 +829,16 @@ namespace Pojeet.Models
             {
                 Id = 25,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Recherche krik",
-                Description = "Un krik simple pour changer ma roue",
+                TitreAnnonce = "Recherche polisseuse de carrosserie",
+                Description = "Pour une jolie voiture",
                 DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
-                EtatAnnonce = EtatAnnonce.Validé
+                EtatAnnonce = EtatAnnonce.Validé,
+                Photo = "polisseuse.jpg"
 
 
             },
@@ -796,15 +848,16 @@ namespace Pojeet.Models
              {
                  Id = 26,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Propose changement essuis glace",
-                 Description = "Loue remorque pour voiture",
+                 TitreAnnonce = "Propose réparation carroserie enfoncé",
+                 Description = "Seulement pour des voiture",
                  DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 10,
+                 Prix = 60,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "enfonce.jpeg"
 
 
              },
@@ -812,15 +865,16 @@ namespace Pojeet.Models
              {
                  Id = 27,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Location de roue de secours",
-                 Description = "Pour voiture commune",
+                 TitreAnnonce = "Location de remorque",
+                 Description = "Taille standard",
                  DateParution = new DateTime(2021, 09, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 20,
+                 Prix = 50,
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "remorque.jpg"
 
 
              },
@@ -828,15 +882,16 @@ namespace Pojeet.Models
              {
                  Id = 28,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Vend pare-brise Fiat picasso",
-                 Description = "Pare brise neuf",
+                 TitreAnnonce = "Vend épave de voiture",
+                 Description = "Modele inconnu",
                  DateParution = new DateTime(2021, 10, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 40,
+                 Prix = 300,
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "epave.jpg"
 
 
              },
@@ -844,7 +899,7 @@ namespace Pojeet.Models
              {
                  Id = 29,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Réparation/changement de pot d'echappement",
+                 TitreAnnonce = "Réparation/changement de bougie d'allumage",
                  Description = "Tout type de véhicule",
                  DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
                  Localisation = "13000",
@@ -852,7 +907,8 @@ namespace Pojeet.Models
                  Prix = 35,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "bougie.jpg"
 
 
              },
@@ -860,15 +916,16 @@ namespace Pojeet.Models
              {
                  Id = 30,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Loue test anti-pollution",
-                 Description = "Loue remorque pour voiture",
+                 TitreAnnonce = "Réparation pédale conducteur",
+                 Description = "Pour out type de voiture",
                  DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 20,
-                 CategorieDeAnnonce = CategorieAnnonce.Location,
+                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 1,
-                 EtatAnnonce = EtatAnnonce.Validé
+                 EtatAnnonce = EtatAnnonce.Validé,
+                 Photo = "pedale.jpg"
 
 
              });

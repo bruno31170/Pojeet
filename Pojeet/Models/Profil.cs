@@ -60,6 +60,7 @@ namespace Pojeet.Models
 
         public Statut statut { get; set; }
         public List<Notification> notifications { get; set; }
+        public List<NotificationMessagerie> notificationsMessagerie { get; set; }
 
     }
 

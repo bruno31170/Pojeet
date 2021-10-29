@@ -25,12 +25,15 @@ namespace Pojeet.Models
         public DbSet<MessagerieConversation> MessagerieConversation { get; set; }
         public DbSet<Virement> Virement { get; set; }
         public DbSet<Notification> Notification { get; set; }
+        public DbSet<NotificationMessagerie> NotificationMessagerie { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
         {
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
         }
 
         public void InitializeDb()
@@ -152,7 +155,23 @@ namespace Pojeet.Models
                     Pseudo ="Bruno",
                     MotDePasse = Dal.EncodeMD5("123456")
                 });
-               
+
+            //NotificationmESSAGERIE
+            this.NotificationMessagerie.AddRange(
+            new NotificationMessagerie
+            {
+                Id = 1,
+                ConversationId = 1,
+                ProfilId = 1,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 2,
+                ConversationId = 1,
+                ProfilId = 2,
+                MessagesNonLus = 0,
+            });
 
 
             //PROFIL
@@ -931,6 +950,44 @@ namespace Pojeet.Models
              });
 
 
+            //CONSUMER
+            this.CompteConsumer.AddRange(
+            new CompteConsumer
+            {
+                Id = 1,
+                Pseudo = "Toto",
+                MotDePasse = Dal.EncodeMD5("lolilol"),
+                ProfilId = 1,
+                DateCreationCompte = new DateTime(2021, 10, 04, 12, 1, 10)
+
+            },
+             new CompteConsumer
+             {
+                 Id = 2,
+                 Pseudo = "tata",
+                 MotDePasse = Dal.EncodeMD5("tatata"),
+                 ProfilId = 2,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 3,
+                 Pseudo = "Evgeniia",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 3,
+                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 4,
+                 Pseudo = "Bruno",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 4,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
+             }
+            );
+
+
             //MESSAGE
             this.Message.AddRange(
             new Message
@@ -978,6 +1035,8 @@ namespace Pojeet.Models
                 AnnonceId = 1
 
             });
+
+            
             this.Messagerie.AddRange(
             new Messagerie
             {

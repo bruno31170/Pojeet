@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" prefix="og: http://ogp.me/ns#">
 
@@ -40,10 +41,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-
                 @{
                     var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
                     var consumer1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+                    int CountNotificationsMessagerie = 0;
+                    if (consumer1 != null)
+                    {
+                        CountNotificationsMessagerie = new Pojeet.Models.Dal().countNotificationsMessagerie(consumer1.Profil.notificationsMessagerie);
+                    }
                 }
                 @if (@consumer1 != null && @provider1 != null && @consumer1.Id == @provider1.CompteConsumerId)
                 {
@@ -59,12 +64,30 @@
                             <li class="nav-item d-flex align-items-center">
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                                     <i class="font-size-24 iconNav fa fa-envelope" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
+                                    @if (@consumer1.Profil.notificationsMessagerie != null)
+                                    {
+                                        <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
+                                    }
                                 </a>
                             </li>
                             <li class="nav-item d-flex align-items-center">
                                 <a href="#">
                                     <i class="font-size-24 iconNav fa fa-bell" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
+                                    @if (@consumer1.Profil.notifications != null)
+                                    {
+                                        <span class="badge badge-danger navbar-badge">@consumer1.Profil.notifications.Count()</span>
+                                    }
                                 </a>
+                                @if (@consumer1.Profil.notifications != null)
+                                {
+                                    @foreach (var notification in @consumer1.Profil.notifications)
+                                    {
+                                        <ul>
+                                            <div class="triangle"> </div>
+                                            <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
+                                        </ul>
+                                    }
+                                }
                             </li>
                             @*<li class="nav-item d-flex align-items-center">
                                     @Html.ActionLink("Deconnexion", "Deconnexion", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
@@ -107,12 +130,31 @@
                             <li class="nav-item d-flex align-items-center">
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                                     <i class="font-size-24 iconNav fa fa-envelope" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
+                                    @if (@consumer1.Profil.notificationsMessagerie != null)
+                                    {
+                                        <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
+                                    }
+
                                 </a>
                             </li>
                             <li class="nav-item d-flex align-items-center">
                                 <a href="#">
                                     <i class="font-size-24 iconNav fa fa-bell" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
+                                    @if (@consumer1.Profil.notifications != null)
+                                    {
+                                        <span class="badge badge-danger navbar-badge">@consumer1.Profil.notifications.Count()</span>
+                                    }
                                 </a>
+                                @if (@consumer1.Profil.notifications != null)
+                                {
+                                    @foreach (var notification in @consumer1.Profil.notifications)
+                                    {
+                                        <ul>
+                                            <div class="triangle"> </div>
+                                            <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
+                                        </ul>
+                                    }
+                                }
                             </li>
                         </ul>
                     </div>

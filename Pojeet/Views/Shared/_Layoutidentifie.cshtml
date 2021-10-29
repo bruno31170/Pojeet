@@ -1,5 +1,6 @@
 @{
     var Compte = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+    int CountNotificationsMessagerie = new Pojeet.Models.Dal().countNotificationsMessagerie(@Compte.Profil.notificationsMessagerie);
 }
 <!DOCTYPE html>
 <html lang="fr">
@@ -95,12 +96,17 @@
                     <li class="mr-3 ml-2 text-right">
                         <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                             <i class="font-size-24 fa fa-envelope"></i>
-                            <span class="badge badge-danger navbar-badge"></span>
-                        </a>
+                            @if (@Compte.Profil.notificationsMessagerie != null)
+                            {
+                                
+                        <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
+                            }
+                            </a>
                     </li>
                     <li class="ml-2 text-right">
                         <a href="#">
                             <i class="font-size-24 fa fa-bell"></i>
+
                             @if (@Compte.Profil.notifications != null)
                             {
                                 <span class="badge badge-danger navbar-badge">@Compte.Profil.notifications.Count()</span>

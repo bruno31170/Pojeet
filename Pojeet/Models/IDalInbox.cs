@@ -22,8 +22,6 @@ namespace Pojeet.Models
         List<MessagerieConversation> ObtientMessagerieConversation(int id);
         Conversation ObtenirConversationTransaction(int id, int profilId);
         Transaction ObtenirTransaction(int id1, int id2);
-
-
-
+        void SupprimerNotification(int id1, int id2);
     }
 }

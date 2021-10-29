@@ -7,6 +7,123 @@ Chart.defaults.global.defaultFontSize = 13;
 var areaChartCanvas = document.getElementById("areaChart");
 Chart.defaults.global.defaultFontSize = 13;
 
+$.ajax({
+    type: 'GET',
+    dataType: "json",
+    contentType: "application/json",
+    url: '/Gf/GetTransaction',
+    success: function (result) {
+        /*chart 1 */
+        var dataFirstFromDb = {
+            label: "Marge brut 2021 (€)",
+            borderColor: '#2e73a6',
+            //backgroundColor: 'rgba(60, 141, 187, 0.6)',
+            //lineTension: 0,
+            fill: false,
+            data: [
+                result['argentJanvier']['margeBrut'],
+                result['argentFevrier']['margeBrut'],
+                result['argentMars']['margeBrut'],
+                result['argentAvril']['margeBrut'],
+                result['argentMai']['margeBrut'],
+                result['argentJuin']['margeBrut'],
+                result['argentJuillet']['margeBrut'],
+                result['argentAout']['margeBrut'],
+                result['argentSeptembre']['margeBrut'],
+                result['argentOctobre']['margeBrut'],
+                result['argentNovembre']['margeBrut'],
+                result['argentDecembre']['margeBrut']]
+        };
+        new Chart(areaChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                datasets: [dataFirstFromDb]
+            },
+            options: areaChartOptions
+        });
+
+
+        /* chart2*/
+
+
+
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                datasets: [{
+                    label: "Nouveaux clients",
+                    data: [
+                        result['compteConsumerJanvier'].length,
+                        result['compteConsumerFevrier'].length,
+                        result['compteConsumerMars'].length,
+                        result['compteConsumerAvril'].length,
+                        result['compteConsumerMai'].length,
+                        result['compteConsumerJuin'].length,
+                        result['compteConsumerJuillet'].length,
+                        result['compteConsumerAout'].length,
+                        result['compteConsumerSeptembre'].length,
+                        result['compteConsumerOctobre'].length,
+                        result['compteConsumerNovembre'].length,
+                        result['compteConsumerDecembre'].length
+                    ],
+                    lineTension: 0,
+                    fill: false,
+                    borderColor: 'orange',
+                    // backgroundColor: 'transparent',
+                    // borderDash: [5, 5],
+                    // pointBorderColor: 'orange',
+                    // pointBackgroundColor: 'rgba(255,150,0,0.5)',
+                    // pointRadius: 5,
+                    // pointHoverRadius: 10,
+                    // pointHitRadius: 30,
+                    // pointBorderWidth: 2,
+                    // pointStyle: 'rectRounded'
+                }]
+            },
+            options: lineChartOptions
+        });
+
+        /*chart3*/
+        var dataFirstCA = {
+            label: "CA 2020 (€)",
+            borderColor: '#2e73a6',
+            //backgroundColor: 'rgba(60, 141, 187, 0.6)',
+            //lineTension: 0,
+            fill: false,
+            data: [
+                result['argentJanvier']['margeBrut'],
+                result['argentFevrier']['margeBrut'],
+                result['argentMars']['margeBrut'],
+                result['argentAvril']['margeBrut'],
+                result['argentMai']['margeBrut'],
+                result['argentJuin']['margeBrut'],
+                result['argentJuillet']['margeBrut'],
+                result['argentAout']['margeBrut'],
+                result['argentSeptembre']['margeBrut'],
+                result['argentOctobre']['margeBrut'],
+                result['argentNovembre']['margeBrut'],
+                result['argentDecembre']['margeBrut']],
+
+            backgroundColor: 'rgba(43, 103, 119, 0.6)',
+            borderWidth: 0
+        };
+
+        new Chart(barChartCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                datasets: [dataFirstCA]
+            },
+        });
+
+        /*chart4*/
+
+
+    },
+});
+
 
 var dataFirst = {
   label: "Marge brut 2021 (€)",
@@ -14,7 +131,7 @@ var dataFirst = {
   //backgroundColor: 'rgba(60, 141, 187, 0.6)',
   //lineTension: 0,
   fill: false,
-  data: [28, 48, 40, 59, 86, 51, 90, 80, 46, 5, 0, 0]
+  data: [, 48, 40, 59, 86, 51, 90, 80, 46, 5, 0, 0]
 };
 
 var dataSecond = {
@@ -119,11 +236,7 @@ var lineChartOptions = {
   }
 };
 
-var lineChart = new Chart(lineChartCanvas, {
-  type: 'line',
-  data: lineChartData,
-  options: lineChartOptions
-});
+
 
 //-------------
 //- End Nouveaux clients -

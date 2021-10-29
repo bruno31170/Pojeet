@@ -45,6 +45,7 @@ namespace Pojeet.Models
             List<Annonce> rechercheAnnonce = new List<Annonce>();
             List<Annonce> annonce = ObtientAnnonce();
             string MotRechercher = "";
+            string Departement = "";
             if (uvm.Recherche.Rechercher != null)
             {
                 MotRechercher = uvm.Recherche.Rechercher.ToLower();
@@ -53,7 +54,15 @@ namespace Pojeet.Models
             {
                 MotRechercher = uvm.Recherche.Rechercher;
             }
-            string Departement = uvm.Recherche.Localisation;
+            if (uvm.Recherche.Localisation != null)
+            {
+                Departement = uvm.Recherche.Localisation.ToString();
+            }
+            else
+            {
+                Departement = uvm.Recherche.Localisation;
+            }
+            
             string TypeRecherche = uvm.Recherche.TypeDeRecherche.ToString();
             string CategorieRecherche = uvm.Recherche.CategorieDeRecherche.ToString();
             string TriRecherche = uvm.Recherche.Tri.ToString();
@@ -65,6 +74,7 @@ namespace Pojeet.Models
                 string TypeAnnonce = item.TypeDeAnnonce.ToString();
                 string CategorieAnnonce = item.CategorieDeAnnonce.ToString();
                 string TitreAnnonce = item.TitreAnnonce.ToString().ToLower();
+                string DepartementRecherche = item.Localisation.ToString();
 
                 if (TypeRecherche.Equals("Type")) 
                 { 

@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/img/logo.ico" />
 
 
 
@@ -111,11 +112,11 @@
                             {
                                 <ul>
                                     <div class="triangle"> </div>
-                                    <li><a href="/Profil/Index?tabId=contact2">Vous avez une nouvelle notification sur la transaction de référence @notification.TransactionId</a></li>
+                                    <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
                                 </ul>
                             }
-                            }
-                        </li>
+                        }
+                    </li>
                 </ul>
             </div>
         </div>
@@ -133,7 +134,7 @@
                             @{
                                 var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
                             }
-                            <img class="border-e mb-3" src="@Compte1.Profil.Photo" alt="">
+                            <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
 
                             <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
                         </li>
@@ -156,9 +157,9 @@
                             var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
                         }
                         @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
-                        @if(provider1 == null)
+                        @if (provider1 == null)
                         {
-                            <li >
+                            <li>
                                 <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
                             </li>
                         }

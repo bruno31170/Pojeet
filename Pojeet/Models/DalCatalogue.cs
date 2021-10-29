@@ -186,5 +186,11 @@ namespace Pojeet.Models
             }
             return rechercheAnnonce;
         }
+
+        public Conversation Contact(int id1, int id2)
+        {
+            Conversation conversation = _context.Conversation.Where(c => c.Auteur_Message.ProfilId == id1 && c.Annonce.Id == id2).FirstOrDefault();
+            return conversation;
+        }
     }
 }

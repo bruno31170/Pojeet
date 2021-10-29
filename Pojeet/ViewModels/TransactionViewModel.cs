@@ -54,6 +54,8 @@ namespace Pojeet.ViewModels
         public List<CompteConsumer> CompteConsumerOctobre { get; set; }
         public List<CompteConsumer> CompteConsumerNovembre { get; set; }
         public List<CompteConsumer> CompteConsumerDecembre { get; set; }
+        public List<CompteConsumer> CompteConsumerTotal { get; set; }
+        public List<CompteProvider> CompteProviderTotal { get; set; }
 
     }
 }

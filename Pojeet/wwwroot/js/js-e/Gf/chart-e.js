@@ -87,7 +87,7 @@ $.ajax({
 
         /*chart3*/
         var dataFirstCA = {
-            label: "CA 2020 (€)",
+            label: "CA 2021 (€)",
             borderColor: '#2e73a6',
             //backgroundColor: 'rgba(60, 141, 187, 0.6)',
             //lineTension: 0,
@@ -119,13 +119,33 @@ $.ajax({
         });
 
         /*chart4*/
+        var donutData = {
+            labels: [
+                'Compte Consumer',
+                'Compte Provider'
+               
+            ],
+            datasets: [{
+                data: [
+                    result['compteConsumerTotal'].length,
+                    result['compteProviderTotal'].length],
+                backgroundColor: ['#3c8dbc', '#00a65a'],
+            }]
+        }
 
 
+
+        new Chart(donutChartCanvas, {
+            type: 'doughnut',
+            data: donutData,
+            options: donutOptions
+        })
+        
     },
 });
 
 
-var dataFirst = {
+/*var dataFirst = {
   label: "Marge brut 2021 (€)",
   borderColor: '#2e73a6',
   //backgroundColor: 'rgba(60, 141, 187, 0.6)',
@@ -147,7 +167,7 @@ var dataSecond = {
 var areaChartData = {
   labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
   datasets: [dataFirst, dataSecond]
-};
+};*/
 
 var areaChartOptions = {
   maintainAspectRatio: false,
@@ -175,12 +195,12 @@ var areaChartOptions = {
 
 
 // This will get the first returned node in the jQuery collection.
-new Chart(areaChartCanvas, {
+/*new Chart(areaChartCanvas, {
   type: 'line',
   data: areaChartData,
   options: areaChartOptions
 });
-
+*/
 //--------------
 //- End marge brut -
 //--------------
@@ -267,11 +287,11 @@ var donutOptions = {
 }
 //Create pie or douhnut chart
 // You can switch between pie and douhnut using the method below.
-new Chart(donutChartCanvas, {
+/*new Chart(donutChartCanvas, {
   type: 'doughnut',
   data: donutData,
   options: donutOptions
-})
+})*/
 
 //-------------
 //- End Donut commandes -
@@ -282,7 +302,7 @@ new Chart(donutChartCanvas, {
 //-------------
 var barChartCanvas = document.getElementById("barChart");
 
-var dataFirstCA = {
+/*var dataFirstCA = {
   label: 'CA 2020 (€)',
   data: [3427, 5243, 4514, 3933, 1326, 687, 1271, 2638, 1948, 2684, 3210, 3187],
   backgroundColor: 'rgba(43, 103, 119, 0.6)',
@@ -300,7 +320,7 @@ var barChartData = {
   labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
   datasets: [dataFirstCA, dataSecondCA]
 };
-
+*/
 var barChartOptions = {
   scales: {
             yAxes: [{

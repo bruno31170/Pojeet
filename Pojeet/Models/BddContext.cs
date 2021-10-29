@@ -39,17 +39,52 @@ namespace Pojeet.Models
 
             this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            //AIDE
-            this.Aide.AddRange(
-                new Aide
-                {
-                    Id = 1,
-                    Nom = "Bruno",
-                    Mail = "bruno.gmail",
-                    Objet = "Litige avec un Helper",
-                    Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
-                    ProfilId = 1
-                });
+
+            //CONSUMER
+            this.CompteConsumer.AddRange(
+            new CompteConsumer
+            {
+                Id = 1,
+                Pseudo = "Toto",
+                MotDePasse = Dal.EncodeMD5("lolilol"),
+                ProfilId = 1,
+                DateCreationCompte = new DateTime(2021, 07, 04, 12, 1, 10)
+
+            },
+             new CompteConsumer
+             {
+                 Id = 2,
+                 Pseudo = "tata",
+                 MotDePasse = Dal.EncodeMD5("tatata"),
+                 ProfilId = 2,
+                 DateCreationCompte = new DateTime(2021, 05, 28, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 3,
+                 Pseudo = "Evgeniia",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 3,
+                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 4,
+                 Pseudo = "Bruno",
+                 MotDePasse = Dal.EncodeMD5("123456"),
+                 ProfilId = 4,
+                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 5,
+                 Pseudo = "BricoloDuDimanche",
+                 MotDePasse = Dal.EncodeMD5("bricolo"),
+                 ProfilId = 5,
+                 DateCreationCompte = new DateTime(2021, 02, 15, 12, 1, 10)
+             }
+            );
+
 
             //PROFIL
             this.Profil.AddRange(
@@ -82,7 +117,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "cecileLepillouer@gmail.com",
                 NumeroTelephone = 687555652,
-                Photo = "avatar_exemple.png",
+                Photo = "",
                 NoteMoyenne = 4
             },
             new Profil
@@ -117,7 +152,45 @@ namespace Pojeet.Models
                 NumeroTelephone = 62574402,
                 Photo = "https://bootdey.com/img/Content/avatar/avatar4.png"
 
-            });
+            },
+             new Profil
+             {
+                 Id = 5,
+                 Description = "Passioné par le bricolage et l'automobile. Recemment retraité j'ai du temps pour vous aider dans vos réparation !",
+                 Nom = "Danner",
+                 Prenom = "Jean-Paul",
+                 DateDeNaissance = "12/12/1995",
+                 Adresse = "51 Rue Frédéric Chopin",
+                 Ville = "Vesoul",
+                 CodePostal = "70000",
+                 Pays = 0,
+                 Mail = "jpBricolo@orange.fr",
+                 NumeroTelephone = 625744022,
+                 Photo = "jeanpaul.png"
+             });
+
+            //CompteHelper
+            this.CompteProvider.AddRange(
+                new CompteProvider
+                {
+                    Id = 1,
+                    CompteConsumerId = 2,
+                    DocumentIdentification = "cniTEst.png",
+                    RibId = 1,
+                    Etat = 0,
+                    Competence = "Moteur,Pneu",
+                    DateCreationCompte = DateTime.Now,
+                },
+                new CompteProvider
+                {
+                    Id = 2,
+                    CompteConsumerId = 5,
+                    DocumentIdentification = "cniTEst.png",
+                    RibId = 2,
+                    Etat = 0,
+                    Competence = "Habitacle,Pneu",
+                    DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10),
+                });
 
             //ANNONCE
             this.Annonce.AddRange(
@@ -196,11 +269,7 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé
-
-
             },
-
-
              new Annonce
              {
                  Id = 6,
@@ -214,8 +283,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -230,8 +297,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -246,8 +311,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -262,8 +325,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -278,8 +339,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -294,9 +353,7 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 2,
                  EtatAnnonce = EtatAnnonce.Validé
-
              },
-
             new Annonce
             {
                 Id = 12,
@@ -312,7 +369,6 @@ namespace Pojeet.Models
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "pose_longue_01.jpg"
             },
-
             new Annonce
             {
                 Id = 13,
@@ -340,8 +396,6 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
                 ProfilId = 1,
                 EtatAnnonce = EtatAnnonce.Validé
-
-
             },
             new Annonce
             {
@@ -356,11 +410,7 @@ namespace Pojeet.Models
                 CategorieDeAnnonce = CategorieAnnonce.Location,
                 ProfilId = 2,
                 EtatAnnonce = EtatAnnonce.Validé
-
-
             },
-
-
              new Annonce
              {
                  Id = 16,
@@ -374,8 +424,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -390,8 +438,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Location,
                  ProfilId = 1,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -406,8 +452,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Pièce,
                  ProfilId = 4,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -422,8 +466,6 @@ namespace Pojeet.Models
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
                  EtatAnnonce = EtatAnnonce.Validé
-
-
              },
              new Annonce
              {
@@ -603,45 +645,6 @@ namespace Pojeet.Models
              });
 
 
-
-
-            //CONSUMER
-            this.CompteConsumer.AddRange(
-            new CompteConsumer
-            {
-                Id = 1,
-                Pseudo = "Toto",
-                MotDePasse = Dal.EncodeMD5("lolilol"),
-                ProfilId = 1,
-                DateCreationCompte = new DateTime(2021, 10, 04, 12, 1, 10)
-
-            },
-             new CompteConsumer
-             {
-                 Id = 2,
-                 Pseudo = "tata",
-                 MotDePasse = Dal.EncodeMD5("tatata"),
-                 ProfilId = 2,
-                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
-             },
-             new CompteConsumer
-             {
-                 Id = 3,
-                 Pseudo = "Evgeniia",
-                 MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 3,
-                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
-             },
-             new CompteConsumer
-             {
-                 Id = 4,
-                 Pseudo = "Bruno",
-                 MotDePasse = Dal.EncodeMD5("123456"),
-                 ProfilId = 4,
-                 DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
-             }
-            );
-
             //MESSAGE
             this.Message.AddRange(
             new Message
@@ -720,6 +723,19 @@ namespace Pojeet.Models
                 ConversationId = 1,
             }
            );
+
+            //AIDE
+            this.Aide.AddRange(
+                new Aide
+                {
+                    Id = 1,
+                    Nom = "Bruno",
+                    Mail = "bruno.gmail",
+                    Objet = "Litige avec un Helper",
+                    Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
+                    ProfilId = 1
+                });
+
 
 
             //TRANSACTION
@@ -1015,28 +1031,7 @@ namespace Pojeet.Models
                  }
                 );
 
-            //CompteHelper
-            this.CompteProvider.AddRange(
-                new CompteProvider
-                {
-                    Id = 1,
-                    CompteConsumerId = 2,
-                    DocumentIdentification = "cniTEst.png",
-                    RibId = 1,
-                    Etat = 0,
-                    Competence = "Moteur,Pneu",
-                    DateCreationCompte = DateTime.Now,
-                },
-                new CompteProvider
-                {
-                    Id = 2,
-                    CompteConsumerId = 4,
-                    DocumentIdentification = "cniTEst.png",
-                    RibId = 2,
-                    Etat = 0,
-                    Competence = "Habitacle,Pneu",
-                    DateCreationCompte = DateTime.Now,
-                });
+
 
             this.SaveChanges();
         }

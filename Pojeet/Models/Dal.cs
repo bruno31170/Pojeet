@@ -231,6 +231,17 @@ namespace Pojeet.Models
 
         }
 
+        public void ModifierEtatProviderValide(int id)
+        {
+            CompteProvider compteProvider = _context.CompteProvider.Where(c => c.Id == id).FirstOrDefault();
+
+            if (compteProvider != null)
+            {
+                compteProvider.Etat = Etat.Valide;
+                _context.SaveChanges();
+            }
+        }
+
         public void SuppressionConsumer(int id)
         {
             CompteConsumer consumer = _context.CompteConsumer.Find(id);
@@ -301,7 +312,8 @@ namespace Pojeet.Models
                 CompteConsumerId = compteConsumer.Id,
                 Rib = rib,
                 Etat = 0,
-                Competence = StringCompetence
+                Competence = StringCompetence,
+                DateCreationCompte = DateTime.Now,
             };
 
             if (photo != null)

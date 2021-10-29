@@ -169,9 +169,13 @@
                                 <ul>
                                     <li class="nav-item">
                                         <a href="messenger-client.html" class="nav-link flex-row justify-content-between align-items-center pb-2 pt-2">
-                                            <p class="m-2">Helper/Consumer</p>
+                                            <p class="m-2">Demande Validation de Helper</p>
                                             <div class="count_msg">
-                                                <span>3</span>
+                                                @{
+                                                    var listCompteProvider = new Pojeet.Models.DalTransaction().ObtientTousHelpersAValider();
+                                                    int result = listCompteProvider.Count();
+                                                }
+                                                <span>@result</span>
                                             </div>
                                         </a>
                                     </li>
@@ -222,16 +226,14 @@
 
     <script src="~/js/js-e/Gf/chart.js/Chart.min.js"></script>
     <script src="~/js/js-e/Gf/chart-e.js"></script>
-    <script>
-        $(document).ready(function () {
+    <script>$(document).ready(function () {
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $("#commande tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
-        });
-    </script>
+        });</script>
 
 </body>
 

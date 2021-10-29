@@ -30,7 +30,13 @@ namespace Pojeet.Models
 
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+
+
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
 
         }
 
@@ -742,7 +748,7 @@ namespace Pojeet.Models
                 AnnonceId = 1,
                 Montant = 5.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 4
 
             },
             new Transaction
@@ -1005,7 +1011,15 @@ namespace Pojeet.Models
                     TitulaireCompte = "Le Pillouer",
                     Iban = "FR56789899878766567878998",
                     Bic = "VDHDBHBD66567",
-                });
+                },
+                 new Rib
+                 {
+                     Id = 2,
+                     TitulaireCompte = "Durand",
+                     Iban = "FR56789899878766567878998",
+                     Bic = "VDHDBHBD66567",
+                 }
+                );
 
             //CompteHelper
             this.CompteProvider.AddRange(
@@ -1013,10 +1027,21 @@ namespace Pojeet.Models
                 {
                     Id = 1,
                     CompteConsumerId = 2,
-                    DocumentIdentification = "jhehshkshefhskfhjksfd.pdf",
+                    DocumentIdentification = "cniTEst.png",
                     RibId = 1,
                     Etat = 0,
                     Competence = "Moteur,Pneu",
+                    DateCreationCompte = DateTime.Now,
+                },
+                new CompteProvider
+                {
+                    Id = 2,
+                    CompteConsumerId = 4,
+                    DocumentIdentification = "cniTEst.png",
+                    RibId = 2,
+                    Etat = 0,
+                    Competence = "Habitacle,Pneu",
+                    DateCreationCompte = DateTime.Now,
                 });
 
             this.SaveChanges();

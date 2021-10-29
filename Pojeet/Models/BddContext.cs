@@ -57,7 +57,7 @@ namespace Pojeet.Models
                  Pseudo = "tata",
                  MotDePasse = Dal.EncodeMD5("tatata"),
                  ProfilId = 2,
-                 DateCreationCompte = new DateTime(2021, 05, 28, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 09, 28, 12, 1, 10)
              },
              new CompteConsumer
              {
@@ -81,8 +81,32 @@ namespace Pojeet.Models
                  Pseudo = "BricoloDuDimanche",
                  MotDePasse = Dal.EncodeMD5("bricolo"),
                  ProfilId = 5,
-                 DateCreationCompte = new DateTime(2021, 02, 15, 12, 1, 10)
-             }
+                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 6,
+                 Pseudo = "CocoLaBricole",
+                 MotDePasse = Dal.EncodeMD5("cococo"),
+                 ProfilId = 6,
+                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+             },
+             new CompteConsumer
+             {
+                 Id = 7,
+                 Pseudo = "EricDu11",
+                 MotDePasse = Dal.EncodeMD5("eric11"),
+                 ProfilId = 7,
+                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+             },
+              new CompteConsumer
+              {
+                  Id = 8,
+                  Pseudo = "TomTom",
+                  MotDePasse = Dal.EncodeMD5("tomtom"),
+                  ProfilId = 8,
+                  DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+              }
             );
 
 
@@ -159,7 +183,7 @@ namespace Pojeet.Models
                  Description = "Passioné par le bricolage et l'automobile. Recemment retraité j'ai du temps pour vous aider dans vos réparation !",
                  Nom = "Danner",
                  Prenom = "Jean-Paul",
-                 DateDeNaissance = "12/12/1995",
+                 DateDeNaissance = "12/09/1949",
                  Adresse = "51 Rue Frédéric Chopin",
                  Ville = "Vesoul",
                  CodePostal = "70000",
@@ -167,7 +191,52 @@ namespace Pojeet.Models
                  Mail = "jpBricolo@orange.fr",
                  NumeroTelephone = 625744022,
                  Photo = "jeanpaul.png"
-             });
+             },
+              new Profil
+              {
+                  Id = 6,
+                  Description = "Garagiste de profession, vous pouvez avoir confiance en moi !",
+                  Nom = "Dumas",
+                  Prenom = "Corinne",
+                  DateDeNaissance = "12/12/1969",
+                  Adresse = "93 Place du Jeu de Paume",
+                  Ville = "VILLEFRANCHE-SUR-SAÔNE",
+                  CodePostal = "69400",
+                  Pays = 0,
+                  Mail = "coco@gmail.fr",
+                  NumeroTelephone = 625767431,
+                  Photo = "Corinne.png"
+              },
+              new Profil
+              {
+                  Id = 7,
+                  Description = "",
+                  Nom = "Lessard",
+                  Prenom = "Eric",
+                  DateDeNaissance = "12/01/1982",
+                  Adresse = "54 Rue Marie De Médicis",
+                  Ville = "Carcassonne",
+                  CodePostal = "11000",
+                  Pays = 0,
+                  Mail = "erci.lessard@yahoo.fr",
+                  NumeroTelephone = 625766598,
+                  Photo = "Eric.png"
+              },
+               new Profil
+               {
+                   Id = 8,
+                   Description = "Recemment diplômé d'un CAP mécanique je suis à votre disposition pour tout type de service",
+                   Nom = "Ouellet",
+                   Prenom = "Thomas",
+                   DateDeNaissance = "12/01/1995",
+                   Adresse = "42 Place Charles de Gaulle",
+                   Ville = "VILLENAVE-D'ORNON",
+                   CodePostal = "33140",
+                   Pays = 0,
+                   Mail = "thomas.mecanic@yahoo.fr",
+                   NumeroTelephone = 625766565,
+                   Photo = "Thomas.png"
+               });
 
             //CompteHelper
             this.CompteProvider.AddRange(
@@ -177,9 +246,9 @@ namespace Pojeet.Models
                     CompteConsumerId = 2,
                     DocumentIdentification = "cniTEst.png",
                     RibId = 1,
-                    Etat = 0,
+                    Etat = Etat.Valide,
                     Competence = "Moteur,Pneu",
-                    DateCreationCompte = DateTime.Now,
+                    DateCreationCompte = new DateTime(2021, 09, 23, 12, 1, 10),
                 },
                 new CompteProvider
                 {
@@ -187,10 +256,65 @@ namespace Pojeet.Models
                     CompteConsumerId = 5,
                     DocumentIdentification = "cniTEst.png",
                     RibId = 2,
-                    Etat = 0,
+                    Etat = Etat.Valide,
                     Competence = "Habitacle,Pneu",
                     DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10),
-                });
+                },
+                 new CompteProvider
+                 {
+                     Id = 3,
+                     CompteConsumerId = 7,
+                     DocumentIdentification = "cniTEst.png",
+                     RibId = 3,
+                     Etat = Etat.DemandeEnCours,
+                     Competence = "Moteur,Pneu, Nettoyage, Habitacle",
+                     DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10),
+                 },
+                  new CompteProvider
+                  {
+                      Id = 4,
+                      CompteConsumerId = 6,
+                      DocumentIdentification = "cniTEst.png",
+                      RibId = 4,
+                      Etat = Etat.DemandeEnCours,
+                      Competence = "Moteur,Pneu,Habitacle",
+                      DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10),
+                  }
+             );
+
+            //RIB
+            this.Rib.AddRange(
+                new Rib
+                {
+                    Id = 1,
+                    TitulaireCompte = "Le Pillouer",
+                    Iban = "FR56789899878766567878998",
+                    Bic = "VDHDBHBD66567",
+                },
+                 new Rib
+                 {
+                     Id = 2,
+                     TitulaireCompte = "Durand",
+                     Iban = "FR56789899878766567878998",
+                     Bic = "VDHDBHBD66567",
+                 },
+                 new Rib
+                 {
+                     Id = 3,
+                     TitulaireCompte = "Dumas",
+                     Iban = "FR567898998787665678878789",
+                     Bic = "VDHDBHHHG6567",
+                 },
+                  new Rib
+                  {
+                      Id = 4,
+                      TitulaireCompte = "Lessard",
+                      Iban = "FR56789899878766567888745",
+                      Bic = "GHYFHVHHG6567",
+                  }
+                );
+
+
 
             //ANNONCE
             this.Annonce.AddRange(
@@ -1012,24 +1136,6 @@ namespace Pojeet.Models
                 CompteConsumerId = 3,
                 ProfilId = 2
             });
-
-            //RIB
-            this.Rib.AddRange(
-                new Rib
-                {
-                    Id = 1,
-                    TitulaireCompte = "Le Pillouer",
-                    Iban = "FR56789899878766567878998",
-                    Bic = "VDHDBHBD66567",
-                },
-                 new Rib
-                 {
-                     Id = 2,
-                     TitulaireCompte = "Durand",
-                     Iban = "FR56789899878766567878998",
-                     Bic = "VDHDBHBD66567",
-                 }
-                );
 
 
 

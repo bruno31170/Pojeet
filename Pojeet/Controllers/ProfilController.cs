@@ -132,28 +132,28 @@ namespace Pojeet.Controllers
 
 
                     //MAIL
-                    MailMessage message = new MailMessage();
-                    message.From = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
-                    message.To.Add(prov.CompteConsumer.Profil.Mail);
-                    message.Subject = "Inscription";
-                    message.IsBodyHtml = true;
-                    var doc = new HtmlDocument();
-                    FileStream cheminHtml = new FileStream(_env.WebRootPath + "/html/HelperValide.html", FileMode.Open);
-                    doc.Load(cheminHtml);
-                    message.Body = doc.DocumentNode.OuterHtml;
+                    //MailMessage message = new MailMessage();
+                    //message.From = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
+                    //message.To.Add(prov.CompteConsumer.Profil.Mail);
+                    //message.Subject = "Inscription";
+                    //message.IsBodyHtml = true;
+                    //var doc = new HtmlDocument();
+                    //FileStream cheminHtml = new FileStream(_env.WebRootPath + "/html/HelperValide.html", FileMode.Open);
+                    //doc.Load(cheminHtml);
+                    //message.Body = doc.DocumentNode.OuterHtml;
 
-                    var smtp = new SmtpClient
-                    {
-                        Host = "smtp.gmail.com",
-                        Port = 587,
-                        EnableSsl = true,
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("helpmycar.isika@gmail.com", "helpmycar2021")
-                    };
-                    {
-                        smtp.Send(message);
-                    }
+                    //var smtp = new SmtpClient
+                    //{
+                    //    Host = "smtp.gmail.com",
+                    //    Port = 587,
+                    //    EnableSsl = true,
+                    //    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    //    UseDefaultCredentials = false,
+                    //    Credentials = new NetworkCredential("helpmycar.isika@gmail.com", "helpmycar2021")
+                    //};
+                    //{
+                    //    smtp.Send(message);
+                    //}
 
 
 

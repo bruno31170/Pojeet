@@ -201,7 +201,7 @@ namespace Pojeet.Controllers
             }
             return View("");
         }
-        //<a href = "/Profil/Index?tabId=contact2" >
+
         public IActionResult ActualiserEtatTransaction(int reference, EtatTransaction etat)
         {
             using (Dal ctx = new Dal())

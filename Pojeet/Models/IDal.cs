@@ -14,6 +14,7 @@ namespace Pojeet.Models
             string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo);
         void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
            string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo);
+        Annonce ObtientAnnonce(int annonceId);
         void SuppressionConsumer(int id);
         int AjouterProvider(CompteConsumer compteConsumer, string iban, string bic, string titulaire, IFormFile photo, List<string> competence);
         CompteConsumer ObtenirConsumer(int id);

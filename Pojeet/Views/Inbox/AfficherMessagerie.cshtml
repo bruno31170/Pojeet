@@ -1,15 +1,15 @@
 ﻿@model Pojeet.Models.InboxViewModel
 @{
-    Layout = "_LayoutIdentifie";
+    Layout = "_LayoutMessagerie";
     ViewBag.Title = "Inbox";
 }
 
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-<div class="container">
+<div class="container ">
     <div class="row clearfix">
-        <div class="col-lg-12">
+        <div class="col-lg-12 GeeksForGeeks">
             <div class="card chat-app">
                 <div id="plist" class="people-list">
                     @using (Html.BeginForm("RechercherConversation", "Inbox", FormMethod.Post))
@@ -181,100 +181,110 @@
                             </div>
                         </div>
                     </div>
+                    
+                        <div class="chat-history ">
+                            <ul class="m-b-0">
 
-                    <div style="height:600px;overflow-y:scroll">
-                        <table>
+                                @foreach (var message in Model.List2)
+                                {
 
-                            <div class="chat-history">
-                                <ul class="m-b-0">
-
-                                    @foreach (var message in Model.List2)
+                                    @if (message.ProfilId == @Model.Messagerie.ProfilId)
                                     {
+                                        <li class="clearfix">
+                                            <div class="message-data text-right">
+                                                <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
+                                                <span class="message-data-time">@message.Date</span>
 
-                                        @if (message.ProfilId == @Model.Messagerie.ProfilId)
-                                        {
-                                            <li class="clearfix">
-                                                <div class="message-data text-right">
-                                                    <span class="message-data-time">@message.Date</span>
-                                                    <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
-                                                </div>
-                                                <div class="message other-message float-right">
-                                                    @message.message
-                                                </div>
-                                            </li>
-                                        }
-                                        else
-                                        {
-                                            <li class="clearfix">
-                                                <div class="message-data">
-                                                    <span class="message-data-time">@message.Date</span>
-                                                </div>
-                                                <div class="message my-message">
-                                                    @message.message
+                                            </div>
+                                            <div class="message other-message float-right">
+                                                @message.message
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="clearfix">
+                                            <div class="message-data">
+                                                <span class="message-data-time">@message.Date</span>
+                                            </div>
+                                            <div class="message my-message">
+                                                @message.message
 
-                                                    @if (message.MessageProposition == true)
-                                                    {<div class="row">
+                                                @if (message.MessageProposition == true)
+                                                {<div class="row">
+                                                        @if (Model.Conversation.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
+                                                        {
                                                             @using (Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
                                                             {
-                                                                <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                                                <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
-                                                                <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
-                                                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
-                                                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                                                                <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                                <input type="hidden" id="NouvelleTransaction.ProfilId" name="NouvelleTransaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                <input type="hidden" id="id" name="id" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="Message.Id" name="Message.Id" class="form-control" value="@message.Id">
+                                                                <input type="hidden" id="Message.message" name="Message.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                                <input type="hidden" id="Message.ProfilId" name="Message.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                                <input type="hidden" id="Message.ConversationId" name="Message.ConversationId" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="Transaction.AnnonceId" name="Transaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                                <input type="hidden" id="Transaction.ProfilId" name="Transaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
                                                                 <button type="submit" class="btn btn-info float-left button">J'accepte</button>
                                                             }
-
-                                                            @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
+                                                        }
+                                                        else
+                                                        {
+                                                            @using (Html.BeginForm("PaiementPage", "Paiement", FormMethod.Post))
                                                             {
-                                                                <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                                                                <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
-                                                                <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
-                                                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
-                                                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                                                                <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
-                                                                <button type="submit" class="btn btn-info float-left button">
-                                                                    Je refuse
-                                                                </button>
+                                                                <input type="hidden" id="id" name="id" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="Message.Id" name="Message.Id" class="form-control" value="@message.Id">
+                                                                <input type="hidden" id="Message.message" name="Message.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                                <input type="hidden" id="Message.ProfilId" name="Message.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                                <input type="hidden" id="Message.ConversationId" name="Message.ConversationId" class="form-control" value="@Model.id2">
+                                                                <input type="hidden" id="Transaction.AnnonceId" name="Transaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                                <input type="hidden" id="Transaction.ProfilId" name="Transaction.ProfilId" class="form-control" value="@Model.Conversation.Auteur_Message.ProfilId">
+                                                                <button type="submit" class="btn btn-info float-left button">J'accepte</button>
                                                             }
-                                                        </div>
-                                                    }
-                                                </div>
-                                            </li>
-                                        }
+                                                        }
 
+                                                        @using (Html.BeginForm("SupprimerTransaction", "Inbox", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                                                            <input type="hidden" id="NouveauMessage.Id" name="NouveauMessage.Id" class="form-control" value="@message.Id">
+                                                            <input type="hidden" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" value="@Model.Conversation.Annonce.profil.Prenom">
+                                                            <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Conversation.Annonce.ProfilId">
+                                                            <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                                            <input type="hidden" id="NouvelleTransaction.AnnonceId" name="NouvelleTransaction.AnnonceId" class="form-control" value="@Model.Conversation.AnnonceId">
+                                                            <button type="submit" class="btn btn-info float-left button">
+                                                                Je refuse
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        </li>
                                     }
-                                </ul>
+
+                                }
+                            </ul>
+                        </div>
+                  
+                        @using (Html.BeginForm("CreerMessage", "Inbox", FormMethod.Post))
+                        {
+                            <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
+                            <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
+                            <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
+                            <div class="form-group chat-message clearfix">
+                                <div class="input-group mb-0">
+                                    <div class="input-group-prepend">
+                                        <button type="submit" class="input-group-text">
+                                            <i class="fa fa-send"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="">
+                                    <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Messagerie.ProfilId">
+                                    <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
+                                </div>
                             </div>
-                        </table>
+
+                        }
                     </div>
 
-
-
-
-                    @using (Html.BeginForm("CreerMessage", "Inbox", FormMethod.Post))
-                    {
-                        <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.Messagerie.ProfilId">
-                        <input type="hidden" id="id1" name="id1" class="form-control" value="@Model.id1">
-                        <input type="hidden" id="id2" name="id2" class="form-control" value="@Model.id2">
-                        <div class="form-group chat-message clearfix">
-                            <div class="input-group mb-0">
-                                <div class="input-group-prepend">
-                                    <button type="submit" class="input-group-text">
-                                        <i class="fa fa-send"></i>
-                                    </button>
-                                </div>
-                                <input type="text" id="NouveauMessage.message" name="NouveauMessage.message" class="form-control" placeholder="Tapez votre message..." value="">
-                                <input type="hidden" id="NouveauMessage.ProfilId" name="NouveauMessage.ProfilId" class="form-control" value="@Model.Messagerie.ProfilId">
-                                <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
-                            </div>
-                        </div>
-
-                    }
-                </div>
-
-                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -283,7 +293,6 @@
     body {
         background-color: #f4f7f6;
         margin-top: 20px;
-
     }
 
 
@@ -311,7 +320,10 @@
         margin-left: 280px;
         border-left: 1px solid #eaeaea
     }
-
+    .GeeksForGeeks {
+        width: 900px!important;
+        height: 600px!important;
+    }
     .people-list {
         -moz-transition: .5s;
         -o-transition: .5s;
@@ -376,11 +388,17 @@
 
     .chat .chat-history {
         padding: 20px;
-        border-bottom: 2px solid #fff
+        height: 300px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transform: rotate(180deg);
+        scrollbar-width: thin;
+        text-align: left;
     }
 
         .chat .chat-history ul {
-            padding: 0
+            overflow: hidden;
+            transform: rotate(180deg);
         }
 
             .chat .chat-history ul li {

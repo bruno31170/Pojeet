@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pojeet.Models;
+using Pojeet.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace Pojeet.Controllers
 {
     public class InboxController : Controller
     {
-        private IDalInbox dal;
-
+        private IDalInbox dalInbox;
+        private IDal dal;
         public InboxController()
         {
-            this.dal = new DalInbox();
+            this.dalInbox = new DalInbox();
+            this.dal = new Dal();
         }
         public IActionResult AfficherMessagerie(int id2, String MotCle)
         {
@@ -21,7 +23,7 @@ namespace Pojeet.Controllers
             Boolean authentifie = HttpContext.User.Identity.IsAuthenticated;
             if (authentifie)
             {
-                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                CompteConsumer compteConsumer = dalInbox.ObtenirConsumer(HttpContext.User.Identity.Name);
                 id = compteConsumer.ProfilId;
                 Conversation Conversationid2 = new Conversation();
                 List<Message> listeMessages = new List<Message>();
@@ -49,7 +51,7 @@ namespace Pojeet.Controllers
                         listeMessages = dal.ObtientTousLesMessages(id2);
                         messagerieConversation = dal.ObtientMessagerieConversation(id2);
                         dal.SupprimerNotification(id,id2);
-                        transaction = dal.ObtenirTransaction(Conversationid2.AnnonceId, Conversationid2.Auteur_Message.Id);
+                        transaction = dal.ObtientTransaction(Conversationid2.AnnonceId, Conversationid2.Auteur_Message.Id);
                         return View(new InboxViewModel { Authentifie = authentifie, Conversation = Conversationid2, List2 = listeMessages, id1 = messagerie.Id, id2 = id2, Messagerie = messagerie, MessagerieConversation = messagerieConversation, List1 = listeConversation, CompteConsumer = compteConsumer, NouvelleTransaction=transaction });
                     }
                     else
@@ -77,36 +79,59 @@ namespace Pojeet.Controllers
             using (DalInbox ctx = new DalInbox())
             { 
                 ctx.AjouterMessage(nouveaumessage.message, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
-                ctx.ActualiserNotificationMessagerie(id1,id2);
                 return RedirectToAction("AfficherMessagerie", new { id2 = id2 });
             }
         }
 
         [HttpPost]
-        public IActionResult CreateTransaction(int id2, Transaction nouvelleTransaction, Message nouveaumessage)
+        public IActionResult CreateTransaction(InboxViewModel ivm)
         {
             using (DalInbox ctx = new DalInbox())
             {
-                String message1 = nouveaumessage.message + " Propose " + nouvelleTransaction.Montant + " euros";
-                ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, true);
-                ctx.CreerTransaction(nouvelleTransaction.Montant, nouvelleTransaction.AnnonceId, nouvelleTransaction.ProfilId);
+                String message1 = ivm.NouveauMessage.message + " Propose " + ivm.NouvelleTransaction.Montant + " euros";
+                ctx.AjouterMessage(message1, ivm.NouveauMessage.ProfilId, ivm.NouveauMessage.ConversationId, true);
+                ctx.CreerTransaction(ivm.NouvelleTransaction.Montant, ivm.NouvelleTransaction.AnnonceId, ivm.NouvelleTransaction.ProfilId);
             }
-            return RedirectToAction("AfficherMessagerie", new { id2 = id2});
+            using (Dal dal = new Dal())
+            {
+                Transaction transaction = dal.ObtientTransaction(ivm.NouvelleTransaction.AnnonceId, ivm.NouvelleTransaction.ProfilId);
+                dal.ActualiserEtatTransaction(transaction.Reference, EtatTransaction.En_attente);
+                if (transaction.Annonce.TypeDeAnnonce== Models.TypeAnnonce.Besoin)
+                {
+                    return RedirectToAction("AfficherMessagerie", new { id2 = ivm.id2 });
+                }
+                else
+                {
+                    PaiementViewModel viewModel = new PaiementViewModel { id = ivm.id2, Transaction = transaction, Message = null, Annonce=transaction.Annonce };
+                    return View("Views/Paiement/PaiementPage.cshtml", viewModel);
+                    //return RedirectToAction("Paiement", "PaiementPage", new { id2=ivm.id2, Transaction=transaction });
+                }
+            }
+           
+                
         }
 
+
         [HttpPost]
-        public IActionResult ActualiserTransaction(int id2, Transaction nouvelletransaction, Message nouveaumessage)
+        public IActionResult ActualiserTransaction(int id, Transaction Transaction, Message Message)
         {
 
             using (DalInbox ctx = new DalInbox())
             {
-                String message1 = nouveaumessage.message + " accepte la proposition.";
-                ctx.RemplacerMessage(nouveaumessage.Id, false);
-                ctx.AjouterMessage(message1, nouveaumessage.ProfilId, nouveaumessage.ConversationId, false);
-                ctx.CreerPaiement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId);
-                ctx.CreerVirement(nouvelletransaction.AnnonceId, nouvelletransaction.ProfilId); 
+                String message1 = Message.message + " accepte la proposition.";
+                ctx.RemplacerMessage(Message.Id, false);
+                ctx.AjouterMessage(message1, Message.ProfilId, Message.ConversationId, false);
+                ctx.CreerPaiement(Transaction.AnnonceId, Transaction.ProfilId);
+                ctx.CreerVirement(Transaction.AnnonceId, Transaction.ProfilId);
+               
+               
             }
-            return RedirectToAction("AfficherMessagerie", new { id2 = id2});
+            using (Dal dal = new Dal())
+            {
+                Transaction transaction = dal.ObtientTransaction(Transaction.AnnonceId, Transaction.ProfilId);
+                dal.ActualiserEtatTransaction(transaction.Reference, EtatTransaction.Paye);
+            }
+            return RedirectToAction("AfficherMessagerie", new { id2 = id});
         }
 
         [HttpPost]
@@ -130,7 +155,7 @@ namespace Pojeet.Controllers
             int idConversation = 0;
             using (DalInbox ctx = new DalInbox())
             {
-                CompteConsumer compteConsumer = dal.ObtenirConsumer(HttpContext.User.Identity.Name);
+                CompteConsumer compteConsumer = dalInbox.ObtenirConsumer(HttpContext.User.Identity.Name);
                 int id1 = compteConsumer.ProfilId;
                 idConversation = ctx.CreerConversation(id1, id);
                 messagerie = ctx.ObtientLaMessagerie(id1);
@@ -147,7 +172,7 @@ namespace Pojeet.Controllers
             Conversation conversation = new Conversation();
             using (DalInbox ctx = new DalInbox())
             {
-                conversation = dal.ObtenirConversationTransaction(reference, profilId);
+                conversation = dalInbox.ObtenirConversationTransaction(reference, profilId);
             }
             return RedirectToAction("AfficherMessagerie", new { id2 = conversation.Id });
         }

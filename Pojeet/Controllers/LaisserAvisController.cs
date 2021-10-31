@@ -41,7 +41,7 @@ namespace Pojeet.Controllers
         {
             dal.EnregistrerAvis(Avis);
             dal.ActualiserNoteGlobale(Avis);
-            return RedirectToAction("Home", "Index");
+            return Redirect("/Profil/Index?tabId=contact2");
         }
     }
 }

@@ -324,7 +324,7 @@
                                                         <span style="color:#52ab98">
                                                             Demande de
                                                             service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
+                                                        </span> à <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
                                                     </span>
                                                 </div>
                                                 <div class="col-2" style="color:#52ab98">@item.Montant€</div>
@@ -365,8 +365,8 @@
                                                     <span class="small text-muted">
                                                         <span style="color:#52ab98">
                                                             Demande de
-                                                            service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
+                                                            @item.Annonce.TypeDeAnnonce  @item.Annonce.CategorieDeAnnonce
+                                                        </span> à <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
                                                     </span>
                                                 </div>
                                                 <div class="col-2" style="color:#52ab98">@item.Montant€</div>
@@ -407,8 +407,8 @@
                                                     <span class="small text-muted">
                                                         <span style="color:#52ab98">
                                                             Demande de
-                                                            service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
+                                                            @item.Annonce.TypeDeAnnonce   @item.Annonce.CategorieDeAnnonce
+                                                        </span> à <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
                                                     </span>
                                                 </div>
                                                 <div class="col-2" style="color:#52ab98">@item.Montant€</div>
@@ -449,7 +449,7 @@
                                     <span class="small text-muted">
                                         <span style="color:#52ab98">
                                             Demande de
-                                            service  @item.Annonce.CategorieDeAnnonce
+                                            @item.Annonce.TypeDeAnnonce   @item.Annonce.CategorieDeAnnonce
                                         </span> à <em>Bricolodusamedi</em>
                                     </span>
                                 </div>
@@ -475,10 +475,8 @@
                             </div>
                         </div>
                     </div>
-
                                 }
                             }
-
 
                             <button type="button" class="collapsible mt-4 d-flex justify-content-between">
                                 <span> Finalisé</span>

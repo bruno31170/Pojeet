@@ -205,7 +205,7 @@ namespace Pojeet.Models
                 Pays = 0,
                 Mail = "cecileLepillouer@gmail.com",
                 NumeroTelephone = 687555652,
-                Photo = "",
+                Photo = "Sylvie.png",
                 NoteMoyenne = 4
             },
             new Profil
@@ -951,7 +951,7 @@ namespace Pojeet.Models
 
 
             //CONSUMER
-            this.CompteConsumer.AddRange(
+          /*  this.CompteConsumer.AddRange(
             new CompteConsumer
             {
                 Id = 1,
@@ -985,7 +985,7 @@ namespace Pojeet.Models
                  ProfilId = 4,
                  DateCreationCompte = new DateTime(2021, 10, 28, 12, 1, 10)
              }
-            );
+            );*/
 
 
             //MESSAGE
@@ -1085,7 +1085,7 @@ namespace Pojeet.Models
 
             //TRANSACTION
 
-             this.Transactions.AddRange(
+             /*this.Transactions.AddRange(
                  new Transaction
                  {
                      Reference = 123,
@@ -1315,9 +1315,9 @@ namespace Pojeet.Models
                  EtatTransaction = EtatTransaction.En_attente,
                  ProfilId = 1
 
-             });
+             });*/
 
-            this.Paiement.AddRange(
+            /*this.Paiement.AddRange(
            new Paiement
            {
                Id = 1,
@@ -1327,7 +1327,7 @@ namespace Pojeet.Models
                ProfilId = 3,
                StatutPaiement = StatutPaiement.Payé
 
-           });
+           });*/
 
 
             this.Avis.AddRange(

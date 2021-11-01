@@ -13,6 +13,10 @@ namespace Pojeet.Models
         {
             _context = new BddContext();
         }
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
 
         public List<Transaction> ObtientTransaction()
         {
@@ -62,7 +66,7 @@ namespace Pojeet.Models
         public int ObtenirNbTransaction(int id)
         {
             Profil profil = ObtientCompteConsumer(id).Profil;
-            List<Transaction> listeTransaction = ObtientTransaction(id);
+            List<Transaction> listeTransaction = ObtientTransaction(profil.Id);
             int NbTransaction = listeTransaction.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Count();
 
 
@@ -77,14 +81,38 @@ namespace Pojeet.Models
 
         public Virement ObtenirVirement(int reference)
         {
-            Virement virement = this._context.Virement.Where(c => c.TransactionReference == reference).Include(c=> c.Transaction).Include(c =>c.Transaction.Annonce).Include(c => c.ProfilId).Include(c => c.Transaction.Annonce.profil).FirstOrDefault();
+            Virement virement = this._context.Virement.Where(c => c.TransactionReference == reference).Include(c => c.ProfilRecepteur).FirstOrDefault();
+            
             return virement;
         }
 
-        public void Dispose()
+
+
+        public CompteProvider ObtenirHelper(Virement virement)
         {
-            _context.Dispose();
+            Virement virement1 = new Virement();
+            CompteProvider compteProvider = _context.CompteProvider.Where(c => c.CompteConsumerId == virement.ProfilId).Include(c => c.Rib).Include(c => c.CompteConsumer.Profil).FirstOrDefault();
+            return compteProvider;
         }
+
+        public void ModifierVirement(int reference)
+        {
+            Virement virement = _context.Virement.Where(c => c.TransactionReference == reference).FirstOrDefault();
+            Transaction transaction = _context.Transactions.FirstOrDefault();
+            transaction.EtatTransaction = EtatTransaction.Termine;
+            virement.Date = DateTime.Now;
+            
+            virement.StatutVirement = StatutVirement.Envoyé;
+           
+            _context.SaveChanges();
+        }
+
+        //public CompteProvider AfficherVirement(int reference)
+        //{
+        //    Virement virement = _context.Virement.Where(c => c.TransactionReference == reference).FirstOrDefault();
+        //    CompteProvider compteProvider = _context.CompteProvider.Where(c => c.CompteConsumerId == virement.ProfilId).Include(c => c.CompteConsumer).Include(c => c.CompteConsumer.Profil).FirstOrDefault();
+        //    return compteProvider;
+        //}
 
         public List<CompteConsumer> ObtientTousConsumer()
         {
@@ -101,6 +129,6 @@ namespace Pojeet.Models
             return _context.CompteProvider.Where(c => c.Etat == Etat.DemandeEnCours).ToList();
         }
 
-
+        
     }
 }

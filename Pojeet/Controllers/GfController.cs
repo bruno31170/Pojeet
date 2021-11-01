@@ -17,7 +17,7 @@ namespace Pojeet.Controllers
 {
     public class GfController : Controller
     {
-        public IDalTransaction dal;
+        public DalTransaction dal;
         public DalInbox dalinbox;
         public Dal dal1;
         private IWebHostEnvironment _env;
@@ -224,20 +224,29 @@ namespace Pojeet.Controllers
             double Reste = dal.ObtenirReste(transaction.Reference);
             int NbTransaction = dal.ObtenirNbTransaction(transaction.ProfilId);
             Paiement paiement = dal.ObtenirPaiement(transaction.Reference);
-            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute = MargeBrute, Reste = Reste, NbTransaction = NbTransaction, Paiement = paiement });
+
+            Virement virement = dal.ObtenirVirement(transaction.Reference);
+            CompteProvider compteProvider = dal.ObtenirHelper(virement);
+            return View(new CommandeViewModel { CompteConsumer = compteConsumer, Transaction = transaction, MargeBrute =MargeBrute, Reste= Reste, NbTransaction = NbTransaction, Paiement =paiement, Virement = virement , CompteProvider = compteProvider});
+
+           }
+
+
+        [HttpPost]
+        public IActionResult ModifierVirement(CommandeViewModel cvm)
+        {
+             
+                dal.ModifierVirement(cvm.Virement.TransactionReference);
+                return RedirectToAction("Commande", new {reference = cvm.Virement.TransactionReference});
+
+
         }
 
-        //[HttpPost]
-        //public IActionResult CreateVirement(int annonceId, int profilId, Virement newVirement)
+        //public ActionResult AfficherVirement(CommandeViewModel cvm)
         //{
-        //    using (DalInbox ctx = new DalInbox())
-        //    {
-        //        ctx.CreerVirement(newVirement.VirementMontant, newVirement.TransactionReference, newVirement.ProfilId);
-        //        return RedirectToAction("Commande");
-
-
-        //    }
-        //} 
+        //    dal.AfficherVirement(cvm.Virement.TransactionReference);
+        //    return RedirectToAction("Commande", new { reference = cvm.Virement.TransactionReference });
+        //}
 
 
         public ActionResult Comptabilite()

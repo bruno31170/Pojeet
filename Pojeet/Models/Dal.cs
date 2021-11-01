@@ -286,6 +286,12 @@ namespace Pojeet.Models
 
         }
 
+        public List<NotificationTransaction> ObtenirNotifications(int id)
+        {
+            return _context.Notification.Where(c => c.ProfilId == id).Include(c => c.transaction).Include(c => c.transaction.Profil).Include(c => c.transaction.Annonce.profil).ToList();
+
+        }
+
         public List<Avis> ObtenirListeAvis(int id)
         {
             Profil profil = ObtenirConsumer(id).Profil;
@@ -453,6 +459,8 @@ namespace Pojeet.Models
                     TypeNotification = TypeNotification.Transaction_a_valider,
                 };
                 _context.Add(notificationTransaction);
+                NotificationTransaction notificationTransaction1 = _context.Notification.Where(c => c.ProfilId == transaction.Annonce.ProfilId && c.transaction.Reference == transaction.Reference).FirstOrDefault();
+                _context.Notification.Remove(notificationTransaction1);
                 _context.SaveChanges();
 
             }
@@ -460,29 +468,29 @@ namespace Pojeet.Models
                 {
                 NotificationTransaction notificationTransaction1 = new NotificationTransaction
                 { ProfilId = paiement.Id,
-                    profil = paiement.ProfilPayant,
-                    transaction = transaction,
-                    TypeNotification = TypeNotification.Transaction_a_valider,
+                  profil = paiement.ProfilPayant,
+                  transaction = transaction,
+                  TypeNotification = TypeNotification.Transaction_a_valider,
                 };
               
                 _context.Add(notificationTransaction1);
-                NotificationTransaction notificationTransaction2 = _context.Notification.Where(c => c.ProfilId == virement.Id && c.transaction == transaction).FirstOrDefault();
-                notificationTransaction2.TypeNotification = TypeNotification.Laisser_un_avis;
+                NotificationTransaction notificationTransaction2 = _context.Notification.Where(c => c.ProfilId == virement.ProfilId && c.transaction.Reference == transaction.Reference).FirstOrDefault();
+                _context.Remove(notificationTransaction2);
                 _context.SaveChanges();
-
                 }
 
             if (etat == EtatTransaction.Valide)
             {
-                NotificationTransaction notificationTransaction = _context.Notification.Where(c => c.ProfilId == paiement.Id && c.transaction == transaction).FirstOrDefault();
-                _context.RemoveRange(notificationTransaction);
-               NotificationTransaction notificationTransaction1 = new NotificationTransaction
+                NotificationTransaction notificationTransaction = _context.Notification.Where(c => c.ProfilId == paiement.ProfilId && c.transaction == transaction).FirstOrDefault();
+                notificationTransaction.TypeNotification = TypeNotification.Laisser_un_avis;
+                NotificationTransaction notificationTransaction1 = new NotificationTransaction
                 {
-                    ProfilId = paiement.Id,
-                    profil=paiement.ProfilPayant,
+                    ProfilId = virement.Id,
+                    profil = virement.ProfilRecepteur,
                     transaction = transaction,
                     TypeNotification = TypeNotification.Laisser_un_avis,
                 };
+
                 _context.Add(notificationTransaction1);
                 _context.SaveChanges();
             }
@@ -491,8 +499,8 @@ namespace Pojeet.Models
         public void ActualiserEtatTransaction(int reference, EtatTransaction etat)
         {
             Transaction transaction = this._context.Transactions.Where(c => c.Reference == reference).Include(c=> c.Annonce.profil).FirstOrDefault();
-            CreerNotificationTransaction(transaction, transaction.EtatTransaction);
             transaction.EtatTransaction = etat;
+            CreerNotificationTransaction(transaction, transaction.EtatTransaction);
             _context.SaveChanges();
         }
 

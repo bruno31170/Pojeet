@@ -17,5 +17,6 @@ namespace Pojeet.Models
 
         List<Annonce> RechercherAnnonce(ProfilViewModel uvm);
         Conversation Contact(int id1, int id2);
+        List<CompteConsumer> ProfilsMieuxNotes();
     }
 }

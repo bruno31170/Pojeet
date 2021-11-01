@@ -10,5 +10,6 @@ namespace Pojeet.Models
         Profil ObtientProfil(int id);
         void EnregistrerAvis(Avis avis);
         void ActualiserNoteGlobale(Avis avis);
+        void SuprimerNotification(Avis avis);
     }
 }

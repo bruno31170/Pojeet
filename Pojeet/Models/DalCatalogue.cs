@@ -36,8 +36,17 @@ namespace Pojeet.Models
         }
 
 
+        public List<CompteConsumer> ProfilsMieuxNotes()
+        {
+            List<Profil> Liste = this._context.Profil.Where(c=>c.NoteMoyenne!=0).OrderByDescending(c => c.NoteMoyenne).ToList();
+            List<CompteConsumer> liste = new List<CompteConsumer>();
+            foreach (var profil in Liste)
+            {
+                CompteConsumer compte = this._context.CompteConsumer.Where(c => c.ProfilId == profil.Id).Include(c=> c.Profil.ListeAvis).FirstOrDefault();
 
-
+                liste.Add(compte); }
+            return liste;
+        }
         public List<Annonce> RechercherAnnonce(ProfilViewModel uvm)
 
 

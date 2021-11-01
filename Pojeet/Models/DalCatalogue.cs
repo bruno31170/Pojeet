@@ -36,8 +36,17 @@ namespace Pojeet.Models
         }
 
 
+        public List<CompteConsumer> ProfilsMieuxNotes()
+        {
+            List<Profil> Liste = this._context.Profil.Where(c=>c.NoteMoyenne!=0).OrderByDescending(c => c.NoteMoyenne).ToList();
+            List<CompteConsumer> liste = new List<CompteConsumer>();
+            foreach (var profil in Liste)
+            {
+                CompteConsumer compte = this._context.CompteConsumer.Where(c => c.ProfilId == profil.Id).Include(c=> c.Profil.ListeAvis).FirstOrDefault();
 
-
+                liste.Add(compte); }
+            return liste;
+        }
         public List<Annonce> RechercherAnnonce(ProfilViewModel uvm)
 
 
@@ -45,6 +54,7 @@ namespace Pojeet.Models
             List<Annonce> rechercheAnnonce = new List<Annonce>();
             List<Annonce> annonce = ObtientAnnonce();
             string MotRechercher = "";
+            string Departement = "";
             if (uvm.Recherche.Rechercher != null)
             {
                 MotRechercher = uvm.Recherche.Rechercher.ToLower();
@@ -53,7 +63,15 @@ namespace Pojeet.Models
             {
                 MotRechercher = uvm.Recherche.Rechercher;
             }
-            string Departement = uvm.Recherche.Localisation;
+            if (uvm.Recherche.Localisation != null)
+            {
+                Departement = uvm.Recherche.Localisation.ToString();
+            }
+            else
+            {
+                Departement = uvm.Recherche.Localisation;
+            }
+            
             string TypeRecherche = uvm.Recherche.TypeDeRecherche.ToString();
             string CategorieRecherche = uvm.Recherche.CategorieDeRecherche.ToString();
             string TriRecherche = uvm.Recherche.Tri.ToString();
@@ -65,6 +83,7 @@ namespace Pojeet.Models
                 string TypeAnnonce = item.TypeDeAnnonce.ToString();
                 string CategorieAnnonce = item.CategorieDeAnnonce.ToString();
                 string TitreAnnonce = item.TitreAnnonce.ToString().ToLower();
+                string DepartementRecherche = item.Localisation.ToString();
 
                 if (TypeRecherche.Equals("Type")) 
                 { 

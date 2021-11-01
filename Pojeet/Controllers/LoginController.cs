@@ -111,37 +111,7 @@ namespace Pojeet.Controllers
                 var userPrincipal = new ClaimsPrincipal(new[] { ClaimIdentity });
                 HttpContext.SignInAsync(userPrincipal);
 
-                //var fromAddress = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
-                //var toAddress = new MailAddress(compteConsumer.Profil.Mail, compteConsumer.Profil.Nom + " " + compteConsumer.Profil.Prenom);
-                //const string fromPassword = "helpmycar2021";
-                //const string subject = "Inscription HelpMyCar";
-                //string body = @"<html>
-                //                    <body>
-                //                        <p>Dear Ms. Susan,</p>
-                //                        <p>Thank you for your letter of yesterday inviting me to come for an interview on Friday afternoon, 5th July, at 2:30.
-                //                        I shall be happy to be there as requested and will bring my diploma and other papers with me.</p>
-                //                        <p>Sincerely,<br>-Jack</br></p>
-                //                    </body>
-                //                </html>";
-
-                //var smtp = new SmtpClient
-                //{
-                //    Host = "smtp.gmail.com",
-                //    Port = 587,
-                //    EnableSsl = true,
-                //    DeliveryMethod = SmtpDeliveryMethod.Network,
-                //    UseDefaultCredentials = false,
-                //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                //};
-                //using (var message = new MailMessage(fromAddress, toAddress)
-                //{
-                //    Subject = subject,
-                //    Body = body
-                //})
-                //{
-                //    smtp.Send(message);
-                //}
-
+                //MAIL
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
                 message.To.Add(compteConsumer.Profil.Mail);
@@ -202,6 +172,30 @@ namespace Pojeet.Controllers
                         pictureFile.CopyTo(stream3);
                     }
                 }
+
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
+                message.To.Add(compteConsumer.Profil.Mail);
+                message.Subject = "Helper chez HelpMyCar";
+                message.IsBodyHtml = true;
+                var doc = new HtmlDocument();
+                FileStream cheminHtml = new FileStream(_env.WebRootPath + "/html/WelcomeHelper.html", FileMode.Open);
+                doc.Load(cheminHtml);
+                message.Body = doc.DocumentNode.OuterHtml;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential("helpmycar.isika@gmail.com", "helpmycar2021")
+                };
+                {
+                    smtp.Send(message);
+                }
+
                 return Redirect("../Profil/Index");
             }
         }

@@ -1,0 +1,35 @@
+﻿@model Pojeet.ViewModels.PaiementViewModel
+@{
+        Layout = "_LayoutIdentifie";
+        ViewBag.Title = "Paiement";
+}
+
+
+
+<div>
+    Salut
+</div>
+<div>
+    @if (Model.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
+        {
+    <a href="@Url.Action("AfficherMessagerie", "Inbox" , new {id2=Model.id})">
+        <button type="button" class="btn btn-info float-left">
+            Payer
+        </button>
+    </a>
+        }
+    @if (Model.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+        {
+    @using(Html.BeginForm("ActualiserTransaction", "Inbox", FormMethod.Post))
+            {
+        <input type = "hidden" id = "id" name = "id" class="form-control" value="@Model.id">
+        <input type="hidden" id="Message.Id" name="Message.Id" class="form-control" value="@Model.Message.Id">
+        <input type="hidden" id="Message.message" name="Message.message" class="form-control" value="@Model.Message.message">
+        <input type="hidden" id="Message.ProfilId" name="Message.ProfilId" class="form-control" value="@Model.Message.ProfilId">
+        <input type="hidden" id="Message.ConversationId" name="Message.ConversationId" class="form-control" value="@Model.id">
+        <input type="hidden" id="Transaction.AnnonceId" name="Transaction.AnnonceId" class="form-control" value="@Model.Transaction.AnnonceId">
+        <input type="hidden" id="Transaction.ProfilId" name="Transaction.ProfilId" class="form-control" value="@Model.Transaction.ProfilId">
+        <button type="submit" class="btn btn-info float-left button">Payer</button>
+        }
+        }
+    </div>

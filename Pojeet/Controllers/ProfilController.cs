@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -57,21 +60,29 @@ namespace Pojeet.Controllers
             return View(viewModel);
 
         }
-
+      
         public IActionResult ProfilVisiteur(int id)
         {
-
+            CompteConsumer CompteConumerVisiteur= dal.ObtenirConsumer(HttpContext.User.Identity.Name);
             UtilisateurViewModel viewModel = new UtilisateurViewModel();
 
             viewModel.CompteConsumer = dal.ObtenirConsumer(id);
-            viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
-            viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
 
-            viewModel.NoteGlobale = dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
+            if (CompteConumerVisiteur.Id != viewModel.CompteConsumer.Id)
+            {
+                viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
+                viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
 
-            viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
+                viewModel.NoteGlobale = dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
 
-            return View(viewModel);
+                viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
+
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
 
         }
 
@@ -118,13 +129,53 @@ namespace Pojeet.Controllers
 
         public IActionResult ModifierEtatProviderValide(int id)
         {
+
             if (id != 0)
             {
                 using (Dal ctx = new Dal())
                 {
+
                     ctx.ModifierEtatProviderValide(id);
+                    CompteProvider prov = ctx.ObtenirHelper(id);
+
+
+                    //MAIL
+                    //MailMessage message = new MailMessage();
+                    //message.From = new MailAddress("helpmycar.isika@gmail.com", "HelpMyCar");
+                    //message.To.Add(prov.CompteConsumer.Profil.Mail);
+                    //message.Subject = "Inscription";
+                    //message.IsBodyHtml = true;
+                    //var doc = new HtmlDocument();
+                    //FileStream cheminHtml = new FileStream(_env.WebRootPath + "/html/HelperValide.html", FileMode.Open);
+                    //doc.Load(cheminHtml);
+                    //message.Body = doc.DocumentNode.OuterHtml;
+
+                    //var smtp = new SmtpClient
+                    //{
+                    //    Host = "smtp.gmail.com",
+                    //    Port = 587,
+                    //    EnableSsl = true,
+                    //    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    //    UseDefaultCredentials = false,
+                    //    Credentials = new NetworkCredential("helpmycar.isika@gmail.com", "helpmycar2021")
+                    //};
+                    //{
+                    //    smtp.Send(message);
+                    //}
+
+
+
+
                     return RedirectToAction("DemandeDevenirHelper", "Gf");
+
+
                 }
+
+
+
+
+
+
             }
             else
             {
@@ -158,12 +209,12 @@ namespace Pojeet.Controllers
             }
             return View("");
         }
-        //<a href = "/Profil/Index?tabId=contact2" >
+
         public IActionResult ActualiserEtatTransaction(int reference, EtatTransaction etat)
         {
             using (Dal ctx = new Dal())
             {
-                ctx.ActualiserEtatTransaction(reference,etat);
+                ctx.ActualiserEtatTransaction(reference, etat);
             }
 
             return Redirect("/Profil/Index?tabId=contact2");

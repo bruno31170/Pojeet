@@ -26,8 +26,9 @@ namespace Pojeet.Controllers
             if (authentifie)
             {
                 CompteConsumer compteConsumer = dal1.ObtenirConsumer(HttpContext.User.Identity.Name);
-                avis.CompteConsumerId= compteConsumer.ProfilId;
+                avis.CompteConsumerId= compteConsumer.Id;
                 profil = dal.ObtientProfil(id);
+                avis.ProfilId = profil.Id;
                 prenom = profil.Prenom;
             }
             
@@ -41,7 +42,8 @@ namespace Pojeet.Controllers
         {
             dal.EnregistrerAvis(Avis);
             dal.ActualiserNoteGlobale(Avis);
-            return RedirectToAction("Home", "Index");
+            dal.SuprimerNotification(Avis);
+            return Redirect("/Profil/Index?tabId=contact2");
         }
     }
 }

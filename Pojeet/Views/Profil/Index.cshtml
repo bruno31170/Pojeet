@@ -14,10 +14,10 @@
 
 
 <!--SECTION HERO-->
-<div class="d-flex align-items-start img_mur overflow-x-hidden position-relative"
+<div class="d-none d-xs-none d-sm-none d-md-flex d-lg-flex align-items-start img_mur overflow-x-hidden position-relative"
      style="    background: url('@Url.Content("~/img/section_profil.svg")') bottom center;
                 background-size: cover;
-                margin-top: 90px;">
+                margin-top: 100px;">
     <div class="w-100" style="padding-top:77px">
         <div class="container">
             <div class="row">
@@ -30,10 +30,10 @@
     </div>
 </div>
 
-<div class="container d-flex justify-content-center col-12" id="container_profil">
+<div class=" container d-flex justify-content-center col-12" id="container_profil">
     <div class="row col-11 m-0 p-0">
         <!--Partie Gauche-->
-        <div class="col-2" id="left_side">
+        <div class="d-none d-xs-none d-sm-none d-md-block  col-2" id="left_side">
             <!--Photo Profil-->
             @if (@Model.CompteConsumer.Profil.Photo == null)
             {
@@ -52,7 +52,16 @@
                 {
                     <div class="text-center">
                         Helper
+                        @if (@Model.CompteProvider.Etat == Pojeet.Models.Etat.Valide)
+                        {
+                            <span class="font-italic" style="color:green"><small>(Validé)</small></span>
+                        }
+                        else if (@Model.CompteProvider.Etat == Pojeet.Models.Etat.DemandeEnCours)
+                        {
+                            <br /><span class="font-italic"><small>(Validation en cours)</small></span>
+                        }
                     </div>
+
                 }
                 else
                 {
@@ -105,7 +114,7 @@
 
         <!--Partie Centrale-->
         <div class="col-8" id="center_side">
-            <div class="p-5 rounded  mb-5">
+            <div class="p-md-5 rounded  mb-5">
                 <!-- nav profil-->
                 <ul id="myTab2" role="tablist"
                     class="nav nav-tabs nav-pills flex-column flex-sm-row text-center">
@@ -236,10 +245,12 @@
                                         <p>@annonce.DateParution.ToString("dd MMM yyyy")</p>
                                     </div>
                                     <div class=" row flex-row">
-                                        <div class="wall_post_img col-6">
-                                            <img src="~/media/profil/@annonce.Photo" alt="">
+
+                                        <div class="wall_post_img col-12 col-md-6">
+                                            <img src="~/media/annonce/@annonce.Photo" alt="">
+
                                         </div>
-                                        <div class="post_info col-6 flex-col justify-content-between">
+                                        <div class="post_info col-12 col-md-6 flex-col justify-content-between">
                                             <div class="post_info_text ml-1">
                                                 <h5>@annonce.TitreAnnonce</h5>
                                                 <p class="text-justify">
@@ -252,8 +263,8 @@
                                             </div>
 
                                             <div class="w-100 mt-3">
-                                                
-                                                <a class=" w-100 btn btnGreen" href="@Url.Action("Annonce", "Catalogue", new { id1 = Model.CompteConsumer.Id, id2 = annonce.Id })" >Voir l'annonce</a>
+
+                                                <a class=" w-100 btn btnGreen" href="@Url.Action("Annonce", "Catalogue", new { id1 = Model.CompteConsumer.Id, id2 = annonce.Id })">Voir l'annonce</a>
                                             </div>
 
 
@@ -297,8 +308,6 @@
 
                             @foreach (var item in @Model.ListeTransaction)
                             {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                                {
 
                                     <div class="content mt-4">
                                         <div class="d-flex flex-column">
@@ -313,7 +322,7 @@
                                                         <span style="color:#52ab98">
                                                             Demande de
                                                             service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
+                                                        </span> à <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
                                                     </span>
                                                 </div>
                                                 <div class="col-2" style="color:#52ab98">@item.Montant€</div>
@@ -323,96 +332,50 @@
                                                         {<em>
                                                                 En cours
 
-                                                                <a href="@Url.Action("RedirigerVersConversationAnnonce", "Inbox", new {reference=@item.Reference, profilId=@Model.CompteConsumer.ProfilId})">
-                                                                    <button type="button" class="btn btn-link float-right">Voir la proposition</button>
+                                                                <a href="@Url.Action("RedirigerVersConversationAnnonce", "Inbox", new { reference = @item.Reference, profilId = @Model.CompteConsumer.ProfilId })">
+                                                                    <button type="button" class="btn btn-info float-left">Voir la proposition</button>
                                                                 </a>
 
 
                                                             </em>
                                                         }
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            }
-
-                            @foreach (var item in @Model.ListeTransaction)
-                            {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Paye)
-                                {
-                                    <div class="content mt-4">
-                                        <div class="d-flex flex-column">
-                                            <div class="transaction d-flex">
-                                                <div class="col-1">
-                                                    <img src="assets/img/design_service.png" alt=""
-                                                         style="width:50px">
-                                                </div>
-                                                <div class="col-7">
-                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                    <span class="small text-muted">
-                                                        <span style="color:#52ab98">
-                                                            Demande de
-                                                            service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
-                                                    </span>
-                                                </div>
-                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
-                                                <div class="col-2">
-                                                    <small>
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Paye)
                                                         {<em>
                                                                 Payée
                                                                 @if (((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.ProfilId)) || (
-                                                                             (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
+                                    (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                                 {
-                                                                    <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new {reference=@item.Reference, etat=@Pojeet.Models.EtatTransaction.Effectue})">
-                                                                        <button type="button" class="btn btn-link float-right">Service Effectué?</button>
+                                                                    <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = @Pojeet.Models.EtatTransaction.Effectue })">
+                                                                        <button type="button" class="btn btn-info float-left">Service Effectué?</button>
                                                                     </a>
                                                                 }
                                                             </em>
                                                         }
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            @foreach (var item in @Model.ListeTransaction)
-                            {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Effectue)
-                                {
-                                    <div class="content mt-4">
-                                        <div class="d-flex flex-column">
-                                            <div class="transaction d-flex">
-                                                <div class="col-1">
-                                                    <img src="assets/img/design_service.png" alt=""
-                                                         style="width:50px">
-                                                </div>
-                                                <div class="col-7">
-                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                    <span class="small text-muted">
-                                                        <span style="color:#52ab98">
-                                                            Demande de
-                                                            service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
-                                                    </span>
-                                                </div>
-                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
-                                                <div class="col-2">
-                                                    <small>
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Effectue)
                                                         {<em>
                                                                 Service effectué
                                                                 @if (((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.ProfilId)) || (
-                                                                             (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
+                                     (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                                 {
-                                                                    <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new {reference=@item.Reference, etat=Pojeet.Models.EtatTransaction.Valide})">
-                                                                        <button type="button" class="btn btn-link float-right">Validez La réception du service</button>
+                                                                    <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = Pojeet.Models.EtatTransaction.Valide })">
+                                                                        <button type="button" class="btn btn-info float-left">Validez La réception du service</button>
                                                                     </a>
                                                                 }
+
+                                                            </em>
+                                                        }
+                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                                                        {<em>
+                                                                Service Validé des deux parties
+                                                                @if (Model.CompteConsumer.ProfilId == item.ProfilId)
+                                                                {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.Annonce.ProfilId })">
+                                                                        <button type="button" class="btn btn-info float-left">Laissez Un Avis!</button>
+                                                                    </a>}
+                                                                else
+
+                                                                {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.ProfilId })">
+                                                                        <button type="button" class="btn btn-info float-left">Laissez Un Avis!</button>
+                                                                    </a>}
                                                             </em>
                                                         }
                                                     </small>
@@ -420,44 +383,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                }
                             }
 
-                            @foreach (var item in @Model.ListeTransaction)
-                            {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
-                                {
-                                    <div class="content mt-4">
-                                        <div class="d-flex flex-column">
-                                            <div class="transaction d-flex">
-                                                <div class="col-1">
-                                                    <img src="assets/img/design_service.png" alt=""
-                                                         style="width:50px">
-                                                </div>
-                                                <div class="col-7">
-                                                    <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
-                                                    <span class="small text-muted">
-                                                        <span style="color:#52ab98">
-                                                            Demande de
-                                                            service  @item.Annonce.CategorieDeAnnonce
-                                                        </span> à <em>Bricolodusamedi</em>
-                                                    </span>
-                                                </div>
-                                                <div class="col-2" style="color:#52ab98">@item.Montant€</div>
-                                                <div class="col-2">
-                                                    <small>
-                                                        @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
-                                                        {<em>
-                                                                Service Validé des deux parties
-                                                         </em>
-                                                        }
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            }
+
+
 
 
                             <button type="button" class="collapsible mt-4 d-flex justify-content-between">
@@ -508,6 +437,7 @@
 
                             }
                         }
+
                         @if (Model.ListeTransaction.Count == 0)
                         {
                             <center><p>Vous n'avez pas de transaction.</p></center>
@@ -586,17 +516,10 @@
         </div>
 
         <!--Partie Droite-->
-        <div class="col-2" id="right_side">
+        <div class="col-2 d-none d-xs-none d-sm-none d-md-block" id="right_side">
             <div class="row mt-5">
                 <div class="col-sm-12 d-flex justify-content-center">
                     @Html.ActionLink("Modifier Profil", "ModifierConsumer", "Profil", null, null, null, null, new { @class = "btn w-100", @style = "background-color: #52ab98; color: white;" })
-                    @*<a class="btn btnGreen" style="background-color: #52ab98; color: white;" target="__blank"
-                           href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-gear-fill ml-1 mr-1" viewBox="0 0 16 16">
-                                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-                            </svg> Modifier le profil
-                        </a>*@
                 </div>
                 <div class="col-sm-12 d-flex justify-content-center mt-3">
                     <a href="#myModal" class="trigger-btn btn btnOrange" data-toggle="modal">Supprimer mon profil</a>

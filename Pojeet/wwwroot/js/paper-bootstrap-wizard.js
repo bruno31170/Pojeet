@@ -56,8 +56,7 @@ $(document).ready(function () {
             },
             pays: {
                 required: true,
-            },
-
+            }
         },
     });
 

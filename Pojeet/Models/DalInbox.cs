@@ -63,14 +63,14 @@ namespace Pojeet.Models
             {
                 if (conversation.Annonce.ProfilId == messagerie.ProfilId)
                 {
-                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Auteur_Message.Profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Auteur_Message.Profil.Nom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
                 }
                 else
                 {
-                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase)|| conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
+                    if (conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase) || conversation.Annonce.profil.Prenom.Contains(motCle, StringComparison.OrdinalIgnoreCase))
                     {
                         listeConversationsRecherchees.Add(conversation);
                     }
@@ -82,20 +82,20 @@ namespace Pojeet.Models
         }
 
         public Messagerie ObtientLaMessagerie(int id)
-        {  
+        {
             MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.Messagerie.ProfilId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
             return messagerieConversation.Messagerie;
         }
 
         public Boolean VerificationMessagerieVide(int id)
         {
-           List<MessagerieConversation> messagerieconv = _context.MessagerieConversation.Where(x => x.Messagerie.ProfilId == id).ToList();
-                return messagerieconv.Count()==0;
+            List<MessagerieConversation> messagerieconv = _context.MessagerieConversation.Where(x => x.Messagerie.ProfilId == id).ToList();
+            return messagerieconv.Count() == 0;
         }
 
         public int ObtientPremiereConversation(List<Conversation> listeConversation)
         {
-            int id=0;
+            int id = 0;
             id = listeConversation.First().Id;
             return (id);
         }
@@ -120,7 +120,60 @@ namespace Pojeet.Models
             };
             _context.Message.Add(message);
             _context.SaveChanges();
+            ActualiserNotificationMessagerie(profilId,conversationId);
         }
+
+        public void AjouterNotificationMessagerie(int id1, int id2)
+        {
+            Conversation conversation = _context.Conversation.Where(c => c.Id == id2).Include(c => c.Annonce.profil).Include(c=>c.Auteur_Message).FirstOrDefault();
+            NotificationMessagerie notificationMessagerie1 = new NotificationMessagerie
+            {
+                ConversationId = id2,
+                ProfilId = conversation.Annonce.ProfilId,
+                MessagesNonLus = 0,
+                Profil=conversation.Annonce.profil,
+
+            };
+
+             NotificationMessagerie notificationMessagerie2 = new NotificationMessagerie
+             {
+                 ConversationId = id2,
+                 ProfilId = conversation.Auteur_Message.ProfilId,
+                 MessagesNonLus = 0,
+                 Profil = conversation.Auteur_Message.Profil,
+
+             };
+        _context.NotificationMessagerie.Add(notificationMessagerie1);
+        _context.NotificationMessagerie.Add(notificationMessagerie2);
+         _context.SaveChanges();
+        }
+
+        public void ActualiserNotificationMessagerie(int id1, int id2)
+        {
+            Profil profil = _context.Messagerie.Where(c => c.ProfilId==id1).Include(c=> c.Profil).FirstOrDefault().Profil;
+            Conversation conversation = _context.Conversation.Where(c => c.Id == id2).Include(c => c.Annonce.profil).Include(c=>c.Auteur_Message.Profil).FirstOrDefault();
+            NotificationMessagerie notificationMessagerie = null;
+            if (profil.Id == conversation.Auteur_Message.ProfilId)
+            {
+              notificationMessagerie = _context.NotificationMessagerie.Where(c => c.ProfilId == conversation.Annonce.ProfilId && c.ConversationId == id2).FirstOrDefault();
+            }
+            else
+            {
+               notificationMessagerie = _context.NotificationMessagerie.Where(c => c.ProfilId == conversation.Auteur_Message.ProfilId && c.ConversationId == id2).FirstOrDefault();
+            }
+            notificationMessagerie.MessagesNonLus = notificationMessagerie.MessagesNonLus + 1;
+            _context.SaveChanges();
+        }
+
+        public void SupprimerNotification(int id1, int id2)
+        {
+            NotificationMessagerie notificationMessagerie = _context.NotificationMessagerie.Where(c => c.ProfilId == id1 && c.ConversationId == id2).FirstOrDefault();
+            notificationMessagerie.MessagesNonLus = 0;
+            _context.SaveChanges();
+
+        }
+
+
         public void RemplacerMessage(int messageId, Boolean messageProposition)
         {
             Message message = _context.Message.Include(c => c.Profil).Where(c => c.Id == messageId).FirstOrDefault();
@@ -139,51 +192,9 @@ namespace Pojeet.Models
 
 
 
-        // pour l'authentification
-        public static string EncodeMD5(string motDePasse)
-        {
-            string motDePasseSel = "HelpMyCar" + motDePasse + "ASP.NET MVC";
-            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(motDePasseSel)));
-        }
-        public CompteConsumer Authentifier(string pseudo, string password)
-        {
-            string motDePasse = EncodeMD5(password);
-            CompteConsumer user = this._context.CompteConsumer.Include(c => c.Profil).Where(u => u.Pseudo == pseudo && u.MotDePasse == motDePasse).FirstOrDefault();
-            return user;
-        }
+       
 
-
-        public int AjouterConsumer(string motdepasse, string pseudo, string nom, string prenom, string dateNaissance,
-           string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
-        {
-            string motDePasse = EncodeMD5(motdepasse);
-
-            Profil profil = new Profil
-            {
-                Nom = nom,
-                Prenom = prenom,
-                DateDeNaissance = dateNaissance,
-                Adresse = adresse,
-                Ville = ville,
-                CodePostal = code_postal,
-                Pays = pays,
-                Mail = mail,
-                NumeroTelephone = numeroTelephone,
-                Description = description,
-
-            };
-
-            if (photo != null)
-            {
-                profil.Photo = photo.FileName;
-            }
-
-            CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil };
-
-            _context.CompteConsumer.Add(consumer);
-            _context.SaveChanges();
-            return consumer.Id;
-        }
+      
         public void CreerMessagerie(int id)
         {
             Messagerie messagerie = new Messagerie()
@@ -194,56 +205,14 @@ namespace Pojeet.Models
             _context.SaveChanges();
         }
 
-        public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
-          string adresse, string ville, string code_postal, Pays pays, string mail, int numeroTelephone, string description, IFormFile photo)
-        {
-            CompteConsumer consumer = _context.CompteConsumer.Include(c => c.Profil).Where(c => c.Id == id).FirstOrDefault();
-
-            if (consumer != null)
-            {
-                consumer.Pseudo = pseudo;
-                consumer.Profil.Nom = nom;
-                consumer.Profil.Prenom = prenom;
-                consumer.Profil.DateDeNaissance = dateNaissance;
-                consumer.Profil.Adresse = adresse;
-                consumer.Profil.Ville = ville;
-                consumer.Profil.CodePostal = code_postal;
-                consumer.Profil.Pays = pays;
-                consumer.Profil.Mail = mail;
-                consumer.Profil.NumeroTelephone = numeroTelephone;
-                consumer.Profil.Description = description;
-                _context.SaveChanges();
-            }
-
-            if (photo != null)
-            {
-                consumer.Profil.Photo = photo.FileName;
-                _context.SaveChanges();
-            }
-            else if (photo == null)
-            {
-                consumer.Profil.Photo = consumer.Profil.Photo;
-                _context.SaveChanges();
-            }
 
 
-        }
-
-        public void SuppressionConsumer(int id)
-        {
-            CompteConsumer consumer = _context.CompteConsumer.Find(id);
-            if (consumer != null)
-            {
-                _context.CompteConsumer.Remove(consumer);
-                _context.SaveChanges();
-            }
-        }
 
         public CompteConsumer ObtenirConsumer(int id)
         {
             //return this._context.CompteConsumer.Include(c => c.Profil).FirstOrDefault(c => c.Id == id);
             //return this._context.CompteConsumer.FirstOrDefault(u => u.Id == id);
-            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).FirstOrDefault();
+            return _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).Include(c => c.Profil.ListeAvis).Include(c=>c.Profil.notificationsMessagerie).FirstOrDefault();
 
         }
 
@@ -293,10 +262,15 @@ namespace Pojeet.Models
             }
             return profil;
         }
-
-        public void CreerPaiement(int annonceId, int profilId)
+        public Transaction ObtientTransaction(int annonceId, int profilId)
         {
             Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId && r.ProfilId == profilId).Include(r => r.Annonce).FirstOrDefault();
+            return transaction;
+
+        }
+        public void CreerPaiement(int annonceId, int profilId)
+        {
+            Transaction transaction= ObtientTransaction(annonceId, profilId);
             Paiement paiement = new Paiement
             {
                 Date = DateTime.Now,
@@ -312,6 +286,7 @@ namespace Pojeet.Models
 
             _context.SaveChanges();
         }
+
         public int IdentifierRecepteur(Transaction transaction)
             
         {
@@ -355,7 +330,7 @@ namespace Pojeet.Models
             {
                 CompteConsumerId = _context.CompteConsumer.Where(r => r.ProfilId == id1).FirstOrDefault().Id,
                 AnnonceId = id2,
-                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault()
+                Annonce= _context.Annonce.Where(r => r.Id == id2).FirstOrDefault(),
             };
             _context.Conversation.Add(conversation);
             _context.SaveChanges();

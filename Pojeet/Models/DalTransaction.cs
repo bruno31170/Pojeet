@@ -18,7 +18,6 @@ namespace Pojeet.Models
             _context.Dispose();
         }
 
-
         public List<Transaction> ObtientTransaction()
         {
             List<Transaction> listeTransaction = this._context.Transactions.Include(t => t.Profil).Include(t => t.Annonce).ToList();

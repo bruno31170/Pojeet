@@ -1,0 +1,275 @@
+@{
+    var Compte = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+    var Notifications= new Pojeet.Models.Dal().ObtenirNotifications(Compte.ProfilId);
+    int CountNotificationsMessagerie = new Pojeet.Models.Dal().countNotificationsMessagerie(@Compte.Profil.notificationsMessagerie);
+}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/img/logo.ico" />
+
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/bootstrap.min.css">
+
+    @RenderSection("css", required: false)
+    <!-- Fonts -->
+
+    <link rel="stylesheet" href="~/css/css-e/fontawesome-all.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Rubik|Dancing+Script" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital@1&family=Montserrat:wght@300;500;800;900&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/style1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/typography1.css">
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/colors1.css">
+
+    <!-- Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="~/css/css-e/responsive.css">
+
+
+    <!-- STYLE JS -->
+    <link href="~/js/js-e/jquery.formstyler.css" rel="stylesheet" />
+    <link href="~/js/js-e/jquery.formstyler.theme.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/js/js-e/jquery.formstyler.min.js"></script>
+    <script>(function ($) {
+            $(function () {
+                $('select, option, input').styler({
+                    selectSearch: true,
+                });
+            });
+        })(jQuery);</script>
+
+</head>
+
+<body>
+    <header>
+        <div class="nav-menu-block">
+            <div class="flex-row w-100 justify-content-between">
+                <div class="nav-logo">
+                    <a class="navbar-brand" href="~/Home/">
+                        <img src="~/img/img-e/logo1.png" alt="HelpMyCar" />
+                    </a>
+                </div>
+                @*<div class="search_header align-self-end">
+                        <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
+                        <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+                    </div>*@
+                <ul class="nav-menu-icon flex-row align-item-end justify-content-around mb-2 mr-4">
+                    <li class="mr-3 ml-2 text-right">
+                        @*@Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })*@
+
+                        <a href="~/Catalogue/AnnonceCatalogue">
+                            <i class="font-size-24 fas fa-search btn-search-all_post_icon"></i>
+                        </a>
+                    </li>
+                    <li class="btn-search-all_post">
+                        @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "btn-primary-e align-items-center" })
+                    </li>
+                    <li class="mr-3 text-right">
+
+                        <a href="#">
+                            <i class="font-size-24 fa fa-user"></i>
+                        </a>
+
+                        <ul>
+                            <div class="triangle"> </div>
+                            <li class="mt-2">
+                                <a href="~/Profil/Index">Mon profil</a>
+                            </li>
+                            <li>
+                                <a href="/Profil/Index?tabId=profile2">Mes annonce</a>
+                            </li>
+                            <li>
+                                <a href="/Profil/Index?tabId=contact2">Mes transactions</a>
+                            </li>
+                            <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
+
+                        </ul>
+                    </li>
+                    <li class="mr-3 ml-2 text-right">
+                        <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
+                            <i class="font-size-24 fa fa-envelope"></i>
+                            @if (@Compte.Profil.notificationsMessagerie != null)
+                            {
+
+                                <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
+                            }
+                        </a>
+                    </li>
+                    <li class="ml-2 text-right">
+                        <a href="#">
+                            <i class="font-size-24 fa fa-bell"></i>
+
+                            @if (@Notifications != null)
+                            {
+                                <span class="badge badge-danger navbar-badge">@Compte.Profil.notifications.Count()</span>
+                            }
+                        </a>
+                        @if (@Notifications != null)
+                        {
+                            @foreach (var notification in Notifications)
+                            {
+                    <ul>
+                        <div class="triangle"> </div>
+
+                        @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Proposition_de_prix)
+                        {
+                            <li>
+                                <a  href="/Profil/Index?tabId=contact2">@notification.transaction.Profil.Prenom vous propose un prix</a>
+                            </li>
+                        }
+ 
+                        @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Transaction_a_valider)
+                        {
+                            <li>
+                                <a  href="/Profil/Index?tabId=contact2">Validez la transaction N° @notification.transaction.Reference</a>
+                            </li>
+                        }
+                        @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Laisser_un_avis)
+                        {
+                            @if (notification.transaction.ProfilId == @Compte.ProfilId)
+                            {
+                                    <li>
+                                        <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Annonce.profil.Prenom</a>
+                                    </li>
+                            }
+                            else
+                            {
+                                    <li>
+                                        <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Profil.Prenom</a>
+                                    </li>
+
+                            }
+                        }
+                    </ul>
+                            
+                           
+
+                        }
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="page_layout">
+
+            <div class="page_container p-3 pb-5 flex-row">
+                <!-- Menu utilisateur à geuche -->
+                <div class="side_bar_inner">
+                    <ul class="side_bar_nav flex-col p-3 font-size-14 sticky">
+                        <li class="text-center">
+
+
+                            @{
+                                var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+                            }
+                            <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
+
+                            <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
+                        </li>
+                        <li>
+
+
+                            <a href="~/Profil/Index"> <i class="font-size-25 fa fa-home mr-2"></i> Mon profil</a>
+
+                        </li>
+                        <li id="">
+                            <a href="/Profil/Index?tabId=profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
+                        </li>
+                        <li>
+
+
+                            <a href="/Profil/Index?tabId=contact2"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+
+                        </li>
+                        @{
+                            var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
+                        }
+                        @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
+                        @if (provider1 == null)
+                        {
+                            <li>
+                                <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="display: none;">
+                                <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                            </li>
+                        }
+
+                        <li>
+
+                            <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
+                        </li>
+                        <li>
+                            <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Fin menu utilisateur -->
+
+                    @RenderBody()
+              
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="flex-row p-4 justify-content-around" style="border-bottom: 1px solid white;">
+            <div class="flex-col">
+                <span class="bold ">A propos</span>
+                <a href="#">Qui sommes-nous</a>
+                <a href="#">Demander un service</a>
+                <a href="#">Devenir Helper</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Informations légales</span>
+                <a href="#">Conditions générales client</a>
+                <a href="#">Conditions générales Helper</a>
+                <a href="#">Confiance et sécurité</a>
+            </div>
+
+            <div class="flex-col">
+                <span class="bold">Assistance</span>
+                <a href="#">Centre d'aide</a>
+                <a href="@Url.Action("Aide", "Aide")" $+Contact</a>
+            </div>
+
+        </div>
+        <div class="mb-md-0  text-center">
+            ©
+            <a href="#" class="font-weight-bold text-gray-90">2021  MyHelpCar</a> - All rights Reserved
+        </div>
+    </footer>
+    <script type="text/javascript" src="~/js/js-e/custom-e.js"></script>
+
+    <script src="~/js/js-e/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    function switchTab(tabId) {
+            $(tabId).addClass("active").siblings().removeClass("active");
+        }</script>
+
+    @RenderSection("scripts", required: false)
+
+
+</body>
+
+</html>

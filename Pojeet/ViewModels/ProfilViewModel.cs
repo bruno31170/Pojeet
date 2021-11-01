@@ -16,6 +16,7 @@ namespace Pojeet.ViewModels
         public NombreAnnonce NombreAnnonce { get; set; }
         public CategorieRecherche CategorieDeRecherche { get; set; }
         public CategorieAnnonce CategorieDeAnnonce { get; set; }
+        public List<CompteConsumer> ProfilsMieuxNotes { get; set; }
 
 
     }

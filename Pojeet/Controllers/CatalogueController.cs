@@ -28,9 +28,9 @@ namespace Pojeet.Controllers
             CompteConsumer consumer = dal.ObtientConsumer(id);
 
             List<Annonce> listeAnnonce = dal.ObtientAnnonce();
+            List<CompteConsumer> profilsMieuxNotes = dal.ProfilsMieuxNotes();
 
-            
-            return View(new ProfilViewModel { Annonce = listeAnnonce, CompteConsumer = consumer});
+            return View(new ProfilViewModel { Annonce = listeAnnonce, CompteConsumer = consumer, ProfilsMieuxNotes= profilsMieuxNotes });
         }
 
 
@@ -38,9 +38,9 @@ namespace Pojeet.Controllers
         public IActionResult RechercherAnnonce(ProfilViewModel uvm)
         {
             /*CompteConsumer consumer = dal.ObtientConsumer(uvm.CompteConsumer.Id);*/
-
+            List<CompteConsumer> profilsMieuxNotes = dal.ProfilsMieuxNotes();
             List<Annonce> listeAnnonce = dal.RechercherAnnonce(uvm);
-            return View(new ProfilViewModel { Annonce = listeAnnonce});
+            return View(new ProfilViewModel { Annonce = listeAnnonce, ProfilsMieuxNotes = profilsMieuxNotes });
 
 
           /*      List<Annonce> listeAnnonce = dal.ObtientAnnonce();

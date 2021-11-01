@@ -52,5 +52,13 @@ namespace Pojeet.Models
             _context.SaveChanges();
 
         }
+
+
+        public void SuprimerNotification(Avis avis)
+        {   Profil profil= _context.CompteConsumer.Where(r => r.Id==avis.CompteConsumerId).Include(c=> c.Profil).FirstOrDefault().Profil;
+            NotificationTransaction notification = _context.Notification.Where(r => r.ProfilId == profil.Id).FirstOrDefault();
+            _context.Notification.Remove(notification);
+            _context.SaveChanges();
+        }
     }
 }

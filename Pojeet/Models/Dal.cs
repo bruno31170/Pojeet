@@ -203,21 +203,26 @@ namespace Pojeet.Models
             {
                 profil.Photo = photo.FileName;
             }
+            Messagerie messagerie = new Messagerie
+            {   Profil=profil,
+                ProfilId = profil.Id,
+            };
+            _context.Messagerie.Add(messagerie);
 
             CompteConsumer consumer = new CompteConsumer { MotDePasse = motDePasse, Pseudo = pseudo, Profil = profil, DateCreationCompte = DateTime.Now };
 
             _context.CompteConsumer.Add(consumer);
+
             _context.SaveChanges();
             return consumer.Id;
         }
         public void CreerMessagerie(int id)
         {
-            Messagerie messagerie = new Messagerie()
-            {
-                ProfilId = id
+            Messagerie messagerie = new Messagerie
+            {   ProfilId= _context.Profil.Where(c => c.Id == id).FirstOrDefault().Id,
             };
             _context.Messagerie.Add(messagerie);
-            //_context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void ModifierConsumer(int id, string pseudo, string nom, string prenom, string dateNaissance,
@@ -396,7 +401,7 @@ namespace Pojeet.Models
 
         public List<Transaction> ObtientTransaction(int id)
         {
-            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Include(c => c.Profil).Include(c => c.Annonce).Include(c => c.Annonce.profil).ToList();
+            List<Transaction> listeTransaction = this._context.Transactions.Where(c => c.ProfilId == id || c.Annonce.ProfilId == id).Include(c => c.Profil.ListeAvis).Include(c => c.Annonce).Include(c => c.Annonce.profil).Include(c=> c.Annonce.profil.ListeAvis).ToList();
             return listeTransaction;
         }
 

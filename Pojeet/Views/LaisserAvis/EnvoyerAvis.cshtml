@@ -37,7 +37,7 @@
 
     @Html.TextAreaFor(model => model.Avis.commentaire, new { @class = "form-control", placeholder = "Laissez votre commentaire ici...", style="rows:10;cols:50;width: 500px" })
     <br>
-    <input type="hidden" id="Avis.ProfilId" name="Avis.ProfilId" class="form-control" value="@Model.Avis.ProfilId">
+    <input type="hidden" id="Avis.ProfilId" name="Avis.ProfilId" class="form-control" value="@Model.Avis.ProfilId" >
     <input type="hidden" id="Avis.CompteConsumerId" name="Avis.CompteConsumerId" class="form-control" value="@Model.Avis.CompteConsumerId">
     <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
     }

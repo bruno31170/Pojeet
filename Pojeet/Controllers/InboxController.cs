@@ -158,7 +158,6 @@ namespace Pojeet.Controllers
                 CompteConsumer compteConsumer = dalInbox.ObtenirConsumer(HttpContext.User.Identity.Name);
                 int id1 = compteConsumer.ProfilId;
                 idConversation = ctx.CreerConversation(id1, id);
-                messagerie = ctx.ObtientLaMessagerie(id1);
                 ctx.AjouterNotificationMessagerie(id1, idConversation);
             }
            

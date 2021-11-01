@@ -333,7 +333,7 @@
                                                                 En cours
 
                                                                 <a href="@Url.Action("RedirigerVersConversationAnnonce", "Inbox", new { reference = @item.Reference, profilId = @Model.CompteConsumer.ProfilId })">
-                                                                    <button type="button" class="btn btn-info float-left">Voir la proposition</button>
+                                                                    <button type="button" >Voir la proposition</button>
                                                                 </a>
 
 
@@ -346,7 +346,7 @@
                                     (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                                 {
                                                                     <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = @Pojeet.Models.EtatTransaction.Effectue })">
-                                                                        <button type="button" class="btn btn-info float-left">Service Effectué?</button>
+                                                                        <button type="button">Service Effectué?</button>
                                                                     </a>
                                                                 }
                                                             </em>
@@ -358,7 +358,7 @@
                                      (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                                 {
                                                                     <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = Pojeet.Models.EtatTransaction.Valide })">
-                                                                        <button type="button" class="btn btn-info float-left">Validez La réception du service</button>
+                                                                        <button type="button" > Validez La réception du service</button>
                                                                     </a>
                                                                 }
 
@@ -367,14 +367,14 @@
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
                                                         {<em>
                                                                 Service Validé des deux parties
-                                                                @if (Model.CompteConsumer.ProfilId == item.ProfilId)
-                                                                {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.Annonce.ProfilId })">
-                                                                        <button type="button" class="btn btn-info float-left">Laissez Un Avis!</button>
+                                                                @if (Model.CompteConsumer.ProfilId == item.ProfilId && item.Annonce.profil.ListeAvis.Where(c=> c.CompteConsumer== Model.CompteConsumer).FirstOrDefault()==null)
+                                                                                      {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.Annonce.ProfilId })">
+                                                                        <button type="button" >Laissez Un Avis!</button>
                                                                     </a>}
-                                                                else
+                                                                else if (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId && item.Profil.ListeAvis.Where(c => c.CompteConsumer == Model.CompteConsumer).FirstOrDefault() != null)
 
                                                                 {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.ProfilId })">
-                                                                        <button type="button" class="btn btn-info float-left">Laissez Un Avis!</button>
+                                                                        <button type="button" >Laissez Un Avis!</button>
                                                                     </a>}
                                                             </em>
                                                         }
@@ -402,8 +402,8 @@
 
                             @foreach (var item in @Model.ListeTransaction)
                             {
-                                if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
-                                {
+                                                                    if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Termine)
+                                                                    {
                                     <div class="content mt-4">
                                         <div class="d-flex flex-column">
                                             <div class="transaction d-flex">
@@ -460,7 +460,7 @@
 
                                             @if (Model.NoteGlobale != 0)
                                             {
-                                                @foreach (var avis in Model.ListeAvis)
+                                                                    @foreach (var avis in Model.ListeAvis)
                                                 {
                                                     <li class="clearfix mt-3 bg-white" style="border-radius:25px">
                                                         <img src="~/media/profil/@avis.CompteConsumer.Profil.Photo" class="avatar" alt="">

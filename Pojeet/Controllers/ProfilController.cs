@@ -63,25 +63,25 @@ namespace Pojeet.Controllers
       
         public IActionResult ProfilVisiteur(int id)
         {
-            CompteConsumer CompteConumerVisiteur= dal.ObtenirConsumer(HttpContext.User.Identity.Name);
-            UtilisateurViewModel viewModel = new UtilisateurViewModel();
+            CompteConsumer Visiteur= dal.ObtenirConsumer(HttpContext.User.Identity.Name);
 
-            viewModel.CompteConsumer = dal.ObtenirConsumer(id);
-
-            if (CompteConumerVisiteur.Id != viewModel.CompteConsumer.Id)
+            if (Visiteur.Id == id)
             {
-                viewModel.ListeAvis = dal.ObtenirListeAvis(viewModel.CompteConsumer.Id);
-                viewModel.Annonce = dalProfil.ObtientAnnonceProfil(viewModel.CompteConsumer.Id);
-
-                viewModel.NoteGlobale = dal.ObtenirNoteGlobale(viewModel.CompteConsumer.Id);
-
-                viewModel.CompteProvider = dal.ObtenirHelper(viewModel.CompteConsumer.Id);
-
-                return View(viewModel);
+                return RedirectToAction("Index");
+                
             }
             else
             {
-                return RedirectToAction("Index");
+                UtilisateurViewModel viewModel = new UtilisateurViewModel();
+                viewModel.CompteConsumer = dal.ObtenirConsumer(id);
+                viewModel.ListeAvis = dal.ObtenirListeAvis(id);
+                viewModel.Annonce = dalProfil.ObtientAnnonceProfil(id);
+
+                viewModel.NoteGlobale = dal.ObtenirNoteGlobale(id);
+
+                viewModel.CompteProvider = dal.ObtenirHelper(id);
+
+                return View(viewModel);
             }
 
         }

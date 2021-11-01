@@ -83,8 +83,8 @@ namespace Pojeet.Models
 
         public Messagerie ObtientLaMessagerie(int id)
         {
-            MessagerieConversation messagerieConversation = _context.MessagerieConversation.Where(r => r.Messagerie.ProfilId == id).Include(c => c.Messagerie.Profil).FirstOrDefault();
-            return messagerieConversation.Messagerie;
+            Messagerie messagerie = _context.Messagerie.Where(r => r.ProfilId == id).Include(c => c.Profil).FirstOrDefault();
+            return messagerie;
         }
 
         public Boolean VerificationMessagerieVide(int id)
@@ -334,7 +334,7 @@ namespace Pojeet.Models
             _context.MessagerieConversation.AddRange(
            new MessagerieConversation
            {
-               MessagerieId = ObtientLaMessagerie(id1).Id,
+               MessagerieId = _context.Messagerie.Where(r => r.ProfilId == id1).FirstOrDefault().Id,
                ConversationId = conversation.Id
            },
             new MessagerieConversation

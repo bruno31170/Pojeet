@@ -1337,7 +1337,7 @@ namespace Pojeet.Models
                date = new DateTime(2004, 11, 20, 12, 1, 10),
                commentaire = "Cécile est un bon locataire d outillage, il nous a rendu le materiel en bon etat et dans le temps convenue. Il est tres sympathique, je vous le recommande.",
                note = 4,
-               CompteConsumerId = 1,
+               CompteConsumerId = 4,
                ProfilId = 2
            },
             new Avis
@@ -1346,7 +1346,7 @@ namespace Pojeet.Models
                 date = new DateTime(2004, 11, 20, 12, 1, 10),
                 commentaire = "Super service!",
                 note = 5,
-                CompteConsumerId = 1,
+                CompteConsumerId = 5,
                 ProfilId = 2
             },
             new Avis

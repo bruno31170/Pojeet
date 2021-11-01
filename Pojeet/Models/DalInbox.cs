@@ -313,7 +313,9 @@ namespace Pojeet.Models
             _context.SaveChanges();
         }
         public int IdentifierRecepteur(Transaction transaction)
+            
         {
+            
             Annonce annonce = _context.Annonce.Where(c => c.Id == transaction.Annonce.Id).FirstOrDefault();
             int profilId = 0;
             if (annonce.TypeDeAnnonce == TypeAnnonce.Besoin)
@@ -326,6 +328,7 @@ namespace Pojeet.Models
             }
             return profilId;
         }
+
         public void CreerVirement(int annonceId, int profilId)
         {
             Transaction transaction = _context.Transactions.Where(r => r.AnnonceId == annonceId && r.ProfilId == profilId).Include(r => r.Annonce).FirstOrDefault();

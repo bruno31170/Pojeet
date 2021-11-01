@@ -23,6 +23,8 @@ namespace Pojeet.Models
         public virtual Profil Profil { get; set; }
 
         public DateTime DateCreationCompte { set; get; }
+        //public int CompteProviderId { set; get; }
+        //public virtual CompteProvider CompteProvider { get; set; }
 
         public enum Statut
         {

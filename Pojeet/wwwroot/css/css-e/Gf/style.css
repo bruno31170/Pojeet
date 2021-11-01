@@ -485,12 +485,12 @@ th, td{
 .popup_commande {
 	position: fixed;
     top: 20%;
-    margin-left: calc(var(--parentWidth) * 0.2);
+    margin-left: calc(50% - 240px);
     padding: 20px;
     width: calc(var(--parentWidth) * 0.6);
     background: #fff;
     border: 1px solid orange;
-    border-radius: 4px;
+    border-radius: 8px;
     z-index: 99999;
     opacity: 1;
 }
@@ -509,9 +509,13 @@ th, td{
 
 }
 
-.table_commande_helper td{
-  font-size: 0.8rem;
-}
+    .table_commande_helper tbody tr {
+        background-color: #c8d8e4cb;
+    }
+
+    .table_commande_helper td {
+        font-size: 0.8rem;
+    }
 
 #myInput_helper{
   width: 100% !important;

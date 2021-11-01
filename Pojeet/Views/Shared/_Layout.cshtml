@@ -71,6 +71,7 @@
                                     {
                                         <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
                                     }
+
                                 </a>
                             </li>
                             <li class="nav-item d-flex align-items-center">
@@ -83,18 +84,47 @@
                                 </a>
                                 @if (@consumer1.Profil.notifications != null)
                                 {
-                                    @foreach (var notification in @consumer1.Profil.notifications)
+                                    @foreach (var notification in Notifications)
                                     {
                                         <ul>
                                             <div class="triangle"> </div>
-                                            <li><a href="/Profil/Index?tabId=contact2">Actualiser votre transaction N° @notification.TransactionId</a></li>
+
+                                            @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Proposition_de_prix)
+                                            {
+                                                <li>
+                                                    <a href="/Profil/Index?tabId=contact2">@notification.transaction.Profil.Prenom vous propose un prix</a>
+                                                </li>
+                                            }
+
+                                            @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Transaction_a_valider)
+                                            {
+                                                <li>
+                                                    <a href="/Profil/Index?tabId=contact2">Validez la transaction N° @notification.transaction.Reference</a>
+                                                </li>
+                                            }
+                                            @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Laisser_un_avis)
+                                            {
+                                                @if (notification.transaction.ProfilId == @consumer1.ProfilId)
+                                                {
+                                                    <li>
+                                                        <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Annonce.profil.Prenom</a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Profil.Prenom</a>
+                                                    </li>
+
+                                                }
+                                            }
                                         </ul>
                                     }
                                 }
                             </li>
                             @*<li class="nav-item d-flex align-items-center">
-                                    @Html.ActionLink("Deconnexion", "Deconnexion", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
-                                </li>*@
+            @Html.ActionLink("Deconnexion", "Deconnexion", "Login", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })
+        </li>*@
                         </ul>
                     </div>
 

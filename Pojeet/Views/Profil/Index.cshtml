@@ -371,7 +371,7 @@
                                                                                       {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.Annonce.ProfilId })">
                                                                         <button type="button" >Laissez Un Avis!</button>
                                                                     </a>}
-                                                                else if (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId && item.Profil.ListeAvis.Where(c => c.CompteConsumer == Model.CompteConsumer).FirstOrDefault() != null)
+                                                                @if (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId && item.Profil.ListeAvis.Where(c => c.CompteConsumer == Model.CompteConsumer).FirstOrDefault() == null)
 
                                                                 {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.ProfilId })">
                                                                         <button type="button" >Laissez Un Avis!</button>

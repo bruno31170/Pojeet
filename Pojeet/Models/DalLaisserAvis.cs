@@ -60,5 +60,14 @@ namespace Pojeet.Models
             _context.Notification.Remove(notification);
             _context.SaveChanges();
         }
+
+        public Boolean TransactionExistante(int id1, int id2)
+        {
+            Profil profil = _context.CompteConsumer.Where(r => r.Id == id1).Include (c=> c.Profil).FirstOrDefault().Profil;
+            List<Transaction> transaction = _context.Transactions.Include(r => r.Annonce).ToList();
+            Transaction transaction1= transaction.Where(r => (r.Annonce.ProfilId== profil.Id || r.Annonce.ProfilId == id2) && (r.ProfilId == id2 || r.ProfilId == profil.Id)).FirstOrDefault();
+            return (transaction1 != null && transaction1.EtatTransaction == EtatTransaction.Valide);
+        }
+
     }
 }

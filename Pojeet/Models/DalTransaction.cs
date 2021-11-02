@@ -32,7 +32,7 @@ namespace Pojeet.Models
 
         public CompteConsumer ObtientCompteConsumer(int id)
         {
-            CompteConsumer consumer = _context.CompteConsumer.Where(c => c.Id == id).Include(c => c.Profil).FirstOrDefault();
+            CompteConsumer consumer = _context.CompteConsumer.Where(c => c.ProfilId == id).Include(c => c.Profil).FirstOrDefault();
             return consumer;
         }
 

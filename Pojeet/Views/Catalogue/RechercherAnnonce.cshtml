@@ -159,6 +159,7 @@
         </div>
     </header>
     <main>
+
         @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
         {
             <div class="page_layout">
@@ -187,12 +188,14 @@
                                             @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
                                             @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
 
+
                                         </div>
+
 
                                     </form>
                                 </div>
                                 <div class="flex-row mt-1">
-                                    <input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search-1 mb-1 mr-1">
+                                    <input type="submit" value="Rechercher" class="btn-primary-e align-self-center font-size-14 btn-search-1 mb-1 mr-1">
                                     <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Annuler recherche" class="btn-primary-e ml-1 align-self-center font-size-14 btn-search-1 mb-1"></a>
                                 </div>
                             
@@ -206,10 +209,33 @@
                         <ul class="side_bar_nav flex-col p-3 font-size-14 sticky text-left">
                             <li class="text-center">
 
+
                                 <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
 
                                 <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
                             </li>
+
+                                </form>
+                            <div class="flex-row mt-1 justify-content-center">
+                                <input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search-1 mb-1 mr-1">
+                                <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Retour" class="btn-primary-e ml-1 align-self-center font-size-14 btn-search-1 mb-1"></a>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <!-- Fin Rechercher -->
+            <div class="page_container toutes_post p-3 pb-5 flex-row">
+                <!-- Menu utilisateur à geuche -->
+                <div class="side_bar_inner">
+                    <ul class="side_bar_nav flex-col p-3 font-size-14 sticky text-left">
+                        <li class="text-center">
+
+                            <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
+
+                            <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
+                        </li>
+                        
                             <li>
                                 <a href="~/Profil/Index"> <i class="font-size-25 fa fa-home mr-2"></i> Mon profil</a>
                             </li>

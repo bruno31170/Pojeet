@@ -20,13 +20,16 @@ namespace Pojeet.Controllers
         public DalTransaction dal;
         public DalInbox dalinbox;
         public Dal dal1;
+        public DalAide dal2;
+        public DalAnnonce dalAnnonce;
         private IWebHostEnvironment _env;
         public GfController(IWebHostEnvironment env)
         {
             this.dal = new DalTransaction();
             this.dalinbox = new DalInbox();
             this.dal1 = new Dal();
-
+            this.dal2 = new DalAide();
+            this.dalAnnonce = new DalAnnonce();
         }
 
         public IActionResult Index()
@@ -123,9 +126,9 @@ namespace Pojeet.Controllers
 
         public IActionResult AdminCommandes()
         {
-            TransactionViewModel tvm = GetComptat();
-            return View(tvm);
-            /*List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
+            //TransactionViewModel tvm = GetComptat();
+            //return View(tvm);
+            List<CompteConsumer> listeConsumer = new List<CompteConsumer>();
             listeConsumer = dal.ObtientConsumer();
 
             List<Transaction> listeTransaction = new List<Transaction>();
@@ -165,9 +168,9 @@ namespace Pojeet.Controllers
             return View(new TransactionViewModel
             {
                 listConsumer = listeConsumer,
-                Transaction = listeTransactionMois,
+                Transaction = listeTransaction,
                 Argent = argent
-            });*/
+            });
 
 
         }
@@ -193,7 +196,7 @@ namespace Pojeet.Controllers
             consumer = dal.ObtientCompteConsumer(id);
 
             List<Transaction> transactions = new List<Transaction>();
-            transactions = dal.ObtientTransaction(consumer.ProfilId);
+            transactions = dal.ObtientTransaction(consumer.Profil.Id);
 
             return View(new ConsumerViewModel
             {
@@ -247,6 +250,35 @@ namespace Pojeet.Controllers
         //    dal.AfficherVirement(cvm.Virement.TransactionReference);
         //    return RedirectToAction("Commande", new { reference = cvm.Virement.TransactionReference });
         //}
+
+        public ActionResult MessageAide()
+        {
+            List<Aide> aides = dal2.ObtientAides();
+            
+            return View(new MessageAideViewModel { aides = aides });
+        }
+        
+        public ActionResult ModifierAide(int id)
+        {
+            
+                    dal2.ModifierAide(id);
+                    Aide aide1 = dal2.ObtientAide(id);
+
+                    return RedirectToAction("MessageAide");
+                
+            
+        }
+
+
+
+        public ActionResult ValiderAnnonce(int id)
+        {
+            dalAnnonce.ValiderAnnonce(id);
+            Annonce annonce = dalAnnonce.ObtientAnnonce(id);
+
+            return RedirectToAction("ValideAnnonce");
+        }
+
 
 
         public ActionResult Comptabilite()

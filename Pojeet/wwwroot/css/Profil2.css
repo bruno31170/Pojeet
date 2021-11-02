@@ -102,8 +102,9 @@
 }
 
 .wall_post_img img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 250px;
+    max-width: 280px;
 }
 
 .collapsible {

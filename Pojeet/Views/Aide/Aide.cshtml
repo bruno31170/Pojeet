@@ -9,9 +9,10 @@
 
 
 
-<div class="aide">
 
-    <h2>Contact</h2><br>
+<div class="aide mt-3">
+
+    <h2 class="text-center bold">Contact</h2>
     <p>
         Veuillez apporter toutes les précisions qui pourraient être utiles à notre équipe dans la résolution de
         votre problème : numéro de transaction,
@@ -19,34 +20,48 @@
         Nous ferons de notre mieux pour vous répondre sous 48 heures.
     </p>
 
-    
+    <div class="flex-col">
+
         @using (Html.BeginForm("DemanderAide", "Aide", FormMethod.Post))
         {
             <!-- Coordonnées -->
+        <div class="flex-col justify-content-center border-e white text-center p-5" style="width: 80%; margin-left: 10%">
 
-            <h3>Coordonnées</h3><br>
+            <div class="flex-col text-left" style="margin-bottom: -2rem;">
+                <label for="coordonnées">Nom :</label>
+                @Html.TextBoxFor(model => model.Aide.Nom, new { @class = "w-100", placeholder = "Nom" })<br><br>
+            </div>
+            <div class="flex-col text-left" style="margin-bottom: -2rem;">
+                <label for="coordonnées">Email :</label>
+                @Html.TextBoxFor(model => model.Aide.Mail, new { @class = "w-100", placeholder = "Email" })<br><br>
+            </div>
+            <div class="flex-col text-left" style="margin-bottom: -2rem;">
+                <label for="objet">Objet :</label>
+                @Html.TextBoxFor(model => model.Aide.Objet, new { @class = "w-100", placeholder = "Objet" })<br><br>
+            </div>
+            <div class="flex-col text-left">
+                <p class="m-0">Votre message : </p><br>
 
-            <label for="coordonnées">Nom :</label>
-            @Html.TextBoxFor(model => model.Aide.Nom, new { placeholder = "Nom" })<br><br>
+                @Html.TextAreaFor(model => model.Aide.Message, new { @class = "form-control w-100", placeholder = "Message", rows = 10 })<br><br>
+            </div>
 
-            <label for="coordonnées">Email :</label>
-            @Html.TextBoxFor(model => model.Aide.Mail, new { placeholder = "Email" })<br><br>
-
-            <h3>Objet du message</h3><br>
-
-            <label for="objet">Objet :</label>
-            @Html.TextBoxFor(model => model.Aide.Objet, new { placeholder = "Objet" })<br><br>
-
-            <h3>Votre message : </h3><br>
-
-            @Html.TextAreaFor(model => model.Aide.Message, new { @class = "form-control", placeholder = "Message", style="rows:10;cols:50;width: 500px" })<br><br>
-
-            <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
-
+            <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1" />
+        </div>
         }
-    
 
+    </div>
 </div>
 
+<style type="text/css">
+    .post_item {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+    input{
+        height: 3rem;
+        padding-left: 1rem;
+    }
+</style>
 
 

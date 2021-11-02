@@ -28,7 +28,7 @@
 
             <!-- Type d'annonce -->
             @*<div class="position-absolute"  style="height: 840px;">*@
-            <h4>Selectionner le type d'annonce*</h4>
+        <h3>Selectionner le type d'annonce (obligatoire)</h3>
             <span class="font-size-18">Besoin : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Besoin, "Besoin")
             <span class="font-size-18"> | Service : </span> @Html.RadioButtonFor(m => m.Anonce.TypeDeAnnonce, Pojeet.Models.TypeAnnonce.Service, "Service")<br>
             @Html.ValidationMessageFor(model => model.Anonce.TypeDeAnnonce)
@@ -38,7 +38,7 @@
 
             <!-- Catégorie --><br>
 
-            <h3>Selectionner la catégorie*</h3>
+                              <h3>Selectionner la catégorie (obligatoire)</h3>
 
             @Html.DropDownListFor(m => m.Anonce.CategorieDeAnnonce, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieAnnonce))), new { @class = "search_select_form js-select", @style = "width=200px;", id = "categorie" })<br><br>
 
@@ -48,7 +48,7 @@
 
             <!-- Titre annonce -->
 
-            <h3>Titre de l'annonce*</h3>
+    <h3>Titre de l'annonce (obligatoire)</h3>
 
             @Html.TextBoxFor(model => model.Anonce.TitreAnnonce, new { placeholder = "Titre", @class = "search_select_form  js-select m-0", @style = "width: 60%;", id = "titreAnnonce" })<br><br>
             @Html.ValidationMessageFor(model => model.Anonce.TitreAnnonce)
@@ -59,7 +59,7 @@
 
             <!-- Description -->
 
-            <h3>Description*</h3>
+    <h3>Description (obligatoire)</h3>
             @Html.TextAreaFor(model => model.Anonce.Description, new { @class = "form-control border-e-1", @style = "width: 60%;", placeholder = "Description", id = "description" })<br><br>
 
             @Html.ValidationMessageFor(model => model.Anonce.Description)
@@ -69,7 +69,7 @@
 
             <div class="flex-row justify-content-between" style="width: 60%">
                 <div class="flex-col">
-                    <h3>Date butoir*</h3>
+                    <h3>Date butoir (obligatoire)</h3>
                     @Html.TextBoxFor(model => model.Anonce.DateButoir, new { @type = "date", @class = "search_select_form  js-select", id = "dateButoir" })<br><br>
 
                     @Html.ValidationMessageFor(model => model.Anonce.DateButoir)
@@ -77,7 +77,7 @@
                 <div class="flex-col">
                     <!-- Département -->
 
-                    <h3>Département*</h3>
+                    <h3>Département (obligatoire)</h3>
                     @Html.TextBoxFor(model => model.Anonce.Localisation, new { placeholder = "Localisation", @class = "search_select_form  js-select", id = "localisation" })<br><br>
 
                     @Html.ValidationMessageFor(model => model.Anonce.Localisation)
@@ -88,14 +88,14 @@
 
             <!-- Image -->
 
-            <h3>Selectionner une image</h3>
+            <h3>Selectionner une image (optionnel)</h3>
             <input class="js-select" type="file" name="AnnoncePhoto" data-placeholder="" data-browse="Parcourir" /><br><br>
 
 
             <!-- FAIRE AFFICHER LES IMAGES -->
             <!-- Prix -->
 
-            <h3>Prix</h3>
+    <h3>Prix (optionnel)</h3>
             @Html.TextBoxFor(model => model.Anonce.Prix, new { placeholder = "Prix", @class = "search_select_form  js-select", id = "prix" })<br><br>
 
 
@@ -103,7 +103,7 @@
 
 
 
-            <p>* : Champ obligatoire</p>
+            
 
 
 

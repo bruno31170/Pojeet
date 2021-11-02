@@ -53,15 +53,29 @@
                 @if (@consumer1 != null && @provider1 != null && @consumer1.Id == @provider1.CompteConsumerId)
                 {
                     <div class="collapse navbar-collapse" id="nav_site_help">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item d-flex align-items-center">
-                                @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "nav-link nav-link-hover-green rounded btnGreen", @style = "color:white" })
+                        <ul class="navbar-nav ml-auto nav-menu-icon">
+                            <li class="nav-item" style=" width: 180px !important">
+                                @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "nav-link nav-link-hover-green rounded btnGreen", @style = "color:white;" })
                             </li>
                             <li class="nav-item border-right ml-3 mr-1"></li>
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item" style="padding-top: 5px;">
                                 <a href="@Url.Action("Index", "Profil")"><i class="font-size-24 iconNav fa fa-user" style="color: #2b6777; font-size: 24px; margin: 0 15px ;"> </i></a>
+                                <ul style="padding: 0;">
+                                    <div class="triangle"> </div>
+                                    <li class="mt-2">
+                                        <a href="~/Profil/Index">Mon profil</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Profil/Index?tabId=profile2">Mes annonce</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Profil/Index?tabId=contact2">Mes transactions</a>
+                                    </li>
+                                    <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
+
+                                </ul>
                             </li>
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item d-flex align-items-center position-relative">
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                                     <i class="font-size-24 iconNav fa fa-envelope" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
                                     @if (@consumer1.Profil.notificationsMessagerie != null)
@@ -70,7 +84,7 @@
                                     }
                                 </a>
                             </li>
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item d-flex align-items-center position-relative">
                                 <a href="#">
                                     <i class="font-size-24 iconNav fa fa-bell" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
                                     @if (@consumer1.Profil.notifications != null)
@@ -100,7 +114,7 @@
                 {
                     <div class="collapse navbar-collapse" id="nav_site_help">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item d-flex align-items-center" style=" width: 180px !important">
                                 @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "nav-link nav-link-hover-green rounded btnGreen", @style = "color:white" })
                             </li>
                             <li class="nav-item border-right ml-3 mr-1"></li>
@@ -119,15 +133,29 @@
                 else if (@consumer1 != null && @provider1 == null)
                 {
                     <div class="collapse navbar-collapse" id="nav_site_help">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item d-flex align-items-center">
+                        <ul class="navbar-nav ml-auto nav-menu-icon">
+                            <li class="nav-item d-flex align-items-center" style=" width: 180px !important">
                                 @Html.ActionLink("Trouvez une annonce", "AnnonceCatalogue", "Catalogue", null, null, null, null, new { @class = "nav-link nav-link-hover-green rounded btnGreen", @style = "color:white" })
                             </li>
                             <li class="nav-item border-right ml-3 mr-1"></li>
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item" style="padding-top: 5px;">
                                 <a href="@Url.Action("Index", "Profil")"><i class="font-size-24 iconNav fa fa-user" style="color: #2b6777; font-size: 24px; margin: 0 15px ;"> </i></a>
+                                <ul style="padding: 0;">
+                                    <div class="triangle"> </div>
+                                    <li class="mt-2">
+                                        <a href="~/Profil/Index">Mon profil</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Profil/Index?tabId=profile2">Mes annonce</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Profil/Index?tabId=contact2">Mes transactions</a>
+                                    </li>
+                                    <li style="border-radius: 0 0 5px 5px;">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, null, null, null, new { @style = "border-radius: 0 0 5px 5px; color: red !important;" })</li>
+
+                                </ul>
                             </li>
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item d-flex align-items-center position-relative">
                                 <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = 2, id2 =1 })">
                                     <i class="font-size-24 iconNav fa fa-envelope" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
                                     @if (@consumer1.Profil.notificationsMessagerie != null)
@@ -136,8 +164,9 @@
                                     }
 
                                 </a>
+                               
                             </li>
-                            <li class="nav-item d-flex align-items-center">
+                            <li class="nav-item d-flex align-items-center position-relative">
                                 <a href="#">
                                     <i class="font-size-24 iconNav fa fa-bell" style="color: #2b6777; font-size: 24px; margin: 0 15px;"></i>
                                     @if (@consumer1.Profil.notifications != null)

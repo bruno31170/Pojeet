@@ -19,7 +19,7 @@
                 <a class="font-size-16 bold" href="">@Model.Consumer.Profil.Nom @Model.Consumer.Profil.Prenom</a>
                 <div class="ml-auto mr-4">
                     <a class="btn-primary-e align-items-center" style="background-color: red; color: white !important;" href="">Bloquer</a>
-                    <a class="btn-primary-e align-items-center" style="color: white;" href="">Contacter</a>
+                    <a class="btn-primary-e align-items-center" style="color: white;" href="mailto:@Model.Consumer.Profil.Mail">Contacter</a>
 
                 </div>
 
@@ -57,7 +57,7 @@
         <!-- Liste de toutes les commandes du Helper -->
 
         <input class="form-control mb-3" id="myInput_helper" type="text" placeholder="Recherche">
-        <div class="w-100 table_commande_helper">
+        <div class="w-100 table_commandes">
 
             <table class="table table-hover m-0 w-100 border-e-1 text-center">
                 <thead>
@@ -85,6 +85,7 @@
                         {
                             <td>@transaction.Annonce.profil.Nom @transaction.Annonce.profil.Prenom</td>
                         }
+
                         @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
                         {
                     <td>@transaction.Annonce.profil.Nom @transaction.Annonce.profil.Prenom</td>

@@ -1,0 +1,59 @@
+﻿@model Pojeet.ViewModels.ProfilViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Annonce";
+}
+<div class="content-wrapper commande" style="height: 90vh;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header pl-3">
+        <h1 class="pt-4 pl-4 mb-2 font-size-16">Massenger</h1>
+    </div>
+    <!-- /.content-header -->
+    <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+    <br>
+    <div class="table_commandes">
+        <table class="table table-hover border-e w-80 table_sort" style="height: 250px">
+            <thead>
+                <tr>
+                    <th scope="col"> N°</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Type Annonce</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Consumer</th>
+                    <th scope="col">Etat</th>
+                </tr>
+            </thead>
+            <tbody id="commande">
+                @foreach (var annonce in Model.Annonce)
+                {
+                    <tr>
+
+                        <th scope="row"><a href="#">@annonce.Id </a></th>
+                        <td>@annonce.DateParution</td>
+                        <td>@annonce.TypeDeAnnonce</td>
+                        <td>@annonce.CategorieDeAnnonce</td>
+                        <td>@annonce.TitreAnnonce</td>
+                        <td>@annonce.profil.Nom @annonce.profil.Prenom</td>
+                        
+                        @if (annonce.EtatAnnonce == Pojeet.Models.EtatAnnonce.Envoyé)
+                        {
+                            <td> <a style="color: red;" href="@Url.Action("ValiderAnnonce", "Annonce", new { id = annonce.Id })">Voir</a></td>
+                            @*}*@
+                        }
+                        else
+                        {
+                            <td>Validé</td>
+                        }
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+

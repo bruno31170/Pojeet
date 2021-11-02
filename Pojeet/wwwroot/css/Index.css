@@ -102,7 +102,7 @@ body {
 
 .iconNav {
     color: #2b6777;
-    font-size: 24px;
+    font-size: 28px;
     margin: 10px;
 }
 
@@ -169,12 +169,126 @@ nav-link-hover-green:hover {
     transform: scale(1.1);
 }
 
-
-.navbar-transparent .dropdown-toggle.border, .navbar-transparent .dropdown-toggle.carousel-control-prev, .navbar-transparent .dropdown-toggle.carousel-control-next, .navbar-transparent .dropdown-toggle.slick-arrow, .navbar-transparent .dropdown-toggle.react-tooltip {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important
+a, a:hover, a:focus, a:active {
+    text-decoration: none !important;
+    outline: none;
+}
+    .navbar-badge {
+    font-size: .6rem;
+    font-weight: 300;
+    padding: 2px 4px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    
+}
+.nav-menu-icon {
+    /*max-width: 270px;*/
 }
 
+    .nav-menu-icon li {
+        width: 45px;
+        position: relative;
+        z-index: 99;
+    }
+
+    .nav-menu-icon ul {
+        list-style: none;
+        position: absolute;
+        transition: opacity .25s ease .1s;
+        opacity: 50;
+        /* -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;*/
+        -webkit-transition: opacity .25s ease .1s;
+        -moz-transition: opacity .25s ease .1s;
+        -o-transition: opacity .25s ease .1s;
+        transition: opacity .25s ease .1s;
+    }
+
+.triangle {
+    width: 0;
+    height: 0;
+}
+
+.nav-menu-icon li:hover .triangle {
+    overflow: visible;
+    width: 0;
+    height: 0;
+    left: 35px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #2b6777;
+    overflow: hidden;
+    -webkit-transition: height .25s ease .1s;
+    -moz-transition: height .25s ease .1s;
+    -o-transition: height .25s ease .1s;
+    transition: height .25s ease .1s;
+    position: absolute;
+}
+
+.nav-menu-icon li:hover > ul {
+    opacity: 50;
+    width: 150px;
+    margin-left: -15px;
+    margin-top: 5px;
+}
+
+.nav-menu-icon ul li {
+    text-align: left !important;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: height .25s ease .1s;
+    -moz-transition: height .25s ease .1s;
+    -o-transition: height .25s ease .1s;
+    transition: color .25s ease .1s;
+    background: #2b6777;
+}
+
+
+.nav-menu-icon li ul li:hover {
+    -webkit-transition: background-color ease-in 300ms;
+    -moz-transition: background-color ease-in 300ms;
+    -o-transition: background-color ease-in 300ms;
+    transition: background-color ease-in 300ms;
+}
+
+.nav-menu-icon li:hover > ul li {
+    padding: 0.5rem;
+    height: 36px;
+    width: 100%;
+    overflow: visible;
+    border-bottom: 1px solid #fff;
+}
+
+/* .nav-menu-icon li:hover > ul:last-child li{ 
+  border-bottom: none; 
+} */
+
+.nav-menu-icon ul li a {
+    width: 100%;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border: none;
+    color: #fff !important;
+}
+
+.nav-menu-icon ul li:last-child {
+    border-bottom: none !important;
+}
+
+    .nav-menu-icon ul li:last-child a {
+        border: none;
+    }
+
+.nav-menu-icon li ul li:hover {
+    background-color: #c8d8e4 !important;
+}
+
+.nav-menu-icon li:hover ul li:hover a {
+    color: #2b6777 !important;
+}
 /* HERO  */
 .typewriter {
     border-right: .10em solid grey; /* The typwriter cursor */

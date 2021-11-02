@@ -13,5 +13,6 @@ namespace Pojeet.Models
             DateTime dateParution, string localisation, DateTime dateButoir, int prix, CategorieAnnonce  categorieAnnonce, IFormFile photo, EtatAnnonce etatAnnonce);
 
         void SupprimerAnnonce(int id);
+        void ValiderAnnonce(int id);
     }
 }

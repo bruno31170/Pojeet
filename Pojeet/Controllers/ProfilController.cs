@@ -73,15 +73,23 @@ namespace Pojeet.Controllers
             else
             {
                 UtilisateurViewModel viewModel = new UtilisateurViewModel();
-                viewModel.CompteConsumer = dal.ObtenirConsumer(id);
-                viewModel.ListeAvis = dal.ObtenirListeAvis(id);
-                viewModel.Annonce = dalProfil.ObtientAnnonceProfil(id);
+                try
+                {
+                    
+                    viewModel.CompteConsumer = dal.ObtenirConsumer(id);
+                    viewModel.ListeAvis = dal.ObtenirListeAvis(id);
+                    viewModel.Annonce = dalProfil.ObtientAnnonceProfil(id);
 
-                viewModel.NoteGlobale = dal.ObtenirNoteGlobale(id);
+                    viewModel.NoteGlobale = dal.ObtenirNoteGlobale(id);
 
-                viewModel.CompteProvider = dal.ObtenirHelper(id);
+                    viewModel.CompteProvider = dal.ObtenirHelper(id);
 
-                return View(viewModel);
+                    return View(viewModel);
+                } catch (Exception e)
+                {
+                    return View(viewModel);
+                }
+
             }
 
         }

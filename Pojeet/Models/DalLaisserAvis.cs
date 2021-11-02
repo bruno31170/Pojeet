@@ -46,19 +46,29 @@ namespace Pojeet.Models
             Profil profil = _context.Profil.Where(r => r.Id == avis.ProfilId).Include(c => c.ListeAvis).FirstOrDefault();
             List<Avis> listeAvis = profil.ListeAvis;
             int noteGlobale = profil.NoteMoyenne;
-            noteGlobale = noteGlobale+avis.note / (1+listeAvis.Count());
+            noteGlobale = noteGlobale + avis.note / (1 + listeAvis.Count());
             profil.NoteMoyenne = noteGlobale;
-            
+
             _context.SaveChanges();
 
         }
 
 
         public void SuprimerNotification(Avis avis)
-        {   Profil profil= _context.CompteConsumer.Where(r => r.Id==avis.CompteConsumerId).Include(c=> c.Profil).FirstOrDefault().Profil;
+        {
+            Profil profil = _context.CompteConsumer.Where(r => r.Id == avis.CompteConsumerId).Include(c => c.Profil).FirstOrDefault().Profil;
             NotificationTransaction notification = _context.Notification.Where(r => r.ProfilId == profil.Id).FirstOrDefault();
             _context.Notification.Remove(notification);
             _context.SaveChanges();
         }
+
+        public Boolean TransactionExistante(int id1, int id2)
+        {
+            Profil profil = _context.CompteConsumer.Where(r => r.Id == id1).Include (c=> c.Profil).FirstOrDefault().Profil;
+            List<Transaction> transaction = _context.Transactions.Include(r => r.Annonce).ToList();
+            Transaction transaction1= transaction.Where(r => (r.Annonce.ProfilId== profil.Id || r.Annonce.ProfilId == id2) && (r.ProfilId == id2 || r.ProfilId == profil.Id)).FirstOrDefault();
+            return (transaction1 != null && transaction1.EtatTransaction == EtatTransaction.Valide);
+        }
+
     }
 }

@@ -4,6 +4,8 @@
 @{
     Layout = "_LayoutIdentifie";
     ViewBag.Title = "Annonce";
+    var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
+    var consumer1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
 }
 
 
@@ -24,30 +26,59 @@
 
                     <div class="top_view flex-row align-items-center">
                         <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
-                        <span class="font-size-14 bold">5.0</span>
-                        <span class="font-size-14 ml-1">(250 avis)</span>
+                        <span class="font-size-14 bold">@Model.Annonce.profil.NoteMoyenne</span>
+                        <span class="font-size-14 ml-1">(@Model.Avis.Count avis)</span>
                     </div>
                 </div>
             </div>
-            @if ((Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId))
+            @if (Model.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
             {
-                @if (Model.Conversation == null)
-                { 
-                    @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
-                    {<input type="hidden" id="id" name="id" class="form-control" value="@Model.Annonce.Id">
-                        <button type="submit" class="btn-primary-e mb-1">Contacter</button>
+                @if ((Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId))
+                {
+                    @if (Model.Conversation == null)
+                    {
+                        @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
+                        {<input type="hidden" id="id" name="id" class="form-control" value="@Model.Annonce.Id">
+                            <button type="submit" class="btn-primary-e mb-1">Contacter</button>
+                        }
                     }
                 }
-             }
+            }
+            @if (Model.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+            {
+                @if (@consumer1 != null && @provider1 != null && @consumer1.Id == @provider1.CompteConsumerId)
+                {
+                    @if ((Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId))
+                    {
+                        @if (Model.Conversation == null)
+                        {
+                            @using (Html.BeginForm("CreerConversation", "Inbox", FormMethod.Post))
+                            {
+                                <input type="hidden" id="id" name="id" class="form-control" value="@Model.Annonce.Id">
+                                <button type="submit" class="btn-primary-e mb-1">Contacter</button>
+                            }
+                        }
+                    }
+                }
+                else if (@provider1 == null)
+                {
+
+                    @if ((Model.Annonce.ProfilId != Model.CompteConsumer.ProfilId))
+                    {
+                        @Html.ActionLink("Devenez Helper pour répondre à cette annonce", "CreerHelper", "Login", null, null, null, null, new { @class = "btn-primary-e mb-1" })
+                        }
+
+                    }
+                }
+
 
             </div>
             <div class="post_info_item flex-row justify-content-between pt-4">
                 <div class="flex-col">
-                    <h1 class="font-size-22">@Model.Annonce.TitreAnnonce</h1>
+                    <h1 class="font-size-22">@Model.Annonce.TitreAnnonce (@Model.Annonce.TypeDeAnnonce)</h1>
                     <span>Date de publication: <b>@Model.Annonce.DateParution</b> </span>
                     <span class="font-size-18">Prix: <b>@Model.Annonce.Prix €</b> </span>
                 </div>
-                <span><i class="fa fa-heart font-size-20"></i></span>
             </div>
 
             <!-- Carousel image l'annonce -->

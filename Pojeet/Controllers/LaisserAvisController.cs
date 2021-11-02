@@ -23,16 +23,27 @@ namespace Pojeet.Controllers
             String prenom = "";
             Avis avis = new Avis();
             Boolean authentifie = HttpContext.User.Identity.IsAuthenticated;
+            
             if (authentifie)
             {
                 CompteConsumer compteConsumer = dal1.ObtenirConsumer(HttpContext.User.Identity.Name);
-                avis.CompteConsumerId= compteConsumer.Id;
-                profil = dal.ObtientProfil(id);
-                avis.ProfilId = profil.Id;
-                prenom = profil.Prenom;
+                Boolean TransactionExistante = dal.TransactionExistante(compteConsumer.Id, id);
+                    if (TransactionExistante)
+                {
+                    avis.CompteConsumerId = compteConsumer.Id;
+                    profil = dal.ObtientProfil(id);
+                    avis.ProfilId = profil.Id;
+                    prenom = profil.Prenom;
+                    return View(new AvisViewModel { Prenom = prenom, Avis = avis });
+                }
+                return View("Error");
+            }
+            else
+            {
+                return View("Error");
             }
             
-            return View(new AvisViewModel {Prenom=prenom, Avis=avis});
+            
         }
 
 

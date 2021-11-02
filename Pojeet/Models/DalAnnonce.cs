@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,8 +88,19 @@ namespace Pojeet.Models
                 _context.SaveChanges();
             }
         }
+        public Annonce ObtientAnnonce(int id)
+        {
+            Annonce annonce = _context.Annonce.Where(c => c.Id == id).Include(c => c.profil).FirstOrDefault();
+            return annonce;
+        }
+
+        public void ValiderAnnonce(int id)
+        {
+            Annonce annonce = this._context.Annonce.Where(c => c.Id == id).FirstOrDefault();
+            annonce.EtatAnnonce = EtatAnnonce.Validé;
+            _context.SaveChanges();
+        }
 
 
-    
     }
 }

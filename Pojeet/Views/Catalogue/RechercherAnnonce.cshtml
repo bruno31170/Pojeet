@@ -162,7 +162,7 @@
         <div class="page_layout">
             <!-- Recherche -->
             <div class="flex-col post_search text-center">
-                <img class="position-relative w-100" src="~/img/img-e/recherche.png" alt="">
+                <img class="position-relative w-100" style="height: 260px;" src="~/img/img-e/recherche.png" alt="">
 
                 @using (Html.BeginForm("RechercherAnnonce", "Catalogue", FormMethod.Get))
                 {
@@ -178,24 +178,23 @@
 
 
                         {
-                            <div class="flex-col flex-md-row justify-content-center">
+                            
 
                                 <form id="search-form" action="index.html" method="post">
-                                    <div class="flex-col flex-md-row">
-                                        <div class="search_category select-wrap mb-1" id="search">
+                                    
+                                        <div class="flex-md-row search_category select-wrap justify-content-center" id="search">
                                             @Html.DropDownListFor(m => Model.Recherche.TypeDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.TypeRecherche))), new { @class = "search_select_form text-center js-select" })
                                             @Html.DropDownListFor(m => Model.Recherche.CategorieDeRecherche, new SelectList(Enum.GetValues(typeof(Pojeet.Models.CategorieRecherche))), new { @class = "search_select_form text-center js-select" })
-                                        </div>
+                                        
                                         @Html.TextBoxFor(m => Model.Recherche.Rechercher, new { @placeholder = "Que recherchez-vous", @class = "search_select_form  text-center mb-1 align-self-center" })
                                         @Html.TextBoxFor(m => Model.Recherche.Localisation, new { @placeholder = "Départements", @class = "search_select_form  text-center mb-2 align-self-center" })
 
                                     </div>
 
                                 </form>
-                            </div>
-                            <div class="flex-row mt-1">
+                            <div class="flex-row mt-1 justify-content-center">
                                 <input type="submit" value="Trouver" class="btn-primary-e align-self-center font-size-14 btn-search-1 mb-1 mr-1">
-                                <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Annuler recherche" class="btn-primary-e ml-1 align-self-center font-size-14 btn-search-1 mb-1"></a>
+                                <a href="/Catalogue/AnnonceCatalogue"><input type="button" value="Retour" class="btn-primary-e ml-1 align-self-center font-size-14 btn-search-1 mb-1"></a>
                             </div>
                         }
                     </div>

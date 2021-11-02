@@ -154,51 +154,85 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="nav nav-sidebar flex-col panel">
-                            <div class="nav-item panel-heading">
-                                <a href="#" class="nav-link flex-row align-items-center">
+                        <div class="nav nav-sidebar flex-col  panel">
+                            <div class="nav-item">
+                                <a href="DemandeDevenirHelper" class="nav-link flex-row align-items-center">
+                                    <i class="nav-icon far fa-address-book"></i>
+                                    <p class=" m-2">
+                                        Validation de Helper
+                                    </p>
+                                    <div class="count_msg">
+                                        @{
+                                            var listCompteProvider = new Pojeet.Models.DalTransaction().ObtientTousHelpersAValider();
+                                            int result = listCompteProvider.Count();
+                                        }
+                                        <span>@result</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="nav nav-sidebar flex-col  panel">
+                            <div class="nav-item">
+                                <a href="MessageAide" class="nav-link flex-row align-items-center">
                                     <i class="nav-icon far fa-envelope"></i>
+                                    <p class=" m-2">
+                                        Message
+                                    </p>
+                                    <div class="count_msg">
+                                        @{
+                                            var listeAide = new Pojeet.Models.DalAide().ObtientNewAides();
+                                            int result1 = listeAide.Count();
+                                        }
+                                        <span>@result1</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--<div class="nav nav-sidebar flex-col panel">
+    <div class="nav-item panel-heading">
+        <a href="#" class="nav-link flex-row align-items-center">
+            <i class="nav-icon far fa-envelope"></i>
+            <p class="m-2">
+                Messenger-->
+                        <!-- <i class="fas fa-angle-left right"></i> -->
+                        <!--</p>
+        </a>
+    </div>
+    <div class="panel-collapse">
+        <ul>
+            <li class="nav-item">
+                <a href="messenger-client.html" class="nav-link flex-row justify-content-between align-items-center pb-2 pt-2">
+                    <p class="m-2">Demande Validation de Helper</p>
+                    <div class="count_msg">
+                        @*@{
+                            var listCompteProvider = new Pojeet.Models.DalTransaction().ObtientTousHelpersAValider();
+                            int result = listCompteProvider.Count();
+                        }*@
+                        <span>@*@result*@</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="messenger-admin.html" class="nav-link flex-row justify-content-between align-items-center pb-2 pt-2">
+                    <p class="m-2">Admin</p>
+                    <div class="count_msg">
+                        <span>1</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>-->
+                        <div class="nav nav-sidebar flex-col panel">
+                            <div class="nav-item ">
+                                <a href="Comptabilite" class="nav-link flex-row align-items-center">
+                                    <i class="nav-icon fas fa-euro-sign"></i>
                                     <p class="m-2">
-                                        Messenger
-                                        <!-- <i class="fas fa-angle-left right"></i> -->
+                                        Comptabilité
                                     </p>
                                 </a>
                             </div>
-                            <div class="panel-collapse">
-                                <ul>
-                                    <li class="nav-item">
-                                        <a href="messenger-client.html" class="nav-link flex-row justify-content-between align-items-center pb-2 pt-2">
-                                            <p class="m-2">Demande Validation de Helper</p>
-                                            <div class="count_msg">
-                                                @{
-                                                    var listCompteProvider = new Pojeet.Models.DalTransaction().ObtientTousHelpersAValider();
-                                                    int result = listCompteProvider.Count();
-                                                }
-                                                <span>@result</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="messenger-admin.html" class="nav-link flex-row justify-content-between align-items-center pb-2 pt-2">
-                                            <p class="m-2">Admin</p>
-                                            <div class="count_msg">
-                                                <span>1</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="nav nav-sidebar flex-col panel">
-                                <div class="nav-item ">
-                                    <a href="Comptabilite" class="nav-link flex-row align-items-center">
-                                        <i class="nav-icon fas fa-euro-sign"></i>
-                                        <p class="m-2">
-                                            Comptabilité
-                                        </p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
+
                     </nav>
                     <!-- End sidebar-menu -->
                 </div>

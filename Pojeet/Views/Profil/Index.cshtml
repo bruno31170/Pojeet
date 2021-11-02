@@ -316,7 +316,7 @@
                                                     <img src="assets/img/design_service.png" alt=""
                                                          style="width:50px">
                                                 </div>
-                                                <div class="col-7">
+                                                <div class="col-6">
                                                     <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
                                                     <span class="small text-muted">
                                                         <span style="color:#52ab98">
@@ -326,14 +326,16 @@
                                                     </span>
                                                 </div>
                                                 <div class="col-2" style="color:#52ab98">@item.Montant€</div>
-                                                <div class="col-2">
+                                                <div class="col-3 p-0 text-center">
                                                     <small>
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
                                                         {<em>
                                                                 En cours
 
                                                                 <a href="@Url.Action("RedirigerVersConversationAnnonce", "Inbox", new { reference = @item.Reference, profilId = @Model.CompteConsumer.ProfilId })">
-                                                                    <button type="button" >Voir la proposition</button>
+
+                                                                    <button type="button" class="btn btn-info">Voir la proposition</button>
+
                                                                 </a>
 
 
@@ -346,7 +348,9 @@
                                     (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                                 {
                                                                     <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = @Pojeet.Models.EtatTransaction.Effectue })">
-                                                                        <button type="button">Service Effectué?</button>
+
+                                                                        <button type="button" class="btn btn-info mt-1">Service Effectué?</button>
+
                                                                     </a>
                                                                 }
                                                             </em>
@@ -358,7 +362,9 @@
                                      (item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                                 {
                                                                     <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = Pojeet.Models.EtatTransaction.Valide })">
-                                                                        <button type="button" > Validez La réception du service</button>
+
+                                                                        <button type="button" class="btn btn-info mt-1">Validez La réception du service</button>
+
                                                                     </a>
                                                                 }
 
@@ -367,14 +373,18 @@
                                                         @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
                                                         {<em>
                                                                 Service Validé des deux parties
+
                                                                 @if (Model.CompteConsumer.ProfilId == item.ProfilId && item.Annonce.profil.ListeAvis.Where(c=> c.CompteConsumer== Model.CompteConsumer).FirstOrDefault()==null)
                                                                                       {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.Annonce.ProfilId })">
-                                                                        <button type="button" >Laissez Un Avis!</button>
+                                                                        <button type="button" class="btn btn-info mt-1">Laissez Un Avis!</button>
+
                                                                     </a>}
                                                                 @if (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId && item.Profil.ListeAvis.Where(c => c.CompteConsumer == Model.CompteConsumer).FirstOrDefault() == null)
 
                                                                 {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.ProfilId })">
-                                                                        <button type="button" >Laissez Un Avis!</button>
+
+                                                                        <button type="button" class="btn btn-info mt-1">Laissez Un Avis!</button>
+
                                                                     </a>}
                                                             </em>
                                                         }

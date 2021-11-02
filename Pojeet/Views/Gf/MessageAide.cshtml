@@ -1,0 +1,63 @@
+﻿
+@model Pojeet.ViewModels.MessageAideViewModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Messenger";
+}
+<div class="content-wrapper commande" style="height: 90vh;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header pl-3">
+        <h1 class="pt-4 pl-4 mb-2 font-size-16">Massenger</h1>
+    </div>
+    <!-- /.content-header -->
+    <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+    <br>
+    <div class="table_commandes">
+        <table class="table table-hover border-e w-80 table_sort" style="height: 250px">
+            <thead>
+                <tr>
+                    <th scope="col"> N°</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Objet</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Statut</th>
+                </tr>
+            </thead>
+            <tbody id="commande">
+                @foreach (var aide in Model.aides)
+                {
+                <tr>
+
+                    <th scope="row"><a href="#">@aide.Id </a></th>
+                    <td>@aide.Date</td>
+                    <td>@aide.Nom</td>
+                    <td><a class="font-size-13 bold" href="mailto:@aide.Mail">@aide.Mail</a> </td>
+                    <td>@aide.Objet</td>
+                    <td>@aide.Message</td>
+                    @*@using (Html.BeginForm("ModifierAide", "Gf", FormMethod.Post))
+        {*@
+                    @*<input type="hidden" id="aide" name="aide" class="form-control" value="@aide">*@
+                    @*@Html.HiddenFor(m => m.aide.Id)*@
+                    @*<td><button type="submit" class="btn-primary-e">Répondu</button></td>*@
+                    @if (aide.StatutAide == Pojeet.Models.StatutAide.NonEnvoye)
+                    {
+                        <td> <a style="color: red;" href="@Url.Action("ModifierAide", "Gf", new { id = aide.Id })">Répondu</a></td>
+                        @*}*@
+                    }
+                    else
+                    {
+                <td>Archivé</td>
+                    }
+                </tr>
+
+                }
+                    
+                </tbody>
+        </table>
+    </div>
+
+
+</div>
+

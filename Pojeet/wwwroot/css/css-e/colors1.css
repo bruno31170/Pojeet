@@ -1,8 +1,10 @@
-.white {
+.white,
+.top_post_content {
     background-color: white;
 }
 
-.navbar {
+.navbar
+ {
     background-color: #52ab98;
 }
 
@@ -16,7 +18,7 @@
 .btn-primary-e a,
 footer span,
 footer a {
-    color: white;
+    color: white !important;
 }
 
 .nav-menu-icon li:hover ul li a {
@@ -31,7 +33,7 @@ footer a {
     color: #2b6777 !important;
 }
 
-/* .page_layout, */
+ .page_layout, 
 .nav-menu-icon li ul li:hover {
     background-color: #c8d8e4 !important;
 }
@@ -41,7 +43,7 @@ a,
 .post_search_text,
 .btn_like,
 .side_bar_nav li {
-    color: #225360;
+    color: #225360 !important;
 }
 
 /* .type_post label{
@@ -71,9 +73,10 @@ a:hover,
 
 .btn-primary-e
  {
-    color: white;
+    color: white !important;
     /*color: #c8d8e4 !important;*/
     background-color: #52ab98;
+    border: none;
 }
 
 

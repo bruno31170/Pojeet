@@ -28,9 +28,9 @@ namespace Pojeet.Controllers
         {
 
 
-            dal.DemanderAide(avm.Aide.Id, avm.Aide.Nom, avm.Aide.Mail, avm.Aide.Objet, avm.Aide.Message, avm.Aide.ProfilId);
+            dal.DemanderAide(avm.Aide.Id, avm.Aide.Nom, avm.Aide.Mail, avm.Aide.Objet, avm.Aide.Message, avm.Aide.ProfilId, avm.Aide.StatutAide, avm.Aide.Date);
 
-            return View("Views/Annonce/Reussi.cshtml");
+            return View("Views/Aide/AideReussi.cshtml");
         }
     }
 }

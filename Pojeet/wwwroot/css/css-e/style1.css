@@ -12,7 +12,7 @@ a,
 a:hover,
 a:focus,
 a:active {
-    text-decoration: none;
+    text-decoration: none !important;
     outline: none;
 }
 
@@ -59,6 +59,7 @@ ul {
     padding: 0.5rem;
     border-radius: 4px;
     font-weight: 500;
+    border: none;
 }
 
    /* .btn-primary-e:hover{
@@ -75,6 +76,7 @@ ul {
         padding: 0.5rem;
         border-radius: 4px;
         font-weight: 500;
+        border: none;
     }
 
 /*tout les page*/
@@ -266,7 +268,7 @@ header {
     border-bottom: none !important;
 }
 
-.nav-menu-iconul li:last-child a {
+.nav-menu-icon ul li:last-child a {
     border: none;
 }
 
@@ -289,7 +291,7 @@ header {
     position: absolute;
     right: -11px;
     top: -10px;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 
 /*2. Page annonce*/
@@ -299,7 +301,7 @@ header {
 }
 
 .post_search {
-    min-height: 240px;
+    min-height: 260px;
     justify-content: end;
 }
 .type_post label {
@@ -398,7 +400,7 @@ header {
 }
 
 #poste_annonce .search_select_form {
-    width: 14rem;
+    width: 18rem;
     height: 3rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -410,13 +412,22 @@ header {
     border: 1px solid #52ab98;
     border-radius: 8px;
     box-shadow: 0px 0px 9px 1px rgba(34, 60, 80, 0.25);
-    width: 14rem !important;
+    width: 18rem !important;
+    height: 3rem !important;
 }
 
 .jq-file__name {
-    border: 1px solid #52ab98;
-    border-radius: 8px;
-    box-shadow: 0px 0px 9px 1px rgba(34, 60, 80, 0.25);
+    border: none !important;
+    box-shadow: none;
+    height: 3rem !important;
+    
+}
+
+.jq-file__browse {
+    background: transparent !important;
+    box-shadow: none;
+    height: 3rem;
+    top: 5px !important;
 }
 /* menu profil */
 .side_bar_nav img {
@@ -637,8 +648,8 @@ header {
 }
 
 .slide img {
-    width: 80%;
-    margin-left: 10%;
+    width: 60%;
+    margin-left: 20%;
 }
 
 
@@ -776,6 +787,21 @@ header {
     border-radius: 50%;
 }
 /* 2. END PAGE ANNONCE */
+
+/*Aide*/
+.aide input,
+.aide textarea{
+    border: 1px solid #52ab98;
+    border-radius: 8px;
+}
+
+/*Messagerie*/
+.GeeksForGeeks{
+    width:80%;
+
+}
+/*End Messagerie*/
+
 
 /* FOOTER */
 footer {

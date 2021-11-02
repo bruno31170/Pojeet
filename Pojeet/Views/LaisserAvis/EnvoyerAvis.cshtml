@@ -4,46 +4,123 @@
     ViewBag.Title = "EnvoyerAvis";
 }
 
-<br />
-<p style="text-align:center">
+@section css {
+    <link rel="stylesheet" media="all" href="~/css/avis.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+}
+
+<h2 class="text-center mt-5">Laissez un avis à @Model.Prenom</h2>
+
+<p class="text-center font-italic mt-3">
     Aidez nous à favoriser la confiance entre les utilisateurs de HelpMyCar. <br>
     Merci pour votre participation!
 </p>
 
-<h2 style="text-align:center">Laissez un avis à @Model.Prenom</h2>
+
+<section class="mt-5 d-flex justify-content-center align-items-center flex-column">
+    @using (Html.BeginForm("EnregistrerAvis", "LaisserAvis", FormMethod.Post, new { @class = "d-flex flex-column" }))
+    {
+        @*<br>
+            <h3><br>Votre note : </h3>
+
+            <input type="checkbox" id="Avis.note" name="Avis.note" value="1">
+            <label for="Avis.note">1</label>
+            <input type="checkbox" id="Avis.note" name="Avis.note" value="2">
+            <label for="Avis.note">2</label>
+            <input type="checkbox" id="Avis.note" name="Avis.note" value="3">
+            <label for="Avis.note">3</label>
+            <input type="checkbox" id="Avis.note" name="Avis.note" value="4">
+            <label for="Avis.note">4</label>
+            <input type="checkbox" id="Avis.note" name="Avis.note" value="5">
+            <label for="Avis.note">5</label>
+
+            <br>
+
+            <br>*@
+
+        <h5>Votre note : </h5>
+        <div class="wrap">
+            <div class="stars">
+                <label class="rate">
+                    <input type="radio" name="Avis.note" id="star1" value="1" class="d-none">
+                    <div class="face"></div>
+                    <i class="far fa-star star one-star"></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="Avis.note" id="star2" value="2" class="d-none">
+                    <div class="face"></div>
+                    <i class="far fa-star star two-star"></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="Avis.note" id="star3" value="3" class="d-none">
+                    <div class="face"></div>
+                    <i class="far fa-star star three-star"></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="Avis.note" id="star4" value="4" class="d-none">
+                    <div class="face"></div>
+                    <i class="far fa-star star four-star"></i>
+                </label>
+                <label class="rate">
+                    <input type="radio" name="Avis.note" id="star5" value="5 " class="d-none">
+                    <div class="face"></div>
+                    <i class="far fa-star star five-star"></i>
+                </label>
+            </div>
+        </div>
 
 
-@using (Html.BeginForm("EnregistrerAvis", "LaisserAvis", FormMethod.Post))
-{
-    <br>
-    <h3><br>Votre note : </h3>
 
-    <input type="checkbox" id="Avis.note" name="Avis.note" value="1">
-    <label for="Avis.note">1</label>
-    <input type="checkbox" id="Avis.note" name="Avis.note" value="2">
-    <label for="Avis.note">2</label>
-    <input type="checkbox" id="Avis.note" name="Avis.note" value="3">
-    <label for="Avis.note">3</label>
-    <input type="checkbox" id="Avis.note" name="Avis.note" value="4">
-    <label for="Avis.note">4</label>
-    <input type="checkbox" id="Avis.note" name="Avis.note" value="5">
-    <label for="Avis.note">5</label>
+        <h5 class="mt-5">Votre commentaire : </h5>
 
-    <br>
 
-    <br>
-    <h3><br>Votre commentaire : </h3>
-    <br>
+        @Html.TextAreaFor(model => model.Avis.commentaire, new { @class = "form-control mt-3", placeholder = "Laissez votre commentaire ici...", style = "rows:10;cols:50;width: 500px" })
 
-    @Html.TextAreaFor(model => model.Avis.commentaire, new { @class = "form-control", placeholder = "Laissez votre commentaire ici...", style = "rows:10;cols:50;width: 500px" })
-    <br>
-    <input type="hidden" id="Avis.ProfilId" name="Avis.ProfilId" class="form-control" value="@Model.Avis.ProfilId">
-    <input type="hidden" id="Avis.CompteConsumerId" name="Avis.CompteConsumerId" class="form-control" value="@Model.Avis.CompteConsumerId">
-    <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1 float-right" />
-}
+        <input type="hidden" id="Avis.ProfilId" name="Avis.ProfilId" class="form-control" value="@Model.Avis.ProfilId">
+        <input type="hidden" id="Avis.CompteConsumerId" name="Avis.CompteConsumerId" class="form-control" value="@Model.Avis.CompteConsumerId">
+        <input type="submit" value="Envoyer" class="mt-5 btn-primary-e font-size-14 btn-search text-center mx-auto" />
 
-<style type="text/css">
-    form {
-        width: 300px;
     }
-</style>
+</section>
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">$(function () {
+
+        $(document).on({
+            mouseover: function (event) {
+                $(this).find('.far').addClass('star-over');
+                $(this).prevAll().find('.far').addClass('star-over');
+            },
+            mouseleave: function (event) {
+                $(this).find('.far').removeClass('star-over');
+                $(this).prevAll().find('.far').removeClass('star-over');
+            }
+        }, '.rate');
+
+
+        $(document).on('click', '.rate', function () {
+            if (!$(this).find('.star').hasClass('rate-active')) {
+                $(this).siblings().find('.star').addClass('far').removeClass('fas rate-active');
+                $(this).find('.star').addClass('rate-active fas').removeClass('far star-over');
+                $(this).prevAll().find('.star').addClass('fas').removeClass('far star-over');
+            } else {
+                console.log('has');
+            }
+        });
+
+    });</script>
+

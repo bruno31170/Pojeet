@@ -211,6 +211,29 @@ a, a:hover, a:focus, a:active {
     height: 0;
 }
 
+.notification:hover .triangle {
+    top: -8px !important;
+    left: 120px !important;
+}
+
+.notification:hover .triangle {
+    top: -8px !important;
+    left: 130px !important;
+}
+.notification:hover > ul {
+    opacity: 50;
+    width: 150px;
+    margin-left: -100px !important;
+    margin-top: 7px !important;
+}
+
+    .notification:hover > ul li {
+        padding: 0.5rem;
+        height: auto !important;
+        width: 100%;
+        overflow: visible;
+        border-bottom: 1px solid #fff;
+    }
 .nav-menu-icon li:hover .triangle {
     overflow: visible;
     width: 0;

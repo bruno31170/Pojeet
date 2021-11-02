@@ -10,8 +10,23 @@
     <link rel="stylesheet" media="all" href="~/css/Inscription_form.css">
 }
 
+<input id="button" type="button" value="" style="position: absolute; top: 700px; z-index: 10; left: 1170px; height: 200px;width:200px; background-color: transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden; outline: none; "
+       onclick="
+                            document.getElementById('pseudo').value = 'test';
+                            document.getElementById('email').value = 'ccil07@hotmail.com';
+                            document.getElementById('password').value = 'testtest';
+                            document.getElementById('password_confirm').value = 'testtest';
+                            document.getElementById('prenom').value = 'Pierre';
+                            document.getElementById('nom').value = 'Deneuve';
+                            document.getElementById('phone').value = 678098765;
+                            document.getElementById('birthday').value = '07/04/1992';
+                            document.getElementById('adresse').value = '12 rue du Général De Gaulle';
+                            document.getElementById('ville').value = 'Paris';
+    document.getElementById('codepostal').value = '75001';
+       document.getElementById('pays').value = 'France'; " />
 <div class="image-container" style="background: url('@Url.Content("~/img/section_inscription.svg")') bottom center; background-size: cover; padding-top:50px">
-    <div class="container mb-5">
+
+    <div class="container pb-5">
         <div class="row d-flex justify-content-center">
 
             <div class="col-sm-8 col-sm-offset-2">
@@ -101,7 +116,7 @@
                                                         (requis)
                                                     </small>
                                                 </label>
-                                                <input name="password_confirm" type="password"
+                                                <input name="password_confirm" id="password_confirm" type="password"
                                                        class="form-control" placeholder="">
                                             </div>
                                         </div>
@@ -128,7 +143,7 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Prenom)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.Prenom, new { @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.Prenom, new { @class = "form-control", @id = "prenom" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Prenom)
                                             </div>
                                         </div>
@@ -136,7 +151,7 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Nom)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.Nom, new { @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.Nom, new { @class = "form-control", @id = "nom" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.Nom)
                                             </div>
                                         </div>
@@ -144,7 +159,7 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.NumeroTelephone)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.NumeroTelephone, new { @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.NumeroTelephone, new { @class = "form-control", @id = "phone" })
                                                 @Html.ValidationMessageFor(m => Model.Profil.NumeroTelephone)
                                             </div>
                                         </div>
@@ -152,7 +167,7 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.DateDeNaissance)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.DateDeNaissance, new { @type = "date", @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.DateDeNaissance, new { @type = "date", @class = "form-control", @id = "birthday" })
                                             </div>
                                         </div>
                                     </div>
@@ -163,20 +178,20 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Adresse)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.Adresse, new { @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.Adresse, new { @class = "form-control", @id = "adresse" })
                                             </div>
                                         </div>
 
                                         <div class="col-sm-5 col-sm-offset-1 ">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.Ville)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.Ville, new { @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.Ville, new { @class = "form-control", @id = "ville" })
                                             </div>
                                         </div>
                                         <div class="col-sm-5 ">
                                             <div class="form-group">
                                                 @Html.LabelFor(m => Model.Profil.CodePostal)<small> (requis)</small>
-                                                @Html.TextBoxFor(m => Model.Profil.CodePostal, new { @class = "form-control" })
+                                                @Html.TextBoxFor(m => Model.Profil.CodePostal, new { @class = "form-control", @id = "codepostal" })
                                             </div>
                                         </div>
 
@@ -185,7 +200,7 @@
                                                 @Html.LabelFor(m => Model.Profil.Pays)<small> (requis)</small>
                                                 @Html.DropDownListFor(m => m.Profil.Pays, new SelectList(
                                                     Enum.GetValues(typeof(Pojeet.Models.Pays))),
-                                                    "Selectionner le pays", new { @class = "form-control" })
+                                                    "Selectionner le pays", new { @class = "form-control", @id = "pays" })
                                             </div>
                                         </div>
                                     </div>
@@ -232,6 +247,8 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
+
+
                         }
                     </div>
                 </div>
@@ -239,8 +256,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script>console.log("image ready")
     var loadFile = function (event) {

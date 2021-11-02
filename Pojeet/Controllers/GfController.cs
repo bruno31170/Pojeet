@@ -193,31 +193,57 @@ namespace Pojeet.Controllers
         public ActionResult Consumer(int id)
         {
             CompteConsumer consumer = new CompteConsumer();
-            consumer = dal.ObtientCompteConsumer(id);
-
             List<Transaction> transactions = new List<Transaction>();
-            transactions = dal.ObtientTransaction(consumer.Profil.Id);
-
-            return View(new ConsumerViewModel
+            ConsumerViewModel viewModel = new ConsumerViewModel();
+            try
             {
-                Consumer = consumer,
-                ListeTransaction = transactions
-            });
+               
+
+                consumer = dal.ObtientCompteConsumer(id);
+
+                
+                transactions = dal.ObtientTransaction(consumer.Profil.Id);
+                viewModel = new ConsumerViewModel
+                {
+                    Consumer = consumer,
+                    ListeTransaction = transactions
+                };
+                return View(viewModel);
+                
+                
+            }
+            catch (Exception e)
+            {
+                return View(viewModel);
+            }
         }
 
         public ActionResult Helper(int id)
         {
             CompteConsumer consumer = new CompteConsumer();
-            consumer = dal.ObtientCompteConsumer(id);
-
             List<Transaction> transactions = new List<Transaction>();
-            transactions = dal.ObtientTransaction(consumer.ProfilId);
-
-            return View(new ConsumerViewModel
+            ConsumerViewModel viewModel = new ConsumerViewModel();
+            try
             {
-                Consumer = consumer,
-                ListeTransaction = transactions
-            });
+
+
+                consumer = dal.ObtientCompteConsumer(id);
+
+
+                transactions = dal.ObtientTransaction(consumer.Profil.Id);
+                viewModel = new ConsumerViewModel
+                {
+                    Consumer = consumer,
+                    ListeTransaction = transactions
+                };
+                return View(viewModel);
+
+
+            }
+            catch (Exception e)
+            {
+                return View(viewModel);
+            }
         }
         public ActionResult Commande(int reference)
         {

@@ -33,9 +33,20 @@ footer a {
     color: #2b6777 !important;
 }
 
- .page_layout, 
-.nav-menu-icon li ul li:hover {
+ .page_layout
+{
     background-color: #c8d8e4 !important;
+}
+.nav-menu-icon li ul li:hover{
+    background-color: white;
+}
+
+.notification ul li:hover {
+    border-top: 2px solid #2b777f;
+}
+
+.notification ul {
+    border-right: 1px solid #2b777f;
 }
 
 a,

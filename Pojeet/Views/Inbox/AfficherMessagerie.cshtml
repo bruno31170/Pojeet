@@ -160,7 +160,7 @@
                                                                     <input type="hidden" id="NouveauMessage.ConversationId" name="NouveauMessage.ConversationId" class="form-control" value="@Model.id2">
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn btn-info">Envoyer la proposition</button>
+                                                                    <button type="submit" class="btn btn btn-info">Continuer</button>
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                                                 </div>
                                                             </div>
@@ -192,9 +192,8 @@
                                     {
                                         <li class="clearfix">
                                             <div class="message-data text-right">
-                                                <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
                                                 <span class="message-data-time">@message.Date</span>
-
+                                                <img src="~/media/profil/@message.Profil.Photo" alt="avatar">
                                             </div>
                                             <div class="message other-message float-right">
                                                 @message.message

@@ -167,8 +167,8 @@ namespace Pojeet.Controllers
             argent.MargeBrut = Convert.ToInt32(argent.MargeBrut);
             return View(new TransactionViewModel
             {
-                listConsumer = listeConsumer,
-                Transaction = listeTransaction,
+                listConsumer = listeConsumerMois,
+                Transaction = listeTransactionMois,
                 Argent = argent
             });
 

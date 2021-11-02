@@ -43,10 +43,10 @@ namespace Pojeet.Models
         public List<Conversation> ObtientLesConversations(int id)
         {
             List<Conversation> listeConversations = new List<Conversation>();
-            List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).ToList();
+            List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).Include(c => c.Conversation.Messages).ToList();
             foreach (var listeMessagerieConversation in ListeMessagerieConversation)
             { listeConversations.Add(listeMessagerieConversation.Conversation); }
-            //listeConversations.OrderBy(c => c.DateCreation).ToList();
+            //listeConversations.OrderBy(c => c.Messages!=null.Last().Date).ToList();
             return listeConversations;
         }
 

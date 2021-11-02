@@ -54,9 +54,6 @@
             @Html.ValidationMessageFor(model => model.Anonce.TitreAnnonce)
 
 
-
-
-
             <!-- Description -->
 
             <h3>Description*</h3>
@@ -86,8 +83,11 @@
             </div>
 
 
-            <!-- Image -->
 
+            <h3>Département*</h3>
+            @Html.TextBoxFor(model => model.Anonce.Localisation, new { placeholder = "Localisation", @class = "search_select_form  js-select", id = "localisation" })<br><br>
+
+            <!-- Image -->
             <h3>Selectionner une image</h3>
             <input class="js-select" type="file" name="AnnoncePhoto" data-placeholder="" data-browse="Parcourir" /><br><br>
 
@@ -114,6 +114,7 @@
                             document.getElementById('localisation').value = 31000;
                             document.getElementById('description').value = 'Je recherche une personne qui peut réparer ma portière qui a pris un choc';
                             document.getElementById('titreAnnonce').value = 'Réparation carrosserie'" />
+
 
             @*</div>*@
 

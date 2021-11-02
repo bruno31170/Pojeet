@@ -308,6 +308,8 @@
 
                                 @foreach (var item in @Model.ListeTransaction)
                                 {
+                                    if (@item.EtatTransaction != Pojeet.Models.EtatTransaction.Termine)
+                                    {
                                     <div class=" mt-4">
                                         <div class="d-flex flex-column">
                                             <div class="transaction d-flex">
@@ -401,6 +403,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    }
                                 }
                                 </div>
 
@@ -409,7 +412,7 @@
 
 
                                 <button type="button" class="collapsible mt-4 d-flex justify-content-between">
-                                    <span> Finalisé</span>
+                                    <span> Finalisée</span>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">

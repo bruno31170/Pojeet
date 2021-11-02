@@ -195,9 +195,15 @@ header {
     transition: opacity .25s ease .1s;
 }
 
+.notification:hover .triangle {
+    top: -8px !important;
+    left: 130px !important;
+}
+
 .triangle {
     width: 0;
     height: 0;
+    
 }
 
 .nav-menu-icon li:hover .triangle {
@@ -214,6 +220,13 @@ header {
     -o-transition: height .25s ease .1s;
     transition: height .25s ease .1s;
     position: absolute;
+}
+
+.notification:hover > ul {
+    opacity: 50;
+    width: 150px;
+    margin-left: -100px !important;
+    margin-top: 7px !important;
 }
 
 .nav-menu-icon li:hover > ul {
@@ -247,6 +260,13 @@ header {
 .nav-menu-icon li:hover > ul li {
     padding: 0.5rem;
     height: 36px;
+    width: 100%;
+    overflow: visible;
+    border-bottom: 1px solid #fff;
+}
+.notification:hover > ul li {
+    padding: 0.5rem;
+    height: auto !important;
     width: 100%;
     overflow: visible;
     border-bottom: 1px solid #fff;

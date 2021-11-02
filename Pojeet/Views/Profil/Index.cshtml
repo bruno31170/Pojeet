@@ -316,19 +316,18 @@
                                                     <img src="assets/img/design_service.png" alt=""
                                                          style="width:50px">
                                                 </div>*@
-                                            <div class="col-6">
+                                            <div class="col-6 ">
                                                 <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
                                                 <span class="small text-muted">
                                                     <span style="color:#52ab98">
-                                                        Demande de
-                                                        service  @item.Annonce.CategorieDeAnnonce
-                                                    </span> à <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
+                                                        @item.Annonce.CategorieDeAnnonce
+                                                    </span> avec <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
                                                 </span>
                                             </div>
-                                            <div class="col-2" style="color:#52ab98">@item.Montant€</div>
+                                            <div class="col-1 text-center d-flex align-items-center justify-content-center" style="color:#52ab98">@item.Montant€</div>
 
 
-                                            <div class="col-2">
+                                            <div class="col-3 text-center d-flex align-items-center justify-content-center">
                                                 <small>
                                                     @if (@item.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
                                                     {
@@ -341,7 +340,7 @@
                                                         @if (((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.ProfilId)) || ((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                         {
                                                             <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = @Pojeet.Models.EtatTransaction.Effectue })">
-                                                                <button type="button" class="btn btnGreen">Service Effectué?</button>
+                                                                <button type="button" class="btn btnGreen">Service Effectué ?</button>
                                                             </a>
                                                         }
 
@@ -351,7 +350,7 @@
                                                         @if (((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service) && (Model.CompteConsumer.ProfilId == item.ProfilId)) || ((item.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin) && (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId)))
                                                         {
                                                             <a href="@Url.Action("ActualiserEtatTransaction", "Profil", new { reference = @item.Reference, etat = Pojeet.Models.EtatTransaction.Valide, @class = "btn btnGreen" })">
-                                                                <button type="button" class="btn btnGreen"> Validez La réception du service</button>
+                                                                <button type="button" class="btn btnGreen"> Validez la réception du service</button>
                                                             </a>
                                                         }
                                                     }
@@ -359,12 +358,12 @@
                                                     {
                                                         @if (Model.CompteConsumer.ProfilId == item.ProfilId && item.Annonce.profil.ListeAvis.Where(c => c.CompteConsumer == Model.CompteConsumer).FirstOrDefault() == null)
                                                         {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.Annonce.ProfilId })">
-                                                                <button type="button" class="btn btnGreen">Laissez Un Avis!</button>
+                                                                <button type="button" class="btn btnGreen">Laissez un avis!</button>
                                                             </a>}
                                                         @if (Model.CompteConsumer.ProfilId == item.Annonce.ProfilId && item.Profil.ListeAvis.Where(c => c.CompteConsumer == Model.CompteConsumer).FirstOrDefault() == null)
 
                                                         {<a href="@Url.Action("EnvoyerAvis", "LaisserAvis", new { id = item.ProfilId })">
-                                                                <button type="button" class="btn btnGreen">Laissez Un Avis!</button>
+                                                                <button type="button" class="btn btnGreen">Laissez un avis!</button>
                                                             </a>}
 
                                                     }

@@ -60,7 +60,7 @@ else if (@Model.CompteConsumer != null && @Model.CompteProvider == null)
                         <div class="card wizard-card" data-color="red" id="wizard">
                             @using (Html.BeginForm("CreerHelper", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
-                                <input id="button" type="button" value="Demo"
+                                <input id="button" type="button" value="Demo" style=" left: -188px; position: absolute; height: 100px; width: 100px; background-color: transparent; background-repeat: no-repeat; border: none; cursor: pointer; overflow: hidden; outline: none; }"
                                        onclick="
 
                             document.getElementById('iban').value = 'FR76678879879Y7878789EZ';

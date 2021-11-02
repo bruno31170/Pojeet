@@ -1,5 +1,7 @@
 @{
     var Compte1 = new Pojeet.Models.Dal().ObtenirConsumer(User.Identity.Name);
+    int CountNotificationsMessagerie = new Pojeet.Models.Dal().countNotificationsMessagerie(@Compte1.Profil.notificationsMessagerie);
+    var Notifications = new Pojeet.Models.Dal().ObtenirNotifications(Compte1.ProfilId);
 }
 
 @model Pojeet.ViewModels.ProfilViewModel
@@ -61,9 +63,9 @@
                     </a>
                 </div>
                 @*<div class="search_header align-self-end">
-                        <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
-                        <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
-                    </div>*@
+                <button type="submit"> <i class="font-size-24 fas fa-search"></i></button>
+                <input class="form-control border-e mt-3" id="myInput" type="text" placeholder="Recherche">
+            </div>*@
                 <ul class="nav-menu-icon flex-row align-item-end justify-content-around mb-2 mr-4">
                     <li class="mr-3 ml-2 text-right">
                         @*@Html.ActionLink("Devenez Helper", "", "", null, null, null, null, new { @class = "nav-link nav-link-hover-black rounded" })*@
@@ -81,7 +83,6 @@
                             <i class="font-size-24 fa fa-user"></i>
                         </a>
 
-
                         <ul>
                             <div class="triangle"> </div>
                             <li class="mt-2"><a href="~/Profil/Index">Mon profil</a></li>
@@ -92,18 +93,69 @@
                         </ul>
                     </li>
                     <li class="mr-3 ml-2 text-right">
-                        <a href="@Url.Action("AfficherMessagerie", "Inbox", new { id1 = Compte1.ProfilId })">
+                        <a href="@Url.Action("AfficherMessagerie", "Inbox")">
                             <i class="font-size-24 fa fa-envelope"></i>
+                            @if (@Compte1.Profil.notificationsMessagerie != null)
+                            {
+
+                                <span class="badge badge-danger navbar-badge">@CountNotificationsMessagerie</span>
+                            }
                         </a>
                     </li>
                     <li class="ml-2 text-right">
                         <a href="#">
                             <i class="font-size-24 fa fa-bell"></i>
+
+                            @if (@Compte1.Profil.notifications != null)
+                            {
+                                <span class="badge badge-danger navbar-badge">@Compte1.Profil.notifications.Count()</span>
+                            }
                         </a>
+                        @if (@Compte1.Profil.notifications != null)
+                        {
+                            @foreach (var notification in Notifications)
+                            {
+                                <ul>
+                                    <div class="triangle"> </div>
+
+                                    @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Proposition_de_prix)
+                                    {
+                                        <li>
+                                            <a href="/Profil/Index?tabId=contact2">@notification.transaction.Profil.Prenom vous propose un prix</a>
+                                        </li>
+                                    }
+
+                                    @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Transaction_a_valider)
+                                    {
+                                        <li>
+                                            <a href="/Profil/Index?tabId=contact2">Validez la transaction N° @notification.transaction.Reference</a>
+                                        </li>
+                                    }
+                                    @if (notification.TypeNotification == Pojeet.Models.TypeNotification.Laisser_un_avis)
+                                    {
+                                        @if (notification.transaction.ProfilId == @Compte1.ProfilId)
+                                        {
+                                            <li>
+                                                <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Annonce.profil.Prenom</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="/Profil/Index?tabId=contact2">Laisser un avis à @notification.transaction.Profil.Prenom</a>
+                                            </li>
+
+                                        }
+                                    }
+                                </ul>
+
+
+
+                            }
+                        }
                     </li>
                 </ul>
             </div>
-
         </div>
     </header>
     <main>

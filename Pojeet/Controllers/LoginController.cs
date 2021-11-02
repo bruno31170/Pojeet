@@ -87,7 +87,7 @@ namespace Pojeet.Controllers
             {
                 int id = dal.AjouterConsumer(compteConsumer.MotDePasse, compteConsumer.Pseudo, compteConsumer.Profil.Nom, compteConsumer.Profil.Prenom, compteConsumer.Profil.DateDeNaissance,
             compteConsumer.Profil.Adresse, compteConsumer.Profil.Ville, compteConsumer.Profil.CodePostal, compteConsumer.Profil.Pays, compteConsumer.Profil.Mail, compteConsumer.Profil.NumeroTelephone, compteConsumer.Profil.Description, pictureFile);
-
+                
                 if (pictureFile != null)
                 {
                     if (pictureFile.Length > 0)
@@ -97,10 +97,7 @@ namespace Pojeet.Controllers
                         pictureFile.CopyTo(stream3);
                     }
                 }
-                dal.CreerMessagerie(compteConsumer.ProfilId);
-
-
-
+                
                 var userClaims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Name, id.ToString()),
@@ -135,7 +132,7 @@ namespace Pojeet.Controllers
                     smtp.Send(message);
                 }
 
-
+                
                 return Redirect("SuccessInscritpion");
             }
             return View(compteConsumer);

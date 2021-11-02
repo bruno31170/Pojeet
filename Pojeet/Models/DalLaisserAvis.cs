@@ -46,16 +46,17 @@ namespace Pojeet.Models
             Profil profil = _context.Profil.Where(r => r.Id == avis.ProfilId).Include(c => c.ListeAvis).FirstOrDefault();
             List<Avis> listeAvis = profil.ListeAvis;
             int noteGlobale = profil.NoteMoyenne;
-            noteGlobale = noteGlobale+avis.note / (1+listeAvis.Count());
+            noteGlobale = noteGlobale + avis.note / (1 + listeAvis.Count());
             profil.NoteMoyenne = noteGlobale;
-            
+
             _context.SaveChanges();
 
         }
 
 
         public void SuprimerNotification(Avis avis)
-        {   Profil profil= _context.CompteConsumer.Where(r => r.Id==avis.CompteConsumerId).Include(c=> c.Profil).FirstOrDefault().Profil;
+        {
+            Profil profil = _context.CompteConsumer.Where(r => r.Id == avis.CompteConsumerId).Include(c => c.Profil).FirstOrDefault().Profil;
             NotificationTransaction notification = _context.Notification.Where(r => r.ProfilId == profil.Id).FirstOrDefault();
             _context.Notification.Remove(notification);
             _context.SaveChanges();

@@ -40,7 +40,8 @@ namespace Pojeet.Controllers
             /*CompteConsumer consumer = dal.ObtientConsumer(uvm.CompteConsumer.Id);*/
             List<CompteConsumer> profilsMieuxNotes = dal.ProfilsMieuxNotes();
             List<Annonce> listeAnnonce = dal.RechercherAnnonce(uvm);
-            return View(new ProfilViewModel { Annonce = listeAnnonce, ProfilsMieuxNotes = profilsMieuxNotes });
+            List<Annonce> listeAnnonceTotal = dal.ObtientAnnonce();
+            return View(new ProfilViewModel { Annonce = listeAnnonce, ProfilsMieuxNotes = profilsMieuxNotes, AnnonceTotal = listeAnnonceTotal  });
 
 
           /*      List<Annonce> listeAnnonce = dal.ObtientAnnonce();

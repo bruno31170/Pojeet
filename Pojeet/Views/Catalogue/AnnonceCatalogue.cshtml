@@ -295,7 +295,7 @@
                                 </div>
                                 <div class="post_info flex-col w-100 justify-content-between">
                                     <div class="post_info_text ml-1">
-                                        <span class="font-size-17 bold">@annonce.TitreAnnonce</span><br>
+                                        <span class="font-size-17 bold">@annonce.TitreAnnonce  (@annonce.TypeDeAnnonce)</span><br>
                                         <p class="text-justify">
                                             @annonce.Description
                                         </p>
@@ -310,29 +310,6 @@
                                 </div>
 
                             </div>
-                            <div class="like_post mt-3">
-                                <div class="like_cont flex-row justify-content-end">
-                                    <div class="mb-2 flex-row" style="flex-basis: 70%;">
-                                        <div class="post_view flex-row font-size-20" style="width: 96px;">
-                                            <small class="fa fa-star" aria-hidden="true"></small>
-                                            <small class="fa fa-star" aria-hidden="true"></small>
-                                            <small class="fa fa-star" aria-hidden="true"></small>
-                                            <small class="fa fa-star" aria-hidden="true"></small>
-                                            <small class="fa fa-star text-muted" aria-hidden="true"></small>
-                                        </div>
-                                        <span class="ml-4">(152)</span>
-                                    </div>
-                                    <div class="post_comments btn_like flex-row mr-5">
-                                        <i class="fa fa-comment" onclick="Clk();return false;"></i>
-                                        <span class="align-self-center ml-2">12</span>
-                                    </div>
-                                    <div class="post_save btn_like flex-row">
-                                        <i class="fa fa-heart"></i>
-                                        <span class="align-self-center ml-2">68</span>
-                                    </div>
-                                </div>
-                            </div>
-
 
                         </div>
                     }
@@ -352,7 +329,6 @@
                                     <div class="top_view flex-row align-items-center">
                                         <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
                                         <span class="font-size-12 bold">@compte.Profil.NoteMoyenne</span>
-                                        <span class="font-size-11 ml-1">@compte.Profil.ListeAvis.Count</span>
                                     </div>
                                 </div>
                             </div>

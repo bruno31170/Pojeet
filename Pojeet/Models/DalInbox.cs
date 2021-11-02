@@ -46,7 +46,7 @@ namespace Pojeet.Models
             List<MessagerieConversation> ListeMessagerieConversation = _context.MessagerieConversation.Where(r => r.MessagerieId == id).Include(c => c.Conversation).Include(c => c.Conversation.Auteur_Message.Profil).Include(c => c.Conversation.Annonce.profil).Include(c => c.Conversation.Messages).ToList();
             foreach (var listeMessagerieConversation in ListeMessagerieConversation)
             { listeConversations.Add(listeMessagerieConversation.Conversation); }
-            //listeConversations.OrderBy(c => c.Messages!=null.Last().Date).ToList();
+            //listeConversations.OrderByDescending(i => i.Id).ThenByDescending(i => i.Messages != null).ThenByDescending(i => i.Messages.LastOrDefault().Date != null);
             return listeConversations;
         }
 
@@ -96,7 +96,7 @@ namespace Pojeet.Models
         public int ObtientPremiereConversation(List<Conversation> listeConversation)
         {
             int id = 0;
-            id = listeConversation.First().Id;
+            id = listeConversation.Last().Id;
             return (id);
         }
 

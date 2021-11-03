@@ -32,7 +32,7 @@ namespace Pojeet.Models
                     listeAnnonceProfil.Add(item);
             }
 
-            return listeAnnonceProfil;
+            return listeAnnonceProfil.OrderByDescending(c=> c.DateParution).ToList();
         }
 
         public List<Annonce> ObtientAnnonce()

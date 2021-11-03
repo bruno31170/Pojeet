@@ -186,7 +186,7 @@ namespace Pojeet.Models
 
             if (TriRecherche.Equals("Notes"))
             {
-                rechercheAnnonce = rechercheAnnonce.OrderBy(x => x.profil.NoteMoyenne!=0).ThenByDescending(x => x.profil.NoteMoyenne).ToList();
+                rechercheAnnonce = rechercheAnnonce.OrderBy(x => x.profil.NoteMoyenne).ToList();
             }
 
             if (TriRecherche.Equals("Dates"))

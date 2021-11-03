@@ -436,7 +436,7 @@ ul {
 }
 
 .table_commandes {
-    max-height: 530px;
+    max-height: 700px;
     overflow-y: scroll;
 }
 

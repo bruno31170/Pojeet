@@ -70,7 +70,7 @@ namespace Pojeet.Models
                  Pseudo = "Evgeniia",
                  MotDePasse = Dal.EncodeMD5("123456"),
                  ProfilId = 3,
-                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 01, 15, 12, 1, 10)
              },
              new CompteConsumer
              {
@@ -94,7 +94,7 @@ namespace Pojeet.Models
                  Pseudo = "CocoLaBricole",
                  MotDePasse = Dal.EncodeMD5("cococo"),
                  ProfilId = 6,
-                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 11, 02, 12, 1, 10)
              },
              new CompteConsumer
              {
@@ -102,7 +102,7 @@ namespace Pojeet.Models
                  Pseudo = "EricDu11",
                  MotDePasse = Dal.EncodeMD5("eric11"),
                  ProfilId = 7,
-                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 10, 10, 12, 1, 10)
              },
               new CompteConsumer
               {
@@ -110,7 +110,7 @@ namespace Pojeet.Models
                   Pseudo = "TomTom",
                   MotDePasse = Dal.EncodeMD5("tomtom"),
                   ProfilId = 8,
-                  DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                  DateCreationCompte = new DateTime(2021, 11, 08, 12, 1, 10)
               },
                new CompteConsumer
                {
@@ -118,7 +118,7 @@ namespace Pojeet.Models
                    Pseudo = "MaeMae",
                    MotDePasse = Dal.EncodeMD5("maemae"),
                    ProfilId = 9,
-                   DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                   DateCreationCompte = new DateTime(2021, 08, 29, 12, 1, 10)
                },
                 new CompteConsumer
                 {
@@ -126,7 +126,7 @@ namespace Pojeet.Models
                     Pseudo = "Paulo",
                     MotDePasse = Dal.EncodeMD5("paulopaulo"),
                     ProfilId = 10,
-                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                    DateCreationCompte = new DateTime(2021, 11, 04, 12, 1, 10)
                 },
                 new CompteConsumer
                 {
@@ -134,7 +134,7 @@ namespace Pojeet.Models
                     Pseudo = "stephbreton",
                     MotDePasse = Dal.EncodeMD5("stephbreton"),
                     ProfilId = 11,
-                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                    DateCreationCompte = new DateTime(2021, 04, 29, 12, 1, 10)
                 },
                  new CompteConsumer
                  {
@@ -150,7 +150,7 @@ namespace Pojeet.Models
                      Pseudo = "consumer",
                      MotDePasse = Dal.EncodeMD5("000000"),
                      ProfilId = 13,
-                     DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                     DateCreationCompte = new DateTime(2021, 05, 29, 12, 1, 10)
                  }
             );
 
@@ -1246,147 +1246,287 @@ namespace Pojeet.Models
                 Montant = 200.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 11
+            },
+            new Transaction
+            {
+                Reference = 135,
+                Date = new DateTime(2021, 09, 09, 12, 1, 10),
+                AnnonceId = 20,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 6
+            },
+            new Transaction
+            {
+                Reference = 136,
+                Date = new DateTime(2021, 09, 10, 12, 1, 10),
+                AnnonceId = 6,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 7
+            },
+            new Transaction
+            {
+                Reference = 137,
+                Date = new DateTime(2021, 09, 12, 12, 1, 10),
+                AnnonceId = 3,
+                Montant = 150,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 5
+
+            },
+            new Transaction
+            {
+                Reference = 138,
+                Date = new DateTime(2021, 01, 20, 12, 1, 10),
+                AnnonceId = 4,
+                Montant = 20.15,
+                EtatTransaction = EtatTransaction.Valide,
+                ProfilId = 3
+
+            },
+            new Transaction
+            {
+                Reference = 111,
+                Date = new DateTime(2021, 02, 27, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 5.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 8
+
+            },
+            new Transaction
+            {
+                Reference = 115,
+                Date = new DateTime(2021, 01, 27, 01, 1, 10),
+                AnnonceId = 8,
+                Montant = 10.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 5
+            },
+            new Transaction
+            {
+                Reference = 120,
+                Date = new DateTime(2021, 02, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 122,
+                Date = new DateTime(2021, 03, 10, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 140,
+                Date = new DateTime(2021, 06, 10, 12, 1, 10),
+                AnnonceId = 12,
+                Montant = 155,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 12
+
+            },
+            new Transaction
+            {
+                Reference = 141,
+                Date = new DateTime(2021, 07, 20, 12, 1, 10),
+                AnnonceId = 4,
+                Montant = 100.15,
+                EtatTransaction = EtatTransaction.Valide,
+                ProfilId = 11
+
+            },
+            new Transaction
+            {
+                Reference = 142,
+                Date = new DateTime(2021, 07, 27, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 6
+
+            },
+            new Transaction
+            {
+                Reference = 144,
+                Date = new DateTime(2021, 09, 27, 01, 1, 10),
+                AnnonceId = 3,
+                Montant = 200.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 1
+            },
+            new Transaction
+            {
+                Reference = 145,
+                Date = new DateTime(2021, 08, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 24,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 11
+            },
+            new Transaction
+            {
+                Reference = 146,
+                Date = new DateTime(2021, 01, 10, 12, 1, 10),
+                AnnonceId = 11,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 10
+            },
+            new Transaction
+            {
+                Reference = 147,
+                Date = new DateTime(2021, 04, 10, 12, 1, 10),
+                AnnonceId = 21,
+                Montant = 150,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 9
+            },
+            new Transaction
+            {
+                Reference = 148,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 149,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 25,
+                MontantHelper = 23.75,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 11
+            },
+            new Transaction
+            {
+                Reference = 150,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 9,
+                Montant = 30,
+                MontantHelper = 28.5,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 2
+            },
+            new Transaction
+            {
+                Reference = 151,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 14,
+                Montant = 50,
+                MontantHelper = 47.5,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 6
+            },
+            new Transaction
+            {
+                Reference = 152,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 24,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 12
+            },
+            new Transaction
+            {
+                Reference = 153,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 22,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 10
+            },
+            new Transaction
+            {
+                Reference = 154,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 17,
+                Montant = 20,
+                MontantHelper = 19,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 13
+            },
+            new Transaction
+            {
+                Reference = 155,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 18,
+                Montant = 25,
+                MontantHelper = 23.75,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 9
+            },
+            new Transaction
+            {
+                Reference = 156,
+                Date = new DateTime(2021, 11, 03, 12, 1, 10),
+                AnnonceId = 14,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 157,
+                Date = new DateTime(2021, 11, 02, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 55,
+                MontantHelper = 52.25,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 8
+            },
+            new Transaction
+            {
+                Reference = 158,
+                Date = new DateTime(2021, 11, 04, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 4
             //},
             //new Transaction
             //{
-            //    Reference = 75,
-            //    Date = new DateTime(2021, 10, 09, 12, 1, 10),
-            //    AnnonceId = 20,
-            //    Montant = 40.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 6
-            //},
-            //new Transaction
-            //{
-            //    Reference = 74,
-            //    Date = new DateTime(2021, 09, 10, 12, 1, 10),
-            //    AnnonceId = 6,
-            //    Montant = 39.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 7
-            //},
-            //new Transaction
-            //{
-            //    Reference = 72,
-            //    Date = new DateTime(2021, 08, 02, 12, 1, 10),
-            //    AnnonceId = 3,
-            //    Montant = 150,
+            //    Reference = 159,
+            //    Date = new DateTime(2021, 11, 04, 12, 1, 10),
+            //    AnnonceId = 25,
+            //    Montant = 80,
+            //    MontantHelper = 76,
             //    EtatTransaction = EtatTransaction.En_attente,
-            //    ProfilId = 5
-
-            //},
-            //new Transaction
-            //{
-            //    Reference = 63,
-            //    Date = new DateTime(2021, 01, 20, 12, 1, 10),
-            //    AnnonceId = 4,
-            //    Montant = 20.15,
-            //    EtatTransaction = EtatTransaction.Valide,
-            //    ProfilId = 3
-
-            //},
-            //new Transaction
-            //{
-            //    Reference = 68,
-            //    Date = new DateTime(2021, 02, 27, 12, 1, 10),
-            //    AnnonceId = 1,
-            //    Montant = 5.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 8
-
-            //},
-            //new Transaction
-            //{
-            //    Reference = 80,
-            //    Date = new DateTime(2021, 01, 27, 01, 1, 10),
-            //    AnnonceId = 8,
-            //    Montant = 10.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 5
-            //},
-            //new Transaction
-            //{
-            //    Reference = 41,
-            //    Date = new DateTime(2021, 01, 09, 12, 1, 10),
-            //    AnnonceId = 5,
-            //    Montant = 40.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 3
-            //},
-            //new Transaction
-            //{
-            //    Reference = 111,
-            //    Date = new DateTime(2021, 03, 10, 12, 1, 10),
-            //    AnnonceId = 2,
-            //    Montant = 39.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 4
-            //},
-            //new Transaction
-            //{
-            //    Reference = 152,
-            //    Date = new DateTime(2021, 06, 10, 12, 1, 10),
-            //    AnnonceId = 12,
-            //    Montant = 155,
-            //    EtatTransaction = EtatTransaction.En_attente,
-            //    ProfilId = 12
-
-            //},
-            //new Transaction
-            //{
-            //    Reference = 180,
-            //    Date = new DateTime(2021, 07, 20, 12, 1, 10),
-            //    AnnonceId = 4,
-            //    Montant = 100.15,
-            //    EtatTransaction = EtatTransaction.Valide,
-            //    ProfilId = 11
-
-            //},
-            //new Transaction
-            //{
-            //    Reference = 184,
-            //    Date = new DateTime(2021, 07, 27, 12, 1, 10),
-            //    AnnonceId = 1,
-            //    Montant = 40.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 6
-
-            //},
-            //new Transaction
-            //{
-            //    Reference = 210,
-            //    Date = new DateTime(2021, 09, 27, 01, 1, 10),
-            //    AnnonceId = 3,
-            //    Montant = 200.5,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 1
-            //},
-            //new Transaction
-            //{
-            //    Reference = 202,
-            //    Date = new DateTime(2021, 08, 09, 12, 1, 10),
-            //    AnnonceId = 5,
-            //    Montant = 24,
-            //    EtatTransaction = EtatTransaction.Termine,
-            //    ProfilId = 11
-            //},
-            //new Transaction
-            //{
-            //    Reference = 108,
-            //    Date = new DateTime(2021, 01, 10, 12, 1, 10),
-            //    AnnonceId = 11,
-            //    Montant = 39.5,
-            //    EtatTransaction = EtatTransaction.Termine,
             //    ProfilId = 10
             //},
             //new Transaction
             //{
-            //    Reference = 111,
-            //    Date = new DateTime(2021, 01, 10, 12, 1, 10),
-            //    AnnonceId = 21,
-            //    Montant = 150,
+            //    Reference = 160,
+            //    Date = new DateTime(2021, 11, 04, 12, 1, 10),
+            //    AnnonceId = 16,
+            //    Montant = 100,
+            //    MontantHelper = 95,
             //    EtatTransaction = EtatTransaction.En_attente,
-            //    ProfilId = 9
+            //    ProfilId = 3
+            //},
+            //new Transaction
+            //{
+            //    Reference = 161,
+            //    Date = new DateTime(2021, 11, 03, 12, 1, 10),
+            //    AnnonceId = 2,
+            //    Montant = 40,
+            //    MontantHelper = 38,
+            //    EtatTransaction = EtatTransaction.En_attente,
+            //    ProfilId = 4
 
             });
 

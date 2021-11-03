@@ -29,23 +29,28 @@
 
             <div class="flex-col text-left" style="margin-bottom: -2rem;">
                 <label for="coordonnées">Nom :</label>
-                @Html.TextBoxFor(model => model.Aide.Nom, new { @class = "w-100", placeholder = "Nom" })<br><br>
+                @Html.TextBoxFor(model => model.Aide.Nom, new { @class = "w-100", placeholder = "Nom", id = "Nom" })<br><br>
             </div>
             <div class="flex-col text-left" style="margin-bottom: -2rem;">
                 <label for="coordonnées">Email :</label>
-                @Html.TextBoxFor(model => model.Aide.Mail, new { @class = "w-100", placeholder = "Email" })<br><br>
+                @Html.TextBoxFor(model => model.Aide.Mail, new { @class = "w-100", placeholder = "Email", id = "Mail" })<br><br>
             </div>
             <div class="flex-col text-left" style="margin-bottom: -2rem;">
                 <label for="objet">Objet :</label>
-                @Html.TextBoxFor(model => model.Aide.Objet, new { @class = "w-100", placeholder = "Objet" })<br><br>
+                @Html.TextBoxFor(model => model.Aide.Objet, new { @class = "w-100", placeholder = "Objet", id = "Objet" })<br><br>
             </div>
             <div class="flex-col text-left">
                 <p class="m-0">Votre message : </p><br>
 
-                @Html.TextAreaFor(model => model.Aide.Message, new { @class = "form-control w-100", placeholder = "Message", rows = 10 })<br><br>
+                @Html.TextAreaFor(model => model.Aide.Message, new { @class = "form-control w-100", placeholder = "Message", rows = 10, id = "Message" })<br><br>
             </div>
 
             <input type="submit" value="Envoyer" class="btn-primary-e align-self-center font-size-14 btn-search mb-1" />
+            <input id="button" type="button" value="Démo"
+                   onclick="document.getElementById('Nom').value = 'Helper';
+                            document.getElementById('Mail').value = 'helperHelperIsika@gmail.com';
+                            document.getElementById('Objet').value = 'Je suis nouveau helper';
+                            document.getElementById('Message').value = 'Bonjour, je suis nouveau et je voudrais comment se passe les assurances sur ce site'" />
         </div>
         }
 

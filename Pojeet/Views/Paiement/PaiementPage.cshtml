@@ -156,11 +156,22 @@
                 <input type="hidden" id="Transaction.AnnonceId" name="Transaction.AnnonceId" class="form-control" value="@Model.Transaction.AnnonceId">
                 <input type="hidden" id="Transaction.ProfilId" name="Transaction.ProfilId" class="form-control" value="@Model.Transaction.ProfilId">
                 <button type="submit" class="btn" style="background-color: #52ab98; color: white; width: 300px">Payer</button>
+
+
+
             }
         }
+
+
     </div>
 
 </section>
+<input id="button " type="button" value="Démo" style="background-color: white; color: gray; width: 100px; height: 50px"
+       onclick="document.getElementById('expirationdate').value = '12/23';
+                            document.getElementById('name').value = 'Consumer';
+                            document.getElementById('cardnumber').value = '1256348975126187';
+                            document.getElementById('securitycode').value = '297'" />
+
 
 @*@section scripts {
         <script src="~/js/paiement_js.js"></script>

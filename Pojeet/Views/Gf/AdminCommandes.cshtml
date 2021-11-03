@@ -91,44 +91,48 @@
             <tbody id="commande">
                 @foreach (var transaction in Model.Transaction)
                 {
-                <tr>
+                    <tr>
 
-                    <th scope="row"><a href="@Url.Action("Commande", "Gf", new { reference = transaction.Reference})">@transaction.Reference</a></th>
-                    <td>@transaction.Date</td>
-                    @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
-                    {
+                        <th scope="row"><a href="@Url.Action("Commande", "Gf", new { reference = transaction.Reference})">@transaction.Reference</a></th>
+                        <td>@transaction.Date</td>
+                        @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Besoin)
+                        {
 
-                        <td><a href="@Url.Action("Helper", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
-                    }
-                    else
-                    {
-                        <td><a href="@Url.Action("Helper", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
-                    }
-                    @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
-                    {
-
-
-                        <td><a href="@Url.Action("Consumer", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
-                    }
-                    else
-                    {
-                        <td><a href="@Url.Action("Consumer", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
-                    }
-
-                    <td>@transaction.Montant</td>
-                    <td>
-                        @if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
-                        {<p>En_attente</p>}
-                        else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
-                        { <p>Valide</p>}
-                        else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
-                        { <p>Refuse</p>}
+                            <td><a href="@Url.Action("Helper", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        }
                         else
-                        { <p>Termine</p>}
-                    </td>
-                </tr>
+                        {
+                            <td><a href="@Url.Action("Helper", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        }
+                        @if (transaction.Annonce.TypeDeAnnonce == Pojeet.Models.TypeAnnonce.Service)
+                        {
+
+
+                            <td><a href="@Url.Action("Consumer", "Gf", new { id = transaction.Profil.Id})">@transaction.Profil.Prenom @transaction.Profil.Nom </a></td>
+                        }
+                        else
+                        {
+                            <td><a href="@Url.Action("Consumer", "Gf", new {id = transaction.Annonce.profil.Id})">@transaction.Annonce.profil.Prenom @transaction.Annonce.profil.Nom</a></td>
+                        }
+
+                        <td>@transaction.Montant</td>
+                        <td>
+                            @if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.En_attente)
+                            {<p>En_attente</p>}
+                            else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Valide)
+                            { <p>Valide</p>}
+                            else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Paye)
+                            { <p>Payé</p>}
+                            else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Effectue)
+                            { <p>Effectue</p>}
+                            else if (transaction.EtatTransaction == Pojeet.Models.EtatTransaction.Refuse)
+                            { <p>Refuse</p>}
+                            else
+                            { <p>Termine</p>}
+                        </td>
+                    </tr>
                 }
-                
+
             </tbody>
         </table>
     </div>

@@ -168,7 +168,8 @@ namespace Pojeet.Controllers
             return View(new TransactionViewModel
             {
                 listConsumer = listeConsumerMois,
-                Transaction = listeTransactionMois,
+                Transaction = listeTransaction,
+                
                 Argent = argent
             });
 

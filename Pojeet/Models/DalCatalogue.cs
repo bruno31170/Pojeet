@@ -25,7 +25,7 @@ namespace Pojeet.Models
 
         public List<Annonce> ObtientAnnonce()
         {
-            List<Annonce> listeAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
+            List<Annonce> listeAnnonce = this._context.Annonce.Include(m => m.profil).OrderByDescending(c=> c.DateParution).ToList();
             return listeAnnonce;
         }
 
@@ -186,7 +186,7 @@ namespace Pojeet.Models
 
             if (TriRecherche.Equals("Notes"))
             {
-                rechercheAnnonce = rechercheAnnonce.OrderByDescending(x => x.profil.NoteMoyenne).ToList();
+                rechercheAnnonce = rechercheAnnonce.OrderBy(x => x.profil.NoteMoyenne!=0).ThenByDescending(x => x.profil.NoteMoyenne).ToList();
             }
 
             if (TriRecherche.Equals("Dates"))

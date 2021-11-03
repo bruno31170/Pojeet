@@ -15,7 +15,10 @@
         <!-- info_helper -->
         <div class="w-100 mb-3 user_contact message-box border-e">
             <div class="flex-row align-items-center pl-4 mb-2">
-                <img class="user_img mr-3" src="@Model.Consumer.Profil.Photo" alt="">
+                @{
+                    string photopath = "/media/profil/" + Model.Consumer.Profil.Photo;
+                }
+                <img class="user_img mr-3" src="@photopath" alt="">
                 <a class="font-size-16 bold" href="">@Model.Consumer.Profil.Nom @Model.Consumer.Profil.Prenom</a>
                 <div class="ml-auto mr-4">
                     <a class="btn-primary-e align-items-center" style="background-color: red; color: white !important;" href="">Bloquer</a>

@@ -31,8 +31,10 @@ namespace Pojeet.Models
         {
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+
             optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+
 
         }
 
@@ -48,8 +50,8 @@ namespace Pojeet.Models
             new CompteConsumer
             {
                 Id = 1,
-                Pseudo = "Toto",
-                MotDePasse = Dal.EncodeMD5("lolilol"),
+                Pseudo = "Consumer",
+                MotDePasse = Dal.EncodeMD5("consumerConsumer"),
                 ProfilId = 1,
                 DateCreationCompte = new DateTime(2021, 07, 04, 12, 1, 10)
 
@@ -68,7 +70,7 @@ namespace Pojeet.Models
                  Pseudo = "Evgeniia",
                  MotDePasse = Dal.EncodeMD5("123456"),
                  ProfilId = 3,
-                 DateCreationCompte = new DateTime(2021, 10, 15, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 01, 15, 12, 1, 10)
              },
              new CompteConsumer
              {
@@ -92,7 +94,7 @@ namespace Pojeet.Models
                  Pseudo = "CocoLaBricole",
                  MotDePasse = Dal.EncodeMD5("cococo"),
                  ProfilId = 6,
-                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 11, 02, 12, 1, 10)
              },
              new CompteConsumer
              {
@@ -100,7 +102,7 @@ namespace Pojeet.Models
                  Pseudo = "EricDu11",
                  MotDePasse = Dal.EncodeMD5("eric11"),
                  ProfilId = 7,
-                 DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 DateCreationCompte = new DateTime(2021, 10, 10, 12, 1, 10)
              },
               new CompteConsumer
               {
@@ -108,7 +110,7 @@ namespace Pojeet.Models
                   Pseudo = "TomTom",
                   MotDePasse = Dal.EncodeMD5("tomtom"),
                   ProfilId = 8,
-                  DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                  DateCreationCompte = new DateTime(2021, 11, 08, 12, 1, 10)
               },
                new CompteConsumer
                {
@@ -116,31 +118,39 @@ namespace Pojeet.Models
                    Pseudo = "MaeMae",
                    MotDePasse = Dal.EncodeMD5("maemae"),
                    ProfilId = 9,
-                   DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                   DateCreationCompte = new DateTime(2021, 08, 29, 12, 1, 10)
                },
                 new CompteConsumer
                 {
                     Id = 10,
                     Pseudo = "Paulo",
                     MotDePasse = Dal.EncodeMD5("paulopaulo"),
-                    ProfilId = 9,
-                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                    ProfilId = 10,
+                    DateCreationCompte = new DateTime(2021, 11, 04, 12, 1, 10)
                 },
                 new CompteConsumer
                 {
                     Id = 11,
                     Pseudo = "stephbreton",
                     MotDePasse = Dal.EncodeMD5("stephbreton"),
-                    ProfilId = 9,
-                    DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                    ProfilId = 11,
+                    DateCreationCompte = new DateTime(2021, 04, 29, 12, 1, 10)
                 },
                  new CompteConsumer
                  {
                      Id = 12,
                      Pseudo = "sylvie",
                      MotDePasse = Dal.EncodeMD5("sylvie"),
-                     ProfilId = 9,
+                     ProfilId = 12,
                      DateCreationCompte = new DateTime(2021, 10, 29, 12, 1, 10)
+                 },
+                 new CompteConsumer
+                 {
+                     Id = 13,
+                     Pseudo = "Super-Bricolo",
+                     MotDePasse = Dal.EncodeMD5("000000"),
+                     ProfilId = 13,
+                     DateCreationCompte = new DateTime(2021, 05, 29, 12, 1, 10)
                  }
             );
 
@@ -156,40 +166,24 @@ namespace Pojeet.Models
                     MotDePasse = Dal.EncodeMD5("123456")
                 });
 
-            //NotificationmESSAGERIE
-            this.NotificationMessagerie.AddRange(
-            new NotificationMessagerie
-            {
-                Id = 1,
-                ConversationId = 1,
-                ProfilId = 1,
-                MessagesNonLus = 0,
-            },
-            new NotificationMessagerie
-            {
-                Id = 2,
-                ConversationId = 1,
-                ProfilId = 2,
-                MessagesNonLus = 0,
-            });
-
+           
 
             //PROFIL
             this.Profil.AddRange(
             new Profil
             {
                 Id = 1,
-                Description = "Mécanicien",
-                Nom = "Guissouma",
-                Prenom = "Ines",
-                DateDeNaissance = "12/12/2020",
+                Description = "Besoin d'aide pour entrenir ma voiture",
+                Nom = "CONSUMER",
+                Prenom = "consumer",
+                DateDeNaissance = "05/03/1993",
                 Adresse = "Boulevard Rocheplatte",
                 Ville = "Orléans",
                 CodePostal = "45000",
                 Pays = 0,
-                Mail = "inesguissouma@gmail.com",
+                Mail = "consumerConsumer@gmail.com",
                 NumeroTelephone = 687555634,
-                Photo = "Avatar-Ines.png",
+                Photo = "Eric.png",
                 NoteMoyenne = 2
             },
             new Profil
@@ -283,7 +277,7 @@ namespace Pojeet.Models
                   Pays = 0,
                   Mail = "erci.lessard@yahoo.fr",
                   NumeroTelephone = 625766598,
-                  Photo = "Eric.png"
+                  Photo = "consumer (2).png"
               },
                new Profil
                {
@@ -359,6 +353,21 @@ namespace Pojeet.Models
                      Mail = "riquier@yahoo.fr",
                      NumeroTelephone = 125766523,
                      Photo = "Sylvie.png"
+                 },
+                 new Profil
+                 {
+                     Id = 13,
+                     Description = "",
+                     Nom = "Paul",
+                     Prenom = "Dupont",
+                     DateDeNaissance = "12/09/1994",
+                     Adresse = "52 Av. Chandon",
+                     Ville = "Gennevilliers",
+                     CodePostal = "92230",
+                     Pays = 0,
+                     Mail = "PaulDupont@gmail.com",
+                     NumeroTelephone = 665235408,
+                     Photo = "avatar6.png"
                  }
                 );
 
@@ -446,14 +455,14 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 TypeDeAnnonce = TypeAnnonce.Service,
-                TitreAnnonce = "Changement d'une batterie",
-                Description = "Voiture modèle Ford Fusion",
-                DateParution = DateTime.Now,
+                TitreAnnonce = "Entretien et nettoyage de voiture",
+                Description = "Propose le nettoyage interieur / extérieur de votre véhicule, le diagnostic,la réparation mécanique et l'entretien général (sauf carrosserie) tte marque automobile,. Possibilité de déplacement à  domicile.. à  partir de 25eur/heure..",
+                DateParution = new DateTime(2021, 05, 01, 12, 1, 10),
                 Localisation = "31000",
                 DateButoir = DateTime.Today,
-                Prix = 30,
-                CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                ProfilId = 2,
+                Prix = 25,
+                CategorieDeAnnonce = CategorieAnnonce.Location,
+                ProfilId = 7,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "batterie.jpg"
 
@@ -463,16 +472,16 @@ namespace Pojeet.Models
             {
                 Id = 2,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Recherche visseuse dernier cri",
-                Description = "Modèle à batterie",
-                DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
+                TitreAnnonce = "Louer une remorque",
+                Description = "Je cherche à louer une remorque pour évacuer des déchets végétaux, très peu de kms entre la maison et la déchetterie. Location du 29 au 30 november. Remerciements.",
+                DateParution = new DateTime(2021, 11, 01, 12, 1, 10),
                 Localisation = "32000",
                 DateButoir = DateTime.Today,
-                Prix = 10,
+                Prix = 45,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
-                ProfilId = 2,
+                ProfilId = 13,
                 EtatAnnonce = EtatAnnonce.Validé,
-                Photo = "visseuz.jpg"
+                Photo = "location-remorque.jpg"
             },
 
             new Annonce
@@ -494,14 +503,14 @@ namespace Pojeet.Models
             {
                 Id = 4,
                 TypeDeAnnonce = TypeAnnonce.Besoin,
-                TitreAnnonce = "Changement radiateur",
-                Description = "Radiateur trop vieux",
+                TitreAnnonce = "Recherche un mécanicien",
+                Description = "Bonjour, Je cherche une personne qui puisse changer le démarreur de ma 308 année 2009. J'ai déjà acheté la pièce il faut seulement surélever la voiture, retirer l'ancien démarreur et mettre le nouveau. C'est assez urgent",
                 DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
                 Localisation = "13000",
                 DateButoir = DateTime.Today,
                 Prix = 50,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                ProfilId = 1,
+                ProfilId = 6,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "radiateur.jpg"
 
@@ -518,7 +527,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
-                ProfilId = 2,
+                ProfilId = 13,
 
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "krik.jpg"
@@ -529,12 +538,12 @@ namespace Pojeet.Models
              {
                  Id = 6,
                  TypeDeAnnonce = TypeAnnonce.Service,
-                 TitreAnnonce = "Propose changement essuis glace",
-                 Description = "Avant, arrière ou les deux",
+                 TitreAnnonce = "Service reparation",
+                 Description = "Bonjour je propose mes services en qualité de mécanicien, pour tout ce qui est vidange, remplacement de plaquettes de freins, remplacement de courroies etc... n'hésitez pas à me contacter",
                  DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 10,
+                 Prix = 25,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
                  ProfilId = 3,
 
@@ -545,7 +554,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 7,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Location de roue de secours",
                  Description = "Pour voiture commune",
                  DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
@@ -565,7 +574,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Vend pare-brise Fiat picasso",
                  Description = "Pare brise neuf",
-                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 40,
@@ -585,10 +594,10 @@ namespace Pojeet.Models
                  DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
-                 Prix = 500,
+                 Prix = 20,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
 
-                 ProfilId = 3,
+                 ProfilId = 5,
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "pot.jpg"
 
@@ -596,7 +605,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 10,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Loue test anti-pollution",
                  Description = "Pour éviter les mauvaises surprise lors du contrôle technique",
                  DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
@@ -621,7 +630,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 30,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 2,
+                 ProfilId = 13,
 
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "poignee.jpg"
@@ -638,7 +647,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
-                ProfilId = 2,
+                ProfilId = 8,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "croix.jpg"
 
@@ -669,7 +678,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 50,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                ProfilId = 1,
+                ProfilId = 10,
 
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "ceinture.jpg"
@@ -686,7 +695,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 20,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
-                ProfilId = 2,
+                ProfilId = 4,
 
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "boule.png"
@@ -703,7 +712,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 30,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 3,
+                 ProfilId = 5,
 
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "vidange.jpg"
@@ -712,10 +721,10 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 17,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Location de voiture",
                  Description = "Pas plus de 2 jours",
-                 DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 09, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 100,
@@ -732,7 +741,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Vend capo Fiat panda",
                  Description = "Capo neuf",
-                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 08, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 40,
@@ -764,7 +773,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 20,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Loue desosseur de voiture",
                  Description = "Pour démonter une voiture",
                  DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
@@ -781,7 +790,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 21,
-                 TypeDeAnnonce = TypeAnnonce.Besoin,
+                 TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Changement du volant",
                  Description = "Voiture modèle Renault espace",
                  DateParution = new DateTime(2021, 03, 20, 12, 1, 10),
@@ -806,7 +815,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
-                ProfilId = 2,
+                ProfilId = 11,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "siege.jpg"
 
@@ -823,7 +832,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 100,
                 CategorieDeAnnonce = CategorieAnnonce.Pièce,
-                ProfilId = 3,
+                ProfilId = 11,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "roueCamionette.jpg"
             },
@@ -838,7 +847,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 50,
                 CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                ProfilId = 1,
+                ProfilId = 10,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "laveglace.jpg"
 
@@ -855,7 +864,7 @@ namespace Pojeet.Models
                 DateButoir = DateTime.Today,
                 Prix = 10,
                 CategorieDeAnnonce = CategorieAnnonce.Location,
-                ProfilId = 2,
+                ProfilId = 5,
                 EtatAnnonce = EtatAnnonce.Validé,
                 Photo = "polisseuse.jpg"
 
@@ -874,7 +883,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 60,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 3,
+                 ProfilId = 7,
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "enfonce.jpeg"
 
@@ -891,7 +900,7 @@ namespace Pojeet.Models
                  DateButoir = DateTime.Today,
                  Prix = 50,
                  CategorieDeAnnonce = CategorieAnnonce.Location,
-                 ProfilId = 1,
+                 ProfilId = 6,
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "remorque.jpg"
 
@@ -920,12 +929,12 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Réparation/changement de bougie d'allumage",
                  Description = "Tout type de véhicule",
-                 DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 35,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 3,
+                 ProfilId = 7,
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "bougie.jpg"
 
@@ -937,12 +946,12 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Réparation pédale conducteur",
                  Description = "Pour tout type de voiture",
-                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 06, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 20,
                  CategorieDeAnnonce = CategorieAnnonce.Réparation,
-                 ProfilId = 1,
+                 ProfilId = 12,
                  EtatAnnonce = EtatAnnonce.Validé,
                  Photo = "pedale.jpg"
 
@@ -1022,7 +1031,47 @@ namespace Pojeet.Models
                 message = " hey ",
                 ProfilId = 2,
                 ConversationId = 1
-            });
+            },
+            new Message
+            {
+                Id = 5,
+                Date = new DateTime(2021, 10, 03, 12, 1, 10),
+                message = " Salut, Je suis interessé par votre annonce, pourriez vous me rendre le servie?",
+                ProfilId = 1,
+                ConversationId = 2
+            },
+            new Message
+            {
+                Id = 6,
+                Date = new DateTime(2021, 10, 04, 12, 1, 10),
+                message = " Salut, Oui bien sur, à 60 euros ça marche? ",
+                ProfilId = 6,
+                ConversationId = 2
+            },
+            new Message
+            {
+                Id = 7,
+                Date = new DateTime(2021, 10, 05, 12, 1, 10),
+                message = " Super, ça marche merci!",
+                ProfilId = 1,
+                ConversationId = 2
+            },
+             new Message
+             {
+                 Id = 8,
+                 Date = new DateTime(2021, 11, 05, 12, 1, 10),
+                 message = " Salut, Je peux vous rendre le service si vous voulez :)!",
+                 ProfilId = 5,
+                 ConversationId = 3
+             },
+             new Message
+             {
+                Id = 9,
+                 Date = new DateTime(2021, 11, 05, 12, 1, 10),
+                 message = " Ok vous êtes au entourages?",
+                 ProfilId = 1,
+                 ConversationId = 3
+             });
 
 
 
@@ -1032,8 +1081,66 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                AnnonceId = 1
+                AnnonceId = 21,
 
+            },
+             new Conversation
+             {
+                 Id = 2,
+                 CompteConsumerId = 1,
+                 AnnonceId = 27,
+
+             },
+             new Conversation
+             {
+                 Id = 3,
+                 CompteConsumerId = 5,
+                 AnnonceId = 17,
+
+             });
+            //NotificationmESSAGERIE
+            this.NotificationMessagerie.AddRange(
+            new NotificationMessagerie
+            {
+                Id = 1,
+                ConversationId = 1,
+                ProfilId = 1,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 2,
+                ConversationId = 1,
+                ProfilId = 2,
+                MessagesNonLus = 0,
+            },
+             new NotificationMessagerie
+             {
+                 Id = 3,
+                 ConversationId = 2,
+                 ProfilId = 1,
+                 MessagesNonLus = 0,
+             },
+            new NotificationMessagerie
+            {
+                Id = 4,
+                ConversationId = 2,
+                ProfilId = 6,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 5,
+                ConversationId = 3,
+                ProfilId = 5,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 6,
+                ConversationId = 3,
+                ProfilId = 1,
+                MessagesNonLus = 0,
             });
 
 
@@ -1052,7 +1159,22 @@ namespace Pojeet.Models
             {
                 Id = 3,
                 ProfilId = 3
-            });
+            },
+             new Messagerie
+             {
+                 Id = 4,
+                 ProfilId = 4
+             },
+              new Messagerie
+              {
+                  Id = 5,
+                  ProfilId = 5
+              },
+             new Messagerie
+             {
+                 Id = 6,
+                 ProfilId = 6
+             });
 
             this.MessagerieConversation.AddRange(
             new MessagerieConversation
@@ -1066,6 +1188,30 @@ namespace Pojeet.Models
                 Id = 2,
                 MessagerieId = 2,
                 ConversationId = 1,
+            },
+            new MessagerieConversation
+            {
+                Id = 3,
+                MessagerieId = 1,
+                ConversationId = 2,
+            },
+            new MessagerieConversation
+            {
+                Id = 4,
+                MessagerieId = 6,
+                ConversationId = 2,
+            },
+            new MessagerieConversation
+            {
+                Id = 5,
+                MessagerieId = 5,
+                ConversationId = 3,
+            },
+            new MessagerieConversation
+            {
+                Id = 6,
+                MessagerieId = 1,
+                ConversationId = 3,
             }
            );
 
@@ -1074,26 +1220,73 @@ namespace Pojeet.Models
                 new Aide
                 {
                     Id = 1,
+                    Date = new DateTime(2021, 10, 20, 12, 1, 10),
                     Nom = "Bruno",
                     Mail = "bruno.gmail",
                     Objet = "Litige avec un Helper",
                     Message = "Un helper est venue pour un service mais en reparant ma batterie, il m'a cassé un phare",
-                    ProfilId = 1
-                });
+                    ProfilId = 1,
+                    StatutAide = StatutAide.NonEnvoye
+                },
+                 new Aide
+                 {
+                     Id = 2,
+                     Date = new DateTime(2021, 10, 11, 12, 1, 10),
+                     Nom = "Stéphanie Breton",
+                     Mail = "bretonstephanie@yahoo.fr",
+                     Objet = "Devenir un Helper",
+                     Message = "Bonjour. Quels documents dois-je vous envoyer pour que je puisse publier des annonces",
+                     ProfilId = 11,
+                     StatutAide = StatutAide.NonEnvoye
+                 },
+                 new Aide
+                 {
+                     Id = 3,
+                     Date = new DateTime(2021, 09, 01, 12, 1, 10),
+                     Nom = "Lessard Eric",
+                     Mail = "erci.lessard@yahoo.fr",
+                     Objet = "Paiement",
+                     Message = "J'ai effectué un service pour Ines Guissouma le 2 novembre 2021 mais je ne vois pas encore le paiement. Merci d'avance",
+                     ProfilId = 7,
+                     StatutAide = StatutAide.Envoye
+                 },
+                 new Aide
+                 {
+                     Id = 4,
+                     Date = new DateTime(2021, 10, 05, 12, 1, 10),
+                     Nom = "Corinne Dumas",
+                     Mail = "coco@gmail.fr",
+                     Objet = "Mauvais service",
+                     Message = "Bonjour. Je ne suis pas satisfaite du service que Thomas m'a fourni. Il n'est pas venu à l'heure prévue. Je veux que vous fassiez le remboursement. Merci",
+                     ProfilId = 6,
+                     StatutAide = StatutAide.NonEnvoye
+                 },
+                 new Aide
+                 {
+                     Id = 5,
+                     Date = new DateTime(2021, 09, 29, 12, 1, 10),
+                     Nom = "Sylvie Riquier",
+                     Mail = "riquier@yahoo.fr",
+                     Objet = "Paiment",
+                     Message = "Bonjour. Puis-je payer par chèque pour le service rendu. Merci",
+                     ProfilId = 12,
+                     StatutAide = StatutAide.NonEnvoye
+                 });
 
 
 
             //TRANSACTION
 
-            /*this.Transactions.AddRange(
+            this.Transactions.AddRange(
                 new Transaction
                 {
                     Reference = 123,
                     Date = new DateTime(2021, 01, 20, 12, 1, 10),
                     AnnonceId = 4,
-                    Montant = 20.15,
+                    Montant = 100,
+                    MontantHelper = 95,
                     EtatTransaction = EtatTransaction.Valide,
-                    ProfilId = 3
+                    ProfilId = 2
 
                 },
             new Transaction
@@ -1101,7 +1294,8 @@ namespace Pojeet.Models
                 Reference = 125,
                 Date = new DateTime(2021, 02, 27, 12, 1, 10),
                 AnnonceId = 1,
-                Montant = 5.5,
+                Montant = 50,
+                MontantHelper = 47.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 4
 
@@ -1113,16 +1307,16 @@ namespace Pojeet.Models
                 AnnonceId = 3,
                 Montant = 10.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
+                ProfilId = 7
             },
             new Transaction
             {
                 Reference = 128,
                 Date = new DateTime(2021, 04, 09, 12, 1, 10),
-                AnnonceId = 5,
+                AnnonceId = 22,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
+                ProfilId = 6
             },
             new Transaction
             {
@@ -1130,26 +1324,26 @@ namespace Pojeet.Models
 
                 Date = new DateTime(2021, 10, 10, 12, 1, 10),
 
-                AnnonceId = 2,
+                AnnonceId = 19,
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
+                ProfilId = 9
             },
             new Transaction
             {
                 Reference = 130,
                 Date = new DateTime(2021, 06, 10, 12, 1, 10),
-                AnnonceId = 3,
+                AnnonceId = 23,
                 Montant = 155,
                 EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+                ProfilId = 5
 
             },
             new Transaction
             {
                 Reference = 54,
                 Date = new DateTime(2021, 07, 20, 12, 1, 10),
-                AnnonceId = 4,
+                AnnonceId = 18,
                 Montant = 100.15,
                 EtatTransaction = EtatTransaction.Valide,
                 ProfilId = 3
@@ -1159,10 +1353,10 @@ namespace Pojeet.Models
             {
                 Reference = 57,
                 Date = new DateTime(2021, 08, 27, 12, 1, 10),
-                AnnonceId = 1,
+                AnnonceId = 15,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 10
 
             },
             new Transaction
@@ -1172,54 +1366,44 @@ namespace Pojeet.Models
                 AnnonceId = 3,
                 Montant = 200.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
+                ProfilId = 11
             },
             new Transaction
             {
-                Reference = 75,
-                Date = new DateTime(2021, 10, 09, 12, 1, 10),
-                AnnonceId = 5,
+
+                Reference = 135,
+                Date = new DateTime(2021, 09, 09, 12, 1, 10),
+
+                AnnonceId = 20,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
+                ProfilId = 6
             },
             new Transaction
-            {
-<<<<<<< Updated upstream
-                Reference = 74,
-                Date = new DateTime(2021, 11, 10, 12, 1, 10),
-                AnnonceId = 2,
-=======
-
+            {   
                 Reference = 136,
 
                 Date = new DateTime(2021, 09, 10, 12, 1, 10),
                 AnnonceId = 6,
->>>>>>> Stashed changes
+
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
+                ProfilId = 7
             },
             new Transaction
             {
-<<<<<<< Updated upstream
-                Reference = 72,
-                Date = new DateTime(2021, 12, 10, 12, 1, 10),
-=======
-
                 Reference = 137,
                 Date = new DateTime(2021, 09, 12, 12, 1, 10),
-
->>>>>>> Stashed changes
                 AnnonceId = 3,
                 Montant = 150,
                 EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+                ProfilId = 5
+
 
             },
             new Transaction
             {
-                Reference = 402,
+                Reference = 138,
                 Date = new DateTime(2021, 01, 20, 12, 1, 10),
                 AnnonceId = 4,
                 Montant = 20.15,
@@ -1229,27 +1413,27 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 555,
+                Reference = 111,
                 Date = new DateTime(2021, 02, 27, 12, 1, 10),
                 AnnonceId = 1,
                 Montant = 5.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 8
 
             },
             new Transaction
             {
-                Reference = 999,
+                Reference = 115,
                 Date = new DateTime(2021, 01, 27, 01, 1, 10),
-                AnnonceId = 3,
+                AnnonceId = 8,
                 Montant = 10.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
+                ProfilId = 5
             },
             new Transaction
             {
-                Reference = 444,
-                Date = new DateTime(2021, 01, 09, 12, 1, 10),
+                Reference = 120,
+                Date = new DateTime(2021, 02, 09, 12, 1, 10),
                 AnnonceId = 5,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -1257,7 +1441,7 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 111,
+                Reference = 122,
                 Date = new DateTime(2021, 03, 10, 12, 1, 10),
                 AnnonceId = 2,
                 Montant = 39.5,
@@ -1266,37 +1450,37 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 1130,
+                Reference = 140,
                 Date = new DateTime(2021, 06, 10, 12, 1, 10),
-                AnnonceId = 3,
+                AnnonceId = 12,
                 Montant = 155,
                 EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+                ProfilId = 12
 
             },
             new Transaction
             {
-                Reference = 254,
+                Reference = 141,
                 Date = new DateTime(2021, 07, 20, 12, 1, 10),
                 AnnonceId = 4,
                 Montant = 100.15,
                 EtatTransaction = EtatTransaction.Valide,
-                ProfilId = 3
+                ProfilId = 11
 
             },
             new Transaction
             {
-                Reference = 587,
+                Reference = 142,
                 Date = new DateTime(2021, 07, 27, 12, 1, 10),
                 AnnonceId = 1,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 2
+                ProfilId = 6
 
             },
             new Transaction
             {
-                Reference = 598,
+                Reference = 144,
                 Date = new DateTime(2021, 09, 27, 01, 1, 10),
                 AnnonceId = 3,
                 Montant = 200.5,
@@ -1305,32 +1489,232 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 745,
-                Date = new DateTime(2021, 10, 09, 12, 1, 10),
+                Reference = 145,
+                Date = new DateTime(2021, 08, 09, 12, 1, 10),
                 AnnonceId = 5,
+                Montant = 24,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 11
+            },
+            new Transaction
+            {
+                Reference = 146,
+                Date = new DateTime(2021, 01, 10, 12, 1, 10),
+                AnnonceId = 11,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 10
+            },
+            new Transaction
+            {
+                Reference = 147,
+                Date = new DateTime(2021, 04, 10, 12, 1, 10),
+                AnnonceId = 21,
+                Montant = 150,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 9
+            },
+            new Transaction
+            {
+                Reference = 148,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 4
+            },
+            new Transaction
+            {
+                Reference = 149,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 25,
+                MontantHelper = 23.75,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 11
+            },
+            new Transaction
+            {
+                Reference = 150,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 9,
+                Montant = 30,
+                MontantHelper = 28.5,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 2
+            },
+            new Transaction
+            {
+                Reference = 151,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 14,
+                Montant = 50,
+                MontantHelper = 47.5,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 6
+            },
+            new Transaction
+            {
+                Reference = 152,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 24,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 12
+            },
+            new Transaction
+            {
+                Reference = 153,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 22,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 10
+            },
+            new Transaction
+            {
+                Reference = 154,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 17,
+                Montant = 20,
+                MontantHelper = 19,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 13
+            },
+            new Transaction
+            {
+                Reference = 155,
+                Date = new DateTime(2021, 11, 01, 12, 1, 10),
+                AnnonceId = 18,
+                Montant = 25,
+                MontantHelper = 23.75,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 9
+            },
+            new Transaction
+            {
+                Reference = 156,
+                Date = new DateTime(2021, 11, 03, 12, 1, 10),
+                AnnonceId = 14,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 3
+            },
+            new Transaction
+            {
+                Reference = 157,
+                Date = new DateTime(2021, 11, 02, 12, 1, 10),
+                AnnonceId = 2,
+                Montant = 55,
+                MontantHelper = 52.25,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 8
+            },
+            new Transaction
+            {
+                Reference = 158,
+                Date = new DateTime(2021, 11, 04, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40,
+                MontantHelper = 38,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 4
+            //},
+            //new Transaction
+            //{
+            //    Reference = 159,
+            //    Date = new DateTime(2021, 11, 04, 12, 1, 10),
+            //    AnnonceId = 25,
+            //    Montant = 80,
+            //    MontantHelper = 76,
+            //    EtatTransaction = EtatTransaction.En_attente,
+            //    ProfilId = 10
+            //},
+            //new Transaction
+            //{
+            //    Reference = 160,
+            //    Date = new DateTime(2021, 11, 04, 12, 1, 10),
+            //    AnnonceId = 16,
+            //    Montant = 100,
+            //    MontantHelper = 95,
+            //    EtatTransaction = EtatTransaction.En_attente,
+            //    ProfilId = 3
+            //},
+            //new Transaction
+            //{
+            //    Reference = 161,
+            //    Date = new DateTime(2021, 11, 03, 12, 1, 10),
+            //    AnnonceId = 2,
+            //    Montant = 40,
+            //    MontantHelper = 38,
+            //    EtatTransaction = EtatTransaction.En_attente,
+            //    ProfilId = 4
+
+
+            },
+          
+            new Transaction
+            {
+                Reference = 587,
+                Date = new DateTime(2021, 07, 27, 12, 1, 10),
+                AnnonceId = 1,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 3
+                ProfilId = 6
+
+            },
+            new Transaction
+            {
+                Reference = 745,
+                Date = new DateTime(2021, 08, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 24,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 11
             },
             new Transaction
             {
                 Reference = 764,
                 Date = new DateTime(2021, 01, 10, 12, 1, 10),
-                AnnonceId = 2,
+                AnnonceId = 11,
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 4
+                ProfilId = 10
             },
             new Transaction
             {
                 Reference = 772,
                 Date = new DateTime(2021, 01, 10, 12, 1, 10),
-                AnnonceId = 3,
+                AnnonceId = 21,
                 Montant = 150,
                 EtatTransaction = EtatTransaction.En_attente,
-                ProfilId = 1
+                ProfilId = 9
 
-            });*/
+            },
+             new Transaction
+             {
+                 Reference = 773,
+                 Date = new DateTime(2021, 10, 30, 12, 1, 10),
+                 AnnonceId = 21,
+                 Montant = 50,
+                 EtatTransaction = EtatTransaction.Termine,
+                 ProfilId = 1
+
+             },
+             new Transaction
+             {
+                 Reference = 774,
+                 Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                 AnnonceId = 27,
+                 Montant = 70,
+                 EtatTransaction = EtatTransaction.En_attente,
+                 ProfilId = 1
+
+             });
 
             /*this.Paiement.AddRange(
            new Paiement
@@ -1372,6 +1756,78 @@ namespace Pojeet.Models
                 note = 4,
                 CompteConsumerId = 3,
                 ProfilId = 2
+            },
+            new Avis
+            {
+                Id = 4,
+                date = new DateTime(2021, 10, 20, 12, 1, 10),
+                commentaire = "Bien",
+                note = 4,
+                CompteConsumerId = 3,
+                ProfilId = 13
+            },
+            new Avis
+            {
+                Id = 5,
+                date = new DateTime(2021, 09, 09, 12, 1, 10),
+                commentaire = "Ponctuelle et agréable, je recommande.",
+                note = 4,
+                CompteConsumerId = 1,
+                ProfilId = 13
+            },
+            new Avis
+            {
+                Id = 6,
+                date = new DateTime(2021, 09, 01, 12, 1, 10),
+                commentaire = "Personnes très sympathiques et de confiance ! Je recommande ++ ",
+                note = 5,
+                CompteConsumerId = 10,
+                ProfilId = 13
+            },
+            new Avis
+            {
+                Id = 7,
+                date = new DateTime(2021, 09, 01, 12, 1, 10),
+                commentaire = "Echange très sympathique avec Consumer, aucun problème à signaler :)",
+                note = 5,
+                CompteConsumerId = 11,
+                ProfilId = 13
+            },
+            new Avis
+            {
+                Id = 8,
+                date = new DateTime(2021, 08, 11, 12, 1, 10),
+                commentaire = "Bien",
+                note = 3,
+                CompteConsumerId = 11,
+                ProfilId = 13
+            },
+            new Avis
+            {
+                Id = 9,
+                date = new DateTime(2021, 10, 01, 12, 1, 10),
+                commentaire = "J'ai rendu le service à Consumer et il a été très sympatique.",
+                note = 5,
+                CompteConsumerId = 2,
+                ProfilId = 1
+            },
+            new Avis
+            {
+                Id = 10,
+                date = new DateTime(2021, 10, 05, 12, 1, 10),
+                commentaire = "Correct.",
+                note = 3,
+                CompteConsumerId = 6,
+                ProfilId = 1
+            },
+            new Avis
+            {
+                Id = 11,
+                date = new DateTime(2021, 11, 01, 12, 1, 10),
+                commentaire = "Personne très sympathique et tout s'est bien passé",
+                note = 5,
+                CompteConsumerId = 5,
+                ProfilId = 1
             });
 
 

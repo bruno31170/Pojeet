@@ -98,7 +98,7 @@ namespace Pojeet.Models
         public void ModifierVirement(int reference)
         {
             Virement virement = _context.Virement.Where(c => c.TransactionReference == reference).FirstOrDefault();
-            Transaction transaction = _context.Transactions.FirstOrDefault();
+            Transaction transaction = _context.Transactions.Where(c => c.Reference == reference).FirstOrDefault();
             transaction.EtatTransaction = EtatTransaction.Termine;
             virement.Date = DateTime.Now;
             

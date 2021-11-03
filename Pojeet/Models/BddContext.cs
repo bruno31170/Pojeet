@@ -162,7 +162,7 @@ namespace Pojeet.Models
                     Id = 1,
                     Nom = "Bruno",
                     Prenom = "Boulet",
-                    Pseudo = "Bruno",
+                    Pseudo = "Admin",
                     MotDePasse = Dal.EncodeMD5("123456")
                 });
 
@@ -1485,7 +1485,7 @@ namespace Pojeet.Models
                 AnnonceId = 3,
                 Montant = 200.5,
                 EtatTransaction = EtatTransaction.Termine,
-                ProfilId = 1
+                ProfilId = 2
             },
             new Transaction
             {

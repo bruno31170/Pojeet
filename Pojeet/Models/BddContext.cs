@@ -1185,17 +1185,32 @@ namespace Pojeet.Models
             },
             new Transaction
             {
+<<<<<<< Updated upstream
                 Reference = 74,
                 Date = new DateTime(2021, 11, 10, 12, 1, 10),
                 AnnonceId = 2,
+=======
+
+                Reference = 136,
+
+                Date = new DateTime(2021, 09, 10, 12, 1, 10),
+                AnnonceId = 6,
+>>>>>>> Stashed changes
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 4
             },
             new Transaction
             {
+<<<<<<< Updated upstream
                 Reference = 72,
                 Date = new DateTime(2021, 12, 10, 12, 1, 10),
+=======
+
+                Reference = 137,
+                Date = new DateTime(2021, 09, 12, 12, 1, 10),
+
+>>>>>>> Stashed changes
                 AnnonceId = 3,
                 Montant = 150,
                 EtatTransaction = EtatTransaction.En_attente,

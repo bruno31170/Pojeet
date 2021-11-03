@@ -30,9 +30,9 @@ namespace Pojeet.Models
 
         {
 
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
         }
 
@@ -1085,15 +1085,16 @@ namespace Pojeet.Models
 
             //TRANSACTION
 
-            /*this.Transactions.AddRange(
+            this.Transactions.AddRange(
                 new Transaction
                 {
                     Reference = 123,
                     Date = new DateTime(2021, 01, 20, 12, 1, 10),
                     AnnonceId = 4,
-                    Montant = 20.15,
+                    Montant = 100,
+                    MontantHelper = 95,
                     EtatTransaction = EtatTransaction.Valide,
-                    ProfilId = 3
+                    ProfilId = 2
 
                 },
             new Transaction
@@ -1101,12 +1102,13 @@ namespace Pojeet.Models
                 Reference = 125,
                 Date = new DateTime(2021, 02, 27, 12, 1, 10),
                 AnnonceId = 1,
-                Montant = 5.5,
+                Montant = 50,
+                MontantHelper = 47.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 4
 
-            },
-            new Transaction
+            });
+            /*new Transaction
             {
                 Reference = 127,
                 Date = new DateTime(2021, 03, 27, 01, 1, 10),

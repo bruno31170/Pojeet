@@ -22,7 +22,10 @@
                         <h2 class="m-0">Helper</h2>
                         <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
                             <div class="">
-                                <img class="user_img mr-3" src="@Model.Transaction.Profil.Photo" alt="">
+                                @{
+                                    string photopath1 = "/media/profil/" + Model.Transaction.Profil.Photo;
+                                }
+                                <img class="user_img mr-3" src="@photopath1" alt="">
                             </div>
 
                             <div class="col">
@@ -79,7 +82,10 @@
                         <h2 class="m-0">Consumer</h2>
                         <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
                             <div class="">
-                                <img class="user_img mr-3" src="@Model.Transaction.Annonce.profil.Photo" alt="">
+                                @{
+                                    string photopath2 = "/media/profil/" + Model.Transaction.Annonce.profil.Photo;
+                                }
+                                <img class="user_img mr-3" src="@photopath2" alt="">
                             </div>
 
                             <div class="col">
@@ -139,7 +145,10 @@
             <h2 class="m-0">Helper</h2>
             <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
                 <div class="">
-                    <img class="user_img mr-3" src="@Model.Transaction.Annonce.profil.Photo" alt="">
+                    @{
+                        string photopath3 = "/media/profil/" + Model.Transaction.Annonce.profil.Photo;
+                    }
+                    <img class="user_img mr-3" src="@photopath3" alt="">
                 </div>
 
                 <div class="col">
@@ -192,7 +201,10 @@
             <h2 class="m-0">Consumer</h2>
             <div class="flex-row align-items-center mb-2 w-100 border-bottom-e-1 mt-2">
                 <div class="">
-                    <img class="user_img mr-3" src="@Model.Transaction.Profil.Photo" alt="">
+                    @{
+                        string photopath = "/media/profil/" + Model.Transaction.Profil.Photo;
+                    }
+                    <img class="user_img mr-3" src="@photopath" alt="">
                 </div>
 
                 <div class="col">

@@ -50,8 +50,8 @@ namespace Pojeet.Models
             new CompteConsumer
             {
                 Id = 1,
-                Pseudo = "Toto",
-                MotDePasse = Dal.EncodeMD5("lolilol"),
+                Pseudo = "Consumer",
+                MotDePasse = Dal.EncodeMD5("consumerConsumer"),
                 ProfilId = 1,
                 DateCreationCompte = new DateTime(2021, 07, 04, 12, 1, 10)
 
@@ -189,17 +189,17 @@ namespace Pojeet.Models
             new Profil
             {
                 Id = 1,
-                Description = "Mécanicien",
-                Nom = "Guissouma",
-                Prenom = "Ines",
-                DateDeNaissance = "12/12/2020",
+                Description = "Besoin d'aide pour entrenir ma voiture",
+                Nom = "CONSUMER",
+                Prenom = "consumer",
+                DateDeNaissance = "05/03/1993",
                 Adresse = "Boulevard Rocheplatte",
                 Ville = "Orléans",
                 CodePostal = "45000",
                 Pays = 0,
                 Mail = "inesguissouma@gmail.com",
                 NumeroTelephone = 687555634,
-                Photo = "Avatar-Ines.png",
+                Photo = "Eric.png",
                 NoteMoyenne = 2
             },
             new Profil
@@ -570,7 +570,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 7,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Location de roue de secours",
                  Description = "Pour voiture commune",
                  DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
@@ -621,7 +621,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 10,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Loue test anti-pollution",
                  Description = "Pour éviter les mauvaises surprise lors du contrôle technique",
                  DateParution = new DateTime(2021, 04, 20, 12, 1, 10),
@@ -737,7 +737,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 17,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Location de voiture",
                  Description = "Pas plus de 2 jours",
                  DateParution = new DateTime(2021, 09, 20, 12, 1, 10),
@@ -789,7 +789,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 20,
-                 TypeDeAnnonce = TypeAnnonce.Service,
+                 TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Loue desosseur de voiture",
                  Description = "Pour démonter une voiture",
                  DateParution = new DateTime(2021, 02, 20, 12, 1, 10),
@@ -806,7 +806,7 @@ namespace Pojeet.Models
              new Annonce
              {
                  Id = 21,
-                 TypeDeAnnonce = TypeAnnonce.Besoin,
+                 TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Changement du volant",
                  Description = "Voiture modèle Renault espace",
                  DateParution = new DateTime(2021, 03, 20, 12, 1, 10),
@@ -1057,7 +1057,7 @@ namespace Pojeet.Models
             {
                 Id = 1,
                 CompteConsumerId = 1,
-                AnnonceId = 1
+                AnnonceId = 21,
 
             });
 

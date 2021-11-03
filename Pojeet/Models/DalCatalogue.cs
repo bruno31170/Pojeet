@@ -25,7 +25,7 @@ namespace Pojeet.Models
 
         public List<Annonce> ObtientAnnonce()
         {
-            List<Annonce> listeAnnonce = this._context.Annonce.Include(m => m.profil).ToList();
+            List<Annonce> listeAnnonce = this._context.Annonce.Include(m => m.profil).OrderByDescending(c=> c.DateParution).ToList();
             return listeAnnonce;
         }
 

@@ -437,9 +437,9 @@
                                                         <div class="col-6">
                                                             <span><strong>@item.Annonce.TitreAnnonce</strong></span><br>
                                                             <span class="small text-muted">
-                                                                <span style="color:#52ab98">Achat</span>
-                                                                à  / @item.Annonce.CategorieDeAnnonce
-                                                                <em>MrDurand89</em>
+                                                                <span style="color:#52ab98">@item.Annonce.CategorieDeAnnonce</span>
+                                                                par :
+                                                            <em>@item.Annonce.profil.Prenom @item.Annonce.profil.Nom</em>
                                                             </span>
                                                         </div>
                                                         <div class="col-2" style="color:#52ab98">  @item.Montant€</div>

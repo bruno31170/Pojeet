@@ -280,7 +280,7 @@
                                 <a class="post_img" href="#"><img src="~/media/profil/@annonce.profil.Photo" alt=""></a>
                                 <div class="post_header_info ml-4">
                                     <div class="post_author font-size-15">
-                                        <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+                                        <a href="@Url.Action("ProfilVisiteur", "Profil", new { id = annonce.ProfilId})"> @annonce.profil.Prenom @annonce.profil.Nom</a>
 
                                     </div>
                                     <div class="post_date font-size-11">

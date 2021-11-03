@@ -277,7 +277,7 @@ namespace Pojeet.Models
                   Pays = 0,
                   Mail = "erci.lessard@yahoo.fr",
                   NumeroTelephone = 625766598,
-                  Photo = "Eric.png"
+                  Photo = "consumer (2).png"
               },
                new Profil
                {
@@ -1381,7 +1381,7 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-<
+
                 Reference = 136,
 
                 Date = new DateTime(2021, 09, 10, 12, 1, 10),
@@ -1392,7 +1392,7 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-<
+
                 Reference = 137,
                 Date = new DateTime(2021, 09, 12, 12, 1, 10),
 

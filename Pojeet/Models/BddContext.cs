@@ -1380,22 +1380,20 @@ namespace Pojeet.Models
                 ProfilId = 6
             },
             new Transaction
-            {
-
+            {   
                 Reference = 136,
 
                 Date = new DateTime(2021, 09, 10, 12, 1, 10),
                 AnnonceId = 6,
+
                 Montant = 39.5,
                 EtatTransaction = EtatTransaction.Termine,
                 ProfilId = 7
             },
             new Transaction
             {
-
                 Reference = 137,
                 Date = new DateTime(2021, 09, 12, 12, 1, 10),
-
                 AnnonceId = 3,
                 Montant = 150,
                 EtatTransaction = EtatTransaction.En_attente,

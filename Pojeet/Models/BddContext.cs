@@ -32,8 +32,8 @@ namespace Pojeet.Models
 
             //optionsBuilder.UseMySql("server=localhost;user id=root;password=root;port=8889;database=Projet2");
 
-            //optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=rrrrr;database=Projet2");
+            //optionsBuilder.UseMySql("server=localhost;user id=root;password=123456789;database=Projet2");
 
 
         }
@@ -147,7 +147,7 @@ namespace Pojeet.Models
                  new CompteConsumer
                  {
                      Id = 13,
-                     Pseudo = "consumer",
+                     Pseudo = "Super-Bricolo",
                      MotDePasse = Dal.EncodeMD5("000000"),
                      ProfilId = 13,
                      DateCreationCompte = new DateTime(2021, 05, 29, 12, 1, 10)
@@ -166,23 +166,7 @@ namespace Pojeet.Models
                     MotDePasse = Dal.EncodeMD5("123456")
                 });
 
-            //NotificationmESSAGERIE
-            this.NotificationMessagerie.AddRange(
-            new NotificationMessagerie
-            {
-                Id = 1,
-                ConversationId = 1,
-                ProfilId = 1,
-                MessagesNonLus = 0,
-            },
-            new NotificationMessagerie
-            {
-                Id = 2,
-                ConversationId = 1,
-                ProfilId = 2,
-                MessagesNonLus = 0,
-            });
-
+           
 
             //PROFIL
             this.Profil.AddRange(
@@ -197,7 +181,7 @@ namespace Pojeet.Models
                 Ville = "Orléans",
                 CodePostal = "45000",
                 Pays = 0,
-                Mail = "inesguissouma@gmail.com",
+                Mail = "consumerConsumer@gmail.com",
                 NumeroTelephone = 687555634,
                 Photo = "Eric.png",
                 NoteMoyenne = 2
@@ -374,14 +358,14 @@ namespace Pojeet.Models
                  {
                      Id = 13,
                      Description = "",
-                     Nom = "Martin",
-                     Prenom = "Christophe",
+                     Nom = "Paul",
+                     Prenom = "Dupont",
                      DateDeNaissance = "12/09/1994",
                      Adresse = "52 Av. Chandon",
                      Ville = "Gennevilliers",
                      CodePostal = "92230",
                      Pays = 0,
-                     Mail = "consumer@gmail.com",
+                     Mail = "PaulDupont@gmail.com",
                      NumeroTelephone = 665235408,
                      Photo = "avatar6.png"
                  }
@@ -590,7 +574,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Vend pare-brise Fiat picasso",
                  Description = "Pare brise neuf",
-                 DateParution = new DateTime(2021, 10, 01, 12, 1, 10),
+                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 40,
@@ -607,7 +591,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Réparation/changement de pot d'echappement",
                  Description = "Tout type de véhicule",
-                 DateParution = new DateTime(2021, 11, 02, 12, 1, 10),
+                 DateParution = new DateTime(2021, 01, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 20,
@@ -740,7 +724,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Besoin,
                  TitreAnnonce = "Location de voiture",
                  Description = "Pas plus de 2 jours",
-                 DateParution = new DateTime(2021, 09, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 11, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 100,
@@ -757,7 +741,7 @@ namespace Pojeet.Models
                  TypeDeAnnonce = TypeAnnonce.Service,
                  TitreAnnonce = "Vend capo Fiat panda",
                  Description = "Capo neuf",
-                 DateParution = new DateTime(2021, 07, 20, 12, 1, 10),
+                 DateParution = new DateTime(2021, 12, 20, 12, 1, 10),
                  Localisation = "13000",
                  DateButoir = DateTime.Today,
                  Prix = 40,
@@ -1047,7 +1031,47 @@ namespace Pojeet.Models
                 message = " hey ",
                 ProfilId = 2,
                 ConversationId = 1
-            });
+            },
+            new Message
+            {
+                Id = 5,
+                Date = new DateTime(2021, 10, 03, 12, 1, 10),
+                message = " Salut, Je suis interessé par votre annonce, pourriez vous me rendre le servie?",
+                ProfilId = 1,
+                ConversationId = 2
+            },
+            new Message
+            {
+                Id = 6,
+                Date = new DateTime(2021, 10, 04, 12, 1, 10),
+                message = " Salut, Oui bien sur, à 60 euros ça marche? ",
+                ProfilId = 6,
+                ConversationId = 2
+            },
+            new Message
+            {
+                Id = 7,
+                Date = new DateTime(2021, 10, 05, 12, 1, 10),
+                message = " Super, ça marche merci!",
+                ProfilId = 1,
+                ConversationId = 2
+            },
+             new Message
+             {
+                 Id = 8,
+                 Date = new DateTime(2021, 11, 05, 12, 1, 10),
+                 message = " Salut, Je peux vous rendre le service si vous voulez :)!",
+                 ProfilId = 5,
+                 ConversationId = 3
+             },
+             new Message
+             {
+                Id = 9,
+                 Date = new DateTime(2021, 11, 05, 12, 1, 10),
+                 message = " Ok vous êtes au entourages?",
+                 ProfilId = 1,
+                 ConversationId = 3
+             });
 
 
 
@@ -1059,6 +1083,64 @@ namespace Pojeet.Models
                 CompteConsumerId = 1,
                 AnnonceId = 21,
 
+            },
+             new Conversation
+             {
+                 Id = 2,
+                 CompteConsumerId = 1,
+                 AnnonceId = 27,
+
+             },
+             new Conversation
+             {
+                 Id = 3,
+                 CompteConsumerId = 5,
+                 AnnonceId = 17,
+
+             });
+            //NotificationmESSAGERIE
+            this.NotificationMessagerie.AddRange(
+            new NotificationMessagerie
+            {
+                Id = 1,
+                ConversationId = 1,
+                ProfilId = 1,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 2,
+                ConversationId = 1,
+                ProfilId = 2,
+                MessagesNonLus = 0,
+            },
+             new NotificationMessagerie
+             {
+                 Id = 3,
+                 ConversationId = 2,
+                 ProfilId = 1,
+                 MessagesNonLus = 0,
+             },
+            new NotificationMessagerie
+            {
+                Id = 4,
+                ConversationId = 2,
+                ProfilId = 6,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 5,
+                ConversationId = 3,
+                ProfilId = 5,
+                MessagesNonLus = 0,
+            },
+            new NotificationMessagerie
+            {
+                Id = 6,
+                ConversationId = 3,
+                ProfilId = 1,
+                MessagesNonLus = 0,
             });
 
 
@@ -1077,7 +1159,22 @@ namespace Pojeet.Models
             {
                 Id = 3,
                 ProfilId = 3
-            });
+            },
+             new Messagerie
+             {
+                 Id = 4,
+                 ProfilId = 4
+             },
+              new Messagerie
+              {
+                  Id = 5,
+                  ProfilId = 5
+              },
+             new Messagerie
+             {
+                 Id = 6,
+                 ProfilId = 6
+             });
 
             this.MessagerieConversation.AddRange(
             new MessagerieConversation
@@ -1091,6 +1188,30 @@ namespace Pojeet.Models
                 Id = 2,
                 MessagerieId = 2,
                 ConversationId = 1,
+            },
+            new MessagerieConversation
+            {
+                Id = 3,
+                MessagerieId = 1,
+                ConversationId = 2,
+            },
+            new MessagerieConversation
+            {
+                Id = 4,
+                MessagerieId = 6,
+                ConversationId = 2,
+            },
+            new MessagerieConversation
+            {
+                Id = 5,
+                MessagerieId = 5,
+                ConversationId = 3,
+            },
+            new MessagerieConversation
+            {
+                Id = 6,
+                MessagerieId = 1,
+                ConversationId = 3,
             }
            );
 
@@ -1201,7 +1322,7 @@ namespace Pojeet.Models
             {
                 Reference = 129,
 
-                Date = new DateTime(2021, 05, 10, 12, 1, 10),
+                Date = new DateTime(2021, 10, 10, 12, 1, 10),
 
                 AnnonceId = 19,
                 Montant = 39.5,
@@ -1220,7 +1341,7 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 132,
+                Reference = 54,
                 Date = new DateTime(2021, 07, 20, 12, 1, 10),
                 AnnonceId = 18,
                 Montant = 100.15,
@@ -1230,7 +1351,7 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 133,
+                Reference = 57,
                 Date = new DateTime(2021, 08, 27, 12, 1, 10),
                 AnnonceId = 15,
                 Montant = 40.5,
@@ -1240,7 +1361,7 @@ namespace Pojeet.Models
             },
             new Transaction
             {
-                Reference = 134,
+                Reference = 58,
                 Date = new DateTime(2021, 09, 27, 01, 1, 10),
                 AnnonceId = 3,
                 Montant = 200.5,
@@ -1249,8 +1370,10 @@ namespace Pojeet.Models
             },
             new Transaction
             {
+
                 Reference = 135,
                 Date = new DateTime(2021, 09, 09, 12, 1, 10),
+
                 AnnonceId = 20,
                 Montant = 40.5,
                 EtatTransaction = EtatTransaction.Termine,
@@ -1258,7 +1381,9 @@ namespace Pojeet.Models
             },
             new Transaction
             {
+<
                 Reference = 136,
+
                 Date = new DateTime(2021, 09, 10, 12, 1, 10),
                 AnnonceId = 6,
                 Montant = 39.5,
@@ -1267,12 +1392,15 @@ namespace Pojeet.Models
             },
             new Transaction
             {
+<
                 Reference = 137,
                 Date = new DateTime(2021, 09, 12, 12, 1, 10),
+
                 AnnonceId = 3,
                 Montant = 150,
                 EtatTransaction = EtatTransaction.En_attente,
                 ProfilId = 5
+
 
             },
             new Transaction
@@ -1528,7 +1656,67 @@ namespace Pojeet.Models
             //    EtatTransaction = EtatTransaction.En_attente,
             //    ProfilId = 4
 
-            });
+
+            },
+          
+            new Transaction
+            {
+                Reference = 587,
+                Date = new DateTime(2021, 07, 27, 12, 1, 10),
+                AnnonceId = 1,
+                Montant = 40.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 6
+
+            },
+            new Transaction
+            {
+                Reference = 745,
+                Date = new DateTime(2021, 08, 09, 12, 1, 10),
+                AnnonceId = 5,
+                Montant = 24,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 11
+            },
+            new Transaction
+            {
+                Reference = 764,
+                Date = new DateTime(2021, 01, 10, 12, 1, 10),
+                AnnonceId = 11,
+                Montant = 39.5,
+                EtatTransaction = EtatTransaction.Termine,
+                ProfilId = 10
+            },
+            new Transaction
+            {
+                Reference = 772,
+                Date = new DateTime(2021, 01, 10, 12, 1, 10),
+                AnnonceId = 21,
+                Montant = 150,
+                EtatTransaction = EtatTransaction.En_attente,
+                ProfilId = 9
+
+            },
+             new Transaction
+             {
+                 Reference = 773,
+                 Date = new DateTime(2021, 10, 30, 12, 1, 10),
+                 AnnonceId = 21,
+                 Montant = 50,
+                 EtatTransaction = EtatTransaction.Termine,
+                 ProfilId = 1
+
+             },
+             new Transaction
+             {
+                 Reference = 774,
+                 Date = new DateTime(2021, 11, 10, 12, 1, 10),
+                 AnnonceId = 27,
+                 Montant = 70,
+                 EtatTransaction = EtatTransaction.En_attente,
+                 ProfilId = 1
+
+             });
 
             /*this.Paiement.AddRange(
            new Paiement
@@ -1615,6 +1803,33 @@ namespace Pojeet.Models
                 note = 3,
                 CompteConsumerId = 11,
                 ProfilId = 13
+            },
+            new Avis
+            {
+                Id = 9,
+                date = new DateTime(2021, 10, 01, 12, 1, 10),
+                commentaire = "J'ai rendu le service à Consumer et il a été très sympatique.",
+                note = 5,
+                CompteConsumerId = 2,
+                ProfilId = 1
+            },
+            new Avis
+            {
+                Id = 10,
+                date = new DateTime(2021, 10, 05, 12, 1, 10),
+                commentaire = "Correct.",
+                note = 3,
+                CompteConsumerId = 6,
+                ProfilId = 1
+            },
+            new Avis
+            {
+                Id = 11,
+                date = new DateTime(2021, 11, 01, 12, 1, 10),
+                commentaire = "Personne très sympathique et tout s'est bien passé",
+                note = 5,
+                CompteConsumerId = 5,
+                ProfilId = 1
             });
 
 

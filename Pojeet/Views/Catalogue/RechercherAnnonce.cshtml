@@ -203,141 +203,141 @@
 
                 </div>
 
-            </div>
-            <!-- Fin Rechercher -->
-            <div class="page_container toutes_post p-3 pb-5 flex-row">
-                <!-- Menu utilisateur à geuche -->
-                <div class="side_bar_inner">
-                    <ul class="side_bar_nav flex-col p-3 font-size-14 sticky text-left">
-                        <li class="text-center">
 
-                            <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
+                <!-- Fin Rechercher -->
+                <div class="page_container toutes_post p-3 pb-5 flex-row">
+                    <!-- Menu utilisateur à geuche -->
+                    <div class="side_bar_inner">
+                        <ul class="side_bar_nav flex-col p-3 font-size-14 sticky text-left">
+                            <li class="text-center">
 
-                            <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
-                        </li>
+                                <img class="border-e mb-3" src="~/media/profil/@Compte1.Profil.Photo" alt="">
 
-                        <li>
-                            <a href="~/Profil/Index"> <i class="font-size-25 fa fa-home mr-2"></i> Mon profil</a>
-                        </li>
-                        <li id="">
-                            <a href="/Profil/Index?tabId=profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
-                        </li>
-                        <li>
-                            <a href="/Profil/Index?tabId=contact2"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
-                        </li>
-                        @{
-                            var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
-                        }
-                        @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
-                        @if (provider1 == null)
-                        {
+                                <a class="font-size-18" href="#">@Compte1.Profil.Nom<br>@Compte1.Profil.Prenom </a>
+                            </li>
+
                             <li>
-                                <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                                <a href="~/Profil/Index"> <i class="font-size-25 fa fa-home mr-2"></i> Mon profil</a>
                             </li>
-                        }
-                        else
-                        {
-                            <li style="display: none;">
-                                <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
-
+                            <li id="">
+                                <a href="/Profil/Index?tabId=profile2"><i class="font-size-25 mr-2 fas fa-edit"></i> Mes annonces</a>
                             </li>
-                        }
+                            <li>
+                                <a href="/Profil/Index?tabId=contact2"> <i class="font-size-25 mr-2 far fa-handshake"></i> Mes transactions</a>
+                            </li>
+                            @{
+                                var provider1 = new Pojeet.Models.Dal().ObtenirHelper(User.Identity.Name);
+                            }
+                            @*@if (@provider1.Id != 0 && @provider1.CompteConsumerId == Compte1.Id)*@
+                            @if (provider1 == null)
+                            {
+                                <li>
+                                    <a href="#"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li style="display: none;">
+                                    <a href="~/Login/CreerHelper"><i class="font-size-25 mr-2 fas fa-user-check"></i>Devenir Helper</a>
 
-                        <li>
-                            <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
-                        </li>
-                        <li>
-                            <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
-                        </li>
-                    </ul>
-                </div>
+                                </li>
+                            }
 
-                <!-- Fin menu utilisateur -->
-                <!-- List anonce -->
-
-                <div class="post_list flex-col">
-                    <div class="flex-row justify-content-between align-items-center">
-                        <div class="flex-row ml-3 mb-2">
-                            <span>Annonces: </span>
-                            <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
-                        </div>
-                        <div class="mr-4 mb-1">
-                            <span>Trier par</span>
-
-                            @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
-
-
-                        </div>
+                            <li>
+                                <a href="~/Annonce/PosterAnnonce"><i class="font-size-25 mr-2 fas fa-pen-nib"></i>Poster annonce</a>
+                            </li>
+                            <li>
+                                <a href="~/Aide/Aide"><i class="font-size-25 mr-2 fas fa-info-circle"></i>Aide</a>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- FOR EACH ICI CODE -->
-                    @foreach (var annonce in Model.Annonce)
-                    {
-                        <div class="post_content p-4 border-e flex-col white">
 
-                            <div class="post_header flex-row align-items-center mb-2">
-                                <a class="post_img" href="#"><img src="~/media/profil/@annonce.profil.Photo" alt=""></a>
-                                <div class="post_header_info ml-4">
-                                    <div class="post_author font-size-15">
-                                        <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+                    <!-- Fin menu utilisateur -->
+                    <!-- List anonce -->
 
-                                    </div>
-                                    <div class="post_date font-size-11">
-                                        <span class="post_link">Date de parution : @annonce.DateParution</span>
-                                    </div>
-                                    <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
-                                </div>
+                    <div class="post_list flex-col">
+                        <div class="flex-row justify-content-between align-items-center">
+                            <div class="flex-row ml-3 mb-2">
+                                <span>Annonces: </span>
+                                <span class="post_counter bold ml-2">@Model.Annonce.Count</span>
                             </div>
-                            <div class="wall_post flex-row">
-                                <div class="wall_post_img">
-                                    <img src="~/media/annonce/@annonce.Photo" alt="">
-                                </div>
-                                <div class="post_info flex-col w-100 justify-content-between">
-                                    <div class="post_info_text ml-1">
-                                        <span class="font-size-17 bold">@annonce.TitreAnnonce  (@annonce.TypeDeAnnonce)</span><br>
-                                        <p class="text-justify">
-                                            @annonce.Description
-                                        </p>
-                                    </div>
-                                    <div class="post_price font-size-15 ml-1">
-                                        <span>Prix: @annonce.Prix €</span>
-                                    </div>
-                                    <div class="btn-primary-e w-100 mt-2 btn_post">
+                            <div class="mr-4 mb-1">
+                                <span>Trier par</span>
 
-                                        <a href="@Url.Action("Annonce", "Catalogue", new { id1 = Compte1.ProfilId, id2 = annonce.Id })">Voir l'annonce</a>
-                                    </div>
-                                </div>
+                                @Html.DropDownListFor(m => m.Recherche.Tri, new SelectList(Enum.GetValues(typeof(Pojeet.Models.Tri)))) <!-- class ="type_post" -->
 
-                            </div>                            
 
-                        </div>
-                    }
-                </div>
-                <!-- Top anonce -->
-                <div class="top_post flex-col pl-4 text-center">
-                    <span class="text-capitalize mb-2">Meilleures notes</span>
-                    @foreach (var compte in Model.ProfilsMieuxNotes)
-                    {
-
-                        <div class="top_post_list">
-                            <div class="top_post_content border-e mb-3">
-                                <div class="top_post_item flex-col align-items-center p-2">
-                                    <a href="#"><img src="~/media/profil/@compte.Profil.Photo" alt=""></a>
-                                    <a href="@Url.Action("ProfilVisiteur", "Profil", new { id = compte.Id })">@compte.Profil.Prenom @compte.Profil.Nom</a>
-                                    <span class="font-size-11">@compte.Profil.Ville</span>
-                                    <div class="top_view flex-row align-items-center">
-                                        <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
-                                        <span class="font-size-12 bold">@compte.Profil.NoteMoyenne</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                        <!-- FOR EACH ICI CODE -->
+                        @foreach (var annonce in Model.Annonce)
+                        {
+                            <div class="post_content p-4 border-e flex-col white">
 
-                    }
+                                <div class="post_header flex-row align-items-center mb-2">
+                                    <a class="post_img" href="#"><img src="~/media/profil/@annonce.profil.Photo" alt=""></a>
+                                    <div class="post_header_info ml-4">
+                                        <div class="post_author font-size-15">
+                                            <a href="#"> @annonce.profil.Prenom @annonce.profil.Nom</a>
+
+                                        </div>
+                                        <div class="post_date font-size-11">
+                                            <span class="post_link">Date de parution : @annonce.DateParution</span>
+                                        </div>
+                                        <span class="post_city font-size-11">Localisation : @annonce.Localisation</span>
+                                    </div>
+                                </div>
+                                <div class="wall_post flex-row">
+                                    <div class="wall_post_img">
+                                        <img src="~/media/annonce/@annonce.Photo" alt="">
+                                    </div>
+                                    <div class="post_info flex-col w-100 justify-content-between">
+                                        <div class="post_info_text ml-1">
+                                            <span class="font-size-17 bold">@annonce.TitreAnnonce  (@annonce.TypeDeAnnonce)</span><br>
+                                            <p class="text-justify">
+                                                @annonce.Description
+                                            </p>
+                                        </div>
+                                        <div class="post_price font-size-15 ml-1">
+                                            <span>Prix: @annonce.Prix €</span>
+                                        </div>
+                                        <div class="btn-primary-e w-100 mt-2 btn_post">
+
+                                            <a href="@Url.Action("Annonce", "Catalogue", new { id1 = Compte1.ProfilId, id2 = annonce.Id })">Voir l'annonce</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                    <!-- Top anonce -->
+                    <div class="top_post flex-col pl-4 text-center">
+                        <span class="text-capitalize mb-2">Meilleures notes</span>
+                        @foreach (var compte in Model.ProfilsMieuxNotes)
+                        {
+
+                            <div class="top_post_list">
+                                <div class="top_post_content border-e mb-3">
+                                    <div class="top_post_item flex-col align-items-center p-2">
+                                        <a href="#"><img src="~/media/profil/@compte.Profil.Photo" alt=""></a>
+                                        <a href="@Url.Action("ProfilVisiteur", "Profil", new { id = compte.Id })">@compte.Profil.Prenom @compte.Profil.Nom</a>
+                                        <span class="font-size-11">@compte.Profil.Ville</span>
+                                        <div class="top_view flex-row align-items-center">
+                                            <small class="fa fa-star font-size-14 aqua" aria-hidden="true"></small>
+                                            <span class="font-size-12 bold">@compte.Profil.NoteMoyenne</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                    <!-- Fin top anonce -->
+
                 </div>
-                <!-- Fin top anonce -->
-
             </div>
-
         }
     </main>
     <footer>
